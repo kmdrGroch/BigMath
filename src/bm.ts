@@ -313,7 +313,7 @@ const atan = (a: T): BigNumber => {
 const acot = (a: T): BigNumber => {
   a = normalize(a);
   if (a.sign) {
-    return add(multiply(PI2, 2), atan(divide(1, a)));
+    return add(PI, atan(divide(1, a)));
   } else {
     return atan(divide(1, a));
   }
@@ -393,6 +393,12 @@ const LOG10 = Object.freeze({
 const PI2 = Object.freeze({
   comma: -57,
   number: BigInt('1570796326794896619231321691639751442098584699687552910487'),
+  sign: false
+});
+
+const PI = Object.freeze({
+  comma: -57,
+  number: BigInt('3141592653589793238462643383279502884197169399375105820974'),
   sign: false
 });
 
