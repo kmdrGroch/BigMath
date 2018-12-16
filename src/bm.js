@@ -144,11 +144,10 @@ const ln = (a) => {
     const ten = multiply(tens, LOG10);
     a.comma -= tens;
     let sum = divide(subtract(a, 1), add(a, 1));
+    let p = normalize(sum);
+    const k = multiply(sum, sum);
     for (let i = 1; i < 20; i++) {
-        let p = divide(subtract(a, 1), add(a, 1));
-        for (let j = 0; j < i * 2; j++) {
-            p = multiply(p, divide(subtract(a, 1), add(a, 1)));
-        }
+        p = multiply(p, k);
         sum = add(sum, divide(p, 2 * i + 1));
     }
     return normalize(add(ten, multiply(sum, 2)));
@@ -194,7 +193,6 @@ const exp = (a) => {
     }
     return multiply(b, n);
 };
-exports.exp = exp;
 const sin = (a) => {
     a = normalize(a);
     const r = divide(a, PI2);
@@ -234,8 +232,9 @@ const asin = (a) => {
     let s = normalize(a);
     let k = normalize(a);
     let b = normalize(1);
+    a = multiply(a, a);
     for (let i = 0; i < 30; i++) {
-        k = multiply(k, multiply(a, a));
+        k = multiply(k, a);
         b = multiply(b, divide(i * 2 + 1, i * 2 + 2));
         s = add(s, divide(multiply(k, b), 2 * i + 3));
     }
@@ -257,7 +256,7 @@ const atan = (a) => {
 const acot = (a) => {
     a = normalize(a);
     if (a.sign) {
-        return add(multiply(PI2, 2), atan(divide(1, a)));
+        return add(PI, atan(divide(1, a)));
     }
     else {
         return atan(divide(1, a));
@@ -314,21 +313,26 @@ const acsch = (a) => {
     const b = divide(1, a);
     return ln(add(b, sqrt(add(divide(b, a), 1))));
 };
-const LOG10 = {
+const LOG10 = Object.freeze({
     comma: -57,
     number: BigInt('2302585092994045684017991454684364207601101488628772976033'),
     sign: false
-};
-const PI2 = {
+});
+const PI2 = Object.freeze({
     comma: -57,
     number: BigInt('1570796326794896619231321691639751442098584699687552910487'),
     sign: false
-};
-const E = {
+});
+const PI = Object.freeze({
+    comma: -57,
+    number: BigInt('3141592653589793238462643383279502884197169399375105820974'),
+    sign: false
+});
+const E = Object.freeze({
     comma: -227,
     number: BigInt('271828182845904523536028747135266249775724709369995957496696762772407663035354759457138217852516642742746639193200305992181741359662904357290033429526059563073813232862794349076323382988075319525101901157383418793070215408914993'),
     sign: false
-};
+});
 const stringify = (a) => {
     const s = String(a.number);
     if (a.comma < 0) {

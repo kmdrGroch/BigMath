@@ -3,8 +3,6 @@ interface BigNumber {
     number: bigint;
     sign: boolean;
 }
-declare const exp: (a: string | number | bigint | BigNumber) => BigNumber;
-export { exp };
 declare const _default: {
     acos: (a: string | number | bigint | BigNumber) => BigNumber;
     acosh: (a: string | number | bigint | BigNumber) => BigNumber;

@@ -163,12 +163,11 @@ const ln = (a: T) => {
   a.comma -= tens;
 
   let sum = divide(subtract(a, 1), add(a, 1));
+  let p = normalize(sum);
+  const k = multiply(sum, sum);
 
   for (let i = 1; i < 20; i++) {
-    let p = divide(subtract(a, 1), add(a, 1));
-    for (let j = 0; j < i * 2; j++) {
-      p = multiply(p, divide(subtract(a, 1), add(a, 1)));
-    }
+    p = multiply(p, k);
     sum = add(sum, divide(p, 2 * i + 1));
   }
 
@@ -280,8 +279,10 @@ const asin = (a: T): BigNumber => {
 
   let b = normalize(1);
 
+  a = multiply(a, a);
+
   for (let i = 0; i < 30; i++) {
-    k = multiply(k, multiply(a, a));
+    k = multiply(k, a);
     b = multiply(b, divide(i * 2 + 1, i * 2 + 2));
 
     s = add(s, divide(multiply(k, b), 2 * i + 3));
