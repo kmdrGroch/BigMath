@@ -100,7 +100,7 @@ describe('asin', () => {
         chai_1.expect(bm_1.default.stringify(bm_1.default.asin(0.533))).to.be.equal('0.56214223826934260709715228425762629753379502801831404218567');
     });
     it('2', () => {
-        chai_1.expect(() => bm_1.default.stringify(bm_1.default.asin(1.0001))).to.throw(RangeError, 'Number out of range');
+        chai_1.expect(() => bm_1.default.stringify(bm_1.default.asin(1.0001))).to.throw(RangeError, 'Number out of domain. Given: 1.0001. Expected: numbers from range [-1, 1]');
     });
 });
 describe('sinh', () => {

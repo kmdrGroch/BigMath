@@ -1,5 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+class DomainError extends RangeError {
+    constructor(given, expected) {
+        super(`Number out of domain. Given: ${given}. Expected: ${expected}`);
+        this.name = 'DomainError';
+    }
+}
 const normalize = (a) => {
     switch (typeof a) {
         case 'bigint':
@@ -45,8 +51,11 @@ const normalize = (a) => {
                 sign
             };
     }
-    throw new TypeError('Placeholder');
 };
+/**
+ * @domain Real numbers, Real numbers
+ * @returns Sum of parameters
+ */
 const add = (a, b) => {
     a = normalize(a);
     b = normalize(b);
@@ -72,6 +81,10 @@ const add = (a, b) => {
         sign: a.sign
     });
 };
+/**
+ * @domain Real numbers, Real numbers
+ * @returns Difference of parameters
+ */
 const subtract = (a, b) => {
     a = normalize(a);
     b = normalize(b);
@@ -97,6 +110,10 @@ const subtract = (a, b) => {
         sign: a.sign
     });
 };
+/**
+ * @domain Real numbers
+ * @returns Product of parameters
+ */
 const multiply = (a, b) => {
     a = normalize(a);
     b = normalize(b);
@@ -106,11 +123,15 @@ const multiply = (a, b) => {
         sign: a.sign !== b.sign
     });
 };
+/**
+ * @domain Real numbers, Real numbers other than 0
+ * @returns Quotient of parameters
+ */
 const divide = (a, b) => {
     a = normalize(a);
     b = normalize(b);
     if (b.number === BigInt(0)) {
-        throw new RangeError('Range error!');
+        throw new DomainError('0', 'numbers other than 0');
     }
     const len = String(a.number).length - String(b.number).length;
     if (len > 0) {
@@ -138,8 +159,15 @@ const divide = (a, b) => {
         sign: a.sign !== b.sign
     });
 };
+/**
+ * @domain Numbers greater than 0
+ * @returns Natural logarithm (base e) of a number
+ */
 const ln = (a) => {
     a = normalize(a);
+    if (a.sign || a.number === BigInt(0)) {
+        throw new DomainError(stringify(a), 'numbers greater than 0');
+    }
     const tens = String(a.number).length + a.comma;
     const ten = multiply(tens, LOG10);
     a.comma -= tens;
@@ -152,9 +180,16 @@ const ln = (a) => {
     }
     return normalize(add(ten, multiply(sum, 2)));
 };
+/**
+ * @domain Real numbers, Real numbers | both can't be 0 at the same time
+ * @returns Result of the exponentiation of parameters
+ */
 const power = (a, b) => {
     a = normalize(a);
     b = normalize(b);
+    if (a.number === BigInt(0) && b.number === BigInt(0)) {
+        throw new DomainError('0 ^ 0', 'real numbers | both can\'t be 0 at the same time');
+    }
     if (b.comma > -1) {
         if (b.sign) {
             b.sign = false;
@@ -166,14 +201,28 @@ const power = (a, b) => {
     }
     return exp(multiply(b, ln(a)));
 };
+/**
+ * @domain Numbers greater or equal 0
+ * @returns Square root of number
+ */
 const sqrt = (a) => {
     a = normalize(a);
+    if (a.sign) {
+        throw new DomainError(stringify(a), 'numbers greater or equal 0');
+    }
+    if (a.number === BigInt(0)) {
+        return normalize(0);
+    }
     let aprox = normalize(BigInt(10) ** BigInt(Math.floor((String(a.number).length + a.comma) / 2)));
     for (let i = 0; i < 20; i++) {
         aprox = multiply(add(divide(a, aprox), aprox), 0.5);
     }
     return aprox;
 };
+/**
+ * @domain Real numbers
+ * @returns Result of the exponentiation of e ^ parameter
+ */
 const exp = (a) => {
     a = normalize(a);
     const str = String(a.number);
@@ -193,6 +242,11 @@ const exp = (a) => {
     }
     return multiply(b, n);
 };
+/**
+ * @domain Real numbers
+ * @range [-1, 1]
+ * @returns Sine of parameter
+ */
 const sin = (a) => {
     a = normalize(a);
     const r = divide(a, PI2);
@@ -217,17 +271,75 @@ const sin = (a) => {
         s.comma = -30;
         s.number = BigInt(String(s.number).substring(0, String(s.number).length + c));
     }
-    return s;
+    return normalize(s);
 };
+/**
+ * @domain Real numbers
+ * @range [-1, 1]
+ * @returns Cosine of parameter
+ */
 const cos = (a) => sin(subtract(PI2, a));
-const tan = (a) => divide(sin(a), cos(a));
-const cot = (a) => divide(cos(a), sin(a));
-const sec = (a) => divide(1, cos(a));
-const csc = (a) => divide(1, sin(a));
+/**
+ * @domain Real numbers & x != PI/2 + k*PI (k - integer)
+ * @range Real numbers
+ * @returns Tangent of parameter
+ */
+const tan = (a) => {
+    a = normalize(a);
+    const c = cos(a);
+    if (c.number === BigInt(0)) {
+        throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
+    }
+    return divide(sin(a), c);
+};
+/**
+ * @domain Real numbers & x != k*PI (k - integer)
+ * @range Real numbers
+ * @returns Cotangent of parameter
+ */
+const cot = (a) => {
+    a = normalize(a);
+    const s = sin(a);
+    if (s.number === BigInt(0)) {
+        throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
+    }
+    return divide(cos(a), s);
+};
+/**
+ * @domain Real numbers & x != PI/2 + k*PI (k - integer)
+ * @range Real numbers
+ * @returns Secant of parameter
+ */
+const sec = (a) => {
+    a = normalize(a);
+    const c = cos(a);
+    if (c.number === BigInt(0)) {
+        throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
+    }
+    return divide(1, c);
+};
+/**
+ * @domain Real numbers & x != k*PI (k - integer)
+ * @range Real numbers
+ * @returns Cosecant of parameter
+ */
+const csc = (a) => {
+    a = normalize(a);
+    const s = sin(a);
+    if (s.number === BigInt(0)) {
+        throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
+    }
+    return divide(1, s);
+};
+/**
+ * @domain [-1, 1]
+ * @range [-PI/2, PI/2]
+ * @returns Inverse sine of parameter
+ */
 const asin = (a) => {
     a = normalize(a);
     if (String(a.number).length > Math.abs(a.comma)) {
-        throw new RangeError('Number out of range');
+        throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
     }
     let s = normalize(a);
     let k = normalize(a);
@@ -240,7 +352,23 @@ const asin = (a) => {
     }
     return s;
 };
-const acos = (a) => asin(subtract(PI2, a));
+/**
+ * @domain [-1, 1]
+ * @range [0, PI]
+ * @returns Inverse cosine of parameter
+ */
+const acos = (a) => {
+    a = normalize(a);
+    if (String(a.number).length > Math.abs(a.comma)) {
+        throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
+    }
+    return subtract(PI2, asin(a));
+};
+/**
+ * @domain Real numbers
+ * @range [-PI/2, PI/2]
+ * @returns Inverse tangent of parameter
+ */
 const atan = (a) => {
     a = normalize(a);
     let s = normalize(a);
@@ -253,6 +381,11 @@ const atan = (a) => {
     }
     return s;
 };
+/**
+ * @domain Real numbers
+ * @range [0, PI]
+ * @returns Inverse cotangent of parameter
+ */
 const acot = (a) => {
     a = normalize(a);
     if (a.sign) {
@@ -262,52 +395,154 @@ const acot = (a) => {
         return atan(divide(1, a));
     }
 };
-const asec = (a) => acos(divide(PI2, a));
-const acsc = (a) => asin(divide(PI2, a));
+/**
+ * @domain Real numbers without (-1, 1)
+ * @range [0, PI] \ {PI/2}
+ * @returns Inverse secant of parameter
+ */
+const asec = (a) => {
+    a = normalize(a);
+    if (String(a.number).length < Math.abs(a.comma)) {
+        throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
+    }
+    return acos(divide(PI2, a));
+};
+/**
+ * @domain Real numbers without (-1, 1)
+ * @range [-PI/2, PI/2] \ {0}
+ * @returns Inverse cosecant of parameter
+ */
+const acsc = (a) => {
+    a = normalize(a);
+    if (String(a.number).length < Math.abs(a.comma)) {
+        throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
+    }
+    return asin(divide(PI2, a));
+};
+/**
+ * @domain Real numbers
+ * @range Real numbers
+ * @returns Hyperbolic sine of parameter
+ */
 const sinh = (a) => {
     a = exp(a);
     return divide(subtract(a, divide(1, a)), 2);
 };
+/**
+ * @domain Real numbers
+ * @range Numbers greater or equal 1
+ * @returns Hyperbolic cosine of parameter
+ */
 const cosh = (a) => {
     a = exp(a);
     return divide(add(a, divide(1, a)), 2);
 };
+/**
+ * @domain Real numbers
+ * @range (-1, 1)
+ * @returns Hyperbolic tangent of parameter
+ */
 const tanh = (a) => {
     a = exp(a);
     return divide(subtract(a, divide(1, a)), add(a, divide(1, a)));
 };
+/**
+ * @domain Real numbers without 0
+ * @range Real numbers without [-1, 1]
+ * @returns Hyperbolic cotangent of parameter
+ */
 const coth = (a) => {
+    a = normalize(a);
+    if (a.number === BigInt(0)) {
+        throw new DomainError('0', 'real numbers without 0');
+    }
     a = exp(a);
     return divide(add(a, divide(1, a)), subtract(a, divide(1, a)));
 };
+/**
+ * @domain Real numbers
+ * @range (0, 1)
+ * @returns Hyperbolic secant of parameter
+ */
 const sech = (a) => {
     a = exp(a);
     return divide(2, add(a, divide(1, a)));
 };
+/**
+ * @domain Real numbers without 0
+ * @range Real numbers without 0
+ * @returns Hyperbolic cosecant of parameter
+ */
 const csch = (a) => {
+    a = normalize(a);
+    if (a.number === BigInt(0)) {
+        throw new DomainError('0', 'real numbers without 0');
+    }
     a = exp(a);
     return divide(2, subtract(a, divide(1, a)));
 };
+/**
+ * @domain Real numbers
+ * @range Real numbers
+ * @returns Inverse hyperbolic sine of parameter
+ */
 const asinh = (a) => {
     a = normalize(a);
     return ln(add(a, sqrt(add(power(a, 2), 1))));
 };
+/**
+ * @domain Real numbers greater or equal 1
+ * @range Real numbers greater or equal 0
+ * @returns Inverse hyperbolic cosine of parameter
+ */
 const acosh = (a) => {
     a = normalize(a);
+    if (a.sign || String(a.number).length < Math.abs(a.comma)) {
+        throw new DomainError(stringify(a), 'numbers greater or equal 0');
+    }
     return ln(add(a, sqrt(subtract(power(a, 2), 1))));
 };
+/**
+ * @domain (-1, 1)
+ * @range Real numbers
+ * @returns Inverse hyperbolic tangent of parameter
+ */
 const atanh = (a) => {
     a = normalize(a);
+    if (String(a.number).length > Math.abs(a.comma) || a.comma === 0 && a.number === BigInt(1)) {
+        throw new DomainError(stringify(a), 'numbers from range (-1, 1)');
+    }
     return divide(ln(divide(add(1, a), subtract(1, a))), 2);
 };
+/**
+ * @domain Real numbers without [-1, 1]
+ * @range Real numbers
+ * @returns Inverse hyperbolic cotangent of parameter
+ */
 const acoth = (a) => {
     a = normalize(a);
+    if (String(a.number).length < Math.abs(a.comma) || a.comma === 0 && a.number === BigInt(1)) {
+        throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
+    }
     return divide(ln(divide(add(a, 1), subtract(a, 1))), 2);
 };
+/**
+ * @domain (0, 1]
+ * @range Real numbers greater of equal 0
+ * @returns Inverse hyperbolic secant of parameter
+ */
 const asech = (a) => {
     a = normalize(a);
+    if (a.sign || String(a.number).length < Math.abs(a.comma)) {
+        throw new DomainError(stringify(a), 'numbers from range (0,1]');
+    }
     return ln(divide(add(1, sqrt(subtract(1, power(a, 2)))), a));
 };
+/**
+ * @domain Real numbers
+ * @range Real numbers
+ * @returns Inverse hyperbolic cosecant of parameter
+ */
 const acsch = (a) => {
     a = normalize(a);
     const b = divide(1, a);

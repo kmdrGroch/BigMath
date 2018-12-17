@@ -108,7 +108,7 @@ describe('asin', () => {
     expect(BigMath.stringify(BigMath.asin(0.533))).to.be.equal('0.56214223826934260709715228425762629753379502801831404218567');
   });
   it('2', () => {
-    expect(() => BigMath.stringify(BigMath.asin(1.0001))).to.throw(RangeError, 'Number out of range');
+    expect(() => BigMath.stringify(BigMath.asin(1.0001))).to.throw(RangeError, 'Number out of domain. Given: 1.0001. Expected: numbers from range [-1, 1]');
   });
 });
 
