@@ -1,13 +1,14 @@
 {
   "name": "big-math",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf \"+(test|src)/**/*+(.d.ts|.js|.map)\" .nyc_output coverage",
+    "clean": "rimraf \"+(test|src)/**/*+(.d.ts|.js|.map)\" .nyc_output coverage reports",
     "prebuild": "npm run clean && tslint -p tsconfig.json",
     "build": "tsc -p .",
-    "test": "npm run build && nyc --include src/**/*.js --reporter=html --report-dir=coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha \"test/**/*.js\""
+    "mutate": "stryker run",
+    "test": "npm run build && nyc --include src/**/*.js --reporter=html --report-dir=coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha \"test/**/*.js\" && npm run mutate"
   },
   "author": "kmdrGroch",
   "license": "MIT",
@@ -18,7 +19,14 @@
     "mocha": "^5.2.0",
     "nyc": "^13.1.0",
     "rimraf": "^2.6.2",
-    "tslint": "^5.11.0",
+    "stryker": "^0.33.2",
+    "stryker-api": "^0.22.1",
+    "stryker-html-reporter": "^0.16.10",
+    "stryker-mocha-framework": "^0.13.3",
+    "stryker-mocha-runner": "^0.15.3",
+    "stryker-typescript": "^0.16.2",
+    "tslint": "^5.12.0",
     "typescript": "^3.2.2"
-  }
+  },
+  "dependencies": {}
 }
