@@ -16,12 +16,6 @@ class DomainError extends RangeError {
 
 const normalize = (a: T): BigNumber => {
   switch (typeof a) {
-    case 'bigint':
-      return {
-        comma: 0,
-        number: a < BigInt(0) ? -a : a,
-        sign: a < BigInt(0)
-      };
     case 'number':
       a = String(a);
       return normalize({
@@ -29,6 +23,12 @@ const normalize = (a: T): BigNumber => {
         number: BigInt(a.split('.').join('').replace('-', '')),
         sign: a.indexOf('-') > -1
       });
+    case 'bigint':
+      return {
+        comma: 0,
+        number: a < BigInt(0) ? -a : a,
+        sign: a < BigInt(0)
+      };
     case 'string':
       return normalize({
         comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
@@ -37,15 +37,20 @@ const normalize = (a: T): BigNumber => {
       });
     case 'object':
       let x = String(a.number);
+      if (x === '0') {
+        return {
+          comma: 0,
+          number: BigInt(0),
+          sign: false
+        };
+      }
       const sign = !(x.indexOf('-') > -1 === a.sign);
+      let comma = Number(a.comma);
       x = x.replace('-', '');
       const arr = x.split('');
       for (;;) {
-        if (a.comma >= 0) {
-          break;
-        }
         if (arr[arr.length - 1] === '0') {
-          a.comma++;
+          comma++;
           arr.pop();
         } else {
           break;
@@ -53,7 +58,7 @@ const normalize = (a: T): BigNumber => {
       }
       x = arr.join('');
       return {
-        comma: a.comma,
+        comma,
         number: BigInt(x),
         sign
       };
@@ -147,7 +152,7 @@ const divide = (a: T, b: T): BigNumber => {
   if (b.number === BigInt(0)) {
     throw new DomainError('0', 'numbers other than 0');
   }
-  const len = String(a.number).length - String(b.number).length;
+  const len = String(a.number).length - String(b.number).length - (String(b.number).length + b.comma + 1);
   if (len > 0) {
     b.number *= BigInt(10) ** BigInt(len);
     b.comma -= len;
@@ -187,9 +192,37 @@ const ln = (a: T) => {
   }
 
   const tens = String(a.number).length + a.comma;
-  const ten = multiply(tens, LOG10);
+  let ten = multiply(tens, LOG10);
 
   a.comma -= tens;
+
+  switch (String(a.number)[0]) {
+    case '5':
+    case '4':
+      ten = subtract(ten, LOG2);
+      a = multiply(a, 2);
+      break;
+    case '3':
+      ten = subtract(ten, {
+        comma: -57,
+        number: BigInt('1098612288668109691395245236922525704647490557822749451734'),
+        sign: false
+      });
+      a = multiply(a, 3);
+      break;
+    case '2':
+      ten = subtract(ten, multiply(LOG2, 2));
+      a = multiply(a, 4);
+      break;
+    case '1':
+      ten = subtract(ten, {
+        comma: -57,
+        number: BigInt('1791759469228055000812477358380702272722990692183004705855'),
+        sign: false
+      });
+      a = multiply(a, 6);
+      break;
+  }
 
   let sum = divide(subtract(a, 1), add(a, 1));
   let p = normalize(sum);
@@ -200,7 +233,7 @@ const ln = (a: T) => {
     sum = add(sum, divide(p, 2 * i + 1));
   }
 
-  return normalize(add(ten, multiply(sum, 2)));
+  return add(ten, multiply(sum, 2));
 };
 
 /**
@@ -216,8 +249,7 @@ const power = (a: T, b: T): BigNumber => {
 
   if (b.comma > -1) {
     if (b.sign) {
-      b.sign = false;
-      b = divide(1, b);
+      a = divide(1, a);
     }
     a.comma = a.comma * Number(b.number);
     a.number = a.number ** BigInt(b.number);
@@ -293,11 +325,13 @@ const sin = (a: T): BigNumber => {
   let s = normalize(reduce);
   let k = normalize(reduce);
 
+  const k2 = multiply(reduce, reduce);
+
   let f = BigInt(1);
 
   for (let i = 1; i < 20; i++) {
-    f *= BigInt(i * 2) * BigInt(2 * i + 1);
-    k = multiply(k, multiply(reduce, reduce));
+    f *= BigInt(i * (4 * i + 2));
+    k = multiply(k, k2);
     if (i % 2 === 0) {
       s = add(s, divide(k, f));
     } else {
@@ -384,6 +418,9 @@ const csc = (a: T): BigNumber => {
 const asin = (a: T): BigNumber => {
   a = normalize(a);
   if (String(a.number).length > Math.abs(a.comma)) {
+    if (a.number === BigInt(1)) {
+      return normalize(PI2);
+    }
     throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
   }
 
@@ -409,13 +446,7 @@ const asin = (a: T): BigNumber => {
  * @range [0, PI]
  * @returns Inverse cosine of parameter
  */
-const acos = (a: T): BigNumber => {
-  a = normalize(a);
-  if (String(a.number).length > Math.abs(a.comma)) {
-    throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
-  }
-  return subtract(PI2, asin(a));
-};
+const acos = (a: T): BigNumber => subtract(PI2, asin(a));
 
 /**
  * @domain Real numbers
@@ -425,19 +456,23 @@ const acos = (a: T): BigNumber => {
 const atan = (a: T): BigNumber => {
   a = normalize(a);
 
+  a = divide(a, add(1, sqrt(add(1, power(a, 2)))));
+
   let s = normalize(a);
   let k = normalize(a);
 
-  let b = normalize(1);
+  const d2 = multiply(a, a);
 
-  for (let i = 0; i < 30; i++) {
-    k = multiply(k, multiply(a, a));
-    b = multiply(b, divide(i * 2 + 1, i * 2 + 2));
-
-    s = add(s, divide(multiply(k, b), 2 * i + 3));
+  for (let i = 1; i < 30; i++) {
+    k = multiply(k, d2);
+    if (i % 2 === 1) {
+      s = subtract(s, divide(k, 2 * i + 1));
+    } else {
+      s = add(s, divide(k, 2 * i + 1));
+    }
   }
 
-  return s;
+  return multiply(s, 2);
 };
 
 /**
@@ -445,14 +480,7 @@ const atan = (a: T): BigNumber => {
  * @range [0, PI]
  * @returns Inverse cotangent of parameter
  */
-const acot = (a: T): BigNumber => {
-  a = normalize(a);
-  if (a.sign) {
-    return add(PI, atan(divide(1, a)));
-  } else {
-    return atan(divide(1, a));
-  }
-};
+const acot = (a: T): BigNumber => subtract(PI2, atan(a));
 
 /**
  * @domain Real numbers without (-1, 1)
@@ -461,10 +489,10 @@ const acot = (a: T): BigNumber => {
  */
 const asec = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length < Math.abs(a.comma)) {
+  if (String(a.number).length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
-  return acos(divide(PI2, a));
+  return acos(divide(1, a));
 };
 
 /**
@@ -474,10 +502,10 @@ const asec = (a: T): BigNumber => {
  */
 const acsc = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length < Math.abs(a.comma)) {
+  if (String(a.number).length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
-  return asin(divide(PI2, a));
+  return asin(divide(1, a));
 };
 
 /**
@@ -565,8 +593,15 @@ const asinh = (a: T): BigNumber => {
  */
 const acosh = (a: T): BigNumber => {
   a = normalize(a);
-  if (a.sign || String(a.number).length < Math.abs(a.comma)) {
-    throw new DomainError(stringify(a), 'numbers greater or equal 0');
+  if (a.sign || String(a.number).length <= Math.abs(a.comma)) {
+    throw new DomainError(stringify(a), 'numbers greater or equal 1');
+  }
+  if (a.number === BigInt(1)) {
+    return {
+      comma: 0,
+      number: BigInt(0),
+      sign: false
+    };
   }
   return ln(add(a, sqrt(subtract(power(a, 2), 1))));
 };
@@ -578,7 +613,7 @@ const acosh = (a: T): BigNumber => {
  */
 const atanh = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length > Math.abs(a.comma) || a.comma === 0 && a.number === BigInt(1)) {
+  if (String(a.number).length > Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers from range (-1, 1)');
   }
   return divide(ln(divide(add(1, a), subtract(1, a))), 2);
@@ -591,7 +626,7 @@ const atanh = (a: T): BigNumber => {
  */
 const acoth = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length < Math.abs(a.comma) || a.comma === 0 && a.number === BigInt(1)) {
+  if (String(a.number).length <= Math.abs(a.comma) || a.number === BigInt(1) || a.number === BigInt(0)) {
     throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
   }
   return divide(ln(divide(add(a, 1), subtract(a, 1))), 2);
@@ -604,7 +639,14 @@ const acoth = (a: T): BigNumber => {
  */
 const asech = (a: T): BigNumber => {
   a = normalize(a);
-  if (a.sign || String(a.number).length < Math.abs(a.comma)) {
+  if (a.sign || String(a.number).length > Math.abs(a.comma)) {
+    if (stringify(a) === '1') {
+      return {
+        comma: 0,
+        number: BigInt(0),
+        sign: false
+      };
+    }
     throw new DomainError(stringify(a), 'numbers from range (0,1]');
   }
   return ln(divide(add(1, sqrt(subtract(1, power(a, 2)))), a));
@@ -621,25 +663,31 @@ const acsch = (a: T): BigNumber => {
   return ln(add(b, sqrt(add(divide(b, a), 1))));
 };
 
-const LOG10 = Object.freeze({
+const LOG10: BigNumber = Object.freeze({
   comma: -57,
   number: BigInt('2302585092994045684017991454684364207601101488628772976033'),
   sign: false
 });
 
-const PI2 = Object.freeze({
+const LOG2: BigNumber = Object.freeze({
+  comma: -57,
+  number: BigInt('693147180559945309417232121458176568075500134360255254120'),
+  sign: false
+});
+
+const PI2: BigNumber = Object.freeze({
   comma: -57,
   number: BigInt('1570796326794896619231321691639751442098584699687552910487'),
   sign: false
 });
 
-const PI = Object.freeze({
+const PI: BigNumber = Object.freeze({
   comma: -57,
   number: BigInt('3141592653589793238462643383279502884197169399375105820974'),
   sign: false
 });
 
-const E = Object.freeze({
+const E: BigNumber = Object.freeze({
   comma: -227,
   number: BigInt('271828182845904523536028747135266249775724709369995957496696762772407663035354759457138217852516642742746639193200305992181741359662904357290033429526059563073813232862794349076323382988075319525101901157383418793070215408914993'),
   sign: false
@@ -657,6 +705,10 @@ const stringify = (a: BigNumber): string => {
   } else {
     return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
   }
+};
+
+export {
+  DomainError
 };
 
 export default {
@@ -682,7 +734,11 @@ export default {
   divide,
   exp,
   ln,
+  LOG10,
+  LOG2,
   multiply,
+  PI,
+  PI2,
   power,
   sec,
   sech,

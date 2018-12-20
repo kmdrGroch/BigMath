@@ -3,6 +3,10 @@ interface BigNumber {
     number: bigint;
     sign: boolean;
 }
+declare class DomainError extends RangeError {
+    constructor(given: string, expected: string);
+}
+export { DomainError };
 declare const _default: {
     acos: (a: string | number | bigint | BigNumber) => BigNumber;
     acosh: (a: string | number | bigint | BigNumber) => BigNumber;
@@ -26,7 +30,11 @@ declare const _default: {
     divide: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => BigNumber;
     exp: (a: string | number | bigint | BigNumber) => BigNumber;
     ln: (a: string | number | bigint | BigNumber) => BigNumber;
+    LOG10: BigNumber;
+    LOG2: BigNumber;
     multiply: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => BigNumber;
+    PI: BigNumber;
+    PI2: BigNumber;
     power: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => BigNumber;
     sec: (a: string | number | bigint | BigNumber) => BigNumber;
     sech: (a: string | number | bigint | BigNumber) => BigNumber;
