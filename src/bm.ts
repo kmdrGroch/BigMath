@@ -30,36 +30,35 @@ const normalize = (a: T): BigNumber => {
         sign: a < BigInt(0)
       };
     case 'string':
+      const s = a.indexOf('-') > -1;
       return normalize({
         comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
-        number: BigInt(a.split('.').join('').replace('-', '')),
-        sign: a.indexOf('-') > -1
+        number: BigInt(s ? a.split('.').join('').substr(1) : a.split('.').join('')),
+        sign: s
       });
     case 'object':
-      let x = String(a.number);
-      if (x === '0') {
+      let x = a.number;
+      if (x === BigInt(0)) {
         return {
           comma: 0,
           number: BigInt(0),
           sign: false
         };
       }
-      const sign = !(x.indexOf('-') > -1 === a.sign);
-      let comma = Number(a.comma);
-      x = x.replace('-', '');
-      const arr = x.split('');
+      const sign = !(x < BigInt(0) === a.sign);
+      let comma = a.comma;
+      x = x < BigInt(0) ? -x : x;
       for (;;) {
-        if (arr[arr.length - 1] === '0') {
+        if (x % BigInt(10) === BigInt(0)) {
           comma++;
-          arr.pop();
+          x /= BigInt(10);
         } else {
           break;
         }
       }
-      x = arr.join('');
       return {
         comma,
-        number: BigInt(x),
+        number: x,
         sign
       };
   }
@@ -271,7 +270,7 @@ const sqrt = (a: T): BigNumber => {
     return normalize(0);
   }
 
-  let aprox = normalize(BigInt(10) ** BigInt(Math.floor((String(a.number).length + a.comma) / 2)));
+  let aprox = power(10, BigInt(Math.floor((String(a.number).length + a.comma) / 2)));
 
   for (let i = 0; i < 20; i++) {
     aprox = multiply(add(divide(a, aprox), aprox), 0.5);
@@ -476,6 +475,29 @@ const atan = (a: T): BigNumber => {
 };
 
 /**
+ * @domain Real numbers | Both can't be 0
+ * @range [-PI/2, PI/2]
+ * @returns 2-argument inverse tangent
+ */
+const atan2 = (a: T, b: T): BigNumber => {
+  a = normalize(a);
+  b = normalize(b);
+
+  if (!a.sign) {
+    return multiply(2, atan(divide(b, add(sqrt(add(power(a, 2), power(b, 2))), a))));
+  }
+
+  if (b.number === BigInt(0)) {
+    if (a.number === BigInt(0)) {
+      throw new DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
+    }
+    return normalize(PI);
+  }
+
+  return multiply(2, atan(divide(subtract(sqrt(add(power(a, 2), power(b, 2))), a), b)));
+};
+
+/**
  * @domain Real numbers
  * @range [0, PI]
  * @returns Inverse cotangent of parameter
@@ -663,6 +685,76 @@ const acsch = (a: T): BigNumber => {
   return ln(add(b, sqrt(add(divide(b, a), 1))));
 };
 
+/**
+ * @returns Arithmetic–geometric mean of parameters
+ */
+const AGM = (a: T, b: T): BigNumber => {
+  a = normalize(a);
+  b = normalize(b);
+  if (a.sign || b.sign) {
+    throw new DomainError(`AGM(${stringify(a)}, ${stringify(b)})`, 'arguments have to be positive');
+  }
+  for (let i = 0; i < 10; i++) {
+    const c = normalize(a);
+    a = multiply(add(c, b), 0.5);
+    b = sqrt(multiply(c, b));
+  }
+  return a;
+};
+
+/**
+ * @returns Complete elliptic integral of the first kind
+ */
+const K = (a: T): BigNumber => divide(PI2, AGM(1, sqrt(subtract(1, power(a, 2)))));
+
+/**
+ * @returns If first parameter is greater than or equal second parameter
+ */
+const gte = (a: T, b: T): boolean => {
+  return !subtract(a, b).sign;
+};
+
+/**
+ * @returns If first parameter is smaller than or equal second parameter
+ */
+const lte = (a: T, b: T): boolean => {
+  return subtract(a, b).sign;
+};
+
+/**
+ * @returns If first parameter is greater than second parameter
+ */
+const gt = (a: T, b: T): boolean => {
+  const x = subtract(a, b);
+  return !x.sign && x.number !== BigInt(0);
+};
+
+/**
+ * @returns If first parameter is smaller than second parameter
+ */
+const lt = (a: T, b: T): boolean => {
+  const x = subtract(a, b);
+  return x.sign && x.number !== BigInt(0);
+};
+
+/**
+ * @returns If first parameter is equal second parameter
+ */
+const eq = (a: T, b: T): boolean => {
+  a = normalize(a);
+  b = normalize(b);
+  return a.sign === b.sign && a.comma === b.comma && a.number === b.number;
+};
+
+/**
+ * @returns If first parameter is not equal second parameter
+ */
+const neq = (a: T, b: T): boolean => {
+  a = normalize(a);
+  b = normalize(b);
+  return a.sign !== b.sign || a.comma !== b.comma || a.number !== b.number;
+};
+
 const LOG10: BigNumber = Object.freeze({
   comma: -57,
   number: BigInt('2302585092994045684017991454684364207601101488628772976033'),
@@ -719,11 +811,13 @@ export default {
   acsc,
   acsch,
   add,
+  AGM,
   asec,
   asech,
   asin,
   asinh,
   atan,
+  atan2,
   atanh,
   cos,
   cosh,
@@ -732,11 +826,18 @@ export default {
   csc,
   csch,
   divide,
+  eq,
   exp,
+  gt,
+  gte,
+  K,
   ln,
   LOG10,
   LOG2,
+  lt,
+  lte,
   multiply,
+  neq,
   PI,
   PI2,
   power,
