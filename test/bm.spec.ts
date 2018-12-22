@@ -126,6 +126,12 @@ describe('power', () => {
   it('4', () => {
     expect(BigMath.stringify(BigMath.power(10, -3))).to.be.equal('0.001');
   });
+  it('5', () => {
+    expect(BigMath.stringify(BigMath.power(-2, 3))).to.be.equal('-8');
+  });
+  it('6', () => {
+    expect(() => BigMath.stringify(BigMath.power(-2, 0.5))).to.throw(DomainError, 'Number out of domain. Given: -2 ^ 0.5. Expected: real numbers | not negative ^ non-integer');
+  });
 });
 
 describe('sqrt', () => {
@@ -221,6 +227,30 @@ describe('atan', () => {
   });
   it('2', () => {
     expect(BigMath.stringify(BigMath.atan(0))).to.be.equal('0');
+  });
+});
+
+describe('atan2', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.atan2(0.1243, 0))).to.be.equal('0');
+  });
+  it('2', () => {
+    expect(BigMath.stringify(BigMath.atan2(0.1243, 2.321))).to.be.equal('1.51729293611513921404568864965737042277476147190619535661884715396272');
+  });
+  it('3', () => {
+    expect(BigMath.stringify(BigMath.atan2(-0.1243, 0))).to.be.equal('3.141592653589793238462643383279502884197169399375105820974');
+  });
+  it('4', () => {
+    expect(BigMath.stringify(BigMath.atan2(-0.1243, 1.432))).to.be.equal('1.657380979726293965145260365216993980746274182752793127058498817593508');
+  });
+  it('5', () => {
+    expect(BigMath.stringify(BigMath.atan2(-0.1243, -0.32))).to.be.equal('-1.941295464679711452492024830703880921997043032396204468999930621106755977204');
+  });
+  it('5', () => {
+    expect(BigMath.stringify(BigMath.atan2(0, -0.32))).to.be.equal('-1.570796326794896619231321691639751442098584699687552910487');
+  });
+  it('6', () => {
+    expect(() => BigMath.stringify(BigMath.atan2(0, 0))).to.throw(DomainError, 'Number out of domain. Given: atan(0, 0). Expected: Real numbers | Both can\'t be 0');
   });
 });
 
@@ -382,5 +412,64 @@ describe('acsch', () => {
   });
   it('2', () => {
     expect(BigMath.stringify(BigMath.acsch(1.423))).to.be.equal('0.65491038024859147045714403478325217264921474059191977968513408834423816352632913519880766');
+  });
+});
+
+describe('AGM', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.AGM(12, 6))).to.be.equal('8.7407461862814412151185942995904918498431707731706552207469940185546875');
+  });
+  it('2', () => {
+    expect(() => BigMath.stringify(BigMath.AGM(-12, 6))).to.throw(DomainError, 'Number out of domain. Given: AGM(-12, 6). Expected: arguments have to be positive');
+  });
+  it('3', () => {
+    expect(() => BigMath.stringify(BigMath.AGM(12, -6))).to.throw(DomainError, 'Number out of domain. Given: AGM(12, -6). Expected: arguments have to be positive');
+  });
+});
+
+describe('K', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.K(0.32))).to.be.equal('1.6135037415649716545922387873211206083943');
+  });
+  it('2', () => {
+    expect(() => BigMath.stringify(BigMath.K(1.32))).to.throw(DomainError, 'Number out of domain. Given: 1.32. Expected: number from range [-1, 1]');
+    expect(() => BigMath.stringify(BigMath.K(-1.32))).to.throw(DomainError, 'Number out of domain. Given: -1.32. Expected: number from range [-1, 1]');
+    expect(() => BigMath.stringify(BigMath.K(1))).to.throw(DomainError, 'Number out of domain. Given: 1. Expected: number from range [-1, 1]');
+    expect(() => BigMath.stringify(BigMath.K(-1))).to.throw(DomainError, 'Number out of domain. Given: -1. Expected: number from range [-1, 1]');
+  });
+});
+
+describe('Comparison', () => {
+  it('1', () => {
+    expect(BigMath.gte(12, 5)).to.be.true;
+  });
+  it('2', () => {
+    expect(BigMath.lte(12, 5)).to.be.false;
+  });
+  it('3', () => {
+    expect(BigMath.gte(5, 5)).to.be.true;
+  });
+  it('4', () => {
+    expect(BigMath.lte(5, 5)).to.be.true;
+  });
+  it('5', () => {
+    expect(BigMath.gt(5, 5)).to.be.false;
+    expect(BigMath.gt(12, 5)).to.be.true;
+  });
+  it('6', () => {
+    expect(BigMath.lt(5, 5)).to.be.false;
+    expect(BigMath.lt(2, 5)).to.be.true;
+  });
+  it('7', () => {
+    expect(BigMath.eq(5, 5)).to.be.true;
+    expect(BigMath.eq(2, 5)).to.be.false;
+    expect(BigMath.eq(-2, 5)).to.be.false;
+    expect(BigMath.eq(0.2, 1)).to.be.false;
+  });
+  it('8', () => {
+    expect(BigMath.neq(5, 5)).to.be.false;
+    expect(BigMath.neq(2, 5)).to.be.true;
+    expect(BigMath.neq(-2, 5)).to.be.true;
+    expect(BigMath.neq(2, 0.5)).to.be.true;
   });
 });
