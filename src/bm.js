@@ -213,7 +213,7 @@ const ln = (a) => {
     return add(ten, multiply(sum, 2));
 };
 /**
- * @domain Real numbers, Real numbers | both can't be 0 at the same time
+ * @domain Real numbers, Real numbers | both can't be 0 at the same time | not negative ^ non-integer
  * @returns Result of the exponentiation of parameters
  */
 const power = (a, b) => {
@@ -226,10 +226,15 @@ const power = (a, b) => {
         if (b.sign) {
             a = divide(1, a);
         }
+        if (a.sign) {
+            a.sign = Number(b.number) % 2 === 1;
+        }
         a.comma = a.comma * Number(b.number);
         a.number = a.number ** BigInt(b.number);
         return a;
     }
+    if (a.sign)
+        throw new DomainError(`${stringify(a)} ^ ${stringify(b)}`, 'real numbers | not negative ^ non-integer');
     return exp(multiply(b, ln(a)));
 };
 /**
@@ -400,7 +405,13 @@ const acos = (a) => subtract(PI2, asin(a));
  */
 const atan = (a) => {
     a = normalize(a);
-    a = divide(a, add(1, sqrt(add(1, power(a, 2)))));
+    let x = 2;
+    for (;;) {
+        a = divide(a, add(1, sqrt(add(1, power(a, 2)))));
+        if (lte(a, 0.5) && gte(a, -0.5))
+            break;
+        x *= 2;
+    }
     let s = normalize(a);
     let k = normalize(a);
     const d2 = multiply(a, a);
@@ -413,7 +424,7 @@ const atan = (a) => {
             s = add(s, divide(k, 2 * i + 1));
         }
     }
-    return multiply(s, 2);
+    return multiply(s, x);
 };
 /**
  * @domain Real numbers | Both can't be 0
@@ -423,16 +434,24 @@ const atan = (a) => {
 const atan2 = (a, b) => {
     a = normalize(a);
     b = normalize(b);
-    if (!a.sign) {
-        return multiply(2, atan(divide(b, add(sqrt(add(power(a, 2), power(b, 2))), a))));
-    }
-    if (b.number === BigInt(0)) {
-        if (a.number === BigInt(0)) {
+    if (a.number === BigInt(0)) {
+        if (b.number === BigInt(0)) {
             throw new DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
         }
+        const k = normalize(PI2);
+        k.sign = b.sign;
+        return k;
+    }
+    if (!a.sign) {
+        return atan(divide(b, a));
+    }
+    if (b.number === BigInt(0)) {
         return normalize(PI);
     }
-    return multiply(2, atan(divide(subtract(sqrt(add(power(a, 2), power(b, 2))), a), b)));
+    if (b.sign) {
+        return subtract(atan(divide(b, a)), PI);
+    }
+    return add(atan(divide(b, a)), PI);
 };
 /**
  * @domain Real numbers
@@ -626,18 +645,23 @@ const AGM = (a, b) => {
 /**
  * @returns Complete elliptic integral of the first kind
  */
-const K = (a) => divide(PI2, AGM(1, sqrt(subtract(1, power(a, 2)))));
+const K = (a) => {
+    a = normalize(a);
+    if (String(a.number).length > Math.abs(a.comma)) {
+        throw new DomainError(stringify(a), 'number from range [-1, 1]');
+    }
+    return divide(PI2, AGM(1, sqrt(subtract(1, power(a, 2)))));
+};
 /**
  * @returns If first parameter is greater than or equal second parameter
  */
-const gte = (a, b) => {
-    return !subtract(a, b).sign;
-};
+const gte = (a, b) => !subtract(a, b).sign;
 /**
  * @returns If first parameter is smaller than or equal second parameter
  */
 const lte = (a, b) => {
-    return subtract(a, b).sign;
+    const k = subtract(a, b);
+    return k.sign || k.number === BigInt(0);
 };
 /**
  * @returns If first parameter is greater than second parameter
@@ -649,10 +673,7 @@ const gt = (a, b) => {
 /**
  * @returns If first parameter is smaller than second parameter
  */
-const lt = (a, b) => {
-    const x = subtract(a, b);
-    return x.sign && x.number !== BigInt(0);
-};
+const lt = (a, b) => subtract(a, b).sign;
 /**
  * @returns If first parameter is equal second parameter
  */
