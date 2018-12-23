@@ -473,3 +473,24 @@ describe('Comparison', () => {
     expect(BigMath.neq(2, 0.5)).to.be.true;
   });
 });
+
+describe('Rounding', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.round(0.000034, 5))).to.be.equal('0.00003');
+  });
+  it('2', () => {
+    expect(BigMath.stringify(BigMath.round(0.000038, 5))).to.be.equal('0.00004');
+  });
+  it('3', () => {
+    expect(BigMath.stringify(BigMath.round(0.38, 1))).to.be.equal('0.4');
+  });
+  it('4', () => {
+    expect(BigMath.stringify(BigMath.round(0.38, 0))).to.be.equal('0');
+  });
+  it('5', () => {
+    expect(BigMath.stringify(BigMath.round(0.78, 0))).to.be.equal('1');
+  });
+  it('6', () => {
+    expect(BigMath.stringify(BigMath.round(0.78))).to.be.equal('0.78');
+  });
+});

@@ -46,6 +46,7 @@ declare const _default: {
     PI: BigNumber;
     PI2: BigNumber;
     power: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => BigNumber;
+    round: (a: string | number | bigint | BigNumber, precision?: number, rounding?: number) => BigNumber;
     sec: (a: string | number | bigint | BigNumber) => BigNumber;
     sech: (a: string | number | bigint | BigNumber) => BigNumber;
     sin: (a: string | number | bigint | BigNumber) => BigNumber;

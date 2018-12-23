@@ -439,4 +439,24 @@ describe('Comparison', () => {
         chai_1.expect(bm_1.default.neq(2, 0.5)).to.be.true;
     });
 });
+describe('Rounding', () => {
+    it('1', () => {
+        chai_1.expect(bm_1.default.stringify(bm_1.default.round(0.000034, 5))).to.be.equal('0.00003');
+    });
+    it('2', () => {
+        chai_1.expect(bm_1.default.stringify(bm_1.default.round(0.000038, 5))).to.be.equal('0.00004');
+    });
+    it('3', () => {
+        chai_1.expect(bm_1.default.stringify(bm_1.default.round(0.38, 1))).to.be.equal('0.4');
+    });
+    it('4', () => {
+        chai_1.expect(bm_1.default.stringify(bm_1.default.round(0.38, 0))).to.be.equal('0');
+    });
+    it('5', () => {
+        chai_1.expect(bm_1.default.stringify(bm_1.default.round(0.78, 0))).to.be.equal('1');
+    });
+    it('6', () => {
+        chai_1.expect(bm_1.default.stringify(bm_1.default.round(0.78))).to.be.equal('0.78');
+    });
+});
 //# sourceMappingURL=bm.spec.js.map

@@ -7,6 +7,10 @@ class DomainError extends RangeError {
     }
 }
 exports.DomainError = DomainError;
+const Config = {
+    precision: 30,
+    rounding: 5
+};
 const normalize = (a) => {
     switch (typeof a) {
         case 'number':
@@ -683,6 +687,24 @@ const neq = (a, b) => {
     b = normalize(b);
     return a.sign !== b.sign || a.comma !== b.comma || a.number !== b.number;
 };
+const round = (a, precision = Config.precision, rounding = Config.rounding) => {
+    a = normalize(a);
+    if (a.comma < -precision) {
+        const b = stringify(a).split('.');
+        const c = Number(b[1][precision]);
+        b[1] = b[1].substring(0, precision);
+        a.comma = -precision;
+        if (c >= rounding) {
+            return add(b.join('.'), {
+                comma: -precision,
+                number: BigInt(1),
+                sign: false
+            });
+        }
+        return normalize(b.join('.'));
+    }
+    return a;
+};
 const LOG10 = Object.freeze({
     comma: -57,
     number: BigInt('2302585092994045684017991454684364207601101488628772976033'),
@@ -762,6 +784,7 @@ exports.default = {
     PI,
     PI2,
     power,
+    round,
     sec,
     sech,
     sin,
