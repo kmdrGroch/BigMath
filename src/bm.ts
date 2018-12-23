@@ -288,29 +288,8 @@ const sqrt = (a: T): BigNumber => {
  * @returns Result of the exponentiation of e ^ parameter
  */
 const exp = (a: T): BigNumber => {
-  a = normalize(a);
-
-  const str = String(a.number);
-
-  const tens = str.length + a.comma;
-  const d = BigInt(str.substring(0, tens) || 0);
-  a.number = BigInt(str.substring(tens));
-
-  const n = power(E, d);
-
-  let b = normalize(1);
-  let f = BigInt(1);
-
-  for (let i = BigInt(1); i < BigInt(50); i++) {
-    f *= i;
-    b = add(b, divide({
-      comma: a.comma * Number(i),
-      number: a.number ** i,
-      sign: a.sign
-    }, f));
-  }
-
-  return multiply(b, n);
+  const sh = sinh(a);
+  return add(sh, sqrt(add(1, multiply(sh, sh))));
 };
 
 /**
@@ -554,8 +533,16 @@ const acsc = (a: T): BigNumber => {
  * @returns Hyperbolic sine of parameter
  */
 const sinh = (a: T): BigNumber => {
-  a = exp(a);
-  return divide(subtract(a, divide(1, a)), 2);
+  a = normalize(a);
+  const x2 = multiply(a, a);
+  let sum = normalize(a);
+  let fact = BigInt(1);
+  for (let i = 2; i < 40; i = i + 2) {
+    fact *= BigInt(i * (i + 1));
+    a = multiply(a, x2);
+    sum = add(sum, divide(a, fact));
+  }
+  return sum;
 };
 
 /**
@@ -565,7 +552,7 @@ const sinh = (a: T): BigNumber => {
  */
 const cosh = (a: T): BigNumber => {
   a = exp(a);
-  return divide(add(a, divide(1, a)), 2);
+  return multiply(add(a, divide(1, a)), 0.5);
 };
 
 /**
@@ -656,7 +643,7 @@ const atanh = (a: T): BigNumber => {
   if (String(a.number).length > Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers from range (-1, 1)');
   }
-  return divide(ln(divide(add(1, a), subtract(1, a))), 2);
+  return multiply(ln(divide(add(1, a), subtract(1, a))), 0.5);
 };
 
 /**
@@ -669,7 +656,7 @@ const acoth = (a: T): BigNumber => {
   if (String(a.number).length <= Math.abs(a.comma) || a.number === BigInt(1) || a.number === BigInt(0)) {
     throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
   }
-  return divide(ln(divide(add(a, 1), subtract(a, 1))), 2);
+  return multiply(ln(divide(add(a, 1), subtract(a, 1))), 0.5);
 };
 
 /**
@@ -846,6 +833,7 @@ export default {
   csc,
   csch,
   divide,
+  E,
   eq,
   exp,
   gt,

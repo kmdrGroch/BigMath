@@ -109,7 +109,7 @@ describe('ln', () => {
 
 describe('exp', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.exp(0.43242))).to.be.equal('1.5409821917860738933829323161090366019199690740466656906283255569813516597957280819739584277016062507684783008388145764073385112810926001428758644412595763321128324887331972544231960974');
+    expect(BigMath.stringify(BigMath.exp(0.43242))).to.be.equal('1.54098219178607389338293231610903660191996888074634962735078083746622376820410791697762485850758727547808158834932431712756588313987228217037206531991');
   });
 });
 
@@ -121,7 +121,7 @@ describe('power', () => {
     expect(() => BigMath.stringify(BigMath.power(0, 0))).to.throw(DomainError, 'Number out of domain. Given: 0 ^ 0. Expected: real numbers | both can\'t be 0 at the same time');
   });
   it('3', () => {
-    expect(BigMath.stringify(BigMath.power(1.74, 3.14))).to.be.equal('5.6927831324956102895214059211589568617057878582903846189892632198106893374127248823242712042771792855717479732660380303447262726811803422352403981187587586642792035715523571224277396271183355294945004980979654650350291873593574928365189496027554002425337215208439057362615787600548812920381630983608258973447193872611095599874017945540463752118065090492572853991568276066069028035196218466395004907786');
+    expect(BigMath.stringify(BigMath.power(1.74, 3.14))).to.be.equal('5.69278313249561028952140592115895686170537103204210627476093006696236409922300389126738440542759946536851155627793357512473775');
   });
   it('4', () => {
     expect(BigMath.stringify(BigMath.power(10, -3))).to.be.equal('0.001');
@@ -282,13 +282,13 @@ describe('acsc', () => {
 
 describe('sinh', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.sinh(1.523))).to.be.equal('2.183952865910017052737450412515107375672758');
+    expect(BigMath.stringify(BigMath.sinh(1.523))).to.be.equal('2.1839528659100170527374504125151073756727572056931542101432031896441680417253722567427926350063333948389603715680784509930635929');
   });
 });
 
 describe('cosh', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.cosh(1.523))).to.be.equal('2.402009600421400673148886322385685365530322');
+    expect(BigMath.stringify(BigMath.cosh(1.523))).to.be.equal('2.40200960042140067314888632238568536553032117427630656674152346982208402086268612837139631750316669741948018578403922549653179645');
   });
 });
 
@@ -300,7 +300,7 @@ describe('tanh', () => {
 
 describe('coth', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.coth(1.523))).to.be.equal('1.099844981966001809380675922203530638199647');
+    expect(BigMath.stringify(BigMath.coth(1.523))).to.be.equal('1.099844981966001809380675922203530638199648');
   });
   it('2', () => {
     expect(() => BigMath.stringify(BigMath.coth(0))).to.throw(DomainError, 'Number out of domain. Given: 0. Expected: real numbers without 0');
@@ -345,10 +345,10 @@ describe('acosh', () => {
 
 describe('atanh', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.atanh(-0.12))).to.be.equal('-0.1205810284084440352303206434681134989450028');
+    expect(BigMath.stringify(BigMath.atanh(-0.12))).to.be.equal('-0.1205810284084440352303206434681134989450028391184441515650626312040060807653875');
   });
   it('2', () => {
-    expect(BigMath.stringify(BigMath.atanh(0.423))).to.be.equal('0.4513401657908764038337940150785025308505299');
+    expect(BigMath.stringify(BigMath.atanh(0.423))).to.be.equal('0.451340165790876403833794015078502530850529923606035255131651821247678594343390799024629572686087611293710359369839279256486562721');
   });
   it('3', () => {
     expect(() => BigMath.stringify(BigMath.atanh(1))).to.throw(DomainError, 'Number out of domain. Given: 1. Expected: numbers from range (-1, 1)');
@@ -366,10 +366,10 @@ describe('atanh', () => {
 
 describe('acoth', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.acoth(-1.12))).to.be.equal('-1.435839812442006071374611951053266032856243');
+    expect(BigMath.stringify(BigMath.acoth(-1.12))).to.be.equal('-1.43583981244200607137461195105326603285624368286187368502199536128587604243299378730437658607');
   });
   it('2', () => {
-    expect(BigMath.stringify(BigMath.acoth(1.423))).to.be.equal('0.872694770885123881197980091442851219085524');
+    expect(BigMath.stringify(BigMath.acoth(1.423))).to.be.equal('0.872694770885123881197980091442851219085524823142538054461722578320221380175758350739289843');
   });
   it('3', () => {
     expect(() => BigMath.stringify(BigMath.acoth(0.543))).to.throw(DomainError, 'Number out of domain. Given: 0.543. Expected: numbers not from range [-1, 1]');

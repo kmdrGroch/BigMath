@@ -30,6 +30,7 @@ declare const _default: {
     csc: (a: string | number | bigint | BigNumber) => BigNumber;
     csch: (a: string | number | bigint | BigNumber) => BigNumber;
     divide: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => BigNumber;
+    E: BigNumber;
     eq: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => boolean;
     exp: (a: string | number | bigint | BigNumber) => BigNumber;
     gt: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => boolean;
