@@ -19,7 +19,7 @@
     "mocha": "^5.2.0",
     "nyc": "^13.1.0",
     "rimraf": "^2.6.2",
-    "stryker": "^0.33.2",
+    "stryker": "^0.34.0",
     "stryker-api": "^0.22.1",
     "stryker-html-reporter": "^0.16.10",
     "stryker-mocha-framework": "^0.13.3",
