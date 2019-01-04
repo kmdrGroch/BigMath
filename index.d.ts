@@ -1,11 +1,4 @@
-interface BigNumber {
-    comma: number;
-    number: bigint;
-    sign: boolean;
-}
-declare class DomainError extends RangeError {
-    constructor(given: string, expected: string);
-}
+import { DomainError } from './src/util';
 export { DomainError };
 declare const _default: {
     acos: (a: string | number | bigint | BigNumber) => BigNumber;
@@ -43,6 +36,7 @@ declare const _default: {
     lte: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => boolean;
     multiply: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => BigNumber;
     neq: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => boolean;
+    normalize: (a: string | number | bigint | BigNumber) => BigNumber;
     PI: BigNumber;
     PI2: BigNumber;
     power: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => BigNumber;

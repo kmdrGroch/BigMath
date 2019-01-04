@@ -1,5 +1,5 @@
-import BigMath, { DomainError } from '../src/bm';
 import { expect } from 'chai';
+import BigMath, { DomainError } from '../index';
 
 describe('add', () => {
   it('1', () => {
@@ -491,6 +491,9 @@ describe('Rounding', () => {
     expect(BigMath.stringify(BigMath.round(0.78, 0))).to.be.equal('1');
   });
   it('6', () => {
-    expect(BigMath.stringify(BigMath.round(0.78))).to.be.equal('0.78');
+    expect(BigMath.stringify(BigMath.round(0.78))).to.be.equal('1');
+  });
+  it('7', () => {
+    expect(BigMath.stringify(BigMath.round(43242))).to.be.equal('43242');
   });
 });
