@@ -1,5 +1,5 @@
 * Requirements
-- Node >=10.13
+- Node >= 10.13
 
 - Typescript >= 3.2
 
