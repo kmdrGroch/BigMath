@@ -84,7 +84,7 @@ exports.divide = (a, b) => {
     if (b.number === BigInt(0)) {
         throw new util_1.DomainError('0', 'numbers other than 0');
     }
-    const len = String(a.number).length - String(b.number).length - (String(b.number).length + b.comma + 1);
+    const len = String(a.number).length - String(b.number).length;
     if (len > 0) {
         b.number *= BigInt(10) ** BigInt(len);
         b.comma -= len;
@@ -95,14 +95,22 @@ exports.divide = (a, b) => {
     }
     const n = a.number / b.number;
     let d = '';
-    let c = -Math.abs(a.comma - b.comma);
+    let c = a.comma - b.comma;
     a.number = (a.number - n * b.number) * BigInt(10);
-    let i = 40;
-    while (i !== 0) {
+    while (d.length !== 50) {
+        if (a.number === BigInt(0)) {
+            break;
+        }
         d += String(a.number / b.number);
         a.number = (a.number - (a.number / b.number) * b.number) * BigInt(10);
         c -= 1;
-        i -= 1;
+    }
+    if (c > 0) {
+        return util_1.normalize({
+            comma: 0,
+            number: BigInt(n + d) * BigInt(10) ** BigInt(c),
+            sign: a.sign !== b.sign
+        });
     }
     return util_1.normalize({
         comma: c,
@@ -141,12 +149,22 @@ exports.ln = (a) => {
             a = exports.multiply(a, 4);
             break;
         case '1':
-            ten = exports.subtract(ten, {
-                comma: -57,
-                number: BigInt('1791759469228055000812477358380702272722990692183004705855'),
-                sign: false
-            });
-            a = exports.multiply(a, 6);
+            if (Number(String(a.number)[1] || 0) > 5) {
+                ten = exports.subtract(ten, {
+                    comma: -57,
+                    number: BigInt('1791759469228055000812477358380702272722990692183004705855'),
+                    sign: false
+                });
+                a = exports.multiply(a, 6);
+            }
+            else {
+                ten = exports.subtract(ten, {
+                    comma: -57,
+                    number: BigInt('2079441541679835928251696364374529704226500403080765762362'),
+                    sign: false
+                });
+                a = exports.multiply(a, 8);
+            }
     }
     let sum = exports.divide(exports.subtract(a, 1), exports.add(a, 1));
     let p = util_1.normalize(sum);
