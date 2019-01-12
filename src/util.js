@@ -100,4 +100,12 @@ exports.round = (a, precision = config_1.Config.precision, rounding = config_1.C
     }
     return a;
 };
+exports.floor = (a) => {
+    a = exports.normalize(a);
+    if (a.sign) {
+        const b = exports.stringify(a).split('.');
+        return b[1] ? basic_1.subtract(b[0], 1) : exports.normalize(b[0]);
+    }
+    return exports.normalize(exports.stringify(a).split('.')[0]);
+};
 //# sourceMappingURL=util.js.map

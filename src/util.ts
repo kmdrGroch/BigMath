@@ -1,4 +1,4 @@
-import { add } from './basic';
+import { add, subtract } from './basic';
 import { Config } from './config';
 
 /**
@@ -102,4 +102,15 @@ export const round = (a: T, precision: number = Config.precision, rounding: numb
   }
 
   return a;
+};
+
+export const floor = (a: T): BigNumber => {
+  a = normalize(a);
+  if (a.sign) {
+    const b = stringify(a).split('.');
+
+    return b[1] ? subtract(b[0], 1) : normalize(b[0]);
+  }
+
+  return normalize(stringify(a).split('.')[0]);
 };

@@ -5,7 +5,7 @@ import { AGM, K } from './src/other';
 import { acos, acosh, acot, acoth, acsc, acsch, asec, asech,
   asin, asinh, atan, atan2, atanh, cos, cosh, cot, coth, csc,
   csch, sec, sech, sin, sinh, tan, tanh } from './src/trigonometry';
-import { DomainError, normalize, round, stringify } from './src/util';
+import { DomainError, floor, normalize, round, stringify } from './src/util';
 
 export {
   DomainError
@@ -37,6 +37,7 @@ export default {
   E,
   eq,
   exp,
+  floor,
   gt,
   gte,
   K,

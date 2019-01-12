@@ -26,6 +26,7 @@ declare const _default: {
     E: BigNumber;
     eq: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => boolean;
     exp: (a: string | number | bigint | BigNumber) => BigNumber;
+    floor: (a: string | number | bigint | BigNumber) => BigNumber;
     gt: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => boolean;
     gte: (a: string | number | bigint | BigNumber, b: string | number | bigint | BigNumber) => boolean;
     K: (a: string | number | bigint | BigNumber) => BigNumber;

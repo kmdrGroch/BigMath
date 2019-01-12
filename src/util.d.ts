@@ -13,3 +13,4 @@ export declare const normalize: (a: string | number | bigint | BigNumber) => Big
  */
 export declare const stringify: (a: BigNumber) => string;
 export declare const round: (a: string | number | bigint | BigNumber, precision?: number, rounding?: number) => BigNumber;
+export declare const floor: (a: string | number | bigint | BigNumber) => BigNumber;

@@ -33,6 +33,7 @@ exports.default = {
     E: constants_1.E,
     eq: comparison_1.eq,
     exp: basic_1.exp,
+    floor: util_1.floor,
     gt: comparison_1.gt,
     gte: comparison_1.gte,
     K: other_1.K,
