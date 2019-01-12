@@ -8,6 +8,7 @@
     "prebuild": "npm run clean && tslint -p tsconfig.json",
     "build": "tsc -p .",
     "mutate": "stryker run",
+    "docs": "typedoc --out docs --exclude test/**/*.*",
     "test": "npm run build && nyc --include src/**/*.js --reporter=html --report-dir=coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha \"test/**/*.js\" && npm run mutate"
   },
   "author": "kmdrGroch",
@@ -28,5 +29,7 @@
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "typedoc": "^0.14.0"
+  }
 }
