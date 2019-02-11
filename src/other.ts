@@ -1,5 +1,6 @@
 import { add, divide, multiply, power, sqrt, subtract } from './basic';
 import { PI2 } from './constants';
+import { BigNumber, T } from './interfaces';
 import { DomainError, normalize, stringify } from './util';
 
 /**

@@ -1,3 +1,4 @@
+import { BigNumber } from './interfaces';
 /**
  * @returns Arithmetic–geometric mean of parameters
  */
