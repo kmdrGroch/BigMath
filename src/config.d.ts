@@ -8,3 +8,4 @@ export declare const Config: {
      */
     rounding: number;
 };
+export declare const primes: number[];
