@@ -13,6 +13,7 @@
     "match-default-export-name": false,
     "max-line-length": false,
     "newline-per-chained-call": false,
+    "no-bitwise": false,
     "no-default-export": false,
     "no-default-import": false,
     "no-implicit-dependencies": false,

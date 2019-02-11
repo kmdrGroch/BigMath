@@ -1,12 +1,12 @@
 {
   "name": "big-math",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf \"+(test|src)/**/*+(.d.ts|.js|.map)\" .nyc_output coverage reports",
+    "clean": "rimraf \"+(test|src)/**/*+(.d.ts|.js|.map)\" .nyc_output coverage reports docs .stryker-tmp",
     "prebuild": "npm run clean && tslint -p tsconfig.json",
-    "build": "tsc -p .",
+    "build": "tsc -p . && npm run docs",
     "mutate": "stryker run",
     "docs": "typedoc --out docs --exclude test/**/*.*",
     "test": "npm run build && nyc --include src/**/*.js --reporter=html --report-dir=coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha \"test/**/*.js\" && npm run mutate"
@@ -18,18 +18,18 @@
     "@types/mocha": "^5.2.5",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
+    "nyc": "^13.2.0",
     "rimraf": "^2.6.3",
-    "stryker": "^0.34.0",
-    "stryker-api": "^0.23.0",
-    "stryker-html-reporter": "^0.17.0",
-    "stryker-mocha-framework": "^0.14.0",
-    "stryker-mocha-runner": "^0.16.0",
-    "stryker-typescript": "^0.17.0",
+    "stryker": "^0.35.0",
+    "stryker-api": "^0.24.0",
+    "stryker-html-reporter": "^0.18.0",
+    "stryker-mocha-framework": "^0.15.0",
+    "stryker-mocha-runner": "^0.17.0",
+    "stryker-typescript": "^0.18.0",
     "tslint": "^5.12.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.3.3"
   },
   "dependencies": {
-    "typedoc": "^0.14.1"
+    "typedoc": "^0.14.2"
   }
 }
