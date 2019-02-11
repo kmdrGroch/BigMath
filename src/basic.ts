@@ -1,5 +1,8 @@
-import { LOG10, LOG2 } from './constants';
-import { sinh } from './trigonometry';
+import { lte } from './comparison';
+import { primes } from './config';
+import { LOG10, LOG2, PI } from './constants';
+import { BigNumber, T } from './interfaces';
+import { sin, sinh } from './trigonometry';
 import { DomainError, normalize, stringify } from './util';
 
 /**
@@ -229,6 +232,59 @@ export const power = (a: T, b: T): BigNumber => {
   return exp(multiply(b, ln(a)));
 };
 
+const gcd = (a: bigint, b: bigint): bigint => {
+  if (a === BigInt(0)) {
+    return b;
+  }
+
+  return gcd(b % a, a);
+};
+
+const sqrtInteger = (n: bigint): bigint => {
+  let prod = BigInt(1);
+
+  while (n % BigInt(4) === BigInt(0)) {
+    n /= BigInt(4);
+    prod *= BigInt(2);
+  }
+
+  for (const prime of primes) {
+    if (prime > n) {
+      break;
+    }
+    const pow = BigInt(prime) ** BigInt(2);
+    while (n % pow === BigInt(0)) {
+      n /= pow;
+      prod *= BigInt(prime);
+    }
+  }
+
+  if (n > BigInt(1)) {
+    return BigInt(-1);
+  }
+
+  return prod;
+};
+
+const sqrtTF = (n: bigint): bigint => {
+  let prod = BigInt(1);
+
+  while (n % BigInt(4) === BigInt(0)) {
+    n /= BigInt(4);
+    prod *= BigInt(2);
+  }
+  while (n % BigInt(25) === BigInt(0)) {
+    n /= BigInt(25);
+    prod *= BigInt(5);
+  }
+
+  if (n > BigInt(1)) {
+    return BigInt(-1);
+  }
+
+  return prod;
+};
+
 /**
  * @domain Numbers greater or equal 0
  * @returns Square root of number
@@ -240,6 +296,19 @@ export const sqrt = (a: T): BigNumber => {
   }
   if (a.number === BigInt(0)) {
     return normalize(0);
+  }
+
+  let num = a.number;
+  if (num < BigInt(2) ** BigInt(32)) {
+    let denum = BigInt(10) ** BigInt(-a.comma);
+    const g = gcd(num, denum);
+    num /= g;
+    denum /= g;
+    num = sqrtInteger(num);
+    denum = sqrtTF(denum);
+    if (num !== BigInt(-1) && denum !== BigInt(-1)) {
+      return divide(num, denum);
+    }
   }
 
   let aprox = power(10, BigInt(Math.floor((String(a.number).length + a.comma) / 2)));
@@ -259,4 +328,61 @@ export const exp = (a: T): BigNumber => {
   const sh = sinh(a);
 
   return add(sh, sqrt(add(1, multiply(sh, sh))));
+};
+
+/**
+ * @domain Integers
+ * @returns Product of all integers until given number
+ */
+export const factorial = (a: T): BigNumber => {
+  a = normalize(a);
+  if (a.comma !== 0 || a.sign) {
+    throw new DomainError(stringify(a), 'positive integers');
+  }
+  let k = BigInt(1);
+  for (let i = BigInt(2); i <= a.number; i += BigInt(1)) {
+    k *= i;
+  }
+
+  return normalize(k);
+};
+
+export const gamma = (a: T): BigNumber => {
+  /*
+    g = 7
+    data taken from:
+    http://my.fit.edu/~gabdo/gammacoeff.txt
+  */
+
+  const p1 = '0.9999999999998099322768470047347829718009602570498980962898849358';
+  const p = [
+    '676.5203681218850985670091904440190381974449058924722569853678707',
+    '-1259.139216722402870471560787552828410476730722910298369550296701',
+    '771.3234287776530788486528258894307395627292390168566479072763666',
+    '-176.6150291621405990658455135399941244433015398373585840448427972',
+    '12.50734327868690481445893685327163629939919667813089937179501692',
+    '-0.1385710952657201168955470698506320982416866194189568573645197562',
+    '0.000009984369578019570859562668995694018788834042365371027657733820183',
+    '0.0000001505632735149311558338355775386439360927036032480858107693939127'
+  ];
+  a = normalize(a);
+
+  if (a.sign && a.comma === 0 && a.number % BigInt(2) === BigInt(0)) {
+    throw new DomainError(stringify(a), 'not negative multiplications of 2');
+  }
+
+  let y;
+  if (lte(a, 0.5)) {
+    y = divide(PI, multiply(sin(multiply(PI, a)), gamma(subtract(1, a))));
+  } else {
+    a = subtract(a, 1);
+    let x = normalize(p1);
+    for (let i = 0; i < p.length; i += 1) {
+      x = add(x, divide(p[i], add(a, i + 1)));
+    }
+    const t = add(a, p.length - 0.5);
+    y = multiply(multiply(multiply(sqrt(multiply(PI, 2)), power(t, add(a, 0.5))), exp(multiply(t, -1))), x);
+  }
+
+  return y;
 };

@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const comparison_1 = require("./comparison");
+const config_1 = require("./config");
 const constants_1 = require("./constants");
 const trigonometry_1 = require("./trigonometry");
 const util_1 = require("./util");
@@ -201,6 +203,48 @@ exports.power = (a, b) => {
     }
     return exports.exp(exports.multiply(b, exports.ln(a)));
 };
+const gcd = (a, b) => {
+    if (a === BigInt(0)) {
+        return b;
+    }
+    return gcd(b % a, a);
+};
+const sqrtInteger = (n) => {
+    let prod = BigInt(1);
+    while (n % BigInt(4) === BigInt(0)) {
+        n /= BigInt(4);
+        prod *= BigInt(2);
+    }
+    for (const prime of config_1.primes) {
+        if (prime > n) {
+            break;
+        }
+        const pow = BigInt(prime) ** BigInt(2);
+        while (n % pow === BigInt(0)) {
+            n /= pow;
+            prod *= BigInt(prime);
+        }
+    }
+    if (n > BigInt(1)) {
+        return BigInt(-1);
+    }
+    return prod;
+};
+const sqrtTF = (n) => {
+    let prod = BigInt(1);
+    while (n % BigInt(4) === BigInt(0)) {
+        n /= BigInt(4);
+        prod *= BigInt(2);
+    }
+    while (n % BigInt(25) === BigInt(0)) {
+        n /= BigInt(25);
+        prod *= BigInt(5);
+    }
+    if (n > BigInt(1)) {
+        return BigInt(-1);
+    }
+    return prod;
+};
 /**
  * @domain Numbers greater or equal 0
  * @returns Square root of number
@@ -212,6 +256,18 @@ exports.sqrt = (a) => {
     }
     if (a.number === BigInt(0)) {
         return util_1.normalize(0);
+    }
+    let num = a.number;
+    if (num < BigInt(2) ** BigInt(32)) {
+        let denum = BigInt(10) ** BigInt(-a.comma);
+        const g = gcd(num, denum);
+        num /= g;
+        denum /= g;
+        num = sqrtInteger(num);
+        denum = sqrtTF(denum);
+        if (num !== BigInt(-1) && denum !== BigInt(-1)) {
+            return exports.divide(num, denum);
+        }
     }
     let aprox = exports.power(10, BigInt(Math.floor((String(a.number).length + a.comma) / 2)));
     for (let i = 0; i < 20; i += 1) {
@@ -226,5 +282,56 @@ exports.sqrt = (a) => {
 exports.exp = (a) => {
     const sh = trigonometry_1.sinh(a);
     return exports.add(sh, exports.sqrt(exports.add(1, exports.multiply(sh, sh))));
+};
+/**
+ * @domain Integers
+ * @returns Product of all integers until given number
+ */
+exports.factorial = (a) => {
+    a = util_1.normalize(a);
+    if (a.comma !== 0 || a.sign) {
+        throw new util_1.DomainError(util_1.stringify(a), 'positive integers');
+    }
+    let k = BigInt(1);
+    for (let i = BigInt(2); i <= a.number; i += BigInt(1)) {
+        k *= i;
+    }
+    return util_1.normalize(k);
+};
+exports.gamma = (a) => {
+    /*
+      g = 7
+      data taken from:
+      http://my.fit.edu/~gabdo/gammacoeff.txt
+    */
+    const p1 = '0.9999999999998099322768470047347829718009602570498980962898849358';
+    const p = [
+        '676.5203681218850985670091904440190381974449058924722569853678707',
+        '-1259.139216722402870471560787552828410476730722910298369550296701',
+        '771.3234287776530788486528258894307395627292390168566479072763666',
+        '-176.6150291621405990658455135399941244433015398373585840448427972',
+        '12.50734327868690481445893685327163629939919667813089937179501692',
+        '-0.1385710952657201168955470698506320982416866194189568573645197562',
+        '0.000009984369578019570859562668995694018788834042365371027657733820183',
+        '0.0000001505632735149311558338355775386439360927036032480858107693939127'
+    ];
+    a = util_1.normalize(a);
+    if (a.sign && a.comma === 0 && a.number % BigInt(2) === BigInt(0)) {
+        throw new util_1.DomainError(util_1.stringify(a), 'not negative multiplications of 2');
+    }
+    let y;
+    if (comparison_1.lte(a, 0.5)) {
+        y = exports.divide(constants_1.PI, exports.multiply(trigonometry_1.sin(exports.multiply(constants_1.PI, a)), exports.gamma(exports.subtract(1, a))));
+    }
+    else {
+        a = exports.subtract(a, 1);
+        let x = util_1.normalize(p1);
+        for (let i = 0; i < p.length; i += 1) {
+            x = exports.add(x, exports.divide(p[i], exports.add(a, i + 1)));
+        }
+        const t = exports.add(a, p.length - 0.5);
+        y = exports.multiply(exports.multiply(exports.multiply(exports.sqrt(exports.multiply(constants_1.PI, 2)), exports.power(t, exports.add(a, 0.5))), exports.exp(exports.multiply(t, -1))), x);
+    }
+    return y;
 };
 //# sourceMappingURL=basic.js.map

@@ -1,3 +1,4 @@
+import { BigNumber } from './interfaces';
 /**
  * @domain Real numbers, Real numbers
  * @returns Sum of parameters
@@ -38,3 +39,9 @@ export declare const sqrt: (a: string | number | bigint | BigNumber) => BigNumbe
  * @returns Result of the exponentiation of e ^ parameter
  */
 export declare const exp: (a: string | number | bigint | BigNumber) => BigNumber;
+/**
+ * @domain Integers
+ * @returns Product of all integers until given number
+ */
+export declare const factorial: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const gamma: (a: string | number | bigint | BigNumber) => BigNumber;
