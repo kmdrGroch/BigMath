@@ -25,7 +25,7 @@
     "stryker-html-reporter": "^0.17.0",
     "stryker-mocha-framework": "^0.14.0",
     "stryker-mocha-runner": "^0.16.0",
-    "stryker-typescript": "^0.17.0",
+    "stryker-typescript": "^0.18.0",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2"
   },
