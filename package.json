@@ -22,7 +22,7 @@
     "rimraf": "^2.6.3",
     "stryker": "^0.34.0",
     "stryker-api": "^0.23.0",
-    "stryker-html-reporter": "^0.17.0",
+    "stryker-html-reporter": "^0.18.0",
     "stryker-mocha-framework": "^0.14.0",
     "stryker-mocha-runner": "^0.16.0",
     "stryker-typescript": "^0.17.0",
