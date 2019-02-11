@@ -1,4 +1,4 @@
-interface BigNumber {
+export interface BigNumber {
     /**
      * 10 ^ comma
      */
@@ -13,4 +13,5 @@ interface BigNumber {
     sign: boolean;
 }
 declare type TypeName<Type> = Type;
-declare type T = TypeName<bigint | BigNumber | number | string>;
+export declare type T = TypeName<bigint | BigNumber | number | string>;
+export {};

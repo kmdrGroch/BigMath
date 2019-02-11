@@ -1,4 +1,4 @@
-interface BigNumber {
+export interface BigNumber {
   /**
    * 10 ^ comma
    */
@@ -14,4 +14,4 @@ interface BigNumber {
 }
 
 type TypeName<Type> = Type;
-type T = TypeName<bigint | BigNumber | number | string>;
+export type T = TypeName<bigint | BigNumber | number | string>;
