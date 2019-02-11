@@ -1,4 +1,5 @@
 import { subtract } from './basic';
+import { T } from './interfaces';
 import { normalize } from './util';
 
 /**
