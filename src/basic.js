@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const comparison_1 = require("./comparison");
-const config_1 = require("./config");
 const constants_1 = require("./constants");
 const trigonometry_1 = require("./trigonometry");
 const util_1 = require("./util");
@@ -215,7 +214,7 @@ const sqrtInteger = (n) => {
         n /= BigInt(4);
         prod *= BigInt(2);
     }
-    for (const prime of config_1.primes) {
+    for (const prime of util_1.primes) {
         if (prime > n) {
             break;
         }

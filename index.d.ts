@@ -52,7 +52,7 @@ declare const _default: {
     PI: import("./src/interfaces").BigNumber;
     PI2: import("./src/interfaces").BigNumber;
     power: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
-    round: (a: string | number | bigint | import("./src/interfaces").BigNumber, precision?: number, rounding?: number) => import("./src/interfaces").BigNumber;
+    round: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     sec: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     sech: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     sin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;

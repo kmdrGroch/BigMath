@@ -467,48 +467,36 @@ describe('Comparison', () => {
 });
 describe('Rounding', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.round(0.000034, 5))).to.be.equal('0.00003');
-    });
-    it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.round(0.000038, 5))).to.be.equal('0.00004');
-    });
-    it('3', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.round(0.38, 1))).to.be.equal('0.4');
-    });
-    it('4', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.round(0.38, 0))).to.be.equal('0');
-    });
-    it('5', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.round(0.78, 0))).to.be.equal('1');
-    });
-    it('6', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.round(0.78))).to.be.equal('1');
     });
-    it('7', () => {
+    it('2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.round(43242))).to.be.equal('43242');
     });
-    it('8', () => {
+    it('3', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.round(0.356))).to.be.equal('0');
+    });
+    it('4', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(43242))).to.be.equal('43242');
     });
-    it('9', () => {
+    it('5', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(12.32))).to.be.equal('12');
     });
-    it('10', () => {
+    it('6', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(-12.32))).to.be.equal('-13');
     });
-    it('11', () => {
+    it('7', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(-12))).to.be.equal('-12');
     });
-    it('12', () => {
+    it('8', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ceil(43242))).to.be.equal('43242');
     });
-    it('13', () => {
+    it('9', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ceil(12.32))).to.be.equal('13');
     });
-    it('14', () => {
+    it('10', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ceil(-12.32))).to.be.equal('-12');
     });
-    it('15', () => {
+    it('11', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ceil(-12))).to.be.equal('-12');
     });
 });

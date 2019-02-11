@@ -503,48 +503,36 @@ describe('Comparison', () => {
 
 describe('Rounding', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.round(0.000034, 5))).to.be.equal('0.00003');
-  });
-  it('2', () => {
-    expect(BigMath.stringify(BigMath.round(0.000038, 5))).to.be.equal('0.00004');
-  });
-  it('3', () => {
-    expect(BigMath.stringify(BigMath.round(0.38, 1))).to.be.equal('0.4');
-  });
-  it('4', () => {
-    expect(BigMath.stringify(BigMath.round(0.38, 0))).to.be.equal('0');
-  });
-  it('5', () => {
-    expect(BigMath.stringify(BigMath.round(0.78, 0))).to.be.equal('1');
-  });
-  it('6', () => {
     expect(BigMath.stringify(BigMath.round(0.78))).to.be.equal('1');
   });
-  it('7', () => {
+  it('2', () => {
     expect(BigMath.stringify(BigMath.round(43242))).to.be.equal('43242');
   });
-  it('8', () => {
+  it('3', () => {
+    expect(BigMath.stringify(BigMath.round(0.356))).to.be.equal('0');
+  });
+  it('4', () => {
     expect(BigMath.stringify(BigMath.floor(43242))).to.be.equal('43242');
   });
-  it('9', () => {
+  it('5', () => {
     expect(BigMath.stringify(BigMath.floor(12.32))).to.be.equal('12');
   });
-  it('10', () => {
+  it('6', () => {
     expect(BigMath.stringify(BigMath.floor(-12.32))).to.be.equal('-13');
   });
-  it('11', () => {
+  it('7', () => {
     expect(BigMath.stringify(BigMath.floor(-12))).to.be.equal('-12');
   });
-  it('12', () => {
+  it('8', () => {
     expect(BigMath.stringify(BigMath.ceil(43242))).to.be.equal('43242');
   });
-  it('13', () => {
+  it('9', () => {
     expect(BigMath.stringify(BigMath.ceil(12.32))).to.be.equal('13');
   });
-  it('14', () => {
+  it('10', () => {
     expect(BigMath.stringify(BigMath.ceil(-12.32))).to.be.equal('-12');
   });
-  it('15', () => {
+  it('11', () => {
     expect(BigMath.stringify(BigMath.ceil(-12))).to.be.equal('-12');
   });
 });

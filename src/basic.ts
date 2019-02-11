@@ -1,9 +1,8 @@
 import { lte } from './comparison';
-import { primes } from './config';
 import { LOG10, LOG2, PI } from './constants';
 import { BigNumber, T } from './interfaces';
 import { sin, sinh } from './trigonometry';
-import { DomainError, normalize, stringify } from './util';
+import { DomainError, normalize, primes, stringify } from './util';
 
 /**
  * @domain Real numbers, Real numbers
