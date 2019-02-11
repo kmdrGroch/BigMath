@@ -43,7 +43,6 @@ exports.cos = (a) => exports.sin(basic_1.subtract(constants_1.PI2, a));
  * @returns Tangent of parameter
  */
 exports.tan = (a) => {
-    a = util_1.normalize(a);
     const c = exports.cos(a);
     if (c.number === BigInt(0)) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
@@ -56,7 +55,6 @@ exports.tan = (a) => {
  * @returns Cotangent of parameter
  */
 exports.cot = (a) => {
-    a = util_1.normalize(a);
     const s = exports.sin(a);
     if (s.number === BigInt(0)) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != k*PI (k - integer)');
@@ -69,7 +67,6 @@ exports.cot = (a) => {
  * @returns Secant of parameter
  */
 exports.sec = (a) => {
-    a = util_1.normalize(a);
     const c = exports.cos(a);
     if (c.number === BigInt(0)) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
@@ -82,7 +79,6 @@ exports.sec = (a) => {
  * @returns Cosecant of parameter
  */
 exports.csc = (a) => {
-    a = util_1.normalize(a);
     const s = exports.sin(a);
     if (s.number === BigInt(0)) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != k*PI (k - integer)');

@@ -1,6 +1,7 @@
 import { add, divide, exp, ln, multiply, power, sqrt, subtract } from './basic';
 import { gte, lte } from './comparison';
 import { PI, PI2 } from './constants';
+import { BigNumber, T } from './interfaces';
 import { DomainError, normalize, stringify } from './util';
 
 /**
@@ -49,7 +50,6 @@ export const cos = (a: T): BigNumber => sin(subtract(PI2, a));
  * @returns Tangent of parameter
  */
 export const tan = (a: T): BigNumber => {
-  a = normalize(a);
   const c = cos(a);
   if (c.number === BigInt(0)) {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
@@ -64,7 +64,6 @@ export const tan = (a: T): BigNumber => {
  * @returns Cotangent of parameter
  */
 export const cot = (a: T): BigNumber => {
-  a = normalize(a);
   const s = sin(a);
   if (s.number === BigInt(0)) {
     throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
@@ -79,7 +78,6 @@ export const cot = (a: T): BigNumber => {
  * @returns Secant of parameter
  */
 export const sec = (a: T): BigNumber => {
-  a = normalize(a);
   const c = cos(a);
   if (c.number === BigInt(0)) {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
@@ -94,7 +92,6 @@ export const sec = (a: T): BigNumber => {
  * @returns Cosecant of parameter
  */
 export const csc = (a: T): BigNumber => {
-  a = normalize(a);
   const s = sin(a);
   if (s.number === BigInt(0)) {
     throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');

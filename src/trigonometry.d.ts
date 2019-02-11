@@ -1,3 +1,4 @@
+import { BigNumber } from './interfaces';
 /**
  * @domain Real numbers
  * @range [-1, 1]
