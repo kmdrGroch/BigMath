@@ -114,6 +114,17 @@ describe('exp', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.exp(0.43242))).to.be.equal('1.540982191786073893382932316109036601919969074046665713783843665307777247178473303229901052383241349996726091757');
     });
 });
+describe('factorial', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.factorial(43))).to.be.equal('60415263063373835637355132068513997507264512000000000');
+    });
+    it('2', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.factorial(1.2))).to.throw(index_1.DomainError, 'Number out of domain. Given: 1.2. Expected: positive integers');
+    });
+    it('3', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.factorial(-12))).to.throw(index_1.DomainError, 'Number out of domain. Given: -12. Expected: positive integers');
+    });
+});
 describe('power', () => {
     it('1', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.power(2, 3))).to.be.equal('8');
@@ -143,6 +154,15 @@ describe('sqrt', () => {
     });
     it('3', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.sqrt(-54.23))).to.throw(index_1.DomainError, 'Number out of domain. Given: -54.23. Expected: numbers greater or equal 0');
+    });
+    it('4', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.sqrt(4))).to.be.equal('2');
+    });
+    it('5', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.sqrt(2.25))).to.be.equal('1.5');
+    });
+    it('6', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.sqrt(0.1))).to.be.equal('0.3162277660168379331998893544432718533719555139325200003814697265625');
     });
 });
 describe('sin', () => {
@@ -435,14 +455,14 @@ describe('Comparison', () => {
     it('7', () => {
         chai_1.expect(index_1.default.eq(5, 5)).to.be.true;
         chai_1.expect(index_1.default.eq(2, 5)).to.be.false;
-        chai_1.expect(index_1.default.eq(-2, 5)).to.be.false;
-        chai_1.expect(index_1.default.eq(0.2, 1)).to.be.false;
+        chai_1.expect(index_1.default.eq(-2, 2)).to.be.false;
+        chai_1.expect(index_1.default.eq(0.2, 2)).to.be.false;
     });
     it('8', () => {
         chai_1.expect(index_1.default.neq(5, 5)).to.be.false;
         chai_1.expect(index_1.default.neq(2, 5)).to.be.true;
-        chai_1.expect(index_1.default.neq(-2, 5)).to.be.true;
-        chai_1.expect(index_1.default.neq(2, 0.5)).to.be.true;
+        chai_1.expect(index_1.default.neq(0.2, 2)).to.be.true;
+        chai_1.expect(index_1.default.neq(-2, 2)).to.be.true;
     });
 });
 describe('Rounding', () => {
@@ -478,6 +498,82 @@ describe('Rounding', () => {
     });
     it('11', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(-12))).to.be.equal('-12');
+    });
+    it('12', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.ceil(43242))).to.be.equal('43242');
+    });
+    it('13', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.ceil(12.32))).to.be.equal('13');
+    });
+    it('14', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.ceil(-12.32))).to.be.equal('-12');
+    });
+    it('15', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.ceil(-12))).to.be.equal('-12');
+    });
+});
+describe('abs', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.abs(-12.32))).to.be.equal('12.32');
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.abs(12.32))).to.be.equal('12.32');
+    });
+});
+describe('isInteger', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.isInteger(-12)).to.be.equal(true);
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.isInteger(12)).to.be.equal(true);
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.isInteger(-12.32)).to.be.equal(false);
+    });
+    it('3', () => {
+        chai_1.expect(index_1.default.isInteger(12.32)).to.be.equal(false);
+    });
+});
+describe('gamma', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.gamma(1.24))).to.be.equal('0.90852105833995950017936149490276840952505395959157750262770689555647993914729833618074490981280661435587416214377641693077750803379629325018713521068401033249408436268660581255206743325275700938994383618970484569254051852426516448811492864973473665211675676988198317606008052825927734375');
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.gamma(0.24))).to.be.equal('3.7855044097498307983938579893681122086461460249074');
+    });
+    it('3', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.gamma(-2))).to.throw(index_1.DomainError, 'Number out of domain. Given: -2. Expected: not negative multiplications of 2');
+    });
+});
+describe('stringify', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(234.24234)).to.be.equal('234.24234');
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.stringify('-423.34234')).to.be.equal('-423.34234');
+    });
+    it('3', () => {
+        chai_1.expect(index_1.default.stringify(BigInt(43254235))).to.be.equal('43254235');
+    });
+});
+describe('bit operations', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.bitLeft(4325, 3))).to.be.equal('34600');
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.bitRight(4325, 3))).to.be.equal('540');
+    });
+    it('3', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.bitOR(4325, 5433))).to.be.equal('5629');
+    });
+    it('4', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.bitXOR(4325, 3243))).to.be.equal('7246');
+    });
+    it('5', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.bitNOT(4325))).to.be.equal('-4326');
+    });
+    it('6', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.bitAND(4325, 1235))).to.be.equal('193');
     });
 });
 //# sourceMappingURL=bm.spec.js.map
