@@ -31,7 +31,7 @@ exports.normalize = (a) => {
                 sign: a < BigInt(0)
             };
         case 'string':
-            const s = a.indexOf('-') > -1;
+            const s = a.indexOf('-') !== -1;
             return exports.normalize({
                 comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
                 number: BigInt(s ? a.split('.').join('').substr(1) : a.split('.').join('')),
@@ -66,21 +66,29 @@ exports.normalize = (a) => {
     }
 };
 /**
- * Stringify BigNumber
+ * Stringify given number
  */
 exports.stringify = (a) => {
-    const s = String(a.number);
-    if (a.comma < 0) {
-        const len = s.length + a.comma;
-        if (len > 0) {
-            return `${a.sign ? '-' : ''}${s.substring(0, len)}.${s.substring(len)}`;
-        }
-        else {
-            return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
-        }
-    }
-    else {
-        return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
+    switch (typeof a) {
+        case 'string':
+            return a;
+        case 'bigint':
+        case 'number':
+            return String(a);
+        default:
+            const s = String(a.number);
+            if (a.comma < 0) {
+                const len = s.length + a.comma;
+                if (len > 0) {
+                    return `${a.sign ? '-' : ''}${s.substring(0, len)}.${s.substring(len)}`;
+                }
+                else {
+                    return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
+                }
+            }
+            else {
+                return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
+            }
     }
 };
 exports.round = (a, precision = config_1.Config.precision, rounding = config_1.Config.rounding) => {
@@ -108,4 +116,24 @@ exports.floor = (a) => {
     }
     return exports.normalize(exports.stringify(a).split('.')[0]);
 };
+exports.ceil = (a) => {
+    a = exports.normalize(a);
+    if (!a.sign) {
+        const b = exports.stringify(a).split('.');
+        return b[1] ? basic_1.add(b[0], 1) : exports.normalize(b[0]);
+    }
+    return exports.normalize(exports.stringify(a).split('.')[0]);
+};
+/**
+ * @returns Absolute value
+ */
+exports.abs = (a) => {
+    a = exports.normalize(a);
+    a.sign = false;
+    return a;
+};
+/**
+ * Checks if number is an integer
+ */
+exports.isInteger = (a) => exports.normalize(a).comma >= 0;
 //# sourceMappingURL=util.js.map

@@ -1,5 +1,6 @@
 import { add, subtract } from './basic';
 import { Config } from './config';
+import { BigNumber, T } from './interfaces';
 
 /**
  * Custom error to handle invalid domain
@@ -31,7 +32,7 @@ export const normalize = (a: T): BigNumber => {
         sign: a < BigInt(0)
       };
     case 'string':
-      const s = a.indexOf('-') > -1;
+      const s = a.indexOf('-') !== -1;
 
       return normalize({
         comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
@@ -68,19 +69,27 @@ export const normalize = (a: T): BigNumber => {
 };
 
 /**
- * Stringify BigNumber
+ * Stringify given number
  */
-export const stringify = (a: BigNumber): string => {
-  const s: string = String(a.number);
-  if (a.comma < 0) {
-    const len = s.length + a.comma;
-    if (len > 0) {
-      return `${a.sign ? '-' : ''}${s.substring(0, len)}.${s.substring(len)}`;
-    } else {
-      return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
-    }
-  } else {
-    return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
+export const stringify = (a: T): string => {
+  switch (typeof a) {
+    case 'string':
+      return a;
+    case 'bigint':
+    case 'number':
+      return String(a);
+    default:
+      const s: string = String(a.number);
+      if (a.comma < 0) {
+        const len = s.length + a.comma;
+        if (len > 0) {
+          return `${a.sign ? '-' : ''}${s.substring(0, len)}.${s.substring(len)}`;
+        } else {
+          return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
+        }
+      } else {
+        return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
+      }
   }
 };
 
@@ -114,3 +123,29 @@ export const floor = (a: T): BigNumber => {
 
   return normalize(stringify(a).split('.')[0]);
 };
+
+export const ceil = (a: T): BigNumber => {
+  a = normalize(a);
+  if (!a.sign) {
+    const b = stringify(a).split('.');
+
+    return b[1] ? add(b[0], 1) : normalize(b[0]);
+  }
+
+  return normalize(stringify(a).split('.')[0]);
+};
+
+/**
+ * @returns Absolute value
+ */
+export const abs = (a: T): BigNumber => {
+  a = normalize(a);
+  a.sign = false;
+
+  return a;
+};
+
+/**
+ * Checks if number is an integer
+ */
+export const isInteger = (a: T): boolean => normalize(a).comma >= 0;
