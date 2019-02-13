@@ -1,6 +1,6 @@
 {
   "name": "big-math",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,11 +9,30 @@
     "build": "tsc -p . && npm run docs",
     "mutate": "stryker run",
     "docs": "typedoc --out docs --exclude test/**/*.*",
-    "test": "npm run build && nyc --include src/**/*.js --reporter=html --report-dir=coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha \"test/**/*.js\" && npm run mutate"
+    "test": "npm run build && nyc mocha \"test/**/*.js\" && npm run mutate"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
+    "include": [
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "plugins": [
+      "bigInt"
+    ],
+    "report-dir": "./coverage"
   },
   "author": "kmdrGroch",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-bigint": "^7.2.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
     "chai": "^4.2.0",

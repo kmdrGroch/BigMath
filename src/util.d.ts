@@ -24,7 +24,3 @@ export declare const abs: (a: string | number | bigint | BigNumber) => BigNumber
  * Checks if number is an integer
  */
 export declare const isInteger: (a: string | number | bigint | BigNumber) => boolean;
-/**
- * Primes from 3 to 2 ** 16
- */
-export declare const primes: number[];

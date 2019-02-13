@@ -11,14 +11,14 @@ exports.gte = (a, b) => !basic_1.subtract(a, b).sign;
  */
 exports.lte = (a, b) => {
     const k = basic_1.subtract(a, b);
-    return k.sign || k.number === BigInt(0);
+    return k.sign || k.number === 0n;
 };
 /**
  * @returns If first parameter is greater than second parameter
  */
 exports.gt = (a, b) => {
     const x = basic_1.subtract(a, b);
-    return !x.sign && x.number !== BigInt(0);
+    return !x.sign && x.number !== 0n;
 };
 /**
  * @returns If first parameter is smaller than second parameter

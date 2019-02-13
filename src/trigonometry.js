@@ -18,11 +18,11 @@ exports.sin = (a) => {
     let s = util_1.normalize(reduce);
     let k = util_1.normalize(reduce);
     const k2 = basic_1.multiply(reduce, reduce);
-    let f = BigInt(1);
-    for (let i = 1; i < 20; i += 1) {
-        f *= BigInt(i * (i * 4 + 2));
+    let f = 1n;
+    for (let i = 1n; i < 20n; i += 1n) {
+        f *= i * (i * 4n + 2n);
         k = basic_1.multiply(k, k2);
-        s = (i % 2 === 0) ? basic_1.add(s, basic_1.divide(k, f)) : basic_1.subtract(s, basic_1.divide(k, f));
+        s = (i % 2n === 0n) ? basic_1.add(s, basic_1.divide(k, f)) : basic_1.subtract(s, basic_1.divide(k, f));
     }
     if (s.comma < -30) {
         const c = s.comma + 30;
@@ -44,7 +44,7 @@ exports.cos = (a) => exports.sin(basic_1.subtract(constants_1.PI2, a));
  */
 exports.tan = (a) => {
     const c = exports.cos(a);
-    if (c.number === BigInt(0)) {
+    if (c.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
     }
     return basic_1.divide(exports.sin(a), c);
@@ -56,7 +56,7 @@ exports.tan = (a) => {
  */
 exports.cot = (a) => {
     const s = exports.sin(a);
-    if (s.number === BigInt(0)) {
+    if (s.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != k*PI (k - integer)');
     }
     return basic_1.divide(exports.cos(a), s);
@@ -68,7 +68,7 @@ exports.cot = (a) => {
  */
 exports.sec = (a) => {
     const c = exports.cos(a);
-    if (c.number === BigInt(0)) {
+    if (c.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
     }
     return basic_1.divide(1, c);
@@ -80,7 +80,7 @@ exports.sec = (a) => {
  */
 exports.csc = (a) => {
     const s = exports.sin(a);
-    if (s.number === BigInt(0)) {
+    if (s.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != k*PI (k - integer)');
     }
     return basic_1.divide(1, s);
@@ -93,7 +93,7 @@ exports.csc = (a) => {
 exports.asin = (a) => {
     a = util_1.normalize(a);
     if (String(a.number).length > Math.abs(a.comma)) {
-        if (a.number === BigInt(1)) {
+        if (a.number === 1n) {
             return util_1.normalize(constants_1.PI2);
         }
         throw new util_1.DomainError(util_1.stringify(a), 'numbers from range [-1, 1]');
@@ -124,7 +124,7 @@ exports.atan = (a) => {
     a = util_1.normalize(a);
     let x = 2;
     while (true) {
-        a = basic_1.divide(a, basic_1.add(1, basic_1.sqrt(basic_1.add(1, basic_1.power(a, 2)))));
+        a = basic_1.divide(a, basic_1.add(1, basic_1.sqrt(basic_1.add(1, basic_1.multiply(a, a)))));
         if (comparison_1.lte(a, 0.5) && comparison_1.gte(a, -0.5)) {
             break;
         }
@@ -147,8 +147,8 @@ exports.atan = (a) => {
 exports.atan2 = (a, b) => {
     a = util_1.normalize(a);
     b = util_1.normalize(b);
-    if (a.number === BigInt(0)) {
-        if (b.number === BigInt(0)) {
+    if (a.number === 0n) {
+        if (b.number === 0n) {
             throw new util_1.DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
         }
         const k = util_1.normalize(constants_1.PI2);
@@ -158,7 +158,7 @@ exports.atan2 = (a, b) => {
     if (!a.sign) {
         return exports.atan(basic_1.divide(b, a));
     }
-    if (b.number === BigInt(0)) {
+    if (b.number === 0n) {
         return util_1.normalize(constants_1.PI);
     }
     if (b.sign) {
@@ -205,9 +205,9 @@ exports.sinh = (a) => {
     a = util_1.normalize(a);
     const x2 = basic_1.multiply(a, a);
     let sum = util_1.normalize(a);
-    let fact = BigInt(1);
-    for (let i = 2; i < 40; i = i + 2) {
-        fact *= BigInt(i * (i + 1));
+    let fact = 1n;
+    for (let i = 2n; i < 40n; i += 2n) {
+        fact *= i * (i + 1n);
         a = basic_1.multiply(a, x2);
         sum = basic_1.add(sum, basic_1.divide(a, fact));
     }
@@ -229,7 +229,7 @@ exports.cosh = (a) => {
  */
 exports.tanh = (a) => {
     a = basic_1.exp(a);
-    return basic_1.divide(basic_1.subtract(a, basic_1.divide(1, a)), basic_1.add(a, basic_1.divide(1, a)));
+    return basic_1.subtract(1, basic_1.divide(2, basic_1.add(basic_1.multiply(a, a), 1)));
 };
 /**
  * @domain Real numbers without 0
@@ -238,11 +238,11 @@ exports.tanh = (a) => {
  */
 exports.coth = (a) => {
     a = util_1.normalize(a);
-    if (a.number === BigInt(0)) {
+    if (a.number === 0n) {
         throw new util_1.DomainError('0', 'real numbers without 0');
     }
     a = basic_1.exp(a);
-    return basic_1.divide(basic_1.add(a, basic_1.divide(1, a)), basic_1.subtract(a, basic_1.divide(1, a)));
+    return basic_1.add(1, basic_1.divide(2, basic_1.subtract(basic_1.multiply(a, a), 1)));
 };
 /**
  * @domain Real numbers
@@ -260,7 +260,7 @@ exports.sech = (a) => {
  */
 exports.csch = (a) => {
     a = util_1.normalize(a);
-    if (a.number === BigInt(0)) {
+    if (a.number === 0n) {
         throw new util_1.DomainError('0', 'real numbers without 0');
     }
     a = basic_1.exp(a);
@@ -273,7 +273,7 @@ exports.csch = (a) => {
  */
 exports.asinh = (a) => {
     a = util_1.normalize(a);
-    return basic_1.ln(basic_1.add(a, basic_1.sqrt(basic_1.add(basic_1.power(a, 2), 1))));
+    return basic_1.ln(basic_1.add(a, basic_1.sqrt(basic_1.add(basic_1.multiply(a, a), 1))));
 };
 /**
  * @domain Real numbers greater or equal 1
@@ -285,14 +285,14 @@ exports.acosh = (a) => {
     if (a.sign || String(a.number).length <= Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers greater or equal 1');
     }
-    if (a.number === BigInt(1)) {
+    if (a.number === 1n) {
         return {
             comma: 0,
-            number: BigInt(0),
+            number: 0n,
             sign: false
         };
     }
-    return basic_1.ln(basic_1.add(a, basic_1.sqrt(basic_1.subtract(basic_1.power(a, 2), 1))));
+    return basic_1.ln(basic_1.add(a, basic_1.sqrt(basic_1.subtract(basic_1.multiply(a, a), 1))));
 };
 /**
  * @domain (-1, 1)
@@ -313,7 +313,7 @@ exports.atanh = (a) => {
  */
 exports.acoth = (a) => {
     a = util_1.normalize(a);
-    if (String(a.number).length <= Math.abs(a.comma) || a.number === BigInt(1) || a.number === BigInt(0)) {
+    if (String(a.number).length <= Math.abs(a.comma) || a.number === 1n || a.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers not from range [-1, 1]');
     }
     return basic_1.multiply(basic_1.ln(basic_1.divide(basic_1.add(a, 1), basic_1.subtract(a, 1))), 0.5);
@@ -329,13 +329,13 @@ exports.asech = (a) => {
         if (util_1.stringify(a) === '1') {
             return {
                 comma: 0,
-                number: BigInt(0),
+                number: 0n,
                 sign: false
             };
         }
         throw new util_1.DomainError(util_1.stringify(a), 'numbers from range (0,1]');
     }
-    return basic_1.ln(basic_1.divide(basic_1.add(1, basic_1.sqrt(basic_1.subtract(1, basic_1.power(a, 2)))), a));
+    return basic_1.ln(basic_1.divide(basic_1.add(1, basic_1.sqrt(basic_1.subtract(1, basic_1.multiply(a, a)))), a));
 };
 /**
  * @domain Real numbers

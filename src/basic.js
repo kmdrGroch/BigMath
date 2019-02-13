@@ -22,10 +22,10 @@ exports.add = (a, b) => {
     const max = Math.max(a.comma, b.comma);
     const min = Math.min(a.comma, b.comma);
     if (a.comma > b.comma) {
-        a.number *= BigInt(10) ** BigInt(max - min);
+        a.number *= 10n ** BigInt(max - min);
     }
     else {
-        b.number *= BigInt(10) ** BigInt(max - min);
+        b.number *= 10n ** BigInt(max - min);
     }
     return util_1.normalize({
         comma: min,
@@ -51,10 +51,10 @@ exports.subtract = (a, b) => {
     const max = Math.max(a.comma, b.comma);
     const min = Math.min(a.comma, b.comma);
     if (a.comma > b.comma) {
-        a.number *= BigInt(10) ** BigInt(max - min);
+        a.number *= 10n ** BigInt(max - min);
     }
     else {
-        b.number *= BigInt(10) ** BigInt(max - min);
+        b.number *= 10n ** BigInt(max - min);
     }
     return util_1.normalize({
         comma: min,
@@ -87,17 +87,17 @@ exports.divide = (a, b) => {
     }
     const len = String(a.number).length - String(b.number).length;
     if (len > 0) {
-        b.number *= BigInt(10) ** BigInt(len);
+        b.number *= 10n ** BigInt(len);
         b.comma -= len;
     }
     else {
-        a.number *= BigInt(10) ** BigInt(-len);
+        a.number *= 10n ** BigInt(-len);
         a.comma += len;
     }
     const n = a.number / b.number;
     let d = '';
     let c = a.comma - b.comma;
-    a.number = (a.number - n * b.number) * BigInt(10);
+    a.number = (a.number - n * b.number) * 10n;
     while (d.length !== 50) {
         if (a.number === BigInt(0)) {
             break;
@@ -109,7 +109,7 @@ exports.divide = (a, b) => {
     if (c > 0) {
         return util_1.normalize({
             comma: 0,
-            number: BigInt(n + d) * BigInt(10) ** BigInt(c),
+            number: BigInt(n + d) * 10n ** BigInt(c),
             sign: a.sign !== b.sign
         });
     }
@@ -125,7 +125,7 @@ exports.divide = (a, b) => {
  */
 exports.ln = (a) => {
     a = util_1.normalize(a);
-    if (a.sign || a.number === BigInt(0)) {
+    if (a.sign || a.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers greater than 0');
     }
     const tens = String(a.number).length + a.comma;
@@ -140,7 +140,7 @@ exports.ln = (a) => {
         case '3':
             ten = exports.subtract(ten, {
                 comma: -57,
-                number: BigInt('1098612288668109691395245236922525704647490557822749451734'),
+                number: 1098612288668109691395245236922525704647490557822749451734n,
                 sign: false
             });
             a = exports.multiply(a, 3);
@@ -153,7 +153,7 @@ exports.ln = (a) => {
             if (Number(String(a.number)[1] || 0) > 5) {
                 ten = exports.subtract(ten, {
                     comma: -57,
-                    number: BigInt('1791759469228055000812477358380702272722990692183004705855'),
+                    number: 1791759469228055000812477358380702272722990692183004705855n,
                     sign: false
                 });
                 a = exports.multiply(a, 6);
@@ -161,7 +161,7 @@ exports.ln = (a) => {
             else {
                 ten = exports.subtract(ten, {
                     comma: -57,
-                    number: BigInt('2079441541679835928251696364374529704226500403080765762362'),
+                    number: 2079441541679835928251696364374529704226500403080765762362n,
                     sign: false
                 });
                 a = exports.multiply(a, 8);
@@ -183,7 +183,7 @@ exports.ln = (a) => {
 exports.power = (a, b) => {
     a = util_1.normalize(a);
     b = util_1.normalize(b);
-    if (a.number === BigInt(0) && b.number === BigInt(0)) {
+    if (a.number === 0n && b.number === 0n) {
         throw new util_1.DomainError('0 ^ 0', 'real numbers | both can\'t be 0 at the same time');
     }
     if (b.comma > -1) {
@@ -191,7 +191,7 @@ exports.power = (a, b) => {
             a = exports.divide(1, a);
         }
         if (a.sign) {
-            a.sign = Number(b.number) % 2 === 1;
+            a.sign = b.number % 2n === 1n;
         }
         a.comma = a.comma * Number(b.number);
         a.number = a.number ** BigInt(b.number);
@@ -203,44 +203,40 @@ exports.power = (a, b) => {
     return exports.exp(exports.multiply(b, exports.ln(a)));
 };
 const gcd = (a, b) => {
-    if (a === BigInt(0)) {
+    if (a === 0n) {
         return b;
     }
     return gcd(b % a, a);
 };
 const sqrtInteger = (n) => {
-    let prod = BigInt(1);
-    while (n % BigInt(4) === BigInt(0)) {
-        n /= BigInt(4);
-        prod *= BigInt(2);
-    }
-    for (const prime of util_1.primes) {
+    let prod = 1n;
+    for (const prime of constants_1.primes) {
         if (prime > n) {
             break;
         }
-        const pow = BigInt(prime) ** BigInt(2);
-        while (n % pow === BigInt(0)) {
+        const pow = prime ** 2n;
+        while (n % pow === 0n) {
             n /= pow;
-            prod *= BigInt(prime);
+            prod *= prime;
         }
     }
-    if (n > BigInt(1)) {
-        return BigInt(-1);
+    if (n > 1n) {
+        return -1n;
     }
     return prod;
 };
 const sqrtTF = (n) => {
-    let prod = BigInt(1);
-    while (n % BigInt(4) === BigInt(0)) {
-        n /= BigInt(4);
-        prod *= BigInt(2);
+    let prod = 1n;
+    while (n % 4n === 0n) {
+        n /= 4n;
+        prod *= 2n;
     }
-    while (n % BigInt(25) === BigInt(0)) {
-        n /= BigInt(25);
-        prod *= BigInt(5);
+    while (n % 25n === 0n) {
+        n /= 25n;
+        prod *= 5n;
     }
-    if (n > BigInt(1)) {
-        return BigInt(-1);
+    if (n > 1n) {
+        return -1n;
     }
     return prod;
 };
@@ -253,18 +249,18 @@ exports.sqrt = (a) => {
     if (a.sign) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers greater or equal 0');
     }
-    if (a.number === BigInt(0)) {
+    if (a.number === 0n) {
         return util_1.normalize(0);
     }
     let num = a.number;
-    if (num < BigInt(2) ** BigInt(32)) {
-        let denum = BigInt(10) ** BigInt(-a.comma);
+    if (num < 2n ** 32n) {
+        let denum = 10n ** BigInt(-a.comma);
         const g = gcd(num, denum);
         num /= g;
         denum /= g;
         num = sqrtInteger(num);
         denum = sqrtTF(denum);
-        if (num !== BigInt(-1) && denum !== BigInt(-1)) {
+        if (num !== -1n && denum !== -1n) {
             return exports.divide(num, denum);
         }
     }
@@ -291,8 +287,8 @@ exports.factorial = (a) => {
     if (a.comma !== 0 || a.sign) {
         throw new util_1.DomainError(util_1.stringify(a), 'positive integers');
     }
-    let k = BigInt(1);
-    for (let i = BigInt(2); i <= a.number; i += BigInt(1)) {
+    let k = 1n;
+    for (let i = 2n; i <= a.number; i += 1n) {
         k *= i;
     }
     return util_1.normalize(k);
@@ -315,7 +311,7 @@ exports.gamma = (a) => {
         '0.0000001505632735149311558338355775386439360927036032480858107693939127'
     ];
     a = util_1.normalize(a);
-    if (a.sign && a.comma === 0 && a.number % BigInt(2) === BigInt(0)) {
+    if (a.sign && a.comma === 0 && a.number % 2n === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'not negative multiplications of 2');
     }
     let y;

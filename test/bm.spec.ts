@@ -321,13 +321,13 @@ describe('cosh', () => {
 
 describe('tanh', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.tanh(1.523))).to.be.equal('0.90921904122567684022793462935011266170636524820524');
+    expect(BigMath.stringify(BigMath.tanh(1.523))).to.be.equal('0.909219041225676840227934629350112661706365248205247');
   });
 });
 
 describe('coth', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.coth(1.523))).to.be.equal('1.0998449819660018093806759222035306381996482011032');
+    expect(BigMath.stringify(BigMath.coth(1.523))).to.be.equal('1.099844981966001809380675922203530638199648201103206');
   });
   it('2', () => {
     expect(() => BigMath.stringify(BigMath.coth(0))).to.throw(DomainError, 'Number out of domain. Given: 0. Expected: real numbers without 0');
@@ -512,27 +512,33 @@ describe('Rounding', () => {
     expect(BigMath.stringify(BigMath.round(0.356))).to.be.equal('0');
   });
   it('4', () => {
-    expect(BigMath.stringify(BigMath.floor(43242))).to.be.equal('43242');
+    expect(BigMath.stringify(BigMath.round(-1.2))).to.be.equal('-1');
   });
   it('5', () => {
-    expect(BigMath.stringify(BigMath.floor(12.32))).to.be.equal('12');
+    expect(BigMath.stringify(BigMath.round(-1.7))).to.be.equal('-2');
+  });
+  it('5', () => {
+    expect(BigMath.stringify(BigMath.floor(43242))).to.be.equal('43242');
   });
   it('6', () => {
-    expect(BigMath.stringify(BigMath.floor(-12.32))).to.be.equal('-13');
+    expect(BigMath.stringify(BigMath.floor(12.32))).to.be.equal('12');
   });
   it('7', () => {
-    expect(BigMath.stringify(BigMath.floor(-12))).to.be.equal('-12');
+    expect(BigMath.stringify(BigMath.floor(-12.32))).to.be.equal('-13');
   });
   it('8', () => {
-    expect(BigMath.stringify(BigMath.ceil(43242))).to.be.equal('43242');
+    expect(BigMath.stringify(BigMath.floor(-12))).to.be.equal('-12');
   });
   it('9', () => {
-    expect(BigMath.stringify(BigMath.ceil(12.32))).to.be.equal('13');
+    expect(BigMath.stringify(BigMath.ceil(43242))).to.be.equal('43242');
   });
   it('10', () => {
-    expect(BigMath.stringify(BigMath.ceil(-12.32))).to.be.equal('-12');
+    expect(BigMath.stringify(BigMath.ceil(12.32))).to.be.equal('13');
   });
   it('11', () => {
+    expect(BigMath.stringify(BigMath.ceil(-12.32))).to.be.equal('-12');
+  });
+  it('12', () => {
     expect(BigMath.stringify(BigMath.ceil(-12))).to.be.equal('-12');
   });
 });

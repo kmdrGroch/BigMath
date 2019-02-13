@@ -1,4 +1,4 @@
-import { add, divide, exp, ln, multiply, power, sqrt, subtract } from './basic';
+import { add, divide, exp, ln, multiply, sqrt, subtract } from './basic';
 import { gte, lte } from './comparison';
 import { PI, PI2 } from './constants';
 import { BigNumber, T } from './interfaces';
@@ -21,12 +21,12 @@ export const sin = (a: T): BigNumber => {
 
   const k2 = multiply(reduce, reduce);
 
-  let f = BigInt(1);
+  let f = 1n;
 
-  for (let i = 1; i < 20; i += 1) {
-    f *= BigInt(i * (i * 4 + 2));
+  for (let i = 1n; i < 20n; i += 1n) {
+    f *= i * (i * 4n + 2n);
     k = multiply(k, k2);
-    s = (i % 2 === 0) ? add(s, divide(k, f)) : subtract(s, divide(k, f));
+    s = (i % 2n === 0n) ? add(s, divide(k, f)) : subtract(s, divide(k, f));
   }
   if (s.comma < -30) {
     const c = s.comma + 30;
@@ -51,7 +51,7 @@ export const cos = (a: T): BigNumber => sin(subtract(PI2, a));
  */
 export const tan = (a: T): BigNumber => {
   const c = cos(a);
-  if (c.number === BigInt(0)) {
+  if (c.number === 0n) {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
   }
 
@@ -65,7 +65,7 @@ export const tan = (a: T): BigNumber => {
  */
 export const cot = (a: T): BigNumber => {
   const s = sin(a);
-  if (s.number === BigInt(0)) {
+  if (s.number === 0n) {
     throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
   }
 
@@ -79,7 +79,7 @@ export const cot = (a: T): BigNumber => {
  */
 export const sec = (a: T): BigNumber => {
   const c = cos(a);
-  if (c.number === BigInt(0)) {
+  if (c.number === 0n) {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
   }
 
@@ -93,7 +93,7 @@ export const sec = (a: T): BigNumber => {
  */
 export const csc = (a: T): BigNumber => {
   const s = sin(a);
-  if (s.number === BigInt(0)) {
+  if (s.number === 0n) {
     throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
   }
 
@@ -108,7 +108,7 @@ export const csc = (a: T): BigNumber => {
 export const asin = (a: T): BigNumber => {
   a = normalize(a);
   if (String(a.number).length > Math.abs(a.comma)) {
-    if (a.number === BigInt(1)) {
+    if (a.number === 1n) {
       return normalize(PI2);
     }
     throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
@@ -148,7 +148,7 @@ export const atan = (a: T): BigNumber => {
 
   let x = 2;
   while (true) {
-    a = divide(a, add(1, sqrt(add(1, power(a, 2)))));
+    a = divide(a, add(1, sqrt(add(1, multiply(a, a)))));
     if (lte(a, 0.5) && gte(a, -0.5)) { break; }
     x *= 2;
   }
@@ -175,8 +175,8 @@ export const atan2 = (a: T, b: T): BigNumber => {
   a = normalize(a);
   b = normalize(b);
 
-  if (a.number === BigInt(0)) {
-    if (b.number === BigInt(0)) {
+  if (a.number === 0n) {
+    if (b.number === 0n) {
       throw new DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
     }
     const k = normalize(PI2);
@@ -189,7 +189,7 @@ export const atan2 = (a: T, b: T): BigNumber => {
     return atan(divide(b, a));
   }
 
-  if (b.number === BigInt(0)) {
+  if (b.number === 0n) {
     return normalize(PI);
   }
 
@@ -244,9 +244,9 @@ export const sinh = (a: T): BigNumber => {
   a = normalize(a);
   const x2 = multiply(a, a);
   let sum = normalize(a);
-  let fact = BigInt(1);
-  for (let i = 2; i < 40; i = i + 2) {
-    fact *= BigInt(i * (i + 1));
+  let fact = 1n;
+  for (let i = 2n; i < 40n; i += 2n) {
+    fact *= i * (i + 1n);
     a = multiply(a, x2);
     sum = add(sum, divide(a, fact));
   }
@@ -273,7 +273,7 @@ export const cosh = (a: T): BigNumber => {
 export const tanh = (a: T): BigNumber => {
   a = exp(a);
 
-  return divide(subtract(a, divide(1, a)), add(a, divide(1, a)));
+  return subtract(1, divide(2, add(multiply(a, a), 1)));
 };
 
 /**
@@ -283,12 +283,12 @@ export const tanh = (a: T): BigNumber => {
  */
 export const coth = (a: T): BigNumber => {
   a = normalize(a);
-  if (a.number === BigInt(0)) {
+  if (a.number === 0n) {
     throw new DomainError('0', 'real numbers without 0');
   }
   a = exp(a);
 
-  return divide(add(a, divide(1, a)), subtract(a, divide(1, a)));
+  return add(1, divide(2, subtract(multiply(a, a), 1)));
 };
 
 /**
@@ -309,7 +309,7 @@ export const sech = (a: T): BigNumber => {
  */
 export const csch = (a: T): BigNumber => {
   a = normalize(a);
-  if (a.number === BigInt(0)) {
+  if (a.number === 0n) {
     throw new DomainError('0', 'real numbers without 0');
   }
   a = exp(a);
@@ -325,7 +325,7 @@ export const csch = (a: T): BigNumber => {
 export const asinh = (a: T): BigNumber => {
   a = normalize(a);
 
-  return ln(add(a, sqrt(add(power(a, 2), 1))));
+  return ln(add(a, sqrt(add(multiply(a, a), 1))));
 };
 
 /**
@@ -338,15 +338,15 @@ export const acosh = (a: T): BigNumber => {
   if (a.sign || String(a.number).length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers greater or equal 1');
   }
-  if (a.number === BigInt(1)) {
+  if (a.number === 1n) {
     return {
       comma: 0,
-      number: BigInt(0),
+      number: 0n,
       sign: false
     };
   }
 
-  return ln(add(a, sqrt(subtract(power(a, 2), 1))));
+  return ln(add(a, sqrt(subtract(multiply(a, a), 1))));
 };
 
 /**
@@ -370,7 +370,7 @@ export const atanh = (a: T): BigNumber => {
  */
 export const acoth = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length <= Math.abs(a.comma) || a.number === BigInt(1) || a.number === BigInt(0)) {
+  if (String(a.number).length <= Math.abs(a.comma) || a.number === 1n || a.number === 0n) {
     throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
   }
 
@@ -388,14 +388,14 @@ export const asech = (a: T): BigNumber => {
     if (stringify(a) === '1') {
       return {
         comma: 0,
-        number: BigInt(0),
+        number: 0n,
         sign: false
       };
     }
     throw new DomainError(stringify(a), 'numbers from range (0,1]');
   }
 
-  return ln(divide(add(1, sqrt(subtract(1, power(a, 2)))), a));
+  return ln(divide(add(1, sqrt(subtract(1, multiply(a, a)))), a));
 };
 
 /**

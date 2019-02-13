@@ -13,7 +13,7 @@ export const gte = (a: T, b: T): boolean => !subtract(a, b).sign;
 export const lte = (a: T, b: T): boolean => {
   const k = subtract(a, b);
 
-  return k.sign || k.number === BigInt(0);
+  return k.sign || k.number === 0n;
 };
 
 /**
@@ -22,7 +22,7 @@ export const lte = (a: T, b: T): boolean => {
 export const gt = (a: T, b: T): boolean => {
   const x = subtract(a, b);
 
-  return !x.sign && x.number !== BigInt(0);
+  return !x.sign && x.number !== 0n;
 };
 
 /**
