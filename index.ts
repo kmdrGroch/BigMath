@@ -1,5 +1,5 @@
 import { add, divide, exp, factorial, gamma, ln, multiply, power, sqrt, subtract } from './src/basic';
-import { bitAND, bitLeft, bitNOT, bitOR, bitRight, bitXOR } from './src/bitOperations';
+import { bitAND, bitLeft, bitNOT, bitOR, bitRight, bitXOR } from './src/bitoperations';
 import { eq, gt, gte, lt, lte, neq } from './src/comparison';
 import { E, LOG10, LOG2, PI, PI2 } from './src/constants';
 import { AGM, K } from './src/other';
