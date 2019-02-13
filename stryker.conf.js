@@ -8,6 +8,7 @@ module.exports = function(config) {
     testFramework: "mocha",
     coverageAnalysis: "off",
     tsconfigFile: "tsconfig.json",
-    mutate: ["src/**/*.ts"]
+    mutate: ["src/**/*.ts"],
+    logLevel: 'trace'
   });
 };
