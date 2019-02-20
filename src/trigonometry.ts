@@ -13,8 +13,8 @@ export const sin = (a: T): BigNumber => {
   a = normalize(a);
 
   const r = divide(a, PI2);
-  const tens = String(r.number).length + r.comma;
-  const d = BigInt(String(r.number).substring(0, tens) || 0);
+  const tens = `${r.number}`.length + r.comma;
+  const d = BigInt(`${r.number}`.substring(0, tens) || 0);
   const reduce = subtract(a, multiply(d, PI2));
   let s = normalize(reduce);
   let k = normalize(reduce);
@@ -31,7 +31,7 @@ export const sin = (a: T): BigNumber => {
   if (s.comma < -30) {
     const c = s.comma + 30;
     s.comma = -30;
-    s.number = BigInt(String(s.number).substring(0, String(s.number).length + c));
+    s.number = BigInt(`${s.number}`.substring(0, `${s.number}`.length + c));
   }
 
   return normalize(s);
@@ -107,7 +107,7 @@ export const csc = (a: T): BigNumber => {
  */
 export const asin = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length > Math.abs(a.comma)) {
+  if (`${a.number}`.length > Math.abs(a.comma)) {
     if (a.number === 1n) {
       return normalize(PI2);
     }
@@ -214,7 +214,7 @@ export const acot = (a: T): BigNumber => subtract(PI2, atan(a));
  */
 export const asec = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length <= Math.abs(a.comma)) {
+  if (`${a.number}`.length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
 
@@ -228,7 +228,7 @@ export const asec = (a: T): BigNumber => {
  */
 export const acsc = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length <= Math.abs(a.comma)) {
+  if (`${a.number}`.length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
 
@@ -335,7 +335,7 @@ export const asinh = (a: T): BigNumber => {
  */
 export const acosh = (a: T): BigNumber => {
   a = normalize(a);
-  if (a.sign || String(a.number).length <= Math.abs(a.comma)) {
+  if (a.sign || `${a.number}`.length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers greater or equal 1');
   }
   if (a.number === 1n) {
@@ -356,7 +356,7 @@ export const acosh = (a: T): BigNumber => {
  */
 export const atanh = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length > Math.abs(a.comma)) {
+  if (`${a.number}`.length > Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers from range (-1, 1)');
   }
 
@@ -370,7 +370,7 @@ export const atanh = (a: T): BigNumber => {
  */
 export const acoth = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length <= Math.abs(a.comma) || a.number === 1n || a.number === 0n) {
+  if (`${a.number}`.length <= Math.abs(a.comma) || a.number === 1n || a.number === 0n) {
     throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
   }
 
@@ -384,7 +384,7 @@ export const acoth = (a: T): BigNumber => {
  */
 export const asech = (a: T): BigNumber => {
   a = normalize(a);
-  if (a.sign || String(a.number).length > Math.abs(a.comma)) {
+  if (a.sign || `${a.number}`.length > Math.abs(a.comma)) {
     if (stringify(a) === '1') {
       return {
         comma: 0,

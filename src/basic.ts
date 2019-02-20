@@ -99,7 +99,7 @@ export const divide = (a: T, b: T): BigNumber => {
     throw new DomainError('0', 'numbers other than 0');
   }
 
-  const len = String(a.number).length - String(b.number).length;
+  const len = `${a.number}`.length - `${b.number}`.length;
   if (len > 0) {
     b.number *= 10n ** BigInt(len);
     b.comma -= len;
@@ -118,7 +118,7 @@ export const divide = (a: T, b: T): BigNumber => {
     if (a.number === BigInt(0)) {
       break;
     }
-    d += String(a.number / b.number);
+    d += `${a.number / b.number}`;
     a.number = (a.number - (a.number / b.number) * b.number) * BigInt(10);
     c -= 1;
   }
@@ -148,12 +148,12 @@ export const ln = (a: T) => {
     throw new DomainError(stringify(a), 'numbers greater than 0');
   }
 
-  const tens = String(a.number).length + a.comma;
+  const tens = `${a.number}`.length + a.comma;
   let ten = multiply(tens, LOG10);
 
   a.comma -= tens;
 
-  switch (String(a.number)[0]) {
+  switch (`${a.number}`[0]) {
     case '5':
     case '4':
       ten = subtract(ten, LOG2);
@@ -172,7 +172,7 @@ export const ln = (a: T) => {
       a = multiply(a, 4);
       break;
     case '1':
-      if (Number(String(a.number)[1] || 0) > 5) {
+      if (+(`${a.number}`[1] || 0) > 5) {
         ten = subtract(ten, {
           comma: -57,
           number: 1791759469228055000812477358380702272722990692183004705855n,
@@ -231,14 +231,6 @@ export const power = (a: T, b: T): BigNumber => {
   return exp(multiply(b, ln(a)));
 };
 
-const gcd = (a: bigint, b: bigint): bigint => {
-  if (a === 0n) {
-    return b;
-  }
-
-  return gcd(b % a, a);
-};
-
 const sqrtInteger = (n: bigint): bigint => {
   let prod = 1n;
 
@@ -251,25 +243,6 @@ const sqrtInteger = (n: bigint): bigint => {
       n /= pow;
       prod *= prime;
     }
-  }
-
-  if (n > 1n) {
-    return -1n;
-  }
-
-  return prod;
-};
-
-const sqrtTF = (n: bigint): bigint => {
-  let prod = 1n;
-
-  while (n % 4n === 0n) {
-    n /= 4n;
-    prod *= 2n;
-  }
-  while (n % 25n === 0n) {
-    n /= 25n;
-    prod *= 5n;
   }
 
   if (n > 1n) {
@@ -293,19 +266,19 @@ export const sqrt = (a: T): BigNumber => {
   }
 
   let num = a.number;
-  if (num < 2n ** 32n) {
-    let denum = 10n ** BigInt(-a.comma);
-    const g = gcd(num, denum);
-    num /= g;
-    denum /= g;
+  if (-a.comma % 2 === 0 && num < 2n ** 32n) {
+    const comma = a.comma / 2;
     num = sqrtInteger(num);
-    denum = sqrtTF(denum);
-    if (num !== -1n && denum !== -1n) {
-      return divide(num, denum);
+    if (num !== -1n) {
+      return normalize({
+        comma,
+        number: num,
+        sign: false
+      });
     }
   }
 
-  let aprox = power(10, BigInt(Math.floor((String(a.number).length + a.comma) / 2)));
+  let aprox = power(10, BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
 
   for (let i = 0; i < 20; i += 1) {
     aprox = multiply(add(divide(a, aprox), aprox), 0.5);

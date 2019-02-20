@@ -17,7 +17,7 @@ export class DomainError extends RangeError {
 export const normalize = (a: T): BigNumber => {
   switch (typeof a) {
     case 'number':
-      a = String(a);
+      a = `${a}`;
 
       return normalize({
         comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
@@ -76,9 +76,9 @@ export const stringify = (a: T): string => {
       return a;
     case 'bigint':
     case 'number':
-      return String(a);
+      return `${a}`;
     default:
-      const s: string = String(a.number);
+      const s = `${a.number}`;
       if (a.comma < 0) {
         const len = s.length + a.comma;
         if (len > 0) {
@@ -98,10 +98,10 @@ export const round = (a: T): BigNumber => {
     const b = stringify(a).split('.');
 
     if (a.sign) {
-      return Number(b[1][0]) >= 5 ? subtract(b[0], 1n) : normalize(b[0]);
+      return +b[1][0] >= 5 ? subtract(b[0], 1n) : normalize(b[0]);
     }
 
-    return Number(b[1][0]) >= 5 ? add(b[0], 1n) : normalize(b[0]);
+    return +b[1][0] >= 5 ? add(b[0], 1n) : normalize(b[0]);
   }
 
   return a;

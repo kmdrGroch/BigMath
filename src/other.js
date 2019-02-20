@@ -24,7 +24,7 @@ exports.AGM = (a, b) => {
  */
 exports.K = (a) => {
     a = util_1.normalize(a);
-    if (String(a.number).length > Math.abs(a.comma)) {
+    if (`${a.number}`.length > Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'number from range [-1, 1]');
     }
     return basic_1.divide(constants_1.PI2, exports.AGM(1, basic_1.sqrt(basic_1.subtract(1, basic_1.power(a, 2)))));

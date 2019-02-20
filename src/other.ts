@@ -26,7 +26,7 @@ export const AGM = (a: T, b: T): BigNumber => {
  */
 export const K = (a: T): BigNumber => {
   a = normalize(a);
-  if (String(a.number).length > Math.abs(a.comma)) {
+  if (`${a.number}`.length > Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'number from range [-1, 1]');
   }
 

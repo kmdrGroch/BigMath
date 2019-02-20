@@ -17,7 +17,7 @@ exports.DomainError = DomainError;
 exports.normalize = (a) => {
     switch (typeof a) {
         case 'number':
-            a = String(a);
+            a = `${a}`;
             return exports.normalize({
                 comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
                 number: BigInt(a.split('.').join('').replace('-', '')),
@@ -73,9 +73,9 @@ exports.stringify = (a) => {
             return a;
         case 'bigint':
         case 'number':
-            return String(a);
+            return `${a}`;
         default:
-            const s = String(a.number);
+            const s = `${a.number}`;
             if (a.comma < 0) {
                 const len = s.length + a.comma;
                 if (len > 0) {
@@ -95,9 +95,9 @@ exports.round = (a) => {
     if (a.comma < 0) {
         const b = exports.stringify(a).split('.');
         if (a.sign) {
-            return Number(b[1][0]) >= 5 ? basic_1.subtract(b[0], 1n) : exports.normalize(b[0]);
+            return +b[1][0] >= 5 ? basic_1.subtract(b[0], 1n) : exports.normalize(b[0]);
         }
-        return Number(b[1][0]) >= 5 ? basic_1.add(b[0], 1n) : exports.normalize(b[0]);
+        return +b[1][0] >= 5 ? basic_1.add(b[0], 1n) : exports.normalize(b[0]);
     }
     return a;
 };

@@ -12,8 +12,8 @@ const util_1 = require("./util");
 exports.sin = (a) => {
     a = util_1.normalize(a);
     const r = basic_1.divide(a, constants_1.PI2);
-    const tens = String(r.number).length + r.comma;
-    const d = BigInt(String(r.number).substring(0, tens) || 0);
+    const tens = `${r.number}`.length + r.comma;
+    const d = BigInt(`${r.number}`.substring(0, tens) || 0);
     const reduce = basic_1.subtract(a, basic_1.multiply(d, constants_1.PI2));
     let s = util_1.normalize(reduce);
     let k = util_1.normalize(reduce);
@@ -27,7 +27,7 @@ exports.sin = (a) => {
     if (s.comma < -30) {
         const c = s.comma + 30;
         s.comma = -30;
-        s.number = BigInt(String(s.number).substring(0, String(s.number).length + c));
+        s.number = BigInt(`${s.number}`.substring(0, `${s.number}`.length + c));
     }
     return util_1.normalize(s);
 };
@@ -92,7 +92,7 @@ exports.csc = (a) => {
  */
 exports.asin = (a) => {
     a = util_1.normalize(a);
-    if (String(a.number).length > Math.abs(a.comma)) {
+    if (`${a.number}`.length > Math.abs(a.comma)) {
         if (a.number === 1n) {
             return util_1.normalize(constants_1.PI2);
         }
@@ -179,7 +179,7 @@ exports.acot = (a) => basic_1.subtract(constants_1.PI2, exports.atan(a));
  */
 exports.asec = (a) => {
     a = util_1.normalize(a);
-    if (String(a.number).length <= Math.abs(a.comma)) {
+    if (`${a.number}`.length <= Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers not from range (-1, 1)');
     }
     return exports.acos(basic_1.divide(1, a));
@@ -191,7 +191,7 @@ exports.asec = (a) => {
  */
 exports.acsc = (a) => {
     a = util_1.normalize(a);
-    if (String(a.number).length <= Math.abs(a.comma)) {
+    if (`${a.number}`.length <= Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers not from range (-1, 1)');
     }
     return exports.asin(basic_1.divide(1, a));
@@ -282,7 +282,7 @@ exports.asinh = (a) => {
  */
 exports.acosh = (a) => {
     a = util_1.normalize(a);
-    if (a.sign || String(a.number).length <= Math.abs(a.comma)) {
+    if (a.sign || `${a.number}`.length <= Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers greater or equal 1');
     }
     if (a.number === 1n) {
@@ -301,7 +301,7 @@ exports.acosh = (a) => {
  */
 exports.atanh = (a) => {
     a = util_1.normalize(a);
-    if (String(a.number).length > Math.abs(a.comma)) {
+    if (`${a.number}`.length > Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers from range (-1, 1)');
     }
     return basic_1.multiply(basic_1.ln(basic_1.divide(basic_1.add(1, a), basic_1.subtract(1, a))), 0.5);
@@ -313,7 +313,7 @@ exports.atanh = (a) => {
  */
 exports.acoth = (a) => {
     a = util_1.normalize(a);
-    if (String(a.number).length <= Math.abs(a.comma) || a.number === 1n || a.number === 0n) {
+    if (`${a.number}`.length <= Math.abs(a.comma) || a.number === 1n || a.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers not from range [-1, 1]');
     }
     return basic_1.multiply(basic_1.ln(basic_1.divide(basic_1.add(a, 1), basic_1.subtract(a, 1))), 0.5);
@@ -325,7 +325,7 @@ exports.acoth = (a) => {
  */
 exports.asech = (a) => {
     a = util_1.normalize(a);
-    if (a.sign || String(a.number).length > Math.abs(a.comma)) {
+    if (a.sign || `${a.number}`.length > Math.abs(a.comma)) {
         if (util_1.stringify(a) === '1') {
             return {
                 comma: 0,

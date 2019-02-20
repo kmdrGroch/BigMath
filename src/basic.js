@@ -85,7 +85,7 @@ exports.divide = (a, b) => {
     if (b.number === BigInt(0)) {
         throw new util_1.DomainError('0', 'numbers other than 0');
     }
-    const len = String(a.number).length - String(b.number).length;
+    const len = `${a.number}`.length - `${b.number}`.length;
     if (len > 0) {
         b.number *= 10n ** BigInt(len);
         b.comma -= len;
@@ -102,7 +102,7 @@ exports.divide = (a, b) => {
         if (a.number === BigInt(0)) {
             break;
         }
-        d += String(a.number / b.number);
+        d += `${a.number / b.number}`;
         a.number = (a.number - (a.number / b.number) * b.number) * BigInt(10);
         c -= 1;
     }
@@ -128,10 +128,10 @@ exports.ln = (a) => {
     if (a.sign || a.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers greater than 0');
     }
-    const tens = String(a.number).length + a.comma;
+    const tens = `${a.number}`.length + a.comma;
     let ten = exports.multiply(tens, constants_1.LOG10);
     a.comma -= tens;
-    switch (String(a.number)[0]) {
+    switch (`${a.number}`[0]) {
         case '5':
         case '4':
             ten = exports.subtract(ten, constants_1.LOG2);
@@ -150,7 +150,7 @@ exports.ln = (a) => {
             a = exports.multiply(a, 4);
             break;
         case '1':
-            if (Number(String(a.number)[1] || 0) > 5) {
+            if (+(`${a.number}`[1] || 0) > 5) {
                 ten = exports.subtract(ten, {
                     comma: -57,
                     number: 1791759469228055000812477358380702272722990692183004705855n,
@@ -202,12 +202,6 @@ exports.power = (a, b) => {
     }
     return exports.exp(exports.multiply(b, exports.ln(a)));
 };
-const gcd = (a, b) => {
-    if (a === 0n) {
-        return b;
-    }
-    return gcd(b % a, a);
-};
 const sqrtInteger = (n) => {
     let prod = 1n;
     for (const prime of constants_1.primes) {
@@ -219,21 +213,6 @@ const sqrtInteger = (n) => {
             n /= pow;
             prod *= prime;
         }
-    }
-    if (n > 1n) {
-        return -1n;
-    }
-    return prod;
-};
-const sqrtTF = (n) => {
-    let prod = 1n;
-    while (n % 4n === 0n) {
-        n /= 4n;
-        prod *= 2n;
-    }
-    while (n % 25n === 0n) {
-        n /= 25n;
-        prod *= 5n;
     }
     if (n > 1n) {
         return -1n;
@@ -253,18 +232,18 @@ exports.sqrt = (a) => {
         return util_1.normalize(0);
     }
     let num = a.number;
-    if (num < 2n ** 32n) {
-        let denum = 10n ** BigInt(-a.comma);
-        const g = gcd(num, denum);
-        num /= g;
-        denum /= g;
+    if (-a.comma % 2 === 0 && num < 2n ** 32n) {
+        const comma = a.comma / 2;
         num = sqrtInteger(num);
-        denum = sqrtTF(denum);
-        if (num !== -1n && denum !== -1n) {
-            return exports.divide(num, denum);
+        if (num !== -1n) {
+            return util_1.normalize({
+                comma,
+                number: num,
+                sign: false
+            });
         }
     }
-    let aprox = exports.power(10, BigInt(Math.floor((String(a.number).length + a.comma) / 2)));
+    let aprox = exports.power(10, BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
     for (let i = 0; i < 20; i += 1) {
         aprox = exports.multiply(exports.add(exports.divide(a, aprox), aprox), 0.5);
     }
