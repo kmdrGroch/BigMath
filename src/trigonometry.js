@@ -19,17 +19,17 @@ exports.sin = (a) => {
     let k = util_1.normalize(reduce);
     const k2 = basic_1.multiply(reduce, reduce);
     let f = 1n;
-    for (let i = 1n; i < 20n; i += 1n) {
+    let i = 1n;
+    while (true) {
         f *= i * (i * 4n + 2n);
         k = basic_1.multiply(k, k2);
-        s = (i % 2n === 0n) ? basic_1.add(s, basic_1.divide(k, f)) : basic_1.subtract(s, basic_1.divide(k, f));
+        const s1 = (i % 2n === 0n) ? basic_1.add(s, basic_1.divide(k, f)) : basic_1.subtract(s, basic_1.divide(k, f));
+        if (comparison_1.lt(util_1.abs(basic_1.subtract(s1, s)), constants_1.ErrorConst)) {
+            return s1;
+        }
+        s = s1;
+        i += 1n;
     }
-    if (s.comma < -30) {
-        const c = s.comma + 30;
-        s.comma = -30;
-        s.number = BigInt(`${s.number}`.substring(0, `${s.number}`.length + c));
-    }
-    return util_1.normalize(s);
 };
 /**
  * @domain Real numbers
@@ -71,7 +71,7 @@ exports.sec = (a) => {
     if (c.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
     }
-    return basic_1.divide(1, c);
+    return basic_1.divide(1n, c);
 };
 /**
  * @domain Real numbers & x != k*PI (k - integer)
@@ -83,7 +83,7 @@ exports.csc = (a) => {
     if (s.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'real numbers & x != k*PI (k - integer)');
     }
-    return basic_1.divide(1, s);
+    return basic_1.divide(1n, s);
 };
 /**
  * @domain [-1, 1]
@@ -98,16 +98,7 @@ exports.asin = (a) => {
         }
         throw new util_1.DomainError(util_1.stringify(a), 'numbers from range [-1, 1]');
     }
-    let s = util_1.normalize(a);
-    let k = util_1.normalize(a);
-    let b = util_1.normalize(1);
-    a = basic_1.multiply(a, a);
-    for (let i = 0; i < 30; i += 1) {
-        k = basic_1.multiply(k, a);
-        b = basic_1.multiply(b, basic_1.divide(i * 2 + 1, i * 2 + 2));
-        s = basic_1.add(s, basic_1.divide(basic_1.multiply(k, b), i * 2 + 3));
-    }
-    return s;
+    return exports.atan(basic_1.divide(a, basic_1.sqrt(basic_1.subtract(1n, basic_1.multiply(a, a)))));
 };
 /**
  * @domain [-1, 1]
@@ -122,22 +113,27 @@ exports.acos = (a) => basic_1.subtract(constants_1.PI2, exports.asin(a));
  */
 exports.atan = (a) => {
     a = util_1.normalize(a);
-    let x = 2;
+    let x = 2n;
     while (true) {
-        a = basic_1.divide(a, basic_1.add(1, basic_1.sqrt(basic_1.add(1, basic_1.multiply(a, a)))));
-        if (comparison_1.lte(a, 0.5) && comparison_1.gte(a, -0.5)) {
+        a = basic_1.divide(a, basic_1.add(1n, basic_1.sqrt(basic_1.add(1n, basic_1.multiply(a, a)))));
+        if (comparison_1.lte(util_1.abs(a), 0.5)) {
             break;
         }
-        x *= 2;
+        x *= 2n;
     }
     let s = util_1.normalize(a);
     let k = util_1.normalize(a);
     const d2 = basic_1.multiply(a, a);
-    for (let i = 1; i < 30; i += 1) {
+    let i = 1n;
+    while (true) {
         k = basic_1.multiply(k, d2);
-        s = (i % 2 === 1) ? basic_1.subtract(s, basic_1.divide(k, i * 2 + 1)) : basic_1.add(s, basic_1.divide(k, i * 2 + 1));
+        const s1 = (i % 2n === 1n) ? basic_1.subtract(s, basic_1.divide(k, i * 2n + 1n)) : basic_1.add(s, basic_1.divide(k, i * 2n + 1n));
+        if (comparison_1.lt(util_1.abs(basic_1.subtract(s1, s)), constants_1.ErrorConst)) {
+            return basic_1.multiply(s1, x);
+        }
+        s = s1;
+        i += 1n;
     }
-    return basic_1.multiply(s, x);
 };
 /**
  * @domain Real numbers | Both can't be 0
@@ -182,7 +178,7 @@ exports.asec = (a) => {
     if (`${a.number}`.length <= Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers not from range (-1, 1)');
     }
-    return exports.acos(basic_1.divide(1, a));
+    return basic_1.subtract(constants_1.PI2, exports.asin(basic_1.divide(1n, a)));
 };
 /**
  * @domain Real numbers without (-1, 1)
@@ -194,7 +190,7 @@ exports.acsc = (a) => {
     if (`${a.number}`.length <= Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers not from range (-1, 1)');
     }
-    return exports.asin(basic_1.divide(1, a));
+    return exports.asin(basic_1.divide(1n, a));
 };
 /**
  * @domain Real numbers
@@ -206,12 +202,17 @@ exports.sinh = (a) => {
     const x2 = basic_1.multiply(a, a);
     let sum = util_1.normalize(a);
     let fact = 1n;
-    for (let i = 2n; i < 40n; i += 2n) {
+    let i = 2n;
+    while (true) {
         fact *= i * (i + 1n);
         a = basic_1.multiply(a, x2);
-        sum = basic_1.add(sum, basic_1.divide(a, fact));
+        const sum1 = basic_1.add(sum, basic_1.divide(a, fact));
+        if (comparison_1.lt(util_1.abs(basic_1.subtract(sum1, sum)), constants_1.ErrorConst)) {
+            return sum1;
+        }
+        sum = sum1;
+        i += 2n;
     }
-    return sum;
 };
 /**
  * @domain Real numbers
@@ -220,7 +221,7 @@ exports.sinh = (a) => {
  */
 exports.cosh = (a) => {
     a = basic_1.exp(a);
-    return basic_1.multiply(basic_1.add(a, basic_1.divide(1, a)), 0.5);
+    return basic_1.multiply(basic_1.add(a, basic_1.divide(1n, a)), 0.5);
 };
 /**
  * @domain Real numbers
@@ -229,7 +230,7 @@ exports.cosh = (a) => {
  */
 exports.tanh = (a) => {
     a = basic_1.exp(a);
-    return basic_1.subtract(1, basic_1.divide(2, basic_1.add(basic_1.multiply(a, a), 1)));
+    return basic_1.subtract(1n, basic_1.divide(2n, basic_1.add(basic_1.multiply(a, a), 1n)));
 };
 /**
  * @domain Real numbers without 0
@@ -242,7 +243,7 @@ exports.coth = (a) => {
         throw new util_1.DomainError('0', 'real numbers without 0');
     }
     a = basic_1.exp(a);
-    return basic_1.add(1, basic_1.divide(2, basic_1.subtract(basic_1.multiply(a, a), 1)));
+    return basic_1.add(1n, basic_1.divide(2n, basic_1.subtract(basic_1.multiply(a, a), 1n)));
 };
 /**
  * @domain Real numbers
@@ -251,7 +252,7 @@ exports.coth = (a) => {
  */
 exports.sech = (a) => {
     a = basic_1.exp(a);
-    return basic_1.divide(2, basic_1.add(a, basic_1.divide(1, a)));
+    return basic_1.divide(2n, basic_1.add(a, basic_1.divide(1n, a)));
 };
 /**
  * @domain Real numbers without 0
@@ -264,7 +265,7 @@ exports.csch = (a) => {
         throw new util_1.DomainError('0', 'real numbers without 0');
     }
     a = basic_1.exp(a);
-    return basic_1.divide(2, basic_1.subtract(a, basic_1.divide(1, a)));
+    return basic_1.divide(2n, basic_1.subtract(a, basic_1.divide(1n, a)));
 };
 /**
  * @domain Real numbers
@@ -273,7 +274,7 @@ exports.csch = (a) => {
  */
 exports.asinh = (a) => {
     a = util_1.normalize(a);
-    return basic_1.ln(basic_1.add(a, basic_1.sqrt(basic_1.add(basic_1.multiply(a, a), 1))));
+    return basic_1.ln(basic_1.add(a, basic_1.sqrt(basic_1.add(basic_1.multiply(a, a), 1n))));
 };
 /**
  * @domain Real numbers greater or equal 1
@@ -292,7 +293,7 @@ exports.acosh = (a) => {
             sign: false
         };
     }
-    return basic_1.ln(basic_1.add(a, basic_1.sqrt(basic_1.subtract(basic_1.multiply(a, a), 1))));
+    return basic_1.ln(basic_1.add(a, basic_1.sqrt(basic_1.subtract(basic_1.multiply(a, a), 1n))));
 };
 /**
  * @domain (-1, 1)
@@ -304,7 +305,7 @@ exports.atanh = (a) => {
     if (`${a.number}`.length > Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers from range (-1, 1)');
     }
-    return basic_1.multiply(basic_1.ln(basic_1.divide(basic_1.add(1, a), basic_1.subtract(1, a))), 0.5);
+    return basic_1.multiply(basic_1.ln(basic_1.divide(basic_1.add(1n, a), basic_1.subtract(1n, a))), 0.5);
 };
 /**
  * @domain Real numbers without [-1, 1]
@@ -316,7 +317,7 @@ exports.acoth = (a) => {
     if (`${a.number}`.length <= Math.abs(a.comma) || a.number === 1n || a.number === 0n) {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers not from range [-1, 1]');
     }
-    return basic_1.multiply(basic_1.ln(basic_1.divide(basic_1.add(a, 1), basic_1.subtract(a, 1))), 0.5);
+    return basic_1.multiply(basic_1.ln(basic_1.divide(basic_1.add(a, 1n), basic_1.subtract(a, 1n))), 0.5);
 };
 /**
  * @domain (0, 1]
@@ -335,7 +336,7 @@ exports.asech = (a) => {
         }
         throw new util_1.DomainError(util_1.stringify(a), 'numbers from range (0,1]');
     }
-    return basic_1.ln(basic_1.divide(basic_1.add(1, basic_1.sqrt(basic_1.subtract(1, basic_1.multiply(a, a)))), a));
+    return basic_1.ln(basic_1.divide(basic_1.add(1n, basic_1.sqrt(basic_1.subtract(1n, basic_1.multiply(a, a)))), a));
 };
 /**
  * @domain Real numbers
@@ -344,7 +345,7 @@ exports.asech = (a) => {
  */
 exports.acsch = (a) => {
     a = util_1.normalize(a);
-    const b = basic_1.divide(1, a);
-    return basic_1.ln(basic_1.add(b, basic_1.sqrt(basic_1.add(basic_1.divide(b, a), 1))));
+    const b = basic_1.divide(1n, a);
+    return basic_1.ln(basic_1.add(b, basic_1.sqrt(basic_1.add(basic_1.divide(b, a), 1n))));
 };
 //# sourceMappingURL=trigonometry.js.map

@@ -1,8 +1,8 @@
 import { add, divide, exp, ln, multiply, sqrt, subtract } from './basic';
-import { gte, lte } from './comparison';
-import { PI, PI2 } from './constants';
+import { lt, lte } from './comparison';
+import { ErrorConst, PI, PI2 } from './constants';
 import { BigNumber, T } from './interfaces';
-import { DomainError, normalize, stringify } from './util';
+import { abs, DomainError, normalize, stringify } from './util';
 
 /**
  * @domain Real numbers
@@ -22,19 +22,18 @@ export const sin = (a: T): BigNumber => {
   const k2 = multiply(reduce, reduce);
 
   let f = 1n;
+  let i = 1n;
 
-  for (let i = 1n; i < 20n; i += 1n) {
+  while (true) {
     f *= i * (i * 4n + 2n);
     k = multiply(k, k2);
-    s = (i % 2n === 0n) ? add(s, divide(k, f)) : subtract(s, divide(k, f));
+    const s1 = (i % 2n === 0n) ? add(s, divide(k, f)) : subtract(s, divide(k, f));
+    if (lt(abs(subtract(s1, s)), ErrorConst)) {
+      return s1;
+    }
+    s = s1;
+    i += 1n;
   }
-  if (s.comma < -30) {
-    const c = s.comma + 30;
-    s.comma = -30;
-    s.number = BigInt(`${s.number}`.substring(0, `${s.number}`.length + c));
-  }
-
-  return normalize(s);
 };
 
 /**
@@ -83,7 +82,7 @@ export const sec = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
   }
 
-  return divide(1, c);
+  return divide(1n, c);
 };
 
 /**
@@ -97,7 +96,7 @@ export const csc = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
   }
 
-  return divide(1, s);
+  return divide(1n, s);
 };
 
 /**
@@ -114,21 +113,7 @@ export const asin = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
   }
 
-  let s = normalize(a);
-  let k = normalize(a);
-
-  let b = normalize(1);
-
-  a = multiply(a, a);
-
-  for (let i = 0; i < 30; i += 1) {
-    k = multiply(k, a);
-    b = multiply(b, divide(i * 2 + 1, i * 2 + 2));
-
-    s = add(s, divide(multiply(k, b), i * 2 + 3));
-  }
-
-  return s;
+  return atan(divide(a, sqrt(subtract(1n, multiply(a, a)))));
 };
 
 /**
@@ -146,24 +131,28 @@ export const acos = (a: T): BigNumber => subtract(PI2, asin(a));
 export const atan = (a: T): BigNumber => {
   a = normalize(a);
 
-  let x = 2;
+  let x = 2n;
   while (true) {
-    a = divide(a, add(1, sqrt(add(1, multiply(a, a)))));
-    if (lte(a, 0.5) && gte(a, -0.5)) { break; }
-    x *= 2;
+    a = divide(a, add(1n, sqrt(add(1n, multiply(a, a)))));
+    if (lte(abs(a), 0.5)) { break; }
+    x *= 2n;
   }
 
   let s = normalize(a);
   let k = normalize(a);
 
   const d2 = multiply(a, a);
+  let i = 1n;
 
-  for (let i = 1; i < 30; i += 1) {
+  while (true) {
     k = multiply(k, d2);
-    s = (i % 2 === 1) ? subtract(s, divide(k, i * 2 + 1)) : add(s, divide(k, i * 2 + 1));
+    const s1 = (i % 2n === 1n) ? subtract(s, divide(k, i * 2n + 1n)) : add(s, divide(k, i * 2n + 1n));
+    if (lt(abs(subtract(s1, s)), ErrorConst)) {
+      return multiply(s1, x);
+    }
+    s = s1;
+    i += 1n;
   }
-
-  return multiply(s, x);
 };
 
 /**
@@ -218,7 +207,7 @@ export const asec = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
 
-  return acos(divide(1, a));
+  return subtract(PI2, asin(divide(1n, a)));
 };
 
 /**
@@ -232,7 +221,7 @@ export const acsc = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
 
-  return asin(divide(1, a));
+  return asin(divide(1n, a));
 };
 
 /**
@@ -245,13 +234,17 @@ export const sinh = (a: T): BigNumber => {
   const x2 = multiply(a, a);
   let sum = normalize(a);
   let fact = 1n;
-  for (let i = 2n; i < 40n; i += 2n) {
+  let i = 2n;
+  while (true) {
     fact *= i * (i + 1n);
     a = multiply(a, x2);
-    sum = add(sum, divide(a, fact));
+    const sum1 = add(sum, divide(a, fact));
+    if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
+      return sum1;
+    }
+    sum = sum1;
+    i += 2n;
   }
-
-  return sum;
 };
 
 /**
@@ -262,7 +255,7 @@ export const sinh = (a: T): BigNumber => {
 export const cosh = (a: T): BigNumber => {
   a = exp(a);
 
-  return multiply(add(a, divide(1, a)), 0.5);
+  return multiply(add(a, divide(1n, a)), 0.5);
 };
 
 /**
@@ -273,7 +266,7 @@ export const cosh = (a: T): BigNumber => {
 export const tanh = (a: T): BigNumber => {
   a = exp(a);
 
-  return subtract(1, divide(2, add(multiply(a, a), 1)));
+  return subtract(1n, divide(2n, add(multiply(a, a), 1n)));
 };
 
 /**
@@ -288,7 +281,7 @@ export const coth = (a: T): BigNumber => {
   }
   a = exp(a);
 
-  return add(1, divide(2, subtract(multiply(a, a), 1)));
+  return add(1n, divide(2n, subtract(multiply(a, a), 1n)));
 };
 
 /**
@@ -299,7 +292,7 @@ export const coth = (a: T): BigNumber => {
 export const sech = (a: T): BigNumber => {
   a = exp(a);
 
-  return divide(2, add(a, divide(1, a)));
+  return divide(2n, add(a, divide(1n, a)));
 };
 
 /**
@@ -314,7 +307,7 @@ export const csch = (a: T): BigNumber => {
   }
   a = exp(a);
 
-  return divide(2, subtract(a, divide(1, a)));
+  return divide(2n, subtract(a, divide(1n, a)));
 };
 
 /**
@@ -325,7 +318,7 @@ export const csch = (a: T): BigNumber => {
 export const asinh = (a: T): BigNumber => {
   a = normalize(a);
 
-  return ln(add(a, sqrt(add(multiply(a, a), 1))));
+  return ln(add(a, sqrt(add(multiply(a, a), 1n))));
 };
 
 /**
@@ -346,7 +339,7 @@ export const acosh = (a: T): BigNumber => {
     };
   }
 
-  return ln(add(a, sqrt(subtract(multiply(a, a), 1))));
+  return ln(add(a, sqrt(subtract(multiply(a, a), 1n))));
 };
 
 /**
@@ -360,7 +353,7 @@ export const atanh = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range (-1, 1)');
   }
 
-  return multiply(ln(divide(add(1, a), subtract(1, a))), 0.5);
+  return multiply(ln(divide(add(1n, a), subtract(1n, a))), 0.5);
 };
 
 /**
@@ -374,7 +367,7 @@ export const acoth = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
   }
 
-  return multiply(ln(divide(add(a, 1), subtract(a, 1))), 0.5);
+  return multiply(ln(divide(add(a, 1n), subtract(a, 1n))), 0.5);
 };
 
 /**
@@ -395,7 +388,7 @@ export const asech = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range (0,1]');
   }
 
-  return ln(divide(add(1, sqrt(subtract(1, multiply(a, a)))), a));
+  return ln(divide(add(1n, sqrt(subtract(1n, multiply(a, a)))), a));
 };
 
 /**
@@ -405,7 +398,7 @@ export const asech = (a: T): BigNumber => {
  */
 export const acsch = (a: T): BigNumber => {
   a = normalize(a);
-  const b = divide(1, a);
+  const b = divide(1n, a);
 
-  return ln(add(b, sqrt(add(divide(b, a), 1))));
+  return ln(add(b, sqrt(add(divide(b, a), 1n))));
 };

@@ -107,17 +107,26 @@ exports.divide = (a, b) => {
         c -= 1;
     }
     if (c > 0) {
-        return util_1.normalize({
+        return {
             comma: 0,
             number: BigInt(n + d) * 10n ** BigInt(c),
             sign: a.sign !== b.sign
-        });
+        };
     }
-    return util_1.normalize({
+    a = {
         comma: c,
         number: BigInt(n + d),
         sign: a.sign !== b.sign
-    });
+    };
+    while (true) {
+        if (a.number % 10n === 0n && a.comma < 0) {
+            a.comma += 1;
+            a.number /= 10n;
+        }
+        else {
+            return a;
+        }
+    }
 };
 /**
  * @domain Numbers greater than 0
@@ -135,7 +144,7 @@ exports.ln = (a) => {
         case '5':
         case '4':
             ten = exports.subtract(ten, constants_1.LOG2);
-            a = exports.multiply(a, 2);
+            a = exports.multiply(a, 2n);
             break;
         case '3':
             ten = exports.subtract(ten, {
@@ -143,11 +152,11 @@ exports.ln = (a) => {
                 number: 1098612288668109691395245236922525704647490557822749451734n,
                 sign: false
             });
-            a = exports.multiply(a, 3);
+            a = exports.multiply(a, 3n);
             break;
         case '2':
-            ten = exports.subtract(ten, exports.multiply(constants_1.LOG2, 2));
-            a = exports.multiply(a, 4);
+            ten = exports.subtract(ten, exports.multiply(constants_1.LOG2, 2n));
+            a = exports.multiply(a, 4n);
             break;
         case '1':
             if (+(`${a.number}`[1] || 0) > 5) {
@@ -156,7 +165,7 @@ exports.ln = (a) => {
                     number: 1791759469228055000812477358380702272722990692183004705855n,
                     sign: false
                 });
-                a = exports.multiply(a, 6);
+                a = exports.multiply(a, 6n);
             }
             else {
                 ten = exports.subtract(ten, {
@@ -164,17 +173,22 @@ exports.ln = (a) => {
                     number: 2079441541679835928251696364374529704226500403080765762362n,
                     sign: false
                 });
-                a = exports.multiply(a, 8);
+                a = exports.multiply(a, 8n);
             }
     }
-    let sum = exports.divide(exports.subtract(a, 1), exports.add(a, 1));
+    let sum = exports.divide(exports.subtract(a, 1n), exports.add(a, 1n));
     let p = util_1.normalize(sum);
     const k = exports.multiply(sum, sum);
-    for (let i = 1; i < 20; i += 1) {
+    let i = 3n;
+    while (true) {
         p = exports.multiply(p, k);
-        sum = exports.add(sum, exports.divide(p, i * 2 + 1));
+        const sum1 = exports.add(sum, exports.divide(p, i));
+        if (comparison_1.lt(util_1.abs(exports.subtract(sum1, sum)), constants_1.ErrorConst)) {
+            return exports.add(ten, exports.multiply(sum1, 2n));
+        }
+        sum = sum1;
+        i += 2n;
     }
-    return exports.add(ten, exports.multiply(sum, 2));
 };
 /**
  * @domain Real numbers, Real numbers | both can't be 0 at the same time | not negative ^ non-integer
@@ -194,7 +208,7 @@ exports.power = (a, b) => {
             a.sign = b.number % 2n === 1n;
         }
         a.comma = a.comma * Number(b.number);
-        a.number = a.number ** BigInt(b.number);
+        a.number = a.number ** b.number;
         return a;
     }
     if (a.sign) {
@@ -229,7 +243,11 @@ exports.sqrt = (a) => {
         throw new util_1.DomainError(util_1.stringify(a), 'numbers greater or equal 0');
     }
     if (a.number === 0n) {
-        return util_1.normalize(0);
+        return {
+            comma: 0,
+            number: 0n,
+            sign: false
+        };
     }
     let num = a.number;
     if (-a.comma % 2 === 0 && num < 2n ** 32n) {
@@ -243,11 +261,14 @@ exports.sqrt = (a) => {
             });
         }
     }
-    let aprox = exports.power(10, BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
-    for (let i = 0; i < 20; i += 1) {
-        aprox = exports.multiply(exports.add(exports.divide(a, aprox), aprox), 0.5);
+    let aprox = util_1.normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
+    while (true) {
+        const aprox1 = exports.multiply(exports.add(exports.divide(a, aprox), aprox), 0.5);
+        if (comparison_1.lt(util_1.abs(exports.subtract(aprox1, aprox)), constants_1.ErrorConst)) {
+            return aprox1;
+        }
+        aprox = aprox1;
     }
-    return aprox;
 };
 /**
  * @domain Real numbers
@@ -255,7 +276,7 @@ exports.sqrt = (a) => {
  */
 exports.exp = (a) => {
     const sh = trigonometry_1.sinh(a);
-    return exports.add(sh, exports.sqrt(exports.add(1, exports.multiply(sh, sh))));
+    return exports.add(sh, exports.sqrt(exports.add(1n, exports.multiply(sh, sh))));
 };
 /**
  * @domain Integers
@@ -298,13 +319,13 @@ exports.gamma = (a) => {
         y = exports.divide(constants_1.PI, exports.multiply(trigonometry_1.sin(exports.multiply(constants_1.PI, a)), exports.gamma(exports.subtract(1, a))));
     }
     else {
-        a = exports.subtract(a, 1);
+        a = exports.subtract(a, 1n);
         let x = util_1.normalize(p1);
         for (let i = 0; i < p.length; i += 1) {
             x = exports.add(x, exports.divide(p[i], exports.add(a, i + 1)));
         }
         const t = exports.add(a, p.length - 0.5);
-        y = exports.multiply(exports.multiply(exports.multiply(exports.sqrt(exports.multiply(constants_1.PI, 2)), exports.power(t, exports.add(a, 0.5))), exports.exp(exports.multiply(t, -1))), x);
+        y = exports.multiply(exports.multiply(exports.multiply(exports.sqrt(exports.multiply(constants_1.PI, 2n)), exports.power(t, exports.add(a, 0.5))), exports.exp(exports.multiply(t, -1n))), x);
     }
     return y;
 };
