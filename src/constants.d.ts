@@ -1,4 +1,5 @@
 import { BigNumber } from './interfaces';
+export declare const ErrorConst: BigNumber;
 /**
  * 2.302585092994045684017991454684364207601101488628772976033
  */

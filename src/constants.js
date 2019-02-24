@@ -1,5 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ErrorConst = Object.freeze({
+    comma: -40,
+    number: 1n,
+    sign: false
+});
 /**
  * 2.302585092994045684017991454684364207601101488628772976033
  */
