@@ -90,28 +90,28 @@ describe('divide', () => {
 });
 describe('ln', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.ln(8))).to.be.equal('2.07944154167983592825169636437452970422653750923913960482499725303578184039854048805428672');
+        chai_1.expect(index_1.default.stringify(index_1.default.ln(8))).to.be.equal('2.0794415416798359282516963643745297042265008398857456461438779361291253064601910241762191044');
     });
     it('2', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.ln(0))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0. Expected: numbers greater than 0');
         chai_1.expect(() => index_1.default.stringify(index_1.default.ln(-123.423))).to.throw(index_1.DomainError, 'Number out of domain. Given: -123.423. Expected: numbers greater than 0');
     });
     it('3', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.ln(0.04))).to.be.equal('-3.21887582486820074920151866645237527905116560237866160136100274696421815960145951194571328');
+        chai_1.expect(index_1.default.stringify(index_1.default.ln(0.04))).to.be.equal('-3.2188758248682007492015186664523752790512022717320555600421220638708746935398089758237808956');
     });
     it('4', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.ln(0.1))).to.be.equal('-2.30258509299404568401799145468436420760106438247039913357000274696421815960145951194571328');
+        chai_1.expect(index_1.default.stringify(index_1.default.ln(0.1))).to.be.equal('-2.3025850929940456840179914546843642076011010518237930922511220638708746935398089758237808956');
     });
     it('5', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ln(0.5))).to.be.equal('-0.69314718055994530941723212145817656807550013436025525412');
     });
     it('6', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.ln(0.2))).to.be.equal('-1.60943791243410037460075933322618763952556424811014387944800274696421815960145951194571328');
+        chai_1.expect(index_1.default.stringify(index_1.default.ln(0.2))).to.be.equal('-1.6094379124341003746007593332261876395256009174635378381291220638708746935398089758237808956');
     });
 });
 describe('exp', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.exp(0.43242))).to.be.equal('1.540982191786073893382932316109036601919969074046665713783843665307777247178473303229901052383241349996726091757');
+        chai_1.expect(index_1.default.stringify(index_1.default.exp(0.43242))).to.be.equal('1.5409821917860738933829323161090366019199690731624968570723472213457996941756236916482136518');
     });
 });
 describe('factorial', () => {
@@ -133,7 +133,7 @@ describe('power', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.power(0, 0))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0 ^ 0. Expected: real numbers | both can\'t be 0 at the same time');
     });
     it('3', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.power(1.74, 3.14))).to.be.equal('5.69278313249561028952140592115895686170537303181160604557982514074642100873258667788913618614148591133757055286690531876');
+        chai_1.expect(index_1.default.stringify(index_1.default.power(1.74, 3.14))).to.be.equal('5.69278313249561028952140592115895686170578841712186493130324635393525641403233220231417043810768');
     });
     it('4', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.power(10, -3))).to.be.equal('0.001');
@@ -147,7 +147,7 @@ describe('power', () => {
 });
 describe('sqrt', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.sqrt(2))).to.be.equal('1.414213562373095048801688724209698078569671875376943333339691162109375');
+        chai_1.expect(index_1.default.stringify(index_1.default.sqrt(2))).to.be.equal('1.41421356237309504880168872420969807856967187537694671875');
     });
     it('2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.sqrt(0))).to.be.equal('0');
@@ -162,22 +162,22 @@ describe('sqrt', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.sqrt(2.25))).to.be.equal('1.5');
     });
     it('6', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.sqrt(0.1))).to.be.equal('0.3162277660168379331998893544432718533719555139325200003814697265625');
+        chai_1.expect(index_1.default.stringify(index_1.default.sqrt(0.1))).to.be.equal('0.31622776601683793319988935444327185337195551393252078125');
     });
 });
 describe('sin', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.sin(1.523))).to.be.equal('0.998857973009621420980885813642');
+        chai_1.expect(index_1.default.stringify(index_1.default.sin(1.523))).to.be.equal('0.99885797300962142098088581364210398014209386927547169166455979390567973243038978179133656379');
     });
 });
 describe('cos', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.cos(0.43223))).to.be.equal('0.908033868459002230662516466361');
+        chai_1.expect(index_1.default.stringify(index_1.default.cos(0.43223))).to.be.equal('0.9080338684590022306625164663612605645158839907593712904466546671495053586552954512606015581');
     });
 });
 describe('tan', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.tan(0.1243))).to.be.equal('0.1249441465473435240536545319294927779679461833189');
+        chai_1.expect(index_1.default.stringify(index_1.default.tan(0.1243))).to.be.equal('0.12494414654734352405365453192964879368374187342775');
     });
     it('2', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.tan(index_1.default.PI2))).to.throw(index_1.DomainError, 'Number out of domain. Given: 1.570796326794896619231321691639751442098584699687552910487. Expected: real numbers & x != PI/2 + k*PI (k - integer)');
@@ -185,7 +185,7 @@ describe('tan', () => {
 });
 describe('cot', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.cot(0.1243))).to.be.equal('8.00357621892340908314694191873854312223338968683236');
+        chai_1.expect(index_1.default.stringify(index_1.default.cot(0.1243))).to.be.equal('8.00357621892340908314694191872854918728544436206623');
     });
     it('2', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.cot(index_1.default.PI))).to.throw(index_1.DomainError, 'Number out of domain. Given: 3.141592653589793238462643383279502884197169399375105820974. Expected: real numbers & x != k*PI (k - integer)');
@@ -193,7 +193,7 @@ describe('cot', () => {
 });
 describe('sec', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.sec(0.1243))).to.be.equal('1.0077752922931004536756918747324428154464855530288');
+        chai_1.expect(index_1.default.stringify(index_1.default.sec(0.1243))).to.be.equal('1.0077752922931004536756918747321979887282482524678');
     });
     it('2', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.sec(index_1.default.PI2))).to.throw(index_1.DomainError, 'Number out of domain. Given: 1.570796326794896619231321691639751442098584699687552910487. Expected: real numbers & x != PI/2 + k*PI (k - integer)');
@@ -201,7 +201,7 @@ describe('sec', () => {
 });
 describe('csc', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.csc(0.1243))).to.be.equal('8.0658063634156463351982914655668133538992803364967');
+        chai_1.expect(index_1.default.stringify(index_1.default.csc(0.1243))).to.be.equal('8.065806363415646335198291465554782223886115384297');
     });
     it('2', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.csc(index_1.default.PI))).to.throw(index_1.DomainError, 'Number out of domain. Given: 3.141592653589793238462643383279502884197169399375105820974. Expected: real numbers & x != k*PI (k - integer)');
@@ -209,7 +209,7 @@ describe('csc', () => {
 });
 describe('asin', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.asin(0.533))).to.be.equal('0.56214223826934260709715228425762629753379541230891640249904946045346');
+        chai_1.expect(index_1.default.stringify(index_1.default.asin(0.533))).to.be.equal('0.562142238269342607110513637367750912826317530974006652554647475802623223044534183286216562');
     });
     it('2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.asin(1))).to.be.equal('1.570796326794896619231321691639751442098584699687552910487');
@@ -220,7 +220,7 @@ describe('asin', () => {
 });
 describe('acos', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acos(0.43223))).to.be.equal('1.123832078732756669980357550790666080374815373090286086814849095313534793664');
+        chai_1.expect(index_1.default.stringify(index_1.default.acos(0.43223))).to.be.equal('1.123832078732756669980357528914145635922848349766203616276728572653816638543699386707625698');
     });
     it('2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.acos(-1))).to.be.equal('0');
@@ -234,7 +234,7 @@ describe('acos', () => {
 });
 describe('atan', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atan(0.1243))).to.be.equal('0.123665704501698121889591916190592703247886768171934122311633382388679795389562243935320728604465377450233911639634454125464');
+        chai_1.expect(index_1.default.stringify(index_1.default.atan(0.1243))).to.be.equal('0.1236657045016981218895919161905927032478867975115223325055998700814189004870226732478447554');
     });
     it('2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan(0))).to.be.equal('0');
@@ -245,16 +245,16 @@ describe('atan2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan2(0.1243, 0))).to.be.equal('0');
     });
     it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atan2(0.1243, 2.321))).to.be.equal('1.517292936115139214045688649657370422774761407558037873262469618530219640756');
+        chai_1.expect(index_1.default.stringify(index_1.default.atan2(0.1243, 2.321))).to.be.equal('1.517292936115139214045688674161216076398089206862970273226745923987627284200147425512300028');
     });
     it('3', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, 0))).to.be.equal('3.141592653589793238462643383279502884197169399375105820974');
     });
     it('4', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, 1.432))).to.be.equal('1.65738097972629396514526036521699398074627379103258766261650447931746820587');
+        chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, 1.432))).to.be.equal('1.657380979726293965145260359601776841317620030009422519482834544210359008519455896878766184');
     });
     it('5', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, -0.32))).to.be.equal('-1.9412954646797114524920248307038809219970427177339947125992919186177037470328950304');
+        chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, -0.32))).to.be.equal('-1.94129546467971145249202483070387589297911861500545818647992989595010126584593226947280876');
     });
     it('6', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan2(0, -0.32))).to.be.equal('-1.570796326794896619231321691639751442098584699687552910487');
@@ -265,12 +265,12 @@ describe('atan2', () => {
 });
 describe('acot', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acot(0.1243))).to.be.equal('1.447130622293198497341729775449158738850697931515618788175366617611320204610437756064679271395534622549766088360365545874536');
+        chai_1.expect(index_1.default.stringify(index_1.default.acot(0.1243))).to.be.equal('1.4471306222931984973417297754491587388506979021760305779814001299185810995129773267521552446');
     });
 });
 describe('asec', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.asec(1.43223))).to.be.equal('0.79789963739814751217330445635810389554401076890435469631104343');
+        chai_1.expect(index_1.default.stringify(index_1.default.asec(1.43223))).to.be.equal('0.797899637397702841131659636555515376791430923458071521572409963496019893210626434608947388');
         chai_1.expect(index_1.default.stringify(index_1.default.asec(1))).to.be.equal('0');
     });
     it('2', () => {
@@ -279,7 +279,7 @@ describe('asec', () => {
 });
 describe('acsc', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acsc(1.523))).to.be.equal('0.7163004434721918334757721117682129528349423371738704816709211805');
+        chai_1.expect(index_1.default.stringify(index_1.default.acsc(1.523))).to.be.equal('0.716300443472200246991089833654166601282438924639208256586159805894436682782335578217031538');
         chai_1.expect(index_1.default.stringify(index_1.default.acsc(1))).to.be.equal('1.570796326794896619231321691639751442098584699687552910487');
     });
     it('2', () => {
@@ -288,22 +288,22 @@ describe('acsc', () => {
 });
 describe('sinh', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.sinh(1.523))).to.be.equal('2.1839528659100170527374504125151073756727575391028342447427021606192557376828453705236473');
+        chai_1.expect(index_1.default.stringify(index_1.default.sinh(1.523))).to.be.equal('2.18395286591001705273745041251510737567275846436991677328893173881387139549988953470066116379');
     });
 });
 describe('cosh', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.cosh(1.523))).to.be.equal('2.40200960042140067314888632238568536553032188456241378902212317503619036884142268526182365');
+        chai_1.expect(index_1.default.stringify(index_1.default.cosh(1.523))).to.be.equal('2.402009600421400673148886322385685365530322725832865144456965869406935697749944767350330581895');
     });
 });
 describe('tanh', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.tanh(1.523))).to.be.equal('0.909219041225676840227934629350112661706365248205247');
+        chai_1.expect(index_1.default.stringify(index_1.default.tanh(1.523))).to.be.equal('0.909219041225676840227934629350112661706365314969331');
     });
 });
 describe('coth', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.coth(1.523))).to.be.equal('1.099844981966001809380675922203530638199648201103206');
+        chai_1.expect(index_1.default.stringify(index_1.default.coth(1.523))).to.be.equal('1.099844981966001809380675922203530638199648120341431');
     });
     it('2', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.coth(0))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0. Expected: real numbers without 0');
@@ -311,12 +311,12 @@ describe('coth', () => {
 });
 describe('sech', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.sech(1.523))).to.be.equal('0.41631806959662579417998037371642784543161980096239');
+        chai_1.expect(index_1.default.stringify(index_1.default.sech(1.523))).to.be.equal('0.41631806959662579417998037371642784543161965515278');
     });
 });
 describe('csch', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.csch(1.523))).to.be.equal('0.45788533974762158277220110725812937032866923541846');
+        chai_1.expect(index_1.default.stringify(index_1.default.csch(1.523))).to.be.equal('0.4578853397476215827722011072581293703286690414279');
     });
     it('2', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.csch(0))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0. Expected: real numbers without 0');
@@ -324,7 +324,7 @@ describe('csch', () => {
 });
 describe('asinh', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.asinh(1.523))).to.be.equal('1.207453977155062072703114492267693420810850735404269404934312840297609776085793267677236351401971115683894603690565441860366636117707298045446426013256794765594');
+        chai_1.expect(index_1.default.stringify(index_1.default.asinh(1.523))).to.be.equal('1.207453977155062072703114492267693420810850735402816035869269123819887960243058021104305058472');
     });
 });
 describe('acosh', () => {
@@ -332,7 +332,7 @@ describe('acosh', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.acosh(1))).to.be.equal('0');
     });
     it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acosh(3.132))).to.be.equal('1.8082998177870715751270911211065463627810607353325804408574689899487013807992');
+        chai_1.expect(index_1.default.stringify(index_1.default.acosh(3.132))).to.be.equal('1.80829981778707157512709111817795560333652881059393465779093698760412888534954023872783477');
     });
     it('3', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.acosh(0.99))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0.99. Expected: numbers greater or equal 1');
@@ -343,10 +343,10 @@ describe('acosh', () => {
 });
 describe('atanh', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atanh(-0.12))).to.be.equal('-0.120581028408444035230320643468113498945002839118501294522202911457241015687722355963547');
+        chai_1.expect(index_1.default.stringify(index_1.default.atanh(-0.12))).to.be.equal('-0.1205810284084440352303206434681134989454389225936441169794835640794440403967719010529380806');
     });
     it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atanh(0.423))).to.be.equal('0.4513401657908764038337940150785025308505313601111261041852613814060398570329528346807057115807381401694020970037313108458062984598722418');
+        chai_1.expect(index_1.default.stringify(index_1.default.atanh(0.423))).to.be.equal('0.451340165790876403833794015078502530850531360125826100931735222001643658129988266726380978031');
     });
     it('3', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.atanh(1))).to.throw(index_1.DomainError, 'Number out of domain. Given: 1. Expected: numbers from range (-1, 1)');
@@ -363,10 +363,10 @@ describe('atanh', () => {
 });
 describe('acoth', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acoth(-1.12))).to.be.equal('-1.435839812442006071374611951053266032856243597544243047360385432771104476672687710060857143825205036');
+        chai_1.expect(index_1.default.stringify(index_1.default.acoth(-1.12))).to.be.equal('-1.4358398124420060713746119510532660328562436126171557323105007427483319303378687696992050697');
     });
     it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acoth(1.423))).to.be.equal('0.872694770885123881197980091442851219085525067102803444610261800842086268757571552354881497279226');
+        chai_1.expect(index_1.default.stringify(index_1.default.acoth(1.423))).to.be.equal('0.872694770885123881197980091442851219085524698255683717212877918855638139497012356309396144');
     });
     it('3', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.acoth(0.543))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0.543. Expected: numbers not from range [-1, 1]');
@@ -386,7 +386,7 @@ describe('asech', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.asech(1))).to.be.equal('0');
     });
     it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.asech(0.543))).to.be.equal('1.2202662459660493460899849844983009086217894834031683724731807685395757388858176606604616653028886699604108100872392392590285550922026');
+        chai_1.expect(index_1.default.stringify(index_1.default.asech(0.543))).to.be.equal('1.2202662459660493460899849844983009086217894821170682981873328880317261643917722896803986466');
     });
     it('3', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.asech(-0.543))).to.throw(index_1.DomainError, 'Number out of domain. Given: -0.543. Expected: numbers from range (0,1]');
@@ -403,15 +403,15 @@ describe('asech', () => {
 });
 describe('acsch', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acsch(-1.12))).to.be.equal('-0.80354825484545079130751235970961014459423636189300844408976646204076531494373058561051986802840396282');
+        chai_1.expect(index_1.default.stringify(index_1.default.acsch(-1.12))).to.be.equal('-0.8035482548454507913075123597096101445942361826898286375391467924499756658641783274480875712');
     });
     it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acsch(1.423))).to.be.equal('0.65491038024859147045714403478325217264921540095528608390515653631556705113526298525535867195868');
+        chai_1.expect(index_1.default.stringify(index_1.default.acsch(1.423))).to.be.equal('0.65491038024859147045714403478325217264921537354298347196431660088209769691558862389611740286');
     });
 });
 describe('AGM', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.AGM(12, 6))).to.be.equal('8.740746186281441215118594299590491849843183659327704283469133079051971435546875');
+        chai_1.expect(index_1.default.stringify(index_1.default.AGM(12, 6))).to.be.equal('8.74074618628144121511859429959049184984318365932778542236328125');
     });
     it('2', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.AGM(-12, 6))).to.throw(index_1.DomainError, 'Number out of domain. Given: AGM(-12, 6). Expected: arguments have to be positive');
@@ -530,10 +530,10 @@ describe('isInteger', () => {
 });
 describe('gamma', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.gamma(1.24))).to.be.equal('0.90852105833995950017936149490276840952505395959157750262770689555647993914729833618074490981280661435587416214377641693077750803379629325018713521068401033249408436268660581255206743325275700938994383618970484569254051852426516448811492864973473665211675676988198317606008052825927734375');
+        chai_1.expect(index_1.default.stringify(index_1.default.gamma(1.24))).to.be.equal('0.9085210583399594331164916106437218476602925286069536417952783305700202660798047555333202582746081889590020187132999101060777211317626074326388812601427931375561231672770796848137492999885948473257552266257899730176921753967813895178089579923142025604892903707203893087038466019891290860525473314175');
     });
     it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.gamma(0.24))).to.be.equal('3.7855044097498307983938579893681122086461460249074');
+        chai_1.expect(index_1.default.stringify(index_1.default.gamma(0.24))).to.be.equal('3.7855044097498308309758273555809824557813034333718');
     });
     it('3', () => {
         chai_1.expect(() => index_1.default.stringify(index_1.default.gamma(-2))).to.throw(index_1.DomainError, 'Number out of domain. Given: -2. Expected: not negative multiplications of 2');
@@ -568,6 +568,43 @@ describe('bit operations', () => {
     });
     it('6', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.bitAND(4325, 1235))).to.be.equal('193');
+    });
+});
+describe('W', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.W(0))).to.be.equal('0');
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.W(1))).to.be.equal('0.56714329040978387299996866221035554975381578');
+    });
+    it('3', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.W(0.1))).to.be.equal('0.091276527160862264299895721423179568653119224055420327701958094360987460076780892081035638316917');
+    });
+    it('4', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.W(123))).to.be.equal('3.54628404733667875946156681021743395923947547904110887577125446753327900564071855744733781194489473886');
+    });
+    it('5', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.W(5.321))).to.be.equal('1.3624077308379869368091588521095263646221367734274177957268542015709330483717114037077546021835429994');
+    });
+    it('6', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.W(-2))).to.throw(index_1.DomainError, 'Number out of domain. Given: -2. Expected: number bigger than -log(2) / 2');
+    });
+});
+describe('XY', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.XY(0.1))).to.be.equal('0.399012978260252071596470810624092023996201905152069');
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.XY(1.21))).to.be.equal('1.27515965772177045143625968232490640586040604822001');
+    });
+    it('3', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.XY(1))).to.be.equal('1');
+    });
+    it('4', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.XY(-2))).to.throw(index_1.DomainError, 'Number out of domain. Given: -2. Expected: number bigger than 0 and less than sqrt(2)');
+    });
+    it('5', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.XY(1.5))).to.throw(index_1.DomainError, 'Number out of domain. Given: 1.5. Expected: number bigger than 0 and less than sqrt(2)');
     });
 });
 //# sourceMappingURL=bm.spec.js.map
