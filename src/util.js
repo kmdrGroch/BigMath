@@ -49,7 +49,7 @@ exports.normalize = (a) => {
             let comma = a.comma;
             x = x < 0n ? -x : x;
             while (true) {
-                if (x % 10n === 0n) {
+                if (x % 10n === 0n && comma < 0) {
                     comma += 1;
                     x /= 10n;
                 }
