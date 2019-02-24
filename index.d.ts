@@ -62,5 +62,7 @@ declare const _default: {
     subtract: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     tan: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     tanh: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    W: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    XY: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
 };
 export default _default;

@@ -69,6 +69,8 @@ exports.default = {
     stringify: util_1.stringify,
     subtract: basic_1.subtract,
     tan: trigonometry_1.tan,
-    tanh: trigonometry_1.tanh
+    tanh: trigonometry_1.tanh,
+    W: other_1.W,
+    XY: other_1.XY
 };
 //# sourceMappingURL=index.js.map
