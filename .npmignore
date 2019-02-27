@@ -1,0 +1,8 @@
+.nyc_output
+.stryker-tmp
+coverage
+node_modules
+reports
+
+*.js.map
+package-lock.json
