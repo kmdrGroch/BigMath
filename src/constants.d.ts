@@ -20,7 +20,3 @@ export declare const PI: BigNumber;
  * 2.718281828459045235360287471352662497757247093699959574966
  */
 export declare const E: BigNumber;
-/**
- * Bigint primes from 2 to 2 ** 16
- */
-export declare const primes: Array<bigint>;
