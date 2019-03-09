@@ -35,6 +35,11 @@ export declare const power: (a: string | number | bigint | BigNumber, b: string 
  */
 export declare const sqrt: (a: string | number | bigint | BigNumber) => BigNumber;
 /**
+ * @domain Numbers greater or equal 0
+ * @returns Cubic root of number
+ */
+export declare const cbrt: (a: string | number | bigint | BigNumber) => BigNumber;
+/**
  * @domain Real numbers
  * @returns Result of the exponentiation of e ^ parameter
  */

@@ -19,12 +19,16 @@ exports.add = (a, b) => {
         b.sign = false;
         return exports.subtract(a, b);
     }
-    const max = Math.max(a.comma, b.comma);
-    const min = Math.min(a.comma, b.comma);
+    let max;
+    let min;
     if (a.comma > b.comma) {
+        max = a.comma;
+        min = b.comma;
         a.number *= 10n ** BigInt(max - min);
     }
     else {
+        max = b.comma;
+        min = a.comma;
         b.number *= 10n ** BigInt(max - min);
     }
     return util_1.normalize({
@@ -48,12 +52,16 @@ exports.subtract = (a, b) => {
         b.sign = false;
         return exports.add(a, b);
     }
-    const max = Math.max(a.comma, b.comma);
-    const min = Math.min(a.comma, b.comma);
+    let max;
+    let min;
     if (a.comma > b.comma) {
+        max = a.comma;
+        min = b.comma;
         a.number *= 10n ** BigInt(max - min);
     }
     else {
+        max = b.comma;
+        min = a.comma;
         b.number *= 10n ** BigInt(max - min);
     }
     return util_1.normalize({
@@ -82,7 +90,7 @@ exports.multiply = (a, b) => {
 exports.divide = (a, b) => {
     a = util_1.normalize(a);
     b = util_1.normalize(b);
-    if (b.number === BigInt(0)) {
+    if (b.number === 0n) {
         throw new util_1.DomainError('0', 'numbers other than 0');
     }
     const len = `${a.number}`.length - `${b.number}`.length;
@@ -96,16 +104,19 @@ exports.divide = (a, b) => {
     }
     const n = a.number / b.number;
     let d = '';
-    let c = a.comma - b.comma;
     a.number = (a.number - n * b.number) * 10n;
-    while (d.length !== 50) {
-        if (a.number === BigInt(0)) {
+    let i = 0;
+    let f;
+    while (i !== 50) {
+        f = a.number / b.number;
+        if (a.number === 0n) {
             break;
         }
-        d += `${a.number / b.number}`;
-        a.number = (a.number - (a.number / b.number) * b.number) * BigInt(10);
-        c -= 1;
+        d += `${f}`;
+        a.number = (a.number - f * b.number) * 10n;
+        i += 1;
     }
+    const c = a.comma - b.comma - i;
     if (c > 0) {
         return {
             comma: 0,
@@ -118,15 +129,11 @@ exports.divide = (a, b) => {
         number: BigInt(n + d),
         sign: a.sign !== b.sign
     };
-    while (true) {
-        if (a.number % 10n === 0n && a.comma < 0) {
-            a.comma += 1;
-            a.number /= 10n;
-        }
-        else {
-            return a;
-        }
+    if (a.number % 10n === 0n && a.comma < 0) {
+        a.comma += 1;
+        a.number /= 10n;
     }
+    return a;
 };
 /**
  * @domain Numbers greater than 0
@@ -216,23 +223,6 @@ exports.power = (a, b) => {
     }
     return exports.exp(exports.multiply(b, exports.ln(a)));
 };
-const sqrtInteger = (n) => {
-    let prod = 1n;
-    for (const prime of constants_1.primes) {
-        if (prime > n) {
-            break;
-        }
-        const pow = prime ** 2n;
-        while (n % pow === 0n) {
-            n /= pow;
-            prod *= prime;
-        }
-    }
-    if (n > 1n) {
-        return -1n;
-    }
-    return prod;
-};
 /**
  * @domain Numbers greater or equal 0
  * @returns Square root of number
@@ -249,21 +239,101 @@ exports.sqrt = (a) => {
             sign: false
         };
     }
-    let num = a.number;
-    if (-a.comma % 2 === 0 && num < 2n ** 32n) {
-        const comma = a.comma / 2;
-        num = sqrtInteger(num);
-        if (num !== -1n) {
-            return util_1.normalize({
-                comma,
-                number: num,
-                sign: false
-            });
+    const last = a.number % 10n;
+    if (-a.comma % 2 === 0 && !(last === 2n || last === 3n || last === 7n || last === 8n)) {
+        const len = BigInt(`${a.number}`.length);
+        let k;
+        let end;
+        if (len % 2n === 1n) {
+            k = 10n ** ((len - 1n) / 2n);
+            end = 4n * k;
+        }
+        else {
+            end = 10n ** (len / 2n - 1n);
+            k = 3n * end;
+        }
+        let mid;
+        while (k <= end) {
+            mid = (k + end) / 2n;
+            if (mid ** 2n === a.number) {
+                return util_1.normalize({
+                    comma: a.comma / 2,
+                    number: mid,
+                    sign: false
+                });
+            }
+            if (mid ** 2n < a.number) {
+                k = mid + 1n;
+            }
+            else {
+                end = mid - 1n;
+            }
         }
     }
     let aprox = util_1.normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
+    let aprox1;
     while (true) {
-        const aprox1 = exports.multiply(exports.add(exports.divide(a, aprox), aprox), 0.5);
+        aprox1 = exports.multiply(exports.add(exports.divide(a, aprox), aprox), 0.5);
+        if (comparison_1.lt(util_1.abs(exports.subtract(aprox1, aprox)), constants_1.ErrorConst)) {
+            return aprox1;
+        }
+        aprox = aprox1;
+    }
+};
+/**
+ * @domain Numbers greater or equal 0
+ * @returns Cubic root of number
+ */
+exports.cbrt = (a) => {
+    a = util_1.normalize(a);
+    if (a.sign) {
+        throw new util_1.DomainError(util_1.stringify(a), 'numbers greater or equal 0');
+    }
+    if (a.number === 0n) {
+        return {
+            comma: 0,
+            number: 0n,
+            sign: false
+        };
+    }
+    if (-a.comma % 3 === 0) {
+        const len = BigInt(`${a.number}`.length);
+        let k;
+        let end;
+        if (len % 3n === 1n) {
+            k = 10n ** ((len - 1n) / 3n);
+            end = 3n * k;
+        }
+        else if (len % 3n === 2n) {
+            k = 2n * 10n ** ((len - 2n) / 3n);
+            end = 5n * 10n ** ((len - 2n) / 3n);
+        }
+        else {
+            k = 4n * 10n ** (len / 3n);
+            end = 10n ** (len / 3n + 1n);
+        }
+        let mid;
+        while (k <= end) {
+            mid = (k + end) / 2n;
+            if (mid ** 3n === a.number) {
+                return util_1.normalize({
+                    comma: a.comma / 3,
+                    number: mid,
+                    sign: false
+                });
+            }
+            if (mid ** 3n < a.number) {
+                k = mid + 1n;
+            }
+            else {
+                end = mid - 1n;
+            }
+        }
+    }
+    let aprox = util_1.normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
+    let aprox1;
+    while (true) {
+        aprox1 = exports.divide(exports.add(exports.divide(a, exports.multiply(aprox, aprox)), exports.multiply(aprox, 2n)), 3n);
         if (comparison_1.lt(util_1.abs(exports.subtract(aprox1, aprox)), constants_1.ErrorConst)) {
             return aprox1;
         }
