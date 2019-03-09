@@ -1,6 +1,6 @@
 {
   "name": "@kmdrgroch/big-math",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -33,21 +33,20 @@
   "author": "kmdrGroch",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.3.3",
+    "@babel/core": "^7.3.4",
     "@babel/plugin-syntax-bigint": "^7.2.0",
+    "@stryker-mutator/core": "^1.1.0",
+    "@stryker-mutator/html-reporter": "^1.1.0",
+    "@stryker-mutator/mocha-framework": "^1.1.0",
+    "@stryker-mutator/mocha-runner": "^1.1.0",
+    "@stryker-mutator/typescript": "^1.1.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
-    "mocha": "^6.0.1",
+    "mocha": "^6.0.2",
     "nyc": "^13.3.0",
     "rimraf": "^2.6.3",
-    "stryker": "^0.35.1",
-    "stryker-api": "^0.24.1",
-    "stryker-html-reporter": "^0.18.1",
-    "stryker-mocha-framework": "^0.15.1",
-    "stryker-mocha-runner": "^0.17.1",
-    "stryker-typescript": "^0.18.1",
-    "tslint": "^5.13.0",
+    "tslint": "^5.13.1",
     "typedoc": "^0.14.2",
     "typescript": "^3.3.3"
   }

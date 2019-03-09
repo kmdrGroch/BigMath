@@ -651,3 +651,81 @@ describe('XY', () => {
     expect(() => BigMath.stringify(BigMath.XY(1.5))).to.throw(DomainError, 'Number out of domain. Given: 1.5. Expected: number bigger than 0 and less than sqrt(2)');
   });
 });
+
+describe('cbrt', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.cbrt(1000))).to.be.equal('10');
+  });
+  it('2', () => {
+    expect(BigMath.stringify(BigMath.cbrt(1.728))).to.be.equal('1.2');
+  });
+  it('3', () => {
+    expect(() => BigMath.stringify(BigMath.cbrt(-54.23))).to.throw(DomainError, 'Number out of domain. Given: -54.23. Expected: numbers greater or equal 0');
+  });
+  it('4', () => {
+    expect(BigMath.stringify(BigMath.cbrt(33168.984597))).to.be.equal('32.13');
+  });
+  it('5', () => {
+    expect(BigMath.stringify(BigMath.cbrt(239830.305597))).to.be.equal('62.13');
+  });
+  it('6', () => {
+    expect(BigMath.stringify(BigMath.cbrt(12.43))).to.be.equal('2.31645415529626827534897141335692672367800276385054');
+  });
+  it('7', () => {
+    expect(BigMath.stringify(BigMath.cbrt(0))).to.be.equal('0');
+  });
+});
+
+describe('versin', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.versin(0.32))).to.be.equal('0.050764581917559132424692726233908258844071886990283001772877077288421357905100689651220820567');
+  });
+});
+
+describe('vercosin', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.vercosin(0.32))).to.be.equal('1.949235418082440867575307273766091741155928113009716998227122922711578642094899310348779179433');
+  });
+});
+
+describe('coversin', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.coversin(0.32))).to.be.equal('0.68543343938388223333824245658285216569571179729855345379440838460732321240969987647168586235');
+  });
+});
+
+describe('covercosin', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.covercosin(0.32))).to.be.equal('1.31456656061611776666175754341714783430428820270144654620559161539267678759030012352831413765');
+  });
+});
+
+describe('haversin', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.haversin(0.32))).to.be.equal('0.0253822909587795662123463631169541294220359434951415');
+  });
+});
+
+describe('havercosin', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.havercosin(0.32))).to.be.equal('0.97461770904122043378765363688304587057796405650485');
+  });
+});
+
+describe('hacoversin', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.hacoversin(0.32))).to.be.equal('0.342716719691941116669121228291426082847855898649276');
+  });
+});
+
+describe('hacovercosin', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.hacovercosin(0.32))).to.be.equal('0.65728328030805888333087877170857391715214410135072');
+  });
+});
+
+describe('gd', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.gd(0.32))).to.be.equal('0.314674448063231600531614833748730702829876917151745901886446063646658949188523932791163584');
+  });
+});

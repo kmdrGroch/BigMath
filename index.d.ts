@@ -23,11 +23,14 @@ declare const _default: {
     bitOR: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     bitRight: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     bitXOR: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    cbrt: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     ceil: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     cos: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     cosh: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     cot: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     coth: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    covercosin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    coversin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     csc: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     csch: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     divide: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
@@ -37,8 +40,13 @@ declare const _default: {
     factorial: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     floor: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     gamma: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    gd: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     gt: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
     gte: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
+    hacovercosin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    hacoversin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    havercosin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    haversin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     isInteger: (a: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
     K: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     ln: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
@@ -62,6 +70,8 @@ declare const _default: {
     subtract: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     tan: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     tanh: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    vercosin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    versin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     W: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     XY: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
 };
