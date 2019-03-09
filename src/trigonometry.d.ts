@@ -149,3 +149,12 @@ export declare const asech: (a: string | number | bigint | BigNumber) => BigNumb
  * @returns Inverse hyperbolic cosecant of parameter
  */
 export declare const acsch: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const versin: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const vercosin: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const coversin: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const covercosin: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const haversin: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const havercosin: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const hacoversin: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const hacovercosin: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const gd: (a: string | number | bigint | BigNumber) => BigNumber;

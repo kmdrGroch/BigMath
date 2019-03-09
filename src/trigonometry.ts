@@ -143,10 +143,10 @@ export const atan = (a: T): BigNumber => {
 
   const d2 = multiply(a, a);
   let i = 1n;
-
+  let s1;
   while (true) {
     k = multiply(k, d2);
-    const s1 = (i % 2n === 1n) ? subtract(s, divide(k, i * 2n + 1n)) : add(s, divide(k, i * 2n + 1n));
+    s1 = (i % 2n === 1n) ? subtract(s, divide(k, i * 2n + 1n)) : add(s, divide(k, i * 2n + 1n));
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
       return multiply(s1, x);
     }
@@ -402,3 +402,21 @@ export const acsch = (a: T): BigNumber => {
 
   return ln(add(b, sqrt(add(divide(b, a), 1n))));
 };
+
+export const versin = (a: T): BigNumber => subtract(1n, cos(a));
+
+export const vercosin = (a: T): BigNumber => add(1n, cos(a));
+
+export const coversin = (a: T): BigNumber => subtract(1n, sin(a));
+
+export const covercosin = (a: T): BigNumber => add(1n, sin(a));
+
+export const haversin = (a: T): BigNumber => divide(subtract(1n, cos(a)), 2n);
+
+export const havercosin = (a: T): BigNumber => divide(add(1n, cos(a)), 2n);
+
+export const hacoversin = (a: T): BigNumber => divide(subtract(1n, sin(a)), 2n);
+
+export const hacovercosin = (a: T): BigNumber => divide(add(1n, sin(a)), 2n);
+
+export const gd = (a: T): BigNumber => multiply(2n, atan(tanh(divide(a, 2n))));

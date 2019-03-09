@@ -125,9 +125,10 @@ exports.atan = (a) => {
     let k = util_1.normalize(a);
     const d2 = basic_1.multiply(a, a);
     let i = 1n;
+    let s1;
     while (true) {
         k = basic_1.multiply(k, d2);
-        const s1 = (i % 2n === 1n) ? basic_1.subtract(s, basic_1.divide(k, i * 2n + 1n)) : basic_1.add(s, basic_1.divide(k, i * 2n + 1n));
+        s1 = (i % 2n === 1n) ? basic_1.subtract(s, basic_1.divide(k, i * 2n + 1n)) : basic_1.add(s, basic_1.divide(k, i * 2n + 1n));
         if (comparison_1.lt(util_1.abs(basic_1.subtract(s1, s)), constants_1.ErrorConst)) {
             return basic_1.multiply(s1, x);
         }
@@ -348,4 +349,13 @@ exports.acsch = (a) => {
     const b = basic_1.divide(1n, a);
     return basic_1.ln(basic_1.add(b, basic_1.sqrt(basic_1.add(basic_1.divide(b, a), 1n))));
 };
+exports.versin = (a) => basic_1.subtract(1n, exports.cos(a));
+exports.vercosin = (a) => basic_1.add(1n, exports.cos(a));
+exports.coversin = (a) => basic_1.subtract(1n, exports.sin(a));
+exports.covercosin = (a) => basic_1.add(1n, exports.sin(a));
+exports.haversin = (a) => basic_1.divide(basic_1.subtract(1n, exports.cos(a)), 2n);
+exports.havercosin = (a) => basic_1.divide(basic_1.add(1n, exports.cos(a)), 2n);
+exports.hacoversin = (a) => basic_1.divide(basic_1.subtract(1n, exports.sin(a)), 2n);
+exports.hacovercosin = (a) => basic_1.divide(basic_1.add(1n, exports.sin(a)), 2n);
+exports.gd = (a) => basic_1.multiply(2n, exports.atan(exports.tanh(basic_1.divide(a, 2n))));
 //# sourceMappingURL=trigonometry.js.map
