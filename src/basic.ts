@@ -23,23 +23,19 @@ export const add = (a: T, b: T): BigNumber => {
     return subtract(a, b);
   }
 
-  let max;
-  let min;
   if (a.comma > b.comma) {
-    max = a.comma;
-    min = b.comma;
-    a.number *= 10n ** BigInt(max - min);
+    return normalize({
+      comma: b.comma,
+      number: a.number * 10n ** BigInt(a.comma - b.comma) + b.number,
+      sign: a.sign
+    });
   } else {
-    max = b.comma;
-    min = a.comma;
-    b.number *= 10n ** BigInt(max - min);
+    return normalize({
+      comma: a.comma,
+      number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
+      sign: a.sign
+    });
   }
-
-  return normalize({
-    comma: min,
-    number: a.number + b.number,
-    sign: a.sign
-  });
 };
 
 /**
@@ -61,23 +57,19 @@ export const subtract = (a: T, b: T): BigNumber => {
     return add(a, b);
   }
 
-  let max;
-  let min;
   if (a.comma > b.comma) {
-    max = a.comma;
-    min = b.comma;
-    a.number *= 10n ** BigInt(max - min);
+    return normalize({
+      comma: b.comma,
+      number: a.number * 10n ** BigInt(a.comma - b.comma) - b.number,
+      sign: a.sign
+    });
   } else {
-    max = b.comma;
-    min = a.comma;
-    b.number *= 10n ** BigInt(max - min);
+    return normalize({
+      comma: a.comma,
+      number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
+      sign: a.sign
+    });
   }
-
-  return normalize({
-    comma: min,
-    number: a.number - b.number,
-    sign: a.sign
-  });
 };
 
 /**

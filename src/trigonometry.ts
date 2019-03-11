@@ -16,8 +16,8 @@ export const sin = (a: T): BigNumber => {
   const tens = `${r.number}`.length + r.comma;
   const d = BigInt(`${r.number}`.substring(0, tens) || 0);
   const reduce = subtract(a, multiply(d, PI2));
-  let s = normalize(reduce);
-  let k = normalize(reduce);
+  let s = { ...reduce };
+  let k = { ...reduce };
 
   const k2 = multiply(reduce, reduce);
 
@@ -108,7 +108,7 @@ export const asin = (a: T): BigNumber => {
   a = normalize(a);
   if (`${a.number}`.length > Math.abs(a.comma)) {
     if (a.number === 1n) {
-      return normalize(PI2);
+      return { ...PI2 };
     }
     throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
   }
@@ -138,8 +138,8 @@ export const atan = (a: T): BigNumber => {
     x *= 2n;
   }
 
-  let s = normalize(a);
-  let k = normalize(a);
+  let s = { ...a };
+  let k = { ...a };
 
   const d2 = multiply(a, a);
   let i = 1n;
@@ -168,7 +168,7 @@ export const atan2 = (a: T, b: T): BigNumber => {
     if (b.number === 0n) {
       throw new DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
     }
-    const k = normalize(PI2);
+    const k = { ...PI2 };
     k.sign = b.sign;
 
     return k;
@@ -179,7 +179,7 @@ export const atan2 = (a: T, b: T): BigNumber => {
   }
 
   if (b.number === 0n) {
-    return normalize(PI);
+    return { ...PI };
   }
 
   if (b.sign) {
@@ -232,13 +232,15 @@ export const acsc = (a: T): BigNumber => {
 export const sinh = (a: T): BigNumber => {
   a = normalize(a);
   const x2 = multiply(a, a);
-  let sum = normalize(a);
+  let sum = { ...a };
   let fact = 1n;
   let i = 2n;
+  let sum1;
+
   while (true) {
     fact *= i * (i + 1n);
     a = multiply(a, x2);
-    const sum1 = add(sum, divide(a, fact));
+    sum1 = add(sum, divide(a, fact));
     if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
       return sum1;
     }
@@ -397,7 +399,6 @@ export const asech = (a: T): BigNumber => {
  * @returns Inverse hyperbolic cosecant of parameter
  */
 export const acsch = (a: T): BigNumber => {
-  a = normalize(a);
   const b = divide(1n, a);
 
   return ln(add(b, sqrt(add(divide(b, a), 1n))));

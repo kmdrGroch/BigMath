@@ -15,8 +15,8 @@ exports.sin = (a) => {
     const tens = `${r.number}`.length + r.comma;
     const d = BigInt(`${r.number}`.substring(0, tens) || 0);
     const reduce = basic_1.subtract(a, basic_1.multiply(d, constants_1.PI2));
-    let s = util_1.normalize(reduce);
-    let k = util_1.normalize(reduce);
+    let s = { ...reduce };
+    let k = { ...reduce };
     const k2 = basic_1.multiply(reduce, reduce);
     let f = 1n;
     let i = 1n;
@@ -94,7 +94,7 @@ exports.asin = (a) => {
     a = util_1.normalize(a);
     if (`${a.number}`.length > Math.abs(a.comma)) {
         if (a.number === 1n) {
-            return util_1.normalize(constants_1.PI2);
+            return { ...constants_1.PI2 };
         }
         throw new util_1.DomainError(util_1.stringify(a), 'numbers from range [-1, 1]');
     }
@@ -121,8 +121,8 @@ exports.atan = (a) => {
         }
         x *= 2n;
     }
-    let s = util_1.normalize(a);
-    let k = util_1.normalize(a);
+    let s = { ...a };
+    let k = { ...a };
     const d2 = basic_1.multiply(a, a);
     let i = 1n;
     let s1;
@@ -148,7 +148,7 @@ exports.atan2 = (a, b) => {
         if (b.number === 0n) {
             throw new util_1.DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
         }
-        const k = util_1.normalize(constants_1.PI2);
+        const k = { ...constants_1.PI2 };
         k.sign = b.sign;
         return k;
     }
@@ -156,7 +156,7 @@ exports.atan2 = (a, b) => {
         return exports.atan(basic_1.divide(b, a));
     }
     if (b.number === 0n) {
-        return util_1.normalize(constants_1.PI);
+        return { ...constants_1.PI };
     }
     if (b.sign) {
         return basic_1.subtract(exports.atan(basic_1.divide(b, a)), constants_1.PI);
@@ -201,13 +201,14 @@ exports.acsc = (a) => {
 exports.sinh = (a) => {
     a = util_1.normalize(a);
     const x2 = basic_1.multiply(a, a);
-    let sum = util_1.normalize(a);
+    let sum = { ...a };
     let fact = 1n;
     let i = 2n;
+    let sum1;
     while (true) {
         fact *= i * (i + 1n);
         a = basic_1.multiply(a, x2);
-        const sum1 = basic_1.add(sum, basic_1.divide(a, fact));
+        sum1 = basic_1.add(sum, basic_1.divide(a, fact));
         if (comparison_1.lt(util_1.abs(basic_1.subtract(sum1, sum)), constants_1.ErrorConst)) {
             return sum1;
         }
@@ -345,7 +346,6 @@ exports.asech = (a) => {
  * @returns Inverse hyperbolic cosecant of parameter
  */
 exports.acsch = (a) => {
-    a = util_1.normalize(a);
     const b = basic_1.divide(1n, a);
     return basic_1.ln(basic_1.add(b, basic_1.sqrt(basic_1.add(basic_1.divide(b, a), 1n))));
 };

@@ -19,23 +19,20 @@ exports.add = (a, b) => {
         b.sign = false;
         return exports.subtract(a, b);
     }
-    let max;
-    let min;
     if (a.comma > b.comma) {
-        max = a.comma;
-        min = b.comma;
-        a.number *= 10n ** BigInt(max - min);
+        return util_1.normalize({
+            comma: b.comma,
+            number: a.number * 10n ** BigInt(a.comma - b.comma) + b.number,
+            sign: a.sign
+        });
     }
     else {
-        max = b.comma;
-        min = a.comma;
-        b.number *= 10n ** BigInt(max - min);
+        return util_1.normalize({
+            comma: a.comma,
+            number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
+            sign: a.sign
+        });
     }
-    return util_1.normalize({
-        comma: min,
-        number: a.number + b.number,
-        sign: a.sign
-    });
 };
 /**
  * @domain Real numbers, Real numbers
@@ -52,23 +49,20 @@ exports.subtract = (a, b) => {
         b.sign = false;
         return exports.add(a, b);
     }
-    let max;
-    let min;
     if (a.comma > b.comma) {
-        max = a.comma;
-        min = b.comma;
-        a.number *= 10n ** BigInt(max - min);
+        return util_1.normalize({
+            comma: b.comma,
+            number: a.number * 10n ** BigInt(a.comma - b.comma) - b.number,
+            sign: a.sign
+        });
     }
     else {
-        max = b.comma;
-        min = a.comma;
-        b.number *= 10n ** BigInt(max - min);
+        return util_1.normalize({
+            comma: a.comma,
+            number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
+            sign: a.sign
+        });
     }
-    return util_1.normalize({
-        comma: min,
-        number: a.number - b.number,
-        sign: a.sign
-    });
 };
 /**
  * @domain Real numbers
