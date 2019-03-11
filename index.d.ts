@@ -36,6 +36,7 @@ declare const _default: {
     divide: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     E: import("./src/interfaces").BigNumber;
     eq: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
+    erf: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     exp: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     factorial: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     floor: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;

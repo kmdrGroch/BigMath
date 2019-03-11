@@ -44,6 +44,7 @@ exports.default = {
     divide: basic_1.divide,
     E: constants_1.E,
     eq: comparison_1.eq,
+    erf: other_1.erf,
     exp: basic_1.exp,
     factorial: basic_1.factorial,
     floor: util_1.floor,

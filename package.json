@@ -1,7 +1,7 @@
 {
   "name": "@kmdrgroch/big-math",
-  "version": "1.2.1",
-  "description": "",
+  "version": "1.2.2",
+  "description": "Math library for big numbers",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf \"+(test|src)/**/*+(.d.ts|.js|.map)\"",

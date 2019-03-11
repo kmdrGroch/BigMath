@@ -2,7 +2,7 @@ import { add, cbrt, divide, exp, factorial, gamma, ln, multiply, power, sqrt, su
 import { bitAND, bitLeft, bitNOT, bitOR, bitRight, bitXOR } from './src/bitOperations';
 import { eq, gt, gte, lt, lte, neq } from './src/comparison';
 import { E, LOG10, LOG2, PI, PI2 } from './src/constants';
-import { AGM, K, W, XY } from './src/other';
+import { AGM, erf, K, W, XY } from './src/other';
 import { acos, acosh, acot, acoth, acsc, acsch, asec, asech, asin,
   asinh, atan, atan2, atanh, cos, cosh, cot, coth, covercosin, coversin,
   csc, csch, gd, hacovercosin, hacoversin, havercosin, haversin, sec, sech, sin, sinh, tan, tanh, vercosin, versin } from './src/trigonometry';
@@ -48,6 +48,7 @@ export default {
   divide,
   E,
   eq,
+  erf,
   exp,
   factorial,
   floor,
