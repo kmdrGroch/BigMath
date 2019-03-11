@@ -1,6 +1,6 @@
 import { add, divide, exp, ln, multiply, power, sqrt, subtract } from './basic';
 import { gt, lt } from './comparison';
-import { ErrorConst, LOG2, PI2 } from './constants';
+import { ErrorConst, LOG2, PI, PI2 } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify } from './util';
 
@@ -81,4 +81,28 @@ export const XY = (a: T): BigNumber => {
   a.sign = !a.sign;
 
   return a;
+};
+
+export const erf = (a: T): BigNumber => {
+  a = normalize(a);
+
+  const a2 = multiply(a, a);
+  let sum = normalize(a);
+  let fact = 1n;
+  let k = 1n;
+
+  let sum1;
+
+  for (let i = 1n;; i += 1n) {
+    fact *= i;
+    k += 2n;
+    a = multiply(a, a2);
+
+    sum1 = i % 2n === 1n ? subtract(sum, divide(a, multiply(fact, k))) : add(sum, divide(a, multiply(fact, k)));
+
+    if (lt(abs(subtract(sum, sum1)), ErrorConst)) {
+      return multiply(sum1, divide(2n, sqrt(PI)));
+    }
+    sum = sum1;
+  }
 };

@@ -76,4 +76,22 @@ exports.XY = (a) => {
     a.sign = !a.sign;
     return a;
 };
+exports.erf = (a) => {
+    a = util_1.normalize(a);
+    const a2 = basic_1.multiply(a, a);
+    let sum = util_1.normalize(a);
+    let fact = 1n;
+    let k = 1n;
+    let sum1;
+    for (let i = 1n;; i += 1n) {
+        fact *= i;
+        k += 2n;
+        a = basic_1.multiply(a, a2);
+        sum1 = i % 2n === 1n ? basic_1.subtract(sum, basic_1.divide(a, basic_1.multiply(fact, k))) : basic_1.add(sum, basic_1.divide(a, basic_1.multiply(fact, k)));
+        if (comparison_1.lt(util_1.abs(basic_1.subtract(sum, sum1)), constants_1.ErrorConst)) {
+            return basic_1.multiply(sum1, basic_1.divide(2n, basic_1.sqrt(constants_1.PI)));
+        }
+        sum = sum1;
+    }
+};
 //# sourceMappingURL=other.js.map

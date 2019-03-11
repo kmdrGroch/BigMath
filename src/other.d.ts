@@ -15,3 +15,4 @@ export declare const W: (a: string | number | bigint | BigNumber) => BigNumber;
  * @returns y for the equation: y = x ** y [y = x ** x ** x ** ...]
  */
 export declare const XY: (a: string | number | bigint | BigNumber) => BigNumber;
+export declare const erf: (a: string | number | bigint | BigNumber) => BigNumber;
