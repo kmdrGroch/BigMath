@@ -1,9 +1,10 @@
 .nyc_output
 .stryker-tmp
+benchmark
 coverage
+docs
 node_modules
 reports
-docs
 
 *.js.map
 package-lock.json

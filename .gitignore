@@ -6,3 +6,5 @@ reports
 
 *.js.map
 package-lock.json
+benchmark/*.js
+benchmark/*.txt
