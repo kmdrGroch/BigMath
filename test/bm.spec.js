@@ -476,33 +476,36 @@ describe('Rounding', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.round(0.356))).to.be.equal('0');
     });
     it('4', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.round(0.56))).to.be.equal('1');
+    });
+    it('5', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.round(-1.2))).to.be.equal('-1');
     });
-    it('5', () => {
+    it('6', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.round(-1.7))).to.be.equal('-2');
     });
-    it('5', () => {
+    it('7', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(43242))).to.be.equal('43242');
     });
-    it('6', () => {
+    it('8', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(12.32))).to.be.equal('12');
     });
-    it('7', () => {
+    it('9', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(-12.32))).to.be.equal('-13');
     });
-    it('8', () => {
+    it('10', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.floor(-12))).to.be.equal('-12');
     });
-    it('9', () => {
+    it('11', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ceil(43242))).to.be.equal('43242');
     });
-    it('10', () => {
+    it('12', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ceil(12.32))).to.be.equal('13');
     });
-    it('11', () => {
+    it('13', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ceil(-12.32))).to.be.equal('-12');
     });
-    it('12', () => {
+    it('14', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ceil(-12))).to.be.equal('-12');
     });
 });
@@ -673,6 +676,11 @@ describe('hacovercosin', () => {
 describe('gd', () => {
     it('1', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.gd(0.32))).to.be.equal('0.314674448063231600531614833748730702829876917151745901886446063646658949188523932791163584');
+    });
+});
+describe('erf', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.erf(0.5))).to.be.equal('0.52049987781304653768274665389196452873645220339457530386137576762468944253839581778626941367999268066792216130840796461412101765913651565951');
     });
 });
 //# sourceMappingURL=bm.spec.js.map

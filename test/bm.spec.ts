@@ -513,33 +513,36 @@ describe('Rounding', () => {
     expect(BigMath.stringify(BigMath.round(0.356))).to.be.equal('0');
   });
   it('4', () => {
+    expect(BigMath.stringify(BigMath.round(0.56))).to.be.equal('1');
+  });
+  it('5', () => {
     expect(BigMath.stringify(BigMath.round(-1.2))).to.be.equal('-1');
   });
-  it('5', () => {
+  it('6', () => {
     expect(BigMath.stringify(BigMath.round(-1.7))).to.be.equal('-2');
   });
-  it('5', () => {
+  it('7', () => {
     expect(BigMath.stringify(BigMath.floor(43242))).to.be.equal('43242');
   });
-  it('6', () => {
+  it('8', () => {
     expect(BigMath.stringify(BigMath.floor(12.32))).to.be.equal('12');
   });
-  it('7', () => {
+  it('9', () => {
     expect(BigMath.stringify(BigMath.floor(-12.32))).to.be.equal('-13');
   });
-  it('8', () => {
+  it('10', () => {
     expect(BigMath.stringify(BigMath.floor(-12))).to.be.equal('-12');
   });
-  it('9', () => {
+  it('11', () => {
     expect(BigMath.stringify(BigMath.ceil(43242))).to.be.equal('43242');
   });
-  it('10', () => {
+  it('12', () => {
     expect(BigMath.stringify(BigMath.ceil(12.32))).to.be.equal('13');
   });
-  it('11', () => {
+  it('13', () => {
     expect(BigMath.stringify(BigMath.ceil(-12.32))).to.be.equal('-12');
   });
-  it('12', () => {
+  it('14', () => {
     expect(BigMath.stringify(BigMath.ceil(-12))).to.be.equal('-12');
   });
 });
@@ -727,5 +730,11 @@ describe('hacovercosin', () => {
 describe('gd', () => {
   it('1', () => {
     expect(BigMath.stringify(BigMath.gd(0.32))).to.be.equal('0.314674448063231600531614833748730702829876917151745901886446063646658949188523932791163584');
+  });
+});
+
+describe('erf', () => {
+  it('1', () => {
+    expect(BigMath.stringify(BigMath.erf(0.5))).to.be.equal('0.52049987781304653768274665389196452873645220339457530386137576762468944253839581778626941367999268066792216130840796461412101765913651565951');
   });
 });
