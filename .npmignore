@@ -3,6 +3,7 @@
 coverage
 node_modules
 reports
+docs
 
 *.js.map
 package-lock.json
