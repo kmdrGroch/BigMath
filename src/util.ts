@@ -21,8 +21,8 @@ export const normalize = (a: T): BigNumber => {
 
       return normalize({
         comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
-        number: BigInt(a.split('.').join('').replace('-', '')),
-        sign: a.indexOf('-') > -1
+        number: BigInt(a.split('.').join('')),
+        sign: false
       });
     case 'bigint':
       return {
@@ -31,12 +31,10 @@ export const normalize = (a: T): BigNumber => {
         sign: a < 0n
       };
     case 'string':
-      const s = a.indexOf('-') !== -1;
-
       return normalize({
         comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
-        number: BigInt(s ? a.split('.').join('').substr(1) : a.split('.').join('')),
-        sign: s
+        number: BigInt(a.split('.').join('')),
+        sign: false
       });
     case 'object':
       let x = a.number;
