@@ -116,7 +116,7 @@ describe('ln', () => {
 
 describe('exp', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.exp(0.43242))).to.be.equal('1.5409821917860738933829323161090366019199690731624968570723472213457996941756236916482136518');
+    expect(BigMath.stringify(BigMath.exp(0.43242))).to.be.equal('1.5409821917860738933829323161090366019199690283787678674548750116118517106499841522229360078');
   });
 });
 
@@ -125,9 +125,15 @@ describe('factorial', () => {
     expect(BigMath.stringify(BigMath.factorial(43))).to.be.equal('60415263063373835637355132068513997507264512000000000');
   });
   it('2', () => {
-    expect(() => BigMath.stringify(BigMath.factorial(1.2))).to.throw(DomainError, 'Number out of domain. Given: 1.2. Expected: positive integers');
+    expect(BigMath.stringify(BigMath.factorial(84))).to.be.equal('3314240134565353266999387579130131288000666286242049487118846032383059131291716864129885722968716753156177920000000000000000000');
   });
   it('3', () => {
+    expect(BigMath.stringify(BigMath.factorial(0))).to.be.equal('1');
+  });
+  it('4', () => {
+    expect(() => BigMath.stringify(BigMath.factorial(1.2))).to.throw(DomainError, 'Number out of domain. Given: 1.2. Expected: positive integers');
+  });
+  it('5', () => {
     expect(() => BigMath.stringify(BigMath.factorial(-12))).to.throw(DomainError, 'Number out of domain. Given: -12. Expected: positive integers');
   });
 });
@@ -140,7 +146,7 @@ describe('power', () => {
     expect(() => BigMath.stringify(BigMath.power(0, 0))).to.throw(DomainError, 'Number out of domain. Given: 0 ^ 0. Expected: real numbers | both can\'t be 0 at the same time');
   });
   it('3', () => {
-    expect(BigMath.stringify(BigMath.power(1.74, 3.14))).to.be.equal('5.69278313249561028952140592115895686170578841712186493130324635393525641403233220231417043810768');
+    expect(BigMath.stringify(BigMath.power(1.74, 3.14))).to.be.equal('5.69278313249561028952140592115895686170578485983175490178811053264547398360224498329398094382953454758421056238019480788945517537932813048821026546006266334634284974570502104107026576');
   });
   it('4', () => {
     expect(BigMath.stringify(BigMath.power(10, -3))).to.be.equal('0.001');
@@ -171,6 +177,9 @@ describe('sqrt', () => {
   });
   it('6', () => {
     expect(BigMath.stringify(BigMath.sqrt(0.1))).to.be.equal('0.31622776601683793319988935444327185337195551393252078125');
+  });
+  it('7', () => {
+    expect(BigMath.stringify(BigMath.sqrt(0.14))).to.be.equal('0.374165738677394138558374873231654930175601980777869140625');
   });
 });
 
@@ -224,7 +233,7 @@ describe('csc', () => {
 
 describe('asin', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.asin(0.533))).to.be.equal('0.562142238269342607110513637367750912826317530974006652554647475802623223044534183286216562');
+    expect(BigMath.stringify(BigMath.asin(0.533))).to.be.equal('0.562142238269342607110513637367750912826317530974004854562019246199353948765230016176961196');
   });
   it('2', () => {
     expect(BigMath.stringify(BigMath.asin(1))).to.be.equal('1.570796326794896619231321691639751442098584699687552910487');
@@ -236,7 +245,7 @@ describe('asin', () => {
 
 describe('acos', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.acos(0.43223))).to.be.equal('1.123832078732756669980357528914145635922848349766203616276728572653816638543699386707625698');
+    expect(BigMath.stringify(BigMath.acos(0.43223))).to.be.equal('1.123832078732756669980357528914145635922848349766201610677412277587132733590363291460959793');
   });
   it('2', () => {
     expect(BigMath.stringify(BigMath.acos(-1))).to.be.equal('0');
@@ -263,13 +272,13 @@ describe('atan2', () => {
     expect(BigMath.stringify(BigMath.atan2(0.1243, 0))).to.be.equal('0');
   });
   it('2', () => {
-    expect(BigMath.stringify(BigMath.atan2(0.1243, 2.321))).to.be.equal('1.517292936115139214045688674161216076398089206862970273226745923987627284200147425512300028');
+    expect(BigMath.stringify(BigMath.atan2(0.1243, 2.321))).to.be.equal('1.517292936115139214045688674161216076398089206862973876884140584561209925935573846869764208');
   });
   it('3', () => {
     expect(BigMath.stringify(BigMath.atan2(-0.1243, 0))).to.be.equal('3.141592653589793238462643383279502884197169399375105820974');
   });
   it('4', () => {
-    expect(BigMath.stringify(BigMath.atan2(-0.1243, 1.432))).to.be.equal('1.657380979726293965145260359601776841317620030009422519482834544210359008519455896878766184');
+    expect(BigMath.stringify(BigMath.atan2(-0.1243, 1.432))).to.be.equal('1.657380979726293965145260359601776841317620030009411876278088613411541275684796905350061472');
   });
   it('5', () => {
     expect(BigMath.stringify(BigMath.atan2(-0.1243, -0.32))).to.be.equal('-1.94129546467971145249202483070387589297911861500545818647992989595010126584593226947280876');
@@ -316,19 +325,19 @@ describe('sinh', () => {
 
 describe('cosh', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.cosh(1.523))).to.be.equal('2.402009600421400673148886322385685365530322725832865144456965869406935697749944767350330581895');
+    expect(BigMath.stringify(BigMath.cosh(1.523))).to.be.equal('2.4020096004214006731488863223856853655303220574654146857505144059842769156381877287643350782270566792135635319690441872508133967730311493276429726495858621803031262062771127645261125');
   });
 });
 
 describe('tanh', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.tanh(1.523))).to.be.equal('0.909219041225676840227934629350112661706365314969331');
+    expect(BigMath.stringify(BigMath.tanh(1.523))).to.be.equal('0.909219041225676840227934629350112661706365261927007');
   });
 });
 
 describe('coth', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.coth(1.523))).to.be.equal('1.099844981966001809380675922203530638199648120341431');
+    expect(BigMath.stringify(BigMath.coth(1.523))).to.be.equal('1.099844981966001809380675922203530638199648184504556');
   });
   it('2', () => {
     expect(() => BigMath.stringify(BigMath.coth(0))).to.throw(DomainError, 'Number out of domain. Given: 0. Expected: real numbers without 0');
@@ -337,13 +346,13 @@ describe('coth', () => {
 
 describe('sech', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.sech(1.523))).to.be.equal('0.41631806959662579417998037371642784543161965515278');
+    expect(BigMath.stringify(BigMath.sech(1.523))).to.be.equal('0.41631806959662579417998037371642784543161977099471');
   });
 });
 
 describe('csch', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.csch(1.523))).to.be.equal('0.4578853397476215827722011072581293703286690414279');
+    expect(BigMath.stringify(BigMath.csch(1.523))).to.be.equal('0.45788533974762158277220110725812937032866919554834');
   });
   it('2', () => {
     expect(() => BigMath.stringify(BigMath.csch(0))).to.throw(DomainError, 'Number out of domain. Given: 0. Expected: real numbers without 0');
@@ -352,7 +361,7 @@ describe('csch', () => {
 
 describe('asinh', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.asinh(1.523))).to.be.equal('1.207453977155062072703114492267693420810850735402816035869269123819887960243058021104305058472');
+    expect(BigMath.stringify(BigMath.asinh(1.523))).to.be.equal('1.207453977155062072703114492267693420810850735402815935868969122819885160235057995704227058238');
   });
 });
 
@@ -573,10 +582,10 @@ describe('isInteger', () => {
 
 describe('gamma', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.gamma(1.24))).to.be.equal('0.9085210583399594331164916106437218476602925286069536417952783305700202660798047555333202582746081889590020187132999101060777211317626074326388812601427931375561231672770796848137492999885948473257552266257899730176921753967813895178089579923142025604892903707203893087038466019891290860525473314175');
+    expect(BigMath.stringify(BigMath.gamma(1.24))).to.be.equal('0.908521058339959433116491610643721847660277058012917673491400226707765927910520723252501389236749613194301091722979290427131800312251832124957306011221224771048553983989284278338601358565293659804998566929144592030914648539128508723663574259761424400041153035932800108229449965996372109394495057609646804016079968075152545198426497239381930682034312969251112967099008553377060719631665759687433871723537896782417106031379697306250530512182425003909533743472807874220935725925611588583096481601324367506593802042334197854862389439837652016844722719808950540344742035035774765923544518698875508583660999943814311485207006403515791129873143069535914124098952373955050899434156640537255553553759191035346711819905318017178174773318038508183081993933381554666208913408510626264065197950406933570232180018216697485970939285597932980275032662928161211710953134811855960172645623180611405189894447330202068937656393497019432209163119353936447186536164515943683965016121389072010732895188647665225953725241782636777258487874322073125');
   });
   it('2', () => {
-    expect(BigMath.stringify(BigMath.gamma(0.24))).to.be.equal('3.7855044097498308309758273555809824557813034333718');
+    expect(BigMath.stringify(BigMath.gamma(0.24))).to.be.equal('3.7855044097498308309758273555809824557813097250267');
   });
   it('3', () => {
     expect(() => BigMath.stringify(BigMath.gamma(-2))).to.throw(DomainError, 'Number out of domain. Given: -2. Expected: not negative multiplications of 2');
@@ -624,13 +633,13 @@ describe('W', () => {
     expect(BigMath.stringify(BigMath.W(1))).to.be.equal('0.56714329040978387299996866221035554975381578');
   });
   it('3', () => {
-    expect(BigMath.stringify(BigMath.W(0.1))).to.be.equal('0.091276527160862264299895721423179568653119224055420327701958094360987460076780892081035638316917');
+    expect(BigMath.stringify(BigMath.W(0.1))).to.be.equal('0.091276527160862264299895721423179568653119224966941460877532441245073248414005439814740880765068');
   });
   it('4', () => {
-    expect(BigMath.stringify(BigMath.W(123))).to.be.equal('3.54628404733667875946156681021743395923947547904110887577125446753327900564071855744733781194489473886');
+    expect(BigMath.stringify(BigMath.W(123))).to.be.equal('3.54628404733667875946156681021743395923947735961670981325441622760047834223659153439022918906107419185');
   });
   it('5', () => {
-    expect(BigMath.stringify(BigMath.W(5.321))).to.be.equal('1.3624077308379869368091588521095263646221367734274177957268542015709330483717114037077546021835429994');
+    expect(BigMath.stringify(BigMath.W(5.321))).to.be.equal('1.3624077308379869368091588521095263646221369867291744202937346148415251997425411813291546304272570399082');
   });
   it('6', () => {
     expect(() => BigMath.stringify(BigMath.W(-2))).to.throw(DomainError, 'Number out of domain. Given: -2. Expected: number bigger than -log(2) / 2');
@@ -639,10 +648,10 @@ describe('W', () => {
 
 describe('XY', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.XY(0.1))).to.be.equal('0.399012978260252071596470810624092023996201905152069');
+    expect(BigMath.stringify(BigMath.XY(0.1))).to.be.equal('0.399012978260252071596470810624092023996201915529345');
   });
   it('2', () => {
-    expect(BigMath.stringify(BigMath.XY(1.21))).to.be.equal('1.27515965772177045143625968232490640586040604822001');
+    expect(BigMath.stringify(BigMath.XY(1.21))).to.be.equal('1.27515965772177045143625968232490640586040661659652');
   });
   it('3', () => {
     expect(BigMath.stringify(BigMath.XY(1))).to.be.equal('1');
@@ -663,7 +672,7 @@ describe('cbrt', () => {
     expect(BigMath.stringify(BigMath.cbrt(1.728))).to.be.equal('1.2');
   });
   it('3', () => {
-    expect(() => BigMath.stringify(BigMath.cbrt(-54.23))).to.throw(DomainError, 'Number out of domain. Given: -54.23. Expected: numbers greater or equal 0');
+    expect(BigMath.stringify(BigMath.cbrt(-54.233))).to.be.equal('-3.7851916754719890277586141982554378185635875255032');
   });
   it('4', () => {
     expect(BigMath.stringify(BigMath.cbrt(33168.984597))).to.be.equal('32.13');
@@ -676,6 +685,9 @@ describe('cbrt', () => {
   });
   it('7', () => {
     expect(BigMath.stringify(BigMath.cbrt(0))).to.be.equal('0');
+  });
+  it('8', () => {
+    expect(BigMath.stringify(BigMath.cbrt(12.432))).to.be.equal('2.31657838859883922732638440088481734150382610225031');
   });
 });
 
@@ -729,12 +741,18 @@ describe('hacovercosin', () => {
 
 describe('gd', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.gd(0.32))).to.be.equal('0.314674448063231600531614833748730702829876917151745901886446063646658949188523932791163584');
+    expect(BigMath.stringify(BigMath.gd(0.32))).to.be.equal('0.314674448063231600531614833748730702829876710410918744507612226722879910064509975260888856');
   });
 });
 
 describe('erf', () => {
   it('1', () => {
     expect(BigMath.stringify(BigMath.erf(0.5))).to.be.equal('0.52049987781304653768274665389196452873645220339457530386137576762468944253839581778626941367999268066792216130840796461412101765913651565951');
+  });
+  it('2', () => {
+    expect(BigMath.stringify(BigMath.erf(10))).to.be.equal('1');
+  });
+  it('3', () => {
+    expect(BigMath.stringify(BigMath.erf(-9.6))).to.be.equal('-1');
   });
 });
