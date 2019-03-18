@@ -31,7 +31,7 @@ exports.K = (a) => {
     if (`${a.number}`.length > Math.abs(a.comma)) {
         throw new util_1.DomainError(util_1.stringify(a), 'number from range [-1, 1]');
     }
-    return basic_1.divide(constants_1.PI2, exports.AGM(1, basic_1.sqrt(basic_1.subtract(1n, basic_1.power(a, 2n)))));
+    return basic_1.divide(constants_1.PI2, exports.AGM(1n, basic_1.sqrt(basic_1.subtract(1n, basic_1.power(a, 2n)))));
 };
 /**
  * @returns Omega function (product logarithm)
@@ -48,10 +48,13 @@ exports.W = (a) => {
     if (comparison_1.lt(a, basic_1.divide(constants_1.LOG2, -2n))) {
         throw new util_1.DomainError(util_1.stringify(a), 'number bigger than -log(2) / 2');
     }
+    let ex;
+    let wjewj;
+    let w1;
     while (true) {
-        const ex = basic_1.exp(w);
-        const wjewj = basic_1.multiply(w, ex);
-        const w1 = basic_1.subtract(w, basic_1.divide(basic_1.subtract(wjewj, a), basic_1.subtract(basic_1.add(wjewj, ex), basic_1.divide(basic_1.multiply(basic_1.add(w, 2n), basic_1.subtract(wjewj, a)), basic_1.multiply(basic_1.add(w, 1n), 2n)))));
+        ex = basic_1.exp(w);
+        wjewj = basic_1.multiply(w, ex);
+        w1 = basic_1.subtract(w, basic_1.divide(basic_1.subtract(wjewj, a), basic_1.subtract(basic_1.add(wjewj, ex), basic_1.divide(basic_1.multiply(basic_1.add(w, 2n), basic_1.subtract(wjewj, a)), basic_1.multiply(basic_1.add(w, 1n), 2n)))));
         if (comparison_1.lt(util_1.abs(basic_1.subtract(w, w1)), constants_1.ErrorConst)) {
             return w1;
         }
@@ -78,6 +81,13 @@ exports.XY = (a) => {
 };
 exports.erf = (a) => {
     a = util_1.normalize(a);
+    if (comparison_1.gt(util_1.abs(a), 9.5)) {
+        return {
+            comma: 0,
+            number: 1n,
+            sign: a.sign
+        };
+    }
     const a2 = basic_1.multiply(a, a);
     let sum = util_1.normalize(a);
     let fact = 1n;

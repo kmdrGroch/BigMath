@@ -33,7 +33,7 @@ export const K = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'number from range [-1, 1]');
   }
 
-  return divide(PI2, AGM(1, sqrt(subtract(1n, power(a, 2n)))));
+  return divide(PI2, AGM(1n, sqrt(subtract(1n, power(a, 2n)))));
 };
 
 /**
@@ -52,10 +52,14 @@ export const W = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'number bigger than -log(2) / 2');
   }
 
+  let ex;
+  let wjewj;
+  let w1;
+
   while (true) {
-    const ex = exp(w);
-    const wjewj = multiply(w, ex);
-    const w1 = subtract(w, divide(subtract(wjewj, a), subtract(add(wjewj, ex), divide(multiply(add(w, 2n), subtract(wjewj, a)), multiply(add(w, 1n), 2n)))));
+    ex = exp(w);
+    wjewj = multiply(w, ex);
+    w1 = subtract(w, divide(subtract(wjewj, a), subtract(add(wjewj, ex), divide(multiply(add(w, 2n), subtract(wjewj, a)), multiply(add(w, 1n), 2n)))));
     if (lt(abs(subtract(w, w1)), ErrorConst)) {
       return w1;
     }
@@ -85,6 +89,14 @@ export const XY = (a: T): BigNumber => {
 
 export const erf = (a: T): BigNumber => {
   a = normalize(a);
+
+  if (gt(abs(a), 9.5)) {
+    return {
+      comma: 0,
+      number: 1n,
+      sign: a.sign
+    };
+  }
 
   const a2 = multiply(a, a);
   let sum = normalize(a);
