@@ -208,7 +208,7 @@ exports.power = (a, b) => {
         if (a.sign) {
             a.sign = b.number % 2n === 1n;
         }
-        a.comma = a.comma * Number(b.number);
+        a.comma = a.comma * +`${b.number}`;
         a.number = a.number ** b.number;
         return a;
     }
@@ -234,6 +234,7 @@ exports.sqrt = (a) => {
         };
     }
     const last = a.number % 10n;
+    let mid;
     if (-a.comma % 2 === 0 && !(last === 2n || last === 3n || last === 7n || last === 8n)) {
         const len = BigInt(`${a.number}`.length);
         let k;
@@ -246,7 +247,6 @@ exports.sqrt = (a) => {
             end = 10n ** (len / 2n - 1n);
             k = 3n * end;
         }
-        let mid;
         while (k <= end) {
             mid = (k + end) / 2n;
             if (mid ** 2n === a.number) {
@@ -264,7 +264,7 @@ exports.sqrt = (a) => {
             }
         }
     }
-    let aprox = util_1.normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
+    let aprox = mid || util_1.normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
     let aprox1;
     while (true) {
         aprox1 = exports.multiply(exports.add(exports.divide(a, aprox), aprox), 0.5);
@@ -280,9 +280,6 @@ exports.sqrt = (a) => {
  */
 exports.cbrt = (a) => {
     a = util_1.normalize(a);
-    if (a.sign) {
-        throw new util_1.DomainError(util_1.stringify(a), 'numbers greater or equal 0');
-    }
     if (a.number === 0n) {
         return {
             comma: 0,
@@ -290,6 +287,7 @@ exports.cbrt = (a) => {
             sign: false
         };
     }
+    let mid;
     if (-a.comma % 3 === 0) {
         const len = BigInt(`${a.number}`.length);
         let k;
@@ -306,7 +304,6 @@ exports.cbrt = (a) => {
             k = 4n * 10n ** (len / 3n);
             end = 10n ** (len / 3n + 1n);
         }
-        let mid;
         while (k <= end) {
             mid = (k + end) / 2n;
             if (mid ** 3n === a.number) {
@@ -324,7 +321,7 @@ exports.cbrt = (a) => {
             }
         }
     }
-    let aprox = util_1.normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
+    let aprox = mid || util_1.normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
     let aprox1;
     while (true) {
         aprox1 = exports.divide(exports.add(exports.divide(a, exports.multiply(aprox, aprox)), exports.multiply(aprox, 2n)), 3n);
@@ -339,8 +336,37 @@ exports.cbrt = (a) => {
  * @returns Result of the exponentiation of e ^ parameter
  */
 exports.exp = (a) => {
-    const sh = trigonometry_1.sinh(a);
-    return exports.add(sh, exports.sqrt(exports.add(1n, exports.multiply(sh, sh))));
+    a = util_1.normalize(a);
+    let f = a.number / 10n ** BigInt(-a.comma);
+    let i = 1n;
+    while (f !== 0n) {
+        f /= 2n;
+        i *= 2n;
+    }
+    if (i !== 1n) {
+        a = exports.divide(a, i);
+    }
+    const b = { ...a };
+    let fact = 1n;
+    let sum = {
+        comma: 0,
+        number: 1n,
+        sign: false
+    };
+    let sum1;
+    for (let k = 1n;; k += 1n) {
+        fact *= k;
+        sum1 = exports.add(sum, exports.divide(a, fact));
+        if (comparison_1.lt(util_1.abs(exports.subtract(sum1, sum)), constants_1.ErrorConst)) {
+            return util_1.normalize({
+                comma: sum1.comma * (+`${i}`),
+                number: sum1.number ** i,
+                sign: false
+            });
+        }
+        a = exports.multiply(a, b);
+        sum = sum1;
+    }
 };
 /**
  * @domain Integers
@@ -351,11 +377,24 @@ exports.factorial = (a) => {
     if (a.comma !== 0 || a.sign) {
         throw new util_1.DomainError(util_1.stringify(a), 'positive integers');
     }
-    let k = 1n;
-    for (let i = 2n; i <= a.number; i += 1n) {
-        k *= i;
+    if (a.number === 0n) {
+        return {
+            comma: 0,
+            number: 1n,
+            sign: false
+        };
     }
-    return util_1.normalize(k);
+    let s = (a.number % 2n === 0n) ? a.number : a.number - 1n;
+    let k = s;
+    for (let f = s - 2n; f > 0n; f = f - 2n) {
+        k += f;
+        s *= k;
+    }
+    return {
+        comma: 0,
+        number: (a.number % 2n === 0n) ? s : s * a.number,
+        sign: false
+    };
 };
 exports.gamma = (a) => {
     /*
@@ -380,7 +419,7 @@ exports.gamma = (a) => {
     }
     let y;
     if (comparison_1.lte(a, 0.5)) {
-        y = exports.divide(constants_1.PI, exports.multiply(trigonometry_1.sin(exports.multiply(constants_1.PI, a)), exports.gamma(exports.subtract(1, a))));
+        y = exports.divide(constants_1.PI, exports.multiply(trigonometry_1.sin(exports.multiply(constants_1.PI, a)), exports.gamma(exports.subtract(1n, a))));
     }
     else {
         a = exports.subtract(a, 1n);

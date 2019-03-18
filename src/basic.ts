@@ -1,7 +1,7 @@
 import { lt, lte } from './comparison';
 import { ErrorConst, LOG10, LOG2, PI } from './constants';
 import { BigNumber, T } from './interfaces';
-import { sin, sinh } from './trigonometry';
+import { sin } from './trigonometry';
 import { abs, DomainError, normalize, stringify } from './util';
 
 /**
@@ -233,7 +233,7 @@ export const power = (a: T, b: T): BigNumber => {
     if (a.sign) {
       a.sign = b.number % 2n === 1n;
     }
-    a.comma = a.comma * Number(b.number);
+    a.comma = a.comma * +`${b.number}`;
     a.number = a.number ** b.number;
 
     return a;
@@ -263,6 +263,7 @@ export const sqrt = (a: T): BigNumber => {
   }
 
   const last = a.number % 10n;
+  let mid;
 
   if (-a.comma % 2 === 0 && !(last === 2n || last === 3n || last === 7n || last === 8n)) {
     const len = BigInt(`${ a.number }`.length);
@@ -276,8 +277,6 @@ export const sqrt = (a: T): BigNumber => {
       end = 10n ** (len / 2n - 1n);
       k = 3n * end;
     }
-
-    let mid;
 
     while (k <= end) {
       mid = (k + end) / 2n;
@@ -296,7 +295,7 @@ export const sqrt = (a: T): BigNumber => {
     }
   }
 
-  let aprox = normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
+  let aprox = mid || normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
   let aprox1;
 
   while (true) {
@@ -314,9 +313,7 @@ export const sqrt = (a: T): BigNumber => {
  */
 export const cbrt = (a: T): BigNumber => {
   a = normalize(a);
-  if (a.sign) {
-    throw new DomainError(stringify(a), 'numbers greater or equal 0');
-  }
+
   if (a.number === 0n) {
     return {
       comma: 0,
@@ -324,6 +321,8 @@ export const cbrt = (a: T): BigNumber => {
       sign: false
     };
   }
+
+  let mid;
 
   if (-a.comma % 3 === 0) {
     const len = BigInt(`${ a.number }`.length);
@@ -340,8 +339,6 @@ export const cbrt = (a: T): BigNumber => {
       k = 4n * 10n ** (len / 3n);
       end = 10n ** (len / 3n + 1n);
     }
-
-    let mid;
 
     while (k <= end) {
       mid = (k + end) / 2n;
@@ -360,7 +357,7 @@ export const cbrt = (a: T): BigNumber => {
     }
   }
 
-  let aprox = normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
+  let aprox = mid || normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
   let aprox1;
 
   while (true) {
@@ -377,9 +374,44 @@ export const cbrt = (a: T): BigNumber => {
  * @returns Result of the exponentiation of e ^ parameter
  */
 export const exp = (a: T): BigNumber => {
-  const sh = sinh(a);
+  a = normalize(a);
 
-  return add(sh, sqrt(add(1n, multiply(sh, sh))));
+  let f = a.number / 10n ** BigInt(-a.comma);
+  let i = 1n;
+
+  while (f !== 0n) {
+    f /= 2n;
+    i *= 2n;
+  }
+
+  if (i !== 1n) {
+    a = divide(a, i);
+  }
+
+  const b = { ...a };
+
+  let fact = 1n;
+
+  let sum = {
+    comma: 0,
+    number: 1n,
+    sign: false
+  };
+  let sum1;
+
+  for (let k = 1n;; k += 1n) {
+    fact *= k;
+    sum1 = add(sum, divide(a, fact));
+    if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
+      return normalize({
+        comma: sum1.comma * (+`${i}`),
+        number: sum1.number ** i,
+        sign: false
+      });
+    }
+    a = multiply(a, b);
+    sum = sum1;
+  }
 };
 
 /**
@@ -391,12 +423,28 @@ export const factorial = (a: T): BigNumber => {
   if (a.comma !== 0 || a.sign) {
     throw new DomainError(stringify(a), 'positive integers');
   }
-  let k = 1n;
-  for (let i = 2n; i <= a.number; i += 1n) {
-    k *= i;
+
+  if (a.number === 0n) {
+    return {
+      comma: 0,
+      number: 1n,
+      sign: false
+    };
   }
 
-  return normalize(k);
+  let s = (a.number % 2n === 0n) ? a.number : a.number - 1n;
+  let k = s;
+
+  for (let f = s - 2n; f > 0n; f = f - 2n) {
+    k += f;
+    s *= k;
+  }
+
+  return {
+    comma: 0,
+    number: (a.number % 2n === 0n) ? s : s * a.number,
+    sign: false
+  };
 };
 
 export const gamma = (a: T): BigNumber => {
@@ -425,7 +473,7 @@ export const gamma = (a: T): BigNumber => {
 
   let y;
   if (lte(a, 0.5)) {
-    y = divide(PI, multiply(sin(multiply(PI, a)), gamma(subtract(1, a))));
+    y = divide(PI, multiply(sin(multiply(PI, a)), gamma(subtract(1n, a))));
   } else {
     a = subtract(a, 1n);
     let x = normalize(p1);
