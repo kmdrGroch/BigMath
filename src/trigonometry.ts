@@ -23,11 +23,11 @@ export const sin = (a: T): BigNumber => {
 
   let f = 1n;
   let i = 1n;
-
+  let s1;
   while (true) {
     f *= i * (i * 4n + 2n);
     k = multiply(k, k2);
-    const s1 = (i % 2n === 0n) ? add(s, divide(k, f)) : subtract(s, divide(k, f));
+    s1 = (i % 2n === 0n) ? add(s, divide(k, f)) : subtract(s, divide(k, f));
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
       return s1;
     }

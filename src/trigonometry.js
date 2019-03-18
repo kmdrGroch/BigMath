@@ -20,10 +20,11 @@ exports.sin = (a) => {
     const k2 = basic_1.multiply(reduce, reduce);
     let f = 1n;
     let i = 1n;
+    let s1;
     while (true) {
         f *= i * (i * 4n + 2n);
         k = basic_1.multiply(k, k2);
-        const s1 = (i % 2n === 0n) ? basic_1.add(s, basic_1.divide(k, f)) : basic_1.subtract(s, basic_1.divide(k, f));
+        s1 = (i % 2n === 0n) ? basic_1.add(s, basic_1.divide(k, f)) : basic_1.subtract(s, basic_1.divide(k, f));
         if (comparison_1.lt(util_1.abs(basic_1.subtract(s1, s)), constants_1.ErrorConst)) {
             return s1;
         }
