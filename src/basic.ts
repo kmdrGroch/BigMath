@@ -29,13 +29,13 @@ export const add = (a: T, b: T): BigNumber => {
       number: a.number * 10n ** BigInt(a.comma - b.comma) + b.number,
       sign: a.sign
     });
-  } else {
-    return normalize({
-      comma: a.comma,
-      number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
-      sign: a.sign
-    });
   }
+
+  return normalize({
+    comma: a.comma,
+    number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
+    sign: a.sign
+  });
 };
 
 /**
@@ -63,13 +63,13 @@ export const subtract = (a: T, b: T): BigNumber => {
       number: a.number * 10n ** BigInt(a.comma - b.comma) - b.number,
       sign: a.sign
     });
-  } else {
-    return normalize({
-      comma: a.comma,
-      number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
-      sign: a.sign
-    });
   }
+
+  return normalize({
+    comma: a.comma,
+    number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
+    sign: a.sign
+  });
 };
 
 /**

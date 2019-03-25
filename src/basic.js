@@ -26,13 +26,11 @@ exports.add = (a, b) => {
             sign: a.sign
         });
     }
-    else {
-        return util_1.normalize({
-            comma: a.comma,
-            number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
-            sign: a.sign
-        });
-    }
+    return util_1.normalize({
+        comma: a.comma,
+        number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
+        sign: a.sign
+    });
 };
 /**
  * @domain Real numbers, Real numbers
@@ -56,13 +54,11 @@ exports.subtract = (a, b) => {
             sign: a.sign
         });
     }
-    else {
-        return util_1.normalize({
-            comma: a.comma,
-            number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
-            sign: a.sign
-        });
-    }
+    return util_1.normalize({
+        comma: a.comma,
+        number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
+        sign: a.sign
+    });
 };
 /**
  * @domain Real numbers
