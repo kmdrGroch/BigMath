@@ -37,17 +37,18 @@ export const normalize = (a: T): BigNumber => {
         sign: false
       });
     case 'object':
-      let x = a.number;
-      if (x === 0n) {
-        return {
-          comma: 0,
-          number: 0n,
-          sign: false
-        };
+      if (a.number < 0n) {
+        a.sign = !a.sign;
+        a.number = -a.number;
       }
-      const sign = !(x < 0n === a.sign);
+
+      if (a.comma === 0) {
+        return { ...a };
+      }
+
+      let x = a.number;
       let comma = a.comma;
-      x = x < 0n ? -x : x;
+
       while (true) {
         if (x % 10n === 0n && comma < 0) {
           comma += 1;
@@ -60,7 +61,7 @@ export const normalize = (a: T): BigNumber => {
       return {
         comma,
         number: x,
-        sign
+        sign: a.sign
       };
   }
 };
@@ -71,7 +72,6 @@ export const normalize = (a: T): BigNumber => {
 export const stringify = (a: T): string => {
   switch (typeof a) {
     case 'string':
-      return a;
     case 'bigint':
     case 'number':
       return `${a}`;
@@ -81,12 +81,12 @@ export const stringify = (a: T): string => {
         const len = s.length + a.comma;
         if (len > 0) {
           return `${a.sign ? '-' : ''}${s.substring(0, len)}.${s.substring(len)}`;
-        } else {
-          return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
         }
-      } else {
-        return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
+
+        return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
       }
+
+      return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
   }
 };
 
@@ -96,7 +96,7 @@ export const round = (a: T): BigNumber => {
     const b = stringify(a).split('.');
 
     if (a.sign) {
-      return +b[1][0] >= 5 ? subtract(b[0], 1n) : normalize(b[0]);
+      return +b[1][0] > 5 ? subtract(b[0], 1n) : normalize(b[0]);
     }
 
     return +b[1][0] >= 5 ? add(b[0], 1n) : normalize(b[0]);

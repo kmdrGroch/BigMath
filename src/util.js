@@ -36,17 +36,15 @@ exports.normalize = (a) => {
                 sign: false
             });
         case 'object':
-            let x = a.number;
-            if (x === 0n) {
-                return {
-                    comma: 0,
-                    number: 0n,
-                    sign: false
-                };
+            if (a.number < 0n) {
+                a.sign = !a.sign;
+                a.number = -a.number;
             }
-            const sign = !(x < 0n === a.sign);
+            if (a.comma === 0) {
+                return { ...a };
+            }
+            let x = a.number;
             let comma = a.comma;
-            x = x < 0n ? -x : x;
             while (true) {
                 if (x % 10n === 0n && comma < 0) {
                     comma += 1;
@@ -59,7 +57,7 @@ exports.normalize = (a) => {
             return {
                 comma,
                 number: x,
-                sign
+                sign: a.sign
             };
     }
 };
@@ -69,7 +67,6 @@ exports.normalize = (a) => {
 exports.stringify = (a) => {
     switch (typeof a) {
         case 'string':
-            return a;
         case 'bigint':
         case 'number':
             return `${a}`;
@@ -80,13 +77,9 @@ exports.stringify = (a) => {
                 if (len > 0) {
                     return `${a.sign ? '-' : ''}${s.substring(0, len)}.${s.substring(len)}`;
                 }
-                else {
-                    return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
-                }
+                return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
             }
-            else {
-                return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
-            }
+            return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
     }
 };
 exports.round = (a) => {
@@ -94,7 +87,7 @@ exports.round = (a) => {
     if (a.comma < 0) {
         const b = exports.stringify(a).split('.');
         if (a.sign) {
-            return +b[1][0] >= 5 ? basic_1.subtract(b[0], 1n) : exports.normalize(b[0]);
+            return +b[1][0] > 5 ? basic_1.subtract(b[0], 1n) : exports.normalize(b[0]);
         }
         return +b[1][0] >= 5 ? basic_1.add(b[0], 1n) : exports.normalize(b[0]);
     }
