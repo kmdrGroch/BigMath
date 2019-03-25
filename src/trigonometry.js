@@ -12,9 +12,7 @@ const util_1 = require("./util");
 exports.sin = (a) => {
     a = util_1.normalize(a);
     const r = basic_1.divide(a, constants_1.PI2);
-    const tens = `${r.number}`.length + r.comma;
-    const d = BigInt(`${r.number}`.substring(0, tens) || 0);
-    const reduce = basic_1.subtract(a, basic_1.multiply(d, constants_1.PI2));
+    const reduce = basic_1.subtract(a, basic_1.multiply(r.number / 10n ** BigInt(-r.comma), constants_1.PI2));
     let s = { ...reduce };
     let k = { ...reduce };
     const k2 = basic_1.multiply(reduce, reduce);

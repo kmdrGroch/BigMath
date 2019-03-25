@@ -13,9 +13,7 @@ export const sin = (a: T): BigNumber => {
   a = normalize(a);
 
   const r = divide(a, PI2);
-  const tens = `${r.number}`.length + r.comma;
-  const d = BigInt(`${r.number}`.substring(0, tens) || 0);
-  const reduce = subtract(a, multiply(d, PI2));
+  const reduce = subtract(a, multiply(r.number / 10n ** BigInt(-r.comma), PI2));
   let s = { ...reduce };
   let k = { ...reduce };
 
