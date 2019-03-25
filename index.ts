@@ -1,7 +1,7 @@
 import { add, cbrt, divide, exp, factorial, gamma, ln, multiply, power, sqrt, subtract } from './src/basic';
 import { bitAND, bitLeft, bitNOT, bitOR, bitRight, bitXOR } from './src/bitOperations';
 import { eq, gt, gte, lt, lte, neq } from './src/comparison';
-import { E, LOG10, LOG2, PI, PI2 } from './src/constants';
+import { E, LOG10, LOG10E, LOG2, LOG2E, PI, PI2, SQRT1_2, SQRT2 } from './src/constants';
 import { AGM, erf, K, W, XY } from './src/other';
 import { acos, acosh, acot, acoth, acsc, acsch, asec, asech, asin,
   asinh, atan, atan2, atanh, cos, cosh, cot, coth, covercosin, coversin,
@@ -64,7 +64,9 @@ export default {
   K,
   ln,
   LOG10,
+  LOG10E,
   LOG2,
+  LOG2E,
   lt,
   lte,
   multiply,
@@ -79,6 +81,8 @@ export default {
   sin,
   sinh,
   sqrt,
+  SQRT1_2,
+  SQRT2,
   stringify,
   subtract,
   tan,

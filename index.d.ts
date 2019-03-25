@@ -52,7 +52,9 @@ declare const _default: {
     K: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     ln: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     LOG10: import("./src/interfaces").BigNumber;
+    LOG10E: import("./src/interfaces").BigNumber;
     LOG2: import("./src/interfaces").BigNumber;
+    LOG2E: import("./src/interfaces").BigNumber;
     lt: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
     lte: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
     multiply: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
@@ -67,6 +69,8 @@ declare const _default: {
     sin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     sinh: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     sqrt: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    SQRT1_2: import("./src/interfaces").BigNumber;
+    SQRT2: import("./src/interfaces").BigNumber;
     stringify: (a: string | number | bigint | import("./src/interfaces").BigNumber) => string;
     subtract: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     tan: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
