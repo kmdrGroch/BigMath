@@ -528,30 +528,33 @@ describe('Rounding', () => {
     expect(BigMath.stringify(BigMath.round(-1.2))).to.be.equal('-1');
   });
   it('6', () => {
-    expect(BigMath.stringify(BigMath.round(-1.7))).to.be.equal('-2');
+    expect(BigMath.stringify(BigMath.round(-1.5))).to.be.equal('-1');
   });
   it('7', () => {
-    expect(BigMath.stringify(BigMath.floor(43242))).to.be.equal('43242');
+    expect(BigMath.stringify(BigMath.round(-1.7))).to.be.equal('-2');
   });
   it('8', () => {
-    expect(BigMath.stringify(BigMath.floor(12.32))).to.be.equal('12');
+    expect(BigMath.stringify(BigMath.floor(43242))).to.be.equal('43242');
   });
   it('9', () => {
-    expect(BigMath.stringify(BigMath.floor(-12.32))).to.be.equal('-13');
+    expect(BigMath.stringify(BigMath.floor(12.32))).to.be.equal('12');
   });
   it('10', () => {
-    expect(BigMath.stringify(BigMath.floor(-12))).to.be.equal('-12');
+    expect(BigMath.stringify(BigMath.floor(-12.32))).to.be.equal('-13');
   });
   it('11', () => {
-    expect(BigMath.stringify(BigMath.ceil(43242))).to.be.equal('43242');
+    expect(BigMath.stringify(BigMath.floor(-12))).to.be.equal('-12');
   });
   it('12', () => {
-    expect(BigMath.stringify(BigMath.ceil(12.32))).to.be.equal('13');
+    expect(BigMath.stringify(BigMath.ceil(43242))).to.be.equal('43242');
   });
   it('13', () => {
-    expect(BigMath.stringify(BigMath.ceil(-12.32))).to.be.equal('-12');
+    expect(BigMath.stringify(BigMath.ceil(12.32))).to.be.equal('13');
   });
   it('14', () => {
+    expect(BigMath.stringify(BigMath.ceil(-12.32))).to.be.equal('-12');
+  });
+  it('15', () => {
     expect(BigMath.stringify(BigMath.ceil(-12))).to.be.equal('-12');
   });
 });
@@ -754,5 +757,35 @@ describe('erf', () => {
   });
   it('3', () => {
     expect(BigMath.stringify(BigMath.erf(-9.6))).to.be.equal('-1');
+  });
+});
+
+describe('constants', () => {
+  it('LOG10', () => {
+    expect(BigMath.stringify(BigMath.LOG10)).to.be.equal('2.302585092994045684017991454684364207601101488628772976033');
+  });
+  it('LOG2', () => {
+    expect(BigMath.stringify(BigMath.LOG2)).to.be.equal('0.693147180559945309417232121458176568075500134360255254120');
+  });
+  it('PI2', () => {
+    expect(BigMath.stringify(BigMath.PI2)).to.be.equal('1.570796326794896619231321691639751442098584699687552910487');
+  });
+  it('PI', () => {
+    expect(BigMath.stringify(BigMath.PI)).to.be.equal('3.141592653589793238462643383279502884197169399375105820974');
+  });
+  it('E', () => {
+    expect(BigMath.stringify(BigMath.E)).to.be.equal('2.718281828459045235360287471352662497757247093699959574966');
+  });
+  it('SQRT2', () => {
+    expect(BigMath.stringify(BigMath.SQRT2)).to.be.equal('1.414213562373095048801688724209698078569671875376948073176');
+  });
+  it('LOG10E', () => {
+    expect(BigMath.stringify(BigMath.LOG10E)).to.be.equal('0.434294481903251827651128918916605082294397005803666566114');
+  });
+  it('LOG2E', () => {
+    expect(BigMath.stringify(BigMath.LOG2E)).to.be.equal('1.442695040888963407359924681001892137426645954152985934135');
+  });
+  it('SQRT1_2', () => {
+    expect(BigMath.stringify(BigMath.SQRT1_2)).to.be.equal('0.707106781186547524400844362104849039284835937688474036588');
   });
 });
