@@ -218,7 +218,7 @@ describe('csc', () => {
 });
 describe('asin', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.asin(0.533))).to.be.equal('0.562142238269342607110513637367750912826317530974004854562019246199353948765230016176961196');
+        chai_1.expect(index_1.default.stringify(index_1.default.asin(0.533))).to.be.equal('0.56214223826934260711051363736775091282632');
     });
     it('2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.asin(1))).to.be.equal('1.570796326794896619231321691639751442098584699687552910487');
@@ -229,7 +229,7 @@ describe('asin', () => {
 });
 describe('acos', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acos(0.43223))).to.be.equal('1.123832078732756669980357528914145635922848349766201610677412277587132733590363291460959793');
+        chai_1.expect(index_1.default.stringify(index_1.default.acos(0.43223))).to.be.equal('1.123832078732756669980357528914145635922864699687552910487');
     });
     it('2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.acos(-1))).to.be.equal('0');
@@ -243,7 +243,7 @@ describe('acos', () => {
 });
 describe('atan', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atan(0.1243))).to.be.equal('0.1236657045016981218895919161905927032478867975115223325055998700814189004870226732478447554');
+        chai_1.expect(index_1.default.stringify(index_1.default.atan(0.1243))).to.be.equal('0.12366570450169812188959191619059270324788');
     });
     it('2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan(0))).to.be.equal('0');
@@ -254,16 +254,16 @@ describe('atan2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan2(0.1243, 0))).to.be.equal('0');
     });
     it('2', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atan2(0.1243, 2.321))).to.be.equal('1.517292936115139214045688674161216076398089206862973876884140584561209925935573846869764208');
+        chai_1.expect(index_1.default.stringify(index_1.default.atan2(0.1243, 2.321))).to.be.equal('1.517292936115139214045688674161216076398');
     });
     it('3', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, 0))).to.be.equal('3.141592653589793238462643383279502884197169399375105820974');
     });
     it('4', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, 1.432))).to.be.equal('1.657380979726293965145260359601776841317620030009411876278088613411541275684796905350061472');
+        chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, 1.432))).to.be.equal('1.657380979726293965145260359601776841317729399375105820974');
     });
     it('5', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, -0.32))).to.be.equal('-1.94129546467971145249202483070387589297911861500545818647992989595010126584593226947280876');
+        chai_1.expect(index_1.default.stringify(index_1.default.atan2(-0.1243, -0.32))).to.be.equal('-1.941295464679711452492024830703875892979129399375105820974');
     });
     it('6', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan2(0, -0.32))).to.be.equal('-1.570796326794896619231321691639751442098584699687552910487');
@@ -274,12 +274,12 @@ describe('atan2', () => {
 });
 describe('acot', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acot(0.1243))).to.be.equal('1.4471306222931984973417297754491587388506979021760305779814001299185810995129773267521552446');
+        chai_1.expect(index_1.default.stringify(index_1.default.acot(0.1243))).to.be.equal('1.447130622293198497341729775449158738850704699687552910487');
     });
 });
 describe('asec', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.asec(1.43223))).to.be.equal('0.797899637397702841131659636555515376791430923458071521572409963496019893210626434608947388');
+        chai_1.expect(index_1.default.stringify(index_1.default.asec(1.43223))).to.be.equal('0.797899637397702841131659636555515376791444699687552910487');
         chai_1.expect(index_1.default.stringify(index_1.default.asec(1))).to.be.equal('0');
     });
     it('2', () => {
@@ -288,7 +288,7 @@ describe('asec', () => {
 });
 describe('acsc', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.acsc(1.523))).to.be.equal('0.716300443472200246991089833654166601282438924639208256586159805894436682782335578217031538');
+        chai_1.expect(index_1.default.stringify(index_1.default.acsc(1.523))).to.be.equal('0.71630044347220024699108983365416660128242');
         chai_1.expect(index_1.default.stringify(index_1.default.acsc(1))).to.be.equal('1.570796326794896619231321691639751442098584699687552910487');
     });
     it('2', () => {
@@ -690,7 +690,7 @@ describe('hacovercosin', () => {
 });
 describe('gd', () => {
     it('1', () => {
-        chai_1.expect(index_1.default.stringify(index_1.default.gd(0.32))).to.be.equal('0.314674448063231600531614833748730702829876710410918744507612226722879910064509975260888856');
+        chai_1.expect(index_1.default.stringify(index_1.default.gd(0.32))).to.be.equal('0.31467444806323160053161483374873070282984');
     });
 });
 describe('erf', () => {
@@ -731,6 +731,30 @@ describe('constants', () => {
     });
     it('SQRT1_2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.SQRT1_2)).to.be.equal('0.707106781186547524400844362104849039284835937688474036588');
+    });
+});
+describe('shrink', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.finalize({
+            comma: -5,
+            number: 10000n,
+            sign: false
+        })).to.be.deep.equal({
+            comma: -1,
+            number: 1n,
+            sign: false
+        });
+    });
+    it('2', () => {
+        chai_1.expect(index_1.default.finalize({
+            comma: -5,
+            number: -10000n,
+            sign: false
+        })).to.be.deep.equal({
+            comma: -1,
+            number: 1n,
+            sign: true
+        });
     });
 });
 //# sourceMappingURL=bm.spec.js.map
