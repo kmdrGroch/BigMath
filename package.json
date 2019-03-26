@@ -11,8 +11,7 @@
     "mutate": "stryker run",
     "docs": "typedoc --out docs --exclude test/**/*.*",
     "test": "npm run build && nyc mocha \"test/**/*.js\" && npm run clean && npm run mutate",
-    "start": "npm run test && tsc -p . && npm run docs && npm run benchmark",
-    "benchmark": "ts-node ./benchmark/benchmarks.ts"
+    "start": "npm run test && tsc -p . && npm run docs"
   },
   "nyc": {
     "check-coverage": true,
@@ -34,24 +33,22 @@
   "author": "kmdrGroch",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.3.4",
+    "@babel/core": "^7.4.0",
     "@babel/plugin-syntax-bigint": "^7.2.0",
     "@stryker-mutator/core": "^1.1.0",
-    "@stryker-mutator/html-reporter": "^1.1.0",
-    "@stryker-mutator/mocha-framework": "^1.1.0",
-    "@stryker-mutator/mocha-runner": "^1.1.0",
-    "@stryker-mutator/typescript": "^1.1.0",
-    "@types/benchmark": "^1.0.31",
+    "@stryker-mutator/html-reporter": "^1.1.1",
+    "@stryker-mutator/mocha-framework": "^1.1.1",
+    "@stryker-mutator/mocha-runner": "^1.1.1",
+    "@stryker-mutator/typescript": "^1.1.1",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
-    "benchmark": "^2.1.4",
     "chai": "^4.2.0",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0",
     "rimraf": "^2.6.3",
     "ts-node": "^8.0.3",
-    "tslint": "^5.13.1",
+    "tslint": "^5.14.0",
     "typedoc": "^0.14.2",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.4000"
   }
 }
