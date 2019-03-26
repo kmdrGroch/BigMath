@@ -272,16 +272,16 @@ describe('atan2', () => {
     expect(BigMath.stringify(BigMath.atan2(0.1243, 0))).to.be.equal('0');
   });
   it('2', () => {
-    expect(BigMath.stringify(BigMath.atan2(0.1243, 2.321))).to.be.equal('1.517292936115139214045688674161216076398');
+    expect(BigMath.stringify(BigMath.atan2(0.1243, 2.321))).to.be.equal('1.517292936115139214045688674161216076398084699687552910487');
   });
   it('3', () => {
     expect(BigMath.stringify(BigMath.atan2(-0.1243, 0))).to.be.equal('3.141592653589793238462643383279502884197169399375105820974');
   });
   it('4', () => {
-    expect(BigMath.stringify(BigMath.atan2(-0.1243, 1.432))).to.be.equal('1.657380979726293965145260359601776841317729399375105820974');
+    expect(BigMath.stringify(BigMath.atan2(-0.1243, 1.432))).to.be.equal('1.657380979726293965145260359601776841317644699687552910487');
   });
   it('5', () => {
-    expect(BigMath.stringify(BigMath.atan2(-0.1243, -0.32))).to.be.equal('-1.941295464679711452492024830703875892979129399375105820974');
+    expect(BigMath.stringify(BigMath.atan2(-0.1243, -0.32))).to.be.equal('-1.941295464679711452492024830703875892979084699687552910487');
   });
   it('6', () => {
     expect(BigMath.stringify(BigMath.atan2(0, -0.32))).to.be.equal('-1.570796326794896619231321691639751442098584699687552910487');
