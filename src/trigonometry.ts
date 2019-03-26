@@ -1,5 +1,5 @@
 import { add, divide, exp, ln, multiply, sqrt, subtract } from './basic';
-import { lt } from './comparison';
+import { gt, lt } from './comparison';
 import { ErrorConst, PI, PI2 } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify } from './util';
@@ -129,12 +129,11 @@ export const acos = (a: T): BigNumber => subtract(PI2, asin(a));
 export const atan = (a: T): BigNumber => {
   a = normalize(a);
 
-  let x = 2n;
-  while (true) {
-    a = divide(a, add(1n, sqrt(add(1n, multiply(a, a)))));
-    if (lt(abs(a), 0.5)) { break; }
-    x *= 2n;
+  if (gt(abs(a), 1n)) {
+    return subtract(a.sign ? multiply(PI2, -1n) : PI2, atan(divide(1n, a)));
   }
+
+  a = divide(a, add(1n, sqrt(add(1n, multiply(a, a)))));
 
   let k = divide(a, add(1n, multiply(a, a)));
   let s = { ...k };
@@ -153,7 +152,7 @@ export const atan = (a: T): BigNumber => {
         s1.comma = -41;
       }
 
-      return multiply(s1, x);
+      return multiply(s1, 2n);
     }
     s = s1;
     i += 2n;

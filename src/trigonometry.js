@@ -112,14 +112,10 @@ exports.acos = (a) => basic_1.subtract(constants_1.PI2, exports.asin(a));
  */
 exports.atan = (a) => {
     a = util_1.normalize(a);
-    let x = 2n;
-    while (true) {
-        a = basic_1.divide(a, basic_1.add(1n, basic_1.sqrt(basic_1.add(1n, basic_1.multiply(a, a)))));
-        if (comparison_1.lt(util_1.abs(a), 0.5)) {
-            break;
-        }
-        x *= 2n;
+    if (comparison_1.gt(util_1.abs(a), 1n)) {
+        return basic_1.subtract(a.sign ? basic_1.multiply(constants_1.PI2, -1n) : constants_1.PI2, exports.atan(basic_1.divide(1n, a)));
     }
+    a = basic_1.divide(a, basic_1.add(1n, basic_1.sqrt(basic_1.add(1n, basic_1.multiply(a, a)))));
     let k = basic_1.divide(a, basic_1.add(1n, basic_1.multiply(a, a)));
     let s = { ...k };
     const con = basic_1.multiply(a, k);
@@ -133,7 +129,7 @@ exports.atan = (a) => {
                 s1.number = s1.number / 10n ** BigInt(-41 - s1.comma);
                 s1.comma = -41;
             }
-            return basic_1.multiply(s1, x);
+            return basic_1.multiply(s1, 2n);
         }
         s = s1;
         i += 2n;
