@@ -1,5 +1,5 @@
 import { add, divide, exp, ln, multiply, sqrt, subtract } from './basic';
-import { lt, lte } from './comparison';
+import { lt } from './comparison';
 import { ErrorConst, PI, PI2 } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify } from './util';
@@ -132,24 +132,31 @@ export const atan = (a: T): BigNumber => {
   let x = 2n;
   while (true) {
     a = divide(a, add(1n, sqrt(add(1n, multiply(a, a)))));
-    if (lte(abs(a), 0.5)) { break; }
+    if (lt(abs(a), 0.5)) { break; }
     x *= 2n;
   }
 
-  let s = { ...a };
-  let k = { ...a };
+  let k = divide(a, add(1n, multiply(a, a)));
+  let s = { ...k };
 
-  const d2 = multiply(a, a);
-  let i = 1n;
+  const con = multiply(a, k);
+
+  let i = 0n;
   let s1;
+
   while (true) {
-    k = multiply(k, d2);
-    s1 = (i % 2n === 1n) ? subtract(s, divide(k, i * 2n + 1n)) : add(s, divide(k, i * 2n + 1n));
+    k = multiply(k, multiply(con, divide(i + 2n, i + 3n)));
+    s1 = add(s, k);
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
+      if (s1.comma < -41) {
+        s1.number = s1.number / 10n ** BigInt(-41 - s1.comma);
+        s1.comma = -41;
+      }
+
       return multiply(s1, x);
     }
     s = s1;
-    i += 1n;
+    i += 2n;
   }
 };
 
@@ -166,10 +173,8 @@ export const atan2 = (a: T, b: T): BigNumber => {
     if (b.number === 0n) {
       throw new DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
     }
-    const k = { ...PI2 };
-    k.sign = b.sign;
 
-    return k;
+    return { ...PI2, sign: b.sign };
   }
 
   if (!a.sign) {
@@ -378,7 +383,7 @@ export const acoth = (a: T): BigNumber => {
 export const asech = (a: T): BigNumber => {
   a = normalize(a);
   if (a.sign || `${a.number}`.length > Math.abs(a.comma)) {
-    if (stringify(a) === '1') {
+    if (a.comma === 0 && !a.sign && a.number === 1n) {
       return {
         comma: 0,
         number: 0n,

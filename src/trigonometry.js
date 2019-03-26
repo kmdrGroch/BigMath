@@ -115,24 +115,28 @@ exports.atan = (a) => {
     let x = 2n;
     while (true) {
         a = basic_1.divide(a, basic_1.add(1n, basic_1.sqrt(basic_1.add(1n, basic_1.multiply(a, a)))));
-        if (comparison_1.lte(util_1.abs(a), 0.5)) {
+        if (comparison_1.lt(util_1.abs(a), 0.5)) {
             break;
         }
         x *= 2n;
     }
-    let s = { ...a };
-    let k = { ...a };
-    const d2 = basic_1.multiply(a, a);
-    let i = 1n;
+    let k = basic_1.divide(a, basic_1.add(1n, basic_1.multiply(a, a)));
+    let s = { ...k };
+    const con = basic_1.multiply(a, k);
+    let i = 0n;
     let s1;
     while (true) {
-        k = basic_1.multiply(k, d2);
-        s1 = (i % 2n === 1n) ? basic_1.subtract(s, basic_1.divide(k, i * 2n + 1n)) : basic_1.add(s, basic_1.divide(k, i * 2n + 1n));
+        k = basic_1.multiply(k, basic_1.multiply(con, basic_1.divide(i + 2n, i + 3n)));
+        s1 = basic_1.add(s, k);
         if (comparison_1.lt(util_1.abs(basic_1.subtract(s1, s)), constants_1.ErrorConst)) {
+            if (s1.comma < -41) {
+                s1.number = s1.number / 10n ** BigInt(-41 - s1.comma);
+                s1.comma = -41;
+            }
             return basic_1.multiply(s1, x);
         }
         s = s1;
-        i += 1n;
+        i += 2n;
     }
 };
 /**
@@ -147,9 +151,7 @@ exports.atan2 = (a, b) => {
         if (b.number === 0n) {
             throw new util_1.DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
         }
-        const k = { ...constants_1.PI2 };
-        k.sign = b.sign;
-        return k;
+        return { ...constants_1.PI2, sign: b.sign };
     }
     if (!a.sign) {
         return exports.atan(basic_1.divide(b, a));
@@ -328,7 +330,7 @@ exports.acoth = (a) => {
 exports.asech = (a) => {
     a = util_1.normalize(a);
     if (a.sign || `${a.number}`.length > Math.abs(a.comma)) {
-        if (util_1.stringify(a) === '1') {
+        if (a.comma === 0 && !a.sign && a.number === 1n) {
             return {
                 comma: 0,
                 number: 0n,
