@@ -13,9 +13,12 @@ export const AGM = (a: T, b: T): BigNumber => {
   if (a.sign || b.sign) {
     throw new DomainError(`AGM(${stringify(a)}, ${stringify(b)})`, 'arguments have to be positive');
   }
+
+  let c;
+  let a1;
   while (true) {
-    const c = normalize(a);
-    const a1 = multiply(add(c, b), 0.5);
+    c = { ...a };
+    a1 = multiply(add(c, b), 0.5);
     if (lt(abs(subtract(a1, a)), ErrorConst)) {
       return a1;
     }
@@ -79,7 +82,7 @@ export const XY = (a: T): BigNumber => {
     return a;
   }
   a = ln(a);
-  const b = normalize(a);
+  const b = { ...a };
   b.sign = !b.sign;
   a = divide(W(b), a);
   a.sign = !a.sign;
@@ -99,7 +102,7 @@ export const erf = (a: T): BigNumber => {
   }
 
   const a2 = multiply(a, a);
-  let sum = normalize(a);
+  let sum = { ...a };
   let fact = 1n;
   let k = 1n;
 

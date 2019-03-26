@@ -13,9 +13,11 @@ exports.AGM = (a, b) => {
     if (a.sign || b.sign) {
         throw new util_1.DomainError(`AGM(${util_1.stringify(a)}, ${util_1.stringify(b)})`, 'arguments have to be positive');
     }
+    let c;
+    let a1;
     while (true) {
-        const c = util_1.normalize(a);
-        const a1 = basic_1.multiply(basic_1.add(c, b), 0.5);
+        c = { ...a };
+        a1 = basic_1.multiply(basic_1.add(c, b), 0.5);
         if (comparison_1.lt(util_1.abs(basic_1.subtract(a1, a)), constants_1.ErrorConst)) {
             return a1;
         }
@@ -73,7 +75,7 @@ exports.XY = (a) => {
         return a;
     }
     a = basic_1.ln(a);
-    const b = util_1.normalize(a);
+    const b = { ...a };
     b.sign = !b.sign;
     a = basic_1.divide(exports.W(b), a);
     a.sign = !a.sign;
@@ -89,7 +91,7 @@ exports.erf = (a) => {
         };
     }
     const a2 = basic_1.multiply(a, a);
-    let sum = util_1.normalize(a);
+    let sum = { ...a };
     let fact = 1n;
     let k = 1n;
     let sum1;

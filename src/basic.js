@@ -20,13 +20,13 @@ exports.add = (a, b) => {
         return exports.subtract(a, b);
     }
     if (a.comma > b.comma) {
-        return util_1.normalize({
+        return util_1.finalize({
             comma: b.comma,
             number: a.number * 10n ** BigInt(a.comma - b.comma) + b.number,
             sign: a.sign
         });
     }
-    return util_1.normalize({
+    return util_1.finalize({
         comma: a.comma,
         number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
         sign: a.sign
@@ -48,13 +48,13 @@ exports.subtract = (a, b) => {
         return exports.add(a, b);
     }
     if (a.comma > b.comma) {
-        return util_1.normalize({
+        return util_1.finalize({
             comma: b.comma,
             number: a.number * 10n ** BigInt(a.comma - b.comma) - b.number,
             sign: a.sign
         });
     }
-    return util_1.normalize({
+    return util_1.finalize({
         comma: a.comma,
         number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
         sign: a.sign
@@ -67,7 +67,7 @@ exports.subtract = (a, b) => {
 exports.multiply = (a, b) => {
     a = util_1.normalize(a);
     b = util_1.normalize(b);
-    return util_1.normalize({
+    return util_1.finalize({
         comma: a.comma + b.comma,
         number: a.number * b.number,
         sign: a.sign !== b.sign
@@ -98,10 +98,10 @@ exports.divide = (a, b) => {
     let i = 0;
     let f;
     while (i !== 50) {
-        f = a.number / b.number;
         if (a.number === 0n) {
             break;
         }
+        f = a.number / b.number;
         d += `${f}`;
         a.number = (a.number - f * b.number) * 10n;
         i += 1;
@@ -174,12 +174,13 @@ exports.ln = (a) => {
             }
     }
     let sum = exports.divide(exports.subtract(a, 1n), exports.add(a, 1n));
-    let p = util_1.normalize(sum);
+    let p = { ...sum };
     const k = exports.multiply(sum, sum);
     let i = 3n;
+    let sum1;
     while (true) {
         p = exports.multiply(p, k);
-        const sum1 = exports.add(sum, exports.divide(p, i));
+        sum1 = exports.add(sum, exports.divide(p, i));
         if (comparison_1.lt(util_1.abs(exports.subtract(sum1, sum)), constants_1.ErrorConst)) {
             return exports.add(ten, exports.multiply(sum1, 2n));
         }
@@ -246,7 +247,7 @@ exports.sqrt = (a) => {
         while (k <= end) {
             mid = (k + end) / 2n;
             if (mid ** 2n === a.number) {
-                return util_1.normalize({
+                return util_1.finalize({
                     comma: a.comma / 2,
                     number: mid,
                     sign: false
@@ -303,7 +304,7 @@ exports.cbrt = (a) => {
         while (k <= end) {
             mid = (k + end) / 2n;
             if (mid ** 3n === a.number) {
-                return util_1.normalize({
+                return util_1.finalize({
                     comma: a.comma / 3,
                     number: mid,
                     sign: false
@@ -354,7 +355,7 @@ exports.exp = (a) => {
         fact *= k;
         sum1 = exports.add(sum, exports.divide(a, fact));
         if (comparison_1.lt(util_1.abs(exports.subtract(sum1, sum)), constants_1.ErrorConst)) {
-            return util_1.normalize({
+            return util_1.finalize({
                 comma: sum1.comma * (+`${i}`),
                 number: sum1.number ** i,
                 sign: false

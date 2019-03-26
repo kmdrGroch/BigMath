@@ -2,7 +2,7 @@ import { lt, lte } from './comparison';
 import { ErrorConst, LOG10, LOG2, PI } from './constants';
 import { BigNumber, T } from './interfaces';
 import { sin } from './trigonometry';
-import { abs, DomainError, normalize, stringify } from './util';
+import { abs, DomainError, finalize, normalize, stringify } from './util';
 
 /**
  * @domain Real numbers, Real numbers
@@ -24,14 +24,14 @@ export const add = (a: T, b: T): BigNumber => {
   }
 
   if (a.comma > b.comma) {
-    return normalize({
+    return finalize({
       comma: b.comma,
       number: a.number * 10n ** BigInt(a.comma - b.comma) + b.number,
       sign: a.sign
     });
   }
 
-  return normalize({
+  return finalize({
     comma: a.comma,
     number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
     sign: a.sign
@@ -58,14 +58,14 @@ export const subtract = (a: T, b: T): BigNumber => {
   }
 
   if (a.comma > b.comma) {
-    return normalize({
+    return finalize({
       comma: b.comma,
       number: a.number * 10n ** BigInt(a.comma - b.comma) - b.number,
       sign: a.sign
     });
   }
 
-  return normalize({
+  return finalize({
     comma: a.comma,
     number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
     sign: a.sign
@@ -80,7 +80,7 @@ export const multiply = (a: T, b: T): BigNumber => {
   a = normalize(a);
   b = normalize(b);
 
-  return normalize({
+  return finalize({
     comma: a.comma + b.comma,
     number: a.number * b.number,
     sign: a.sign !== b.sign
@@ -115,10 +115,10 @@ export const divide = (a: T, b: T): BigNumber => {
   let i = 0;
   let f;
   while (i !== 50) {
-    f = a.number / b.number;
     if (a.number === 0n) {
       break;
     }
+    f = a.number / b.number;
     d += `${f}`;
     a.number = (a.number - f * b.number) * 10n;
     i += 1;
@@ -200,13 +200,13 @@ export const ln = (a: T) => {
   }
 
   let sum = divide(subtract(a, 1n), add(a, 1n));
-  let p = normalize(sum);
+  let p = { ...sum };
   const k = multiply(sum, sum);
   let i = 3n;
-
+  let sum1;
   while (true) {
     p = multiply(p, k);
-    const sum1 = add(sum, divide(p, i));
+    sum1 = add(sum, divide(p, i));
     if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
       return add(ten, multiply(sum1, 2n));
     }
@@ -281,7 +281,7 @@ export const sqrt = (a: T): BigNumber => {
     while (k <= end) {
       mid = (k + end) / 2n;
       if (mid ** 2n === a.number) {
-        return normalize({
+        return finalize({
           comma: a.comma / 2,
           number: mid,
           sign: false
@@ -343,7 +343,7 @@ export const cbrt = (a: T): BigNumber => {
     while (k <= end) {
       mid = (k + end) / 2n;
       if (mid ** 3n === a.number) {
-        return normalize({
+        return finalize({
           comma: a.comma / 3,
           number: mid,
           sign: false
@@ -403,7 +403,7 @@ export const exp = (a: T): BigNumber => {
     fact *= k;
     sum1 = add(sum, divide(a, fact));
     if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
-      return normalize({
+      return finalize({
         comma: sum1.comma * (+`${i}`),
         number: sum1.number ** i,
         sign: false
