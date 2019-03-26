@@ -79,7 +79,7 @@ exports.stringify = (a) => {
                 }
                 return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
             }
-            return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
+            return `${a.sign ? '-' : ''}${s}`;
     }
 };
 exports.round = (a) => {
@@ -87,9 +87,9 @@ exports.round = (a) => {
     if (a.comma < 0) {
         const b = exports.stringify(a).split('.');
         if (a.sign) {
-            return +b[1][0] > 5 ? basic_1.subtract(b[0], 1n) : exports.normalize(b[0]);
+            return +b[1][0] > 5 ? basic_1.subtract(BigInt(b[0]), 1n) : exports.normalize(BigInt(b[0]));
         }
-        return +b[1][0] >= 5 ? basic_1.add(b[0], 1n) : exports.normalize(b[0]);
+        return +b[1][0] >= 5 ? basic_1.add(BigInt(b[0]), 1n) : exports.normalize(BigInt(b[0]));
     }
     return a;
 };
@@ -97,17 +97,17 @@ exports.floor = (a) => {
     a = exports.normalize(a);
     if (a.sign) {
         const b = exports.stringify(a).split('.');
-        return b[1] ? basic_1.subtract(b[0], 1) : exports.normalize(b[0]);
+        return b[1] ? basic_1.subtract(BigInt(b[0]), 1n) : exports.normalize(BigInt(b[0]));
     }
-    return exports.normalize(exports.stringify(a).split('.')[0]);
+    return exports.normalize(BigInt(exports.stringify(a).split('.')[0]));
 };
 exports.ceil = (a) => {
     a = exports.normalize(a);
     if (!a.sign) {
         const b = exports.stringify(a).split('.');
-        return b[1] ? basic_1.add(b[0], 1) : exports.normalize(b[0]);
+        return b[1] ? basic_1.add(BigInt(b[0]), 1n) : exports.normalize(BigInt(b[0]));
     }
-    return exports.normalize(exports.stringify(a).split('.')[0]);
+    return exports.normalize(BigInt(exports.stringify(a).split('.')[0]));
 };
 /**
  * @returns Absolute value
@@ -121,4 +121,19 @@ exports.abs = (a) => {
  * Checks if number is an integer
  */
 exports.isInteger = (a) => exports.normalize(a).comma >= 0;
+/**
+ * Faster version of normalize
+ */
+exports.finalize = (a) => {
+    while (true) {
+        if (a.number % 10n === 0n && a.comma < 0) {
+            a.comma += 1;
+            a.number /= 10n;
+        }
+        else {
+            break;
+        }
+    }
+    return a.number < 0n ? { comma: a.comma, number: -a.number, sign: !a.sign } : a;
+};
 //# sourceMappingURL=util.js.map

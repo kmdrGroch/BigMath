@@ -86,7 +86,7 @@ export const stringify = (a: T): string => {
         return `${a.sign ? '-' : ''}0.${'0'.repeat(-len) + s}`;
       }
 
-      return `${a.sign ? '-' : ''}${s}${'0'.repeat(a.comma)}`;
+      return `${a.sign ? '-' : ''}${s}`;
   }
 };
 
@@ -94,12 +94,11 @@ export const round = (a: T): BigNumber => {
   a = normalize(a);
   if (a.comma < 0) {
     const b = stringify(a).split('.');
-
     if (a.sign) {
-      return +b[1][0] > 5 ? subtract(b[0], 1n) : normalize(b[0]);
+      return +b[1][0] > 5 ? subtract(BigInt(b[0]), 1n) : normalize(BigInt(b[0]));
     }
 
-    return +b[1][0] >= 5 ? add(b[0], 1n) : normalize(b[0]);
+    return +b[1][0] >= 5 ? add(BigInt(b[0]), 1n) : normalize(BigInt(b[0]));
   }
 
   return a;
@@ -110,10 +109,10 @@ export const floor = (a: T): BigNumber => {
   if (a.sign) {
     const b = stringify(a).split('.');
 
-    return b[1] ? subtract(b[0], 1) : normalize(b[0]);
+    return b[1] ? subtract(BigInt(b[0]), 1n) : normalize(BigInt(b[0]));
   }
 
-  return normalize(stringify(a).split('.')[0]);
+  return normalize(BigInt(stringify(a).split('.')[0]));
 };
 
 export const ceil = (a: T): BigNumber => {
@@ -121,10 +120,10 @@ export const ceil = (a: T): BigNumber => {
   if (!a.sign) {
     const b = stringify(a).split('.');
 
-    return b[1] ? add(b[0], 1) : normalize(b[0]);
+    return b[1] ? add(BigInt(b[0]), 1n) : normalize(BigInt(b[0]));
   }
 
-  return normalize(stringify(a).split('.')[0]);
+  return normalize(BigInt(stringify(a).split('.')[0]));
 };
 
 /**
@@ -141,3 +140,20 @@ export const abs = (a: T): BigNumber => {
  * Checks if number is an integer
  */
 export const isInteger = (a: T): boolean => normalize(a).comma >= 0;
+
+/**
+ * Faster version of normalize
+ */
+export const finalize = (a: BigNumber): BigNumber => {
+
+  while (true) {
+    if (a.number % 10n === 0n && a.comma < 0) {
+      a.comma += 1;
+      a.number /= 10n;
+    } else {
+      break;
+    }
+  }
+
+  return a.number < 0n ? { comma: a.comma, number: -a.number, sign: !a.sign } : a;
+};

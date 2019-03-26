@@ -24,3 +24,7 @@ export declare const abs: (a: string | number | bigint | BigNumber) => BigNumber
  * Checks if number is an integer
  */
 export declare const isInteger: (a: string | number | bigint | BigNumber) => boolean;
+/**
+ * Faster version of normalize
+ */
+export declare const finalize: (a: BigNumber) => BigNumber;
