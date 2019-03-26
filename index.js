@@ -47,6 +47,7 @@ exports.default = {
     erf: other_1.erf,
     exp: basic_1.exp,
     factorial: basic_1.factorial,
+    finalize: util_1.finalize,
     floor: util_1.floor,
     gamma: basic_1.gamma,
     gd: trigonometry_1.gd,

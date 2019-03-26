@@ -39,6 +39,7 @@ declare const _default: {
     erf: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     exp: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     factorial: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    finalize: (a: import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     floor: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     gamma: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     gd: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;

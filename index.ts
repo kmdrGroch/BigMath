@@ -6,7 +6,7 @@ import { AGM, erf, K, W, XY } from './src/other';
 import { acos, acosh, acot, acoth, acsc, acsch, asec, asech, asin,
   asinh, atan, atan2, atanh, cos, cosh, cot, coth, covercosin, coversin,
   csc, csch, gd, hacovercosin, hacoversin, havercosin, haversin, sec, sech, sin, sinh, tan, tanh, vercosin, versin } from './src/trigonometry';
-import { abs, ceil, DomainError, floor, isInteger, normalize, round, stringify } from './src/util';
+import { abs, ceil, DomainError, finalize, floor, isInteger, normalize, round, stringify } from './src/util';
 
 export {
   DomainError
@@ -51,6 +51,7 @@ export default {
   erf,
   exp,
   factorial,
+  finalize,
   floor,
   gamma,
   gd,
