@@ -38,6 +38,7 @@ declare const _default: {
     eq: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
     erf: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     exp: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    expm1: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     factorial: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     finalize: (a: import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     floor: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
@@ -52,9 +53,12 @@ declare const _default: {
     isInteger: (a: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
     K: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     ln: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    ln1p: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     LOG10: import("./src/interfaces").BigNumber;
+    log10: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     LOG10E: import("./src/interfaces").BigNumber;
     LOG2: import("./src/interfaces").BigNumber;
+    log2: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     LOG2E: import("./src/interfaces").BigNumber;
     lt: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;
     lte: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => boolean;

@@ -1,4 +1,4 @@
-import { add, cbrt, divide, exp, factorial, gamma, ln, multiply, power, sqrt, subtract } from './src/basic';
+import { add, cbrt, divide, exp, expm1, factorial, gamma, ln, ln1p, log10, log2, multiply, power, sqrt, subtract } from './src/basic';
 import { bitAND, bitLeft, bitNOT, bitOR, bitRight, bitXOR } from './src/bitOperations';
 import { eq, gt, gte, lt, lte, neq } from './src/comparison';
 import { E, LOG10, LOG10E, LOG2, LOG2E, PI, PI2, SQRT1_2, SQRT2 } from './src/constants';
@@ -50,6 +50,7 @@ export default {
   eq,
   erf,
   exp,
+  expm1,
   factorial,
   finalize,
   floor,
@@ -64,9 +65,12 @@ export default {
   isInteger,
   K,
   ln,
+  ln1p,
   LOG10,
+  log10,
   LOG10E,
   LOG2,
+  log2,
   LOG2E,
   lt,
   lte,

@@ -216,6 +216,32 @@ export const ln = (a: T) => {
 };
 
 /**
+ * @domain Numbers greater than -1
+ * @returns Natural logarithm (base e) of a number + 1
+ */
+export const ln1p = (a: T): BigNumber => {
+  a = normalize(a);
+
+  if (lte(a, -1n)) {
+    throw new DomainError(stringify(a), 'numbers greater than -1');
+  }
+
+  return ln(add(1n, a));
+};
+
+/**
+ * @domain Numbers greater than 0
+ * @returns Logarithm base 10 of a number
+ */
+export const log10 = (a: T): BigNumber => divide(ln(a), LOG10);
+
+/**
+ * @domain Numbers greater than 0
+ * @returns Logarithm base 2 of a number
+ */
+export const log2 = (a: T): BigNumber => divide(ln(a), LOG2);
+
+/**
  * @domain Real numbers, Real numbers | both can't be 0 at the same time | not negative ^ non-integer
  * @returns Result of the exponentiation of parameters
  */
@@ -413,6 +439,12 @@ export const exp = (a: T): BigNumber => {
     sum = sum1;
   }
 };
+
+/**
+ * @domain Real numbers
+ * @returns Result of the exponentiation of e ^ parameter - 1
+ */
+export const expm1 = (a: T): BigNumber => subtract(exp(a), 1n);
 
 /**
  * @domain Integers

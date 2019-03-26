@@ -109,9 +109,50 @@ describe('ln', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.ln(0.2))).to.be.equal('-1.6094379124341003746007593332261876395256009174635378381291220638708746935398089758237808956');
     });
 });
+describe('log2', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.log2(8))).to.be.equal('3.0000000000000000000000000000000000000000006301763');
+    });
+    it('2', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.log2(0))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0. Expected: numbers greater than 0');
+        chai_1.expect(() => index_1.default.stringify(index_1.default.log2(-123.423))).to.throw(index_1.DomainError, 'Number out of domain. Given: -123.423. Expected: numbers greater than 0');
+    });
+    it('3', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.log2(0.04))).to.be.equal('-4.6438561897747246957406388589787803517296621558727');
+    });
+});
+describe('log10', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.log10(8))).to.be.equal('0.90308998699194358564121668417347908030456983408831');
+    });
+    it('2', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.log10(0))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0. Expected: numbers greater than 0');
+        chai_1.expect(() => index_1.default.stringify(index_1.default.log10(-123.423))).to.throw(index_1.DomainError, 'Number out of domain. Given: -123.423. Expected: numbers greater than 0');
+    });
+    it('3', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.log10(0.04))).to.be.equal('-1.39794000867203760957252221055101394646362004737379');
+    });
+});
+describe('log1p', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.ln1p(8))).to.be.equal('2.197224577336219382790490473845051409294981154085466651848636605770876959713049334181888287');
+    });
+    it('2', () => {
+        chai_1.expect(() => index_1.default.stringify(index_1.default.ln1p(-1))).to.throw(index_1.DomainError, 'Number out of domain. Given: -1. Expected: numbers greater than -1');
+        chai_1.expect(() => index_1.default.stringify(index_1.default.ln1p(-123.423))).to.throw(index_1.DomainError, 'Number out of domain. Given: -123.423. Expected: numbers greater than -1');
+    });
+    it('3', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.ln1p(0.04))).to.be.equal('0.0392207131532812962692008965711198938295653846918623394861827469463323122737949287409460554');
+    });
+});
 describe('exp', () => {
     it('1', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.exp(0.43242))).to.be.equal('1.5409821917860738933829323161090366019199690283787678674548750116118517106499841522229360078');
+    });
+});
+describe('expm1', () => {
+    it('1', () => {
+        chai_1.expect(index_1.default.stringify(index_1.default.expm1(0.43242))).to.be.equal('0.5409821917860738933829323161090366019199690283787678674548750116118517106499841522229360078');
     });
 });
 describe('factorial', () => {

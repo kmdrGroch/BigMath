@@ -189,6 +189,27 @@ exports.ln = (a) => {
     }
 };
 /**
+ * @domain Numbers greater than -1
+ * @returns Natural logarithm (base e) of a number + 1
+ */
+exports.ln1p = (a) => {
+    a = util_1.normalize(a);
+    if (comparison_1.lte(a, -1n)) {
+        throw new util_1.DomainError(util_1.stringify(a), 'numbers greater than -1');
+    }
+    return exports.ln(exports.add(1n, a));
+};
+/**
+ * @domain Numbers greater than 0
+ * @returns Logarithm base 10 of a number
+ */
+exports.log10 = (a) => exports.divide(exports.ln(a), constants_1.LOG10);
+/**
+ * @domain Numbers greater than 0
+ * @returns Logarithm base 2 of a number
+ */
+exports.log2 = (a) => exports.divide(exports.ln(a), constants_1.LOG2);
+/**
  * @domain Real numbers, Real numbers | both can't be 0 at the same time | not negative ^ non-integer
  * @returns Result of the exponentiation of parameters
  */
@@ -365,6 +386,11 @@ exports.exp = (a) => {
         sum = sum1;
     }
 };
+/**
+ * @domain Real numbers
+ * @returns Result of the exponentiation of e ^ parameter - 1
+ */
+exports.expm1 = (a) => exports.subtract(exports.exp(a), 1n);
 /**
  * @domain Integers
  * @returns Product of all integers until given number

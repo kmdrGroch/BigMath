@@ -25,6 +25,21 @@ export declare const divide: (a: string | number | bigint | BigNumber, b: string
  */
 export declare const ln: (a: string | number | bigint | BigNumber) => BigNumber;
 /**
+ * @domain Numbers greater than -1
+ * @returns Natural logarithm (base e) of a number + 1
+ */
+export declare const ln1p: (a: string | number | bigint | BigNumber) => BigNumber;
+/**
+ * @domain Numbers greater than 0
+ * @returns Logarithm base 10 of a number
+ */
+export declare const log10: (a: string | number | bigint | BigNumber) => BigNumber;
+/**
+ * @domain Numbers greater than 0
+ * @returns Logarithm base 2 of a number
+ */
+export declare const log2: (a: string | number | bigint | BigNumber) => BigNumber;
+/**
  * @domain Real numbers, Real numbers | both can't be 0 at the same time | not negative ^ non-integer
  * @returns Result of the exponentiation of parameters
  */
@@ -44,6 +59,11 @@ export declare const cbrt: (a: string | number | bigint | BigNumber) => BigNumbe
  * @returns Result of the exponentiation of e ^ parameter
  */
 export declare const exp: (a: string | number | bigint | BigNumber) => BigNumber;
+/**
+ * @domain Real numbers
+ * @returns Result of the exponentiation of e ^ parameter - 1
+ */
+export declare const expm1: (a: string | number | bigint | BigNumber) => BigNumber;
 /**
  * @domain Integers
  * @returns Product of all integers until given number
