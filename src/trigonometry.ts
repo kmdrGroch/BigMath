@@ -130,7 +130,7 @@ export const atan = (a: T): BigNumber => {
   a = normalize(a);
 
   if (gt(abs(a), 1n)) {
-    return subtract(a.sign ? multiply(PI2, -1n) : PI2, atan(divide(1n, a)));
+    return subtract({ ...PI2, sign: a.sign }, atan(divide(1n, a)));
   }
 
   a = divide(a, add(1n, sqrt(add(1n, multiply(a, a)))));
