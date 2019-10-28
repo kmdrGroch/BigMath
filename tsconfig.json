@@ -16,15 +16,7 @@
     "strict": true,
     "lib": [
       "dom",
-      "es5",
-      "es2015.iterable",
-      "es2015.promise",
-      "es2015.core",
-      "es2015.symbol",
-      "es2015.symbol.wellknown",
-      "es2015.proxy",
-      "esnext",
-      "esnext.intl"
-    ]
+      "esnext"
+    ],
   }
 }

@@ -62,7 +62,10 @@ export const W = (a: T): BigNumber => {
   while (true) {
     ex = exp(w);
     wjewj = multiply(w, ex);
-    w1 = subtract(w, divide(subtract(wjewj, a), subtract(add(wjewj, ex), divide(multiply(add(w, 2n), subtract(wjewj, a)), multiply(add(w, 1n), 2n)))));
+    w1 = subtract(
+      w,
+      divide(subtract(wjewj, a), subtract(add(wjewj, ex), divide(multiply(add(w, 2n), subtract(wjewj, a)), multiply(add(w, 1n), 2n))))
+    );
     if (lt(abs(subtract(w, w1)), ErrorConst)) {
       return w1;
     }
@@ -108,7 +111,7 @@ export const erf = (a: T): BigNumber => {
 
   let sum1;
 
-  for (let i = 1n;; i += 1n) {
+  for (let i = 1n; ; i += 1n) {
     fact *= i;
     k += 2n;
     a = multiply(a, a2);

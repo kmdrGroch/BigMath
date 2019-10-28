@@ -177,7 +177,7 @@ describe('power', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.power(2, 3))).to.be.equal('8');
     });
     it('2', () => {
-        chai_1.expect(() => index_1.default.stringify(index_1.default.power(0, 0))).to.throw(index_1.DomainError, 'Number out of domain. Given: 0 ^ 0. Expected: real numbers | both can\'t be 0 at the same time');
+        chai_1.expect(() => index_1.default.stringify(index_1.default.power(0, 0))).to.throw(index_1.DomainError, "Number out of domain. Given: 0 ^ 0. Expected: real numbers | both can't be 0 at the same time");
     });
     it('3', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.power(1.74, 3.14))).to.be.equal('5.69278313249561028952140592115895686170578485983175490178811053264547398360224498329398094382953454758421056238019480788945517537932813048821026546006266334634284974570502104107026576');
@@ -310,7 +310,7 @@ describe('atan2', () => {
         chai_1.expect(index_1.default.stringify(index_1.default.atan2(0, -0.32))).to.be.equal('-1.570796326794896619231321691639751442098584699687552910487');
     });
     it('7', () => {
-        chai_1.expect(() => index_1.default.stringify(index_1.default.atan2(0, 0))).to.throw(index_1.DomainError, 'Number out of domain. Given: atan(0, 0). Expected: Real numbers | Both can\'t be 0');
+        chai_1.expect(() => index_1.default.stringify(index_1.default.atan2(0, 0))).to.throw(index_1.DomainError, "Number out of domain. Given: atan(0, 0). Expected: Real numbers | Both can't be 0");
     });
 });
 describe('acot', () => {

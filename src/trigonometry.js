@@ -22,7 +22,7 @@ exports.sin = (a) => {
     while (true) {
         f *= i * (i * 4n + 2n);
         k = basic_1.multiply(k, k2);
-        s1 = (i % 2n === 0n) ? basic_1.add(s, basic_1.divide(k, f)) : basic_1.subtract(s, basic_1.divide(k, f));
+        s1 = i % 2n === 0n ? basic_1.add(s, basic_1.divide(k, f)) : basic_1.subtract(s, basic_1.divide(k, f));
         if (comparison_1.lt(util_1.abs(basic_1.subtract(s1, s)), constants_1.ErrorConst)) {
             return s1;
         }
@@ -113,7 +113,7 @@ exports.acos = (a) => basic_1.subtract(constants_1.PI2, exports.asin(a));
 exports.atan = (a) => {
     a = util_1.normalize(a);
     if (comparison_1.gt(util_1.abs(a), 1n)) {
-        return basic_1.subtract(a.sign ? basic_1.multiply(constants_1.PI2, -1n) : constants_1.PI2, exports.atan(basic_1.divide(1n, a)));
+        return basic_1.subtract({ ...constants_1.PI2, sign: a.sign }, exports.atan(basic_1.divide(1n, a)));
     }
     a = basic_1.divide(a, basic_1.add(1n, basic_1.sqrt(basic_1.add(1n, basic_1.multiply(a, a)))));
     let k = basic_1.divide(a, basic_1.add(1n, basic_1.multiply(a, a)));
@@ -145,7 +145,7 @@ exports.atan2 = (a, b) => {
     b = util_1.normalize(b);
     if (a.number === 0n) {
         if (b.number === 0n) {
-            throw new util_1.DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
+            throw new util_1.DomainError('atan(0, 0)', "Real numbers | Both can't be 0");
         }
         return { ...constants_1.PI2, sign: b.sign };
     }

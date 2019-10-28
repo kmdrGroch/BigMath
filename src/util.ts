@@ -5,7 +5,7 @@ import { BigNumber, T } from './interfaces';
  * Custom error to handle invalid domain
  */
 export class DomainError extends RangeError {
-  public constructor(given: string, expected: string) {
+  constructor(given: string, expected: string) {
     super(`Number out of domain. Given: ${given}. Expected: ${expected}`);
     this.name = 'DomainError';
   }
@@ -20,7 +20,7 @@ export const normalize = (a: T): BigNumber => {
       a = `${a}`;
 
       return normalize({
-        comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
+        comma: a.includes('.') ? a.indexOf('.') + 1 - a.length : 0,
         number: BigInt(a.split('.').join('')),
         sign: false
       });
@@ -32,7 +32,7 @@ export const normalize = (a: T): BigNumber => {
       };
     case 'string':
       return normalize({
-        comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
+        comma: a.includes('.') ? a.indexOf('.') + 1 - a.length : 0,
         number: BigInt(a.split('.').join('')),
         sign: false
       });
@@ -145,7 +145,6 @@ export const isInteger = (a: T): boolean => normalize(a).comma >= 0;
  * Faster version of normalize
  */
 export const finalize = (a: BigNumber): BigNumber => {
-
   while (true) {
     if (a.number % 10n === 0n && a.comma < 0) {
       a.comma += 1;

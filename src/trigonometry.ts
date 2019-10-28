@@ -25,7 +25,7 @@ export const sin = (a: T): BigNumber => {
   while (true) {
     f *= i * (i * 4n + 2n);
     k = multiply(k, k2);
-    s1 = (i % 2n === 0n) ? add(s, divide(k, f)) : subtract(s, divide(k, f));
+    s1 = i % 2n === 0n ? add(s, divide(k, f)) : subtract(s, divide(k, f));
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
       return s1;
     }
@@ -170,7 +170,7 @@ export const atan2 = (a: T, b: T): BigNumber => {
 
   if (a.number === 0n) {
     if (b.number === 0n) {
-      throw new DomainError('atan(0, 0)', 'Real numbers | Both can\'t be 0');
+      throw new DomainError('atan(0, 0)', "Real numbers | Both can't be 0");
     }
 
     return { ...PI2, sign: b.sign };

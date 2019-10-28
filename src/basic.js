@@ -110,13 +110,13 @@ exports.divide = (a, b) => {
     if (c > 0) {
         return {
             comma: 0,
-            number: BigInt(n + d) * 10n ** BigInt(c),
+            number: BigInt(`${n}${d}`) * 10n ** BigInt(c),
             sign: a.sign !== b.sign
         };
     }
     a = {
         comma: c,
-        number: BigInt(n + d),
+        number: BigInt(`${n}${d}`),
         sign: a.sign !== b.sign
     };
     if (a.number % 10n === 0n && a.comma < 0) {
@@ -217,7 +217,7 @@ exports.power = (a, b) => {
     a = util_1.normalize(a);
     b = util_1.normalize(b);
     if (a.number === 0n && b.number === 0n) {
-        throw new util_1.DomainError('0 ^ 0', 'real numbers | both can\'t be 0 at the same time');
+        throw new util_1.DomainError('0 ^ 0', "real numbers | both can't be 0 at the same time");
     }
     if (b.comma > -1) {
         if (b.sign) {
@@ -377,7 +377,7 @@ exports.exp = (a) => {
         sum1 = exports.add(sum, exports.divide(a, fact));
         if (comparison_1.lt(util_1.abs(exports.subtract(sum1, sum)), constants_1.ErrorConst)) {
             return util_1.finalize({
-                comma: sum1.comma * (+`${i}`),
+                comma: sum1.comma * +`${i}`,
                 number: sum1.number ** i,
                 sign: false
             });
@@ -407,7 +407,7 @@ exports.factorial = (a) => {
             sign: false
         };
     }
-    let s = (a.number % 2n === 0n) ? a.number : a.number - 1n;
+    let s = a.number % 2n === 0n ? a.number : a.number - 1n;
     let k = s;
     for (let f = s - 2n; f > 0n; f = f - 2n) {
         k += f;
@@ -415,7 +415,7 @@ exports.factorial = (a) => {
     }
     return {
         comma: 0,
-        number: (a.number % 2n === 0n) ? s : s * a.number,
+        number: a.number % 2n === 0n ? s : s * a.number,
         sign: false
     };
 };

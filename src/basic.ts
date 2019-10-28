@@ -129,14 +129,14 @@ export const divide = (a: T, b: T): BigNumber => {
   if (c > 0) {
     return {
       comma: 0,
-      number: BigInt(n + d) * 10n ** BigInt(c),
+      number: BigInt(`${n}${d}`) * 10n ** BigInt(c),
       sign: a.sign !== b.sign
     };
   }
 
   a = {
     comma: c,
-    number: BigInt(n + d),
+    number: BigInt(`${n}${d}`),
     sign: a.sign !== b.sign
   };
 
@@ -249,7 +249,7 @@ export const power = (a: T, b: T): BigNumber => {
   a = normalize(a);
   b = normalize(b);
   if (a.number === 0n && b.number === 0n) {
-    throw new DomainError('0 ^ 0', 'real numbers | both can\'t be 0 at the same time');
+    throw new DomainError('0 ^ 0', "real numbers | both can't be 0 at the same time");
   }
 
   if (b.comma > -1) {
@@ -292,7 +292,7 @@ export const sqrt = (a: T): BigNumber => {
   let mid;
 
   if (-a.comma % 2 === 0 && !(last === 2n || last === 3n || last === 7n || last === 8n)) {
-    const len = BigInt(`${ a.number }`.length);
+    const len = BigInt(`${a.number}`.length);
     let k;
     let end;
 
@@ -351,7 +351,7 @@ export const cbrt = (a: T): BigNumber => {
   let mid;
 
   if (-a.comma % 3 === 0) {
-    const len = BigInt(`${ a.number }`.length);
+    const len = BigInt(`${a.number}`.length);
     let k;
     let end;
 
@@ -425,12 +425,12 @@ export const exp = (a: T): BigNumber => {
   };
   let sum1;
 
-  for (let k = 1n;; k += 1n) {
+  for (let k = 1n; ; k += 1n) {
     fact *= k;
     sum1 = add(sum, divide(a, fact));
     if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
       return finalize({
-        comma: sum1.comma * (+`${i}`),
+        comma: sum1.comma * +`${i}`,
         number: sum1.number ** i,
         sign: false
       });
@@ -464,7 +464,7 @@ export const factorial = (a: T): BigNumber => {
     };
   }
 
-  let s = (a.number % 2n === 0n) ? a.number : a.number - 1n;
+  let s = a.number % 2n === 0n ? a.number : a.number - 1n;
   let k = s;
 
   for (let f = s - 2n; f > 0n; f = f - 2n) {
@@ -474,7 +474,7 @@ export const factorial = (a: T): BigNumber => {
 
   return {
     comma: 0,
-    number: (a.number % 2n === 0n) ? s : s * a.number,
+    number: a.number % 2n === 0n ? s : s * a.number,
     sign: false
   };
 };

@@ -19,7 +19,7 @@ exports.normalize = (a) => {
         case 'number':
             a = `${a}`;
             return exports.normalize({
-                comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
+                comma: a.includes('.') ? a.indexOf('.') + 1 - a.length : 0,
                 number: BigInt(a.split('.').join('')),
                 sign: false
             });
@@ -31,7 +31,7 @@ exports.normalize = (a) => {
             };
         case 'string':
             return exports.normalize({
-                comma: a.indexOf('.') === -1 ? 0 : a.indexOf('.') + 1 - a.length,
+                comma: a.includes('.') ? a.indexOf('.') + 1 - a.length : 0,
                 number: BigInt(a.split('.').join('')),
                 sign: false
             });
