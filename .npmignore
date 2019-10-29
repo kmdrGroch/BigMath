@@ -1,13 +1,21 @@
 .nyc_output
 .stryker-tmp
-benchmark
+.vscode
 coverage
 docs
 node_modules
 reports
 test
-src/**/*.ts
-!src/**/*.d.ts
 
-*.js.map
+.eslintrc.js
+.editorconfig
+.eslintignore
+.nycrc
+.prettierrc
+mocha.opts
+.travis.yml
+stryker.conf.js
+**/*.ts
+**/*.js.map
+
 package-lock.json

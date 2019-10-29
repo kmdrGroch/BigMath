@@ -5,8 +5,6 @@ node_modules
 reports
 
 *.js.map
+*.js
+*.d.ts
 package-lock.json
-src/**/*.js
-src/**/*.d.ts
-test/**/*.js
-test/**/*.d.ts
