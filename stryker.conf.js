@@ -6,7 +6,7 @@ module.exports = function(config) {
     testRunner: 'mocha',
     transpilers: ['typescript'],
     testFramework: 'mocha',
-    coverageAnalysis: 'off',
+    coverageAnalysis: 'perTest',
     tsconfigFile: 'tsconfig.json',
     mutate: ['src/**/*.ts']
   });
