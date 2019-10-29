@@ -5,6 +5,9 @@ coverage
 docs
 node_modules
 reports
+test
+src/**/*.ts
+!src/**/*.d.ts
 
 *.js.map
 package-lock.json

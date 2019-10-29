@@ -8,3 +8,7 @@ reports
 package-lock.json
 benchmark/*.js
 benchmark/*.txt
+src/**/*.js
+src/**/*.d.ts
+test/**/*.js
+test/**/*.d.ts
