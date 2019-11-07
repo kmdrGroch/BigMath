@@ -19,7 +19,7 @@
     "@istanbuljs/nyc-config-typescript": "0.1.3",
     "@stryker-mutator/core": "2.1.0",
     "@stryker-mutator/html-reporter": "2.1.0",
-    "@stryker-mutator/mocha-framework": "2.1.0",
+    "@stryker-mutator/mocha-framework": "2.2.1",
     "@stryker-mutator/mocha-runner": "2.1.0",
     "@stryker-mutator/typescript": "2.1.0",
     "@types/chai": "4.2.4",
