@@ -16,24 +16,28 @@ export class DomainError extends RangeError {
  */
 export const normalize = (a: T): BigNumber => {
   switch (typeof a) {
-    case 'number':
-      a = `${a}`;
-
-      return normalize({
-        comma: a.includes('.') ? a.indexOf('.') + 1 - a.length : 0,
-        number: BigInt(a.split('.').join('')),
-        sign: false
-      });
     case 'bigint':
       return {
         comma: 0,
         number: a < 0n ? -a : a,
         sign: a < 0n
       };
+    case 'number':
+      a = `${a}`;
     case 'string':
+      const i = a.indexOf('.');
+
+      if (i > -1) {
+        return normalize({
+          comma: i + 1 - a.length,
+          number: BigInt(a.split('.').join('')),
+          sign: false
+        });
+      }
+
       return normalize({
-        comma: a.includes('.') ? a.indexOf('.') + 1 - a.length : 0,
-        number: BigInt(a.split('.').join('')),
+        comma: 0,
+        number: BigInt(a),
         sign: false
       });
     case 'object':

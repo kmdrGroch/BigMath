@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": false,
     "importHelpers": true,
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
