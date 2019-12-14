@@ -146,9 +146,9 @@ export const abs = (a: T): BigNumber => {
 export const isInteger = (a: T): boolean => normalize(a).comma >= 0;
 
 /**
- * Faster version of normalize
+ * Remove following zeros
  */
-export const finalize = (a: BigNumber): BigNumber => {
+export const trim = (a: BigNumber): BigNumber => {
   while (true) {
     if (a.number % 10n === 0n && a.comma < 0) {
       a.comma += 1;
@@ -159,4 +159,24 @@ export const finalize = (a: BigNumber): BigNumber => {
   }
 
   return a.number < 0n ? { comma: a.comma, number: -a.number, sign: !a.sign } : a;
+};
+
+/**
+ * Round number to specific place and trims zeros
+ */
+export const finalize = (a: BigNumber, length: number = -40): BigNumber => {
+  if (a.comma >= length) {
+    return trim({ ...a });
+  }
+  const diff = length - a.comma - 1;
+
+  const num = a.number / 10n ** BigInt(diff);
+
+  const str = `${num}`;
+
+  return trim({
+    comma: length,
+    number: +str[str.length - 1] > 4 ? num / 10n + 1n : num / 10n,
+    sign: a.sign
+  });
 };

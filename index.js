@@ -88,6 +88,7 @@ exports.default = {
     subtract: basic_1.subtract,
     tan: trigonometry_1.tan,
     tanh: trigonometry_1.tanh,
+    trim: util_1.trim,
     vercosin: trigonometry_1.vercosin,
     versin: trigonometry_1.versin,
     W: other_1.W,

@@ -39,7 +39,7 @@ import {
   vercosin,
   versin
 } from './src/trigonometry';
-import { abs, ceil, DomainError, finalize, floor, isInteger, normalize, round, stringify } from './src/util';
+import { abs, ceil, DomainError, finalize, floor, isInteger, normalize, round, stringify, trim } from './src/util';
 
 export { DomainError };
 
@@ -123,6 +123,7 @@ export default {
   subtract,
   tan,
   tanh,
+  trim,
   vercosin,
   versin,
   W,

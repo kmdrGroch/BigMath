@@ -40,7 +40,7 @@ declare const _default: {
     exp: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     expm1: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     factorial: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
-    finalize: (a: import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    finalize: (a: import("./src/interfaces").BigNumber, length?: number) => import("./src/interfaces").BigNumber;
     floor: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     gamma: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     gd: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
@@ -80,6 +80,7 @@ declare const _default: {
     subtract: (a: string | number | bigint | import("./src/interfaces").BigNumber, b: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     tan: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     tanh: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
+    trim: (a: import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     vercosin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     versin: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;
     W: (a: string | number | bigint | import("./src/interfaces").BigNumber) => import("./src/interfaces").BigNumber;

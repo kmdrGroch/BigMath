@@ -2,7 +2,7 @@ import { lt, lte } from './comparison';
 import { ErrorConst, LOG10, LOG2, PI } from './constants';
 import { BigNumber, T } from './interfaces';
 import { sin } from './trigonometry';
-import { abs, DomainError, finalize, normalize, stringify } from './util';
+import { abs, DomainError, finalize, normalize, stringify, trim } from './util';
 
 /**
  * @domain Real numbers, Real numbers
@@ -24,14 +24,14 @@ export const add = (a: T, b: T): BigNumber => {
   }
 
   if (a.comma > b.comma) {
-    return finalize({
+    return trim({
       comma: b.comma,
       number: a.number * 10n ** BigInt(a.comma - b.comma) + b.number,
       sign: a.sign
     });
   }
 
-  return finalize({
+  return trim({
     comma: a.comma,
     number: a.number + b.number * 10n ** BigInt(b.comma - a.comma),
     sign: a.sign
@@ -58,14 +58,14 @@ export const subtract = (a: T, b: T): BigNumber => {
   }
 
   if (a.comma > b.comma) {
-    return finalize({
+    return trim({
       comma: b.comma,
       number: a.number * 10n ** BigInt(a.comma - b.comma) - b.number,
       sign: a.sign
     });
   }
 
-  return finalize({
+  return trim({
     comma: a.comma,
     number: a.number - b.number * 10n ** BigInt(b.comma - a.comma),
     sign: a.sign
@@ -80,7 +80,7 @@ export const multiply = (a: T, b: T): BigNumber => {
   a = normalize(a);
   b = normalize(b);
 
-  return finalize({
+  return trim({
     comma: a.comma + b.comma,
     number: a.number * b.number,
     sign: a.sign !== b.sign
@@ -218,7 +218,7 @@ export const ln = (a: T) => {
     sum2 = add(sum1, multiply(divide(p, i * (i + 2n)), start1));
 
     if (lt(abs(subtract(sum2, sum1)), ErrorConst)) {
-      return add(ten, multiply(sum2, 2n));
+      return finalize(add(ten, multiply(sum2, 2n)));
     }
 
     i += 4n;
@@ -244,13 +244,13 @@ export const ln1p = (a: T): BigNumber => {
  * @domain Numbers greater than 0
  * @returns Logarithm base 10 of a number
  */
-export const log10 = (a: T): BigNumber => divide(ln(a), LOG10);
+export const log10 = (a: T): BigNumber => finalize(divide(ln(a), LOG10));
 
 /**
  * @domain Numbers greater than 0
  * @returns Logarithm base 2 of a number
  */
-export const log2 = (a: T): BigNumber => divide(ln(a), LOG2);
+export const log2 = (a: T): BigNumber => finalize(divide(ln(a), LOG2));
 
 /**
  * @domain Real numbers, Real numbers | both can't be 0 at the same time | not negative ^ non-integer
@@ -279,7 +279,7 @@ export const power = (a: T, b: T): BigNumber => {
     throw new DomainError(`${stringify(a)} ^ ${stringify(b)}`, 'real numbers | not negative ^ non-integer');
   }
 
-  return exp(multiply(b, ln(a)));
+  return finalize(exp(multiply(b, ln(a))));
 };
 
 /**
@@ -318,7 +318,7 @@ export const sqrt = (a: T): BigNumber => {
     while (k <= end) {
       mid = (k + end) / 2n;
       if (mid ** 2n === a.number) {
-        return finalize({
+        return trim({
           comma: a.comma / 2,
           number: mid,
           sign: false
@@ -338,7 +338,7 @@ export const sqrt = (a: T): BigNumber => {
   while (true) {
     aprox1 = multiply(add(divide(a, aprox), aprox), 0.5);
     if (lt(abs(subtract(aprox1, aprox)), ErrorConst)) {
-      return aprox1;
+      return finalize(aprox1);
     }
     aprox = aprox1;
   }
@@ -380,7 +380,7 @@ export const cbrt = (a: T): BigNumber => {
     while (k <= end) {
       mid = (k + end) / 2n;
       if (mid ** 3n === a.number) {
-        return finalize({
+        return trim({
           comma: a.comma / 3,
           number: mid,
           sign: false
@@ -400,7 +400,7 @@ export const cbrt = (a: T): BigNumber => {
   while (true) {
     aprox1 = divide(add(divide(a, multiply(aprox, aprox)), multiply(aprox, 2n)), 3n);
     if (lt(abs(subtract(aprox1, aprox)), ErrorConst)) {
-      return aprox1;
+      return finalize(aprox1);
     }
     aprox = aprox1;
   }
@@ -527,5 +527,5 @@ export const gamma = (a: T): BigNumber => {
     y = multiply(multiply(multiply(sqrt(multiply(PI, 2n)), power(t, add(a, 0.5))), exp(multiply(t, -1n))), x);
   }
 
-  return y;
+  return finalize(y);
 };
