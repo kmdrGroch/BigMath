@@ -140,11 +140,11 @@ export const atan = (a: T): BigNumber => {
 
   const con = multiply(a, k);
 
-  let i = 0n;
+  let i = 2n;
   let s1;
 
   while (true) {
-    k = multiply(k, multiply(con, divide(i + 2n, i + 3n)));
+    k = multiply(k, multiply(con, divide(i, i + 1n)));
     s1 = add(s, k);
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
       if (s1.comma < -41) {

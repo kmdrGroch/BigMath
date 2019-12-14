@@ -201,17 +201,28 @@ export const ln = (a: T) => {
 
   let sum = divide(subtract(a, 1n), add(a, 1n));
   let p = { ...sum };
-  const k = multiply(sum, sum);
-  let i = 3n;
-  let sum1;
+  const double = multiply(sum, sum);
+  let start1 = add(3n, double);
+  const coef1 = add(4n, multiply(4n, double));
+  const quad = multiply(double, double);
+  let i = 5n;
+
+  let sum1 = multiply(divide(p, 3n), start1);
+
+  let sum2;
+
   while (true) {
-    p = multiply(p, k);
-    sum1 = add(sum, divide(p, i));
-    if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
-      return add(ten, multiply(sum1, 2n));
+    p = multiply(p, quad);
+    start1 = add(start1, coef1);
+
+    sum2 = add(sum1, multiply(divide(p, i * (i + 2n)), start1));
+
+    if (lt(abs(subtract(sum2, sum1)), ErrorConst)) {
+      return add(ten, multiply(sum2, 2n));
     }
-    sum = sum1;
-    i += 2n;
+
+    i += 4n;
+    sum1 = sum2;
   }
 };
 
