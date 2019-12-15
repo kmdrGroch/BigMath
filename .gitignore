@@ -7,8 +7,11 @@ reports
 index.js.map
 index.js
 index.d.ts
-(src|test)/*.js.map
-(src|test)/*.js
-(src|test)/*.d.ts
+src/*.js.map
+src/*.js
+src/*.d.ts
+test/*.js.map
+test/*.js
+test/*.d.ts
 
 package-lock.json
