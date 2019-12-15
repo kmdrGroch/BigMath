@@ -129,6 +129,14 @@ export const acos = (a: T): BigNumber => subtract(PI2, asin(a));
 export const atan = (a: T): BigNumber => {
   a = normalize(a);
 
+  if (a.number === 0n) {
+    return {
+      comma: 0,
+      number: 0n,
+      sign: false
+    };
+  }
+
   if (gt(abs(a), 1n)) {
     return finalize(subtract({ ...PI2, sign: a.sign }, atan(divide(1n, a))));
   }
@@ -139,23 +147,20 @@ export const atan = (a: T): BigNumber => {
   let s = { ...k };
 
   const con = multiply(a, k);
+  const coef = multiply(con, con);
+  const incon = divide(1n, con);
 
-  let i = 2n;
+  let i = 0n;
   let s1;
 
   while (true) {
-    k = multiply(k, multiply(con, divide(i, i + 1n)));
-    s1 = add(s, k);
+    k = multiply(multiply(k, coef), divide((i || 1n) * (i + 2n), (i + 1n) * (i + 3n)));
+    s1 = add(s, multiply(k, add(incon, divide(i + 4n, i + 5n))));
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
-      if (s1.comma < -41) {
-        s1.number = s1.number / 10n ** BigInt(-41 - s1.comma);
-        s1.comma = -41;
-      }
-
       return finalize(multiply(s1, 2n));
     }
     s = s1;
-    i += 2n;
+    i += 4n;
   }
 };
 

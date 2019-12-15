@@ -400,7 +400,7 @@ describe('acot', () => {
 
 describe('asec', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.asec(1.43223))).to.be.equal('0.7978996373977028411316596365555153767915');
+    expect(BigMath.stringify(BigMath.asec(1.43223))).to.be.equal('0.7978996373977028411316596365555153767914');
     expect(BigMath.stringify(BigMath.asec(1))).to.be.equal('0');
   });
   it('2', () => {
