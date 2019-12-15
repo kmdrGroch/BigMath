@@ -413,6 +413,14 @@ export const cbrt = (a: T): BigNumber => {
 export const exp = (a: T): BigNumber => {
   a = normalize(a);
 
+  if (a.number === 0n) {
+    return {
+      comma: 0,
+      number: 1n,
+      sign: false
+    };
+  }
+
   let f = a.number / 10n ** BigInt(-a.comma);
   let i = 1n;
 
@@ -425,9 +433,10 @@ export const exp = (a: T): BigNumber => {
     a = divide(a, i);
   }
 
-  const b = { ...a };
+  const inv = divide(1n, a);
+  a = multiply(a, a);
 
-  let fact = 1n;
+  const b = { ...a };
 
   let sum = {
     comma: 0,
@@ -436,9 +445,9 @@ export const exp = (a: T): BigNumber => {
   };
   let sum1;
 
-  for (let k = 1n; ; k += 1n) {
-    fact *= k;
-    sum1 = add(sum, divide(a, fact));
+  for (let k = 2n; ; k += 2n) {
+    a = divide(a, k * (k - 1n));
+    sum1 = add(sum, multiply(a, add(multiply(k, inv), 1n)));
     if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
       return finalize({
         comma: sum1.comma * +`${i}`,

@@ -177,6 +177,9 @@ describe('exp', () => {
   it('1', () => {
     expect(BigMath.stringify(BigMath.exp(0.43242))).to.be.equal('1.54098219178607389338293231610903660192');
   });
+  it('2', () => {
+    expect(BigMath.stringify(BigMath.exp(0))).to.be.equal('1');
+  });
 });
 
 describe('expm1', () => {
