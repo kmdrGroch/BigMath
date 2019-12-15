@@ -261,23 +261,19 @@ describe('sqrt', () => {
 
 describe('sin', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.sin(1.523))).to.be.equal(
-      '0.99885797300962142098088581364210398014209386927547169166455979390567973243038978179133656379'
-    );
+    expect(BigMath.stringify(BigMath.sin(1.523))).to.be.equal('0.9988579730096214209808858136421039801421');
   });
 });
 
 describe('cos', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.cos(0.43223))).to.be.equal(
-      '0.9080338684590022306625164663612605645158839907593712904466546671495053586552954512606015581'
-    );
+    expect(BigMath.stringify(BigMath.cos(0.43223))).to.be.equal('0.9080338684590022306625164663612605645159');
   });
 });
 
 describe('tan', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.tan(0.1243))).to.be.equal('0.12494414654734352405365453192964879368374187342775');
+    expect(BigMath.stringify(BigMath.tan(0.1243))).to.be.equal('0.1249441465473435240536545319296487936837');
   });
   it('2', () => {
     expect(() => BigMath.stringify(BigMath.tan(BigMath.PI2))).to.throw(
@@ -289,7 +285,7 @@ describe('tan', () => {
 
 describe('cot', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.cot(0.1243))).to.be.equal('8.0035762189234090831469419187285491872854');
+    expect(BigMath.stringify(BigMath.cot(0.1243))).to.be.equal('8.0035762189234090831469419187285491872871');
   });
   it('2', () => {
     expect(() => BigMath.stringify(BigMath.cot(BigMath.PI))).to.throw(
@@ -313,7 +309,7 @@ describe('sec', () => {
 
 describe('csc', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.csc(0.1243))).to.be.equal('8.0658063634156463351982914655547822238861');
+    expect(BigMath.stringify(BigMath.csc(0.1243))).to.be.equal('8.0658063634156463351982914655547822238875');
   });
   it('2', () => {
     expect(() => BigMath.stringify(BigMath.csc(BigMath.PI))).to.throw(
@@ -731,7 +727,7 @@ describe('gamma', () => {
     expect(BigMath.stringify(BigMath.gamma(1.24))).to.be.equal('0.9085210583399594331164916106437218477643');
   });
   it('2', () => {
-    expect(BigMath.stringify(BigMath.gamma(0.24))).to.be.equal('3.7855044097498308309758273555809824555701');
+    expect(BigMath.stringify(BigMath.gamma(0.24))).to.be.equal('3.7855044097498308309758273555809824555702');
   });
   it('3', () => {
     expect(() => BigMath.stringify(BigMath.gamma(-2))).to.throw(
@@ -872,7 +868,7 @@ describe('covercosin', () => {
 
 describe('haversin', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.haversin(0.32))).to.be.equal('0.025382290958779566212346363116954129422');
+    expect(BigMath.stringify(BigMath.haversin(0.32))).to.be.equal('0.0253822909587795662123463631169541294221');
   });
 });
 
@@ -890,7 +886,7 @@ describe('hacoversin', () => {
 
 describe('hacovercosin', () => {
   it('1', () => {
-    expect(BigMath.stringify(BigMath.hacovercosin(0.32))).to.be.equal('0.6572832803080588833308787717085739171521');
+    expect(BigMath.stringify(BigMath.hacovercosin(0.32))).to.be.equal('0.6572832803080588833308787717085739171522');
   });
 });
 

@@ -27,7 +27,7 @@ export const sin = (a: T): BigNumber => {
     k = multiply(k, k2);
     s1 = i % 2n === 0n ? add(s, divide(k, f)) : subtract(s, divide(k, f));
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
-      return s1;
+      return finalize(s1);
     }
     s = s1;
     i += 1n;
@@ -52,7 +52,7 @@ export const tan = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
   }
 
-  return divide(sin(a), c);
+  return finalize(divide(sin(a), c));
 };
 
 /**
