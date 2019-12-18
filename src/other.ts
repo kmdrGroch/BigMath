@@ -1,8 +1,9 @@
 import { add, divide, exp, ln, multiply, power, sqrt, subtract } from './basic';
 import { gt, lt } from './comparison';
-import { ErrorConst, LOG2, PI, PI2 } from './constants';
+import { LOG2, PI, PI2 } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify, finalize } from './util';
+import { config } from './BigMath';
 
 /**
  * @returns Arithmetic–geometric mean of parameters
@@ -16,6 +17,13 @@ export const AGM = (a: T, b: T): BigNumber => {
 
   let c;
   let a1;
+
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
+
   while (true) {
     c = { ...a };
     a1 = multiply(add(c, b), 0.5);
@@ -58,6 +66,13 @@ export const W = (a: T): BigNumber => {
   let ex;
   let wjewj;
   let w1;
+  let safeIterator = 0;
+
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
 
   while (true) {
     ex = exp(w);
@@ -66,10 +81,11 @@ export const W = (a: T): BigNumber => {
       w,
       divide(subtract(wjewj, a), subtract(add(wjewj, ex), divide(multiply(add(w, 2n), subtract(wjewj, a)), multiply(add(w, 1n), 2n))))
     );
-    if (lt(abs(subtract(w, w1)), ErrorConst)) {
+    if (lt(abs(subtract(w, w1)), ErrorConst) || safeIterator === 100) {
       return finalize(w1);
     }
     w = w1;
+    safeIterator++;
   }
 };
 
@@ -110,6 +126,12 @@ export const erf = (a: T): BigNumber => {
   let k = 1n;
 
   let sum1;
+
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
 
   for (let i = 1n; ; i += 1n) {
     fact *= i;

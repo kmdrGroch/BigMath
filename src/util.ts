@@ -1,5 +1,6 @@
 import { add, subtract } from './basic';
 import { BigNumber, T } from './interfaces';
+import BigMath, { config } from './BigMath';
 
 /**
  * Custom error to handle invalid domain
@@ -15,6 +16,9 @@ export class DomainError extends RangeError {
  * Convert other types to BigNumber and normalize it
  */
 export const normalize = (a: T): BigNumber => {
+  if (a instanceof BigMath) {
+    return a.toBigNumber();
+  }
   switch (typeof a) {
     case 'bigint':
       return {
@@ -74,6 +78,9 @@ export const normalize = (a: T): BigNumber => {
  * Stringify given number
  */
 export const stringify = (a: T): string => {
+  if (a instanceof BigMath) {
+    a = a.toBigNumber();
+  }
   switch (typeof a) {
     case 'string':
     case 'bigint':
@@ -164,7 +171,10 @@ export const trim = (a: BigNumber): BigNumber => {
 /**
  * Round number to specific place and trims zeros
  */
-export const finalize = (a: BigNumber, length: number = -40): BigNumber => {
+export const finalize = (a: BigNumber, length?: number): BigNumber => {
+  if (length === undefined) {
+    length = -config.precision;
+  }
   if (a.comma >= length) {
     return trim({ ...a });
   }

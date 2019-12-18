@@ -1,8 +1,9 @@
 import { add, divide, exp, ln, multiply, sqrt, subtract } from './basic';
 import { gt, lt } from './comparison';
-import { ErrorConst, PI, PI2 } from './constants';
+import { PI, PI2 } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify, finalize } from './util';
+import { config } from './BigMath';
 
 /**
  * @domain Real numbers
@@ -22,6 +23,13 @@ export const sin = (a: T): BigNumber => {
   let f = 1n;
   let i = 1n;
   let s1;
+
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
+
   while (true) {
     f *= i * (i * 4n + 2n);
     k = multiply(k, k2);
@@ -153,6 +161,12 @@ export const atan = (a: T): BigNumber => {
   let i = 0n;
   let s1;
 
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
+
   while (true) {
     k = multiply(multiply(k, coef), divide((i || 1n) * (i + 2n), (i + 1n) * (i + 3n)));
     s1 = add(s, multiply(k, add(incon, divide(i + 4n, i + 5n))));
@@ -243,6 +257,12 @@ export const sinh = (a: T): BigNumber => {
   let fact = 1n;
   let i = 2n;
   let sum1;
+
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
 
   while (true) {
     fact *= i * (i + 1n);
@@ -413,18 +433,18 @@ export const acsch = (a: T): BigNumber => {
 
 export const versin = (a: T): BigNumber => finalize(subtract(1n, cos(a)));
 
-export const vercosin = (a: T): BigNumber => finalize(add(1n, cos(a)));
+export const vercos = (a: T): BigNumber => finalize(add(1n, cos(a)));
 
 export const coversin = (a: T): BigNumber => finalize(subtract(1n, sin(a)));
 
-export const covercosin = (a: T): BigNumber => finalize(add(1n, sin(a)));
+export const covercos = (a: T): BigNumber => finalize(add(1n, sin(a)));
 
 export const haversin = (a: T): BigNumber => finalize(divide(subtract(1n, cos(a)), 2n));
 
-export const havercosin = (a: T): BigNumber => finalize(divide(add(1n, cos(a)), 2n));
+export const havercos = (a: T): BigNumber => finalize(divide(add(1n, cos(a)), 2n));
 
 export const hacoversin = (a: T): BigNumber => finalize(divide(subtract(1n, sin(a)), 2n));
 
-export const hacovercosin = (a: T): BigNumber => finalize(divide(add(1n, sin(a)), 2n));
+export const hacovercos = (a: T): BigNumber => finalize(divide(add(1n, sin(a)), 2n));
 
 export const gd = (a: T): BigNumber => finalize(multiply(2n, atan(tanh(divide(a, 2n)))));

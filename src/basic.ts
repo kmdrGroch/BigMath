@@ -1,8 +1,9 @@
 import { lt, lte } from './comparison';
-import { ErrorConst, LOG10, LOG2, PI } from './constants';
+import { LOG10, LOG2, PI } from './constants';
 import { BigNumber, T } from './interfaces';
 import { sin } from './trigonometry';
 import { abs, DomainError, finalize, normalize, stringify, trim } from './util';
+import { config } from './BigMath';
 
 /**
  * @domain Real numbers, Real numbers
@@ -91,7 +92,7 @@ export const multiply = (a: T, b: T): BigNumber => {
  * @domain Real numbers, Real numbers other than 0
  * @returns Quotient of parameters
  */
-export const divide = (a: T, b: T): BigNumber => {
+export const divide = (a: T, b: T, pure = false): BigNumber => {
   a = normalize(a);
   b = normalize(b);
 
@@ -114,7 +115,7 @@ export const divide = (a: T, b: T): BigNumber => {
 
   let i = 0;
   let f;
-  while (i !== 50) {
+  while (i !== config.precision + (pure ? 1 : 11)) {
     if (a.number === 0n) {
       break;
     }
@@ -145,7 +146,7 @@ export const divide = (a: T, b: T): BigNumber => {
     a.number /= 10n;
   }
 
-  return a;
+  return finalize(a, -config.precision - (pure ? 0 : 10));
 };
 
 /**
@@ -210,6 +211,12 @@ export const ln = (a: T) => {
   let sum1 = multiply(divide(p, 3n), start1);
 
   let sum2;
+
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
 
   while (true) {
     p = multiply(p, quad);
@@ -335,6 +342,12 @@ export const sqrt = (a: T): BigNumber => {
   let aprox = mid || normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
   let aprox1;
 
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
+
   while (true) {
     aprox1 = multiply(add(divide(a, aprox), aprox), 0.5);
     if (lt(abs(subtract(aprox1, aprox)), ErrorConst)) {
@@ -397,6 +410,12 @@ export const cbrt = (a: T): BigNumber => {
   let aprox = mid || normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
   let aprox1;
 
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
+
   while (true) {
     aprox1 = divide(add(divide(a, multiply(aprox, aprox)), multiply(aprox, 2n)), 3n);
     if (lt(abs(subtract(aprox1, aprox)), ErrorConst)) {
@@ -444,6 +463,12 @@ export const exp = (a: T): BigNumber => {
     sign: false
   };
   let sum1;
+
+  const ErrorConst = {
+    comma: -config.precision,
+    number: 1n,
+    sign: false
+  };
 
   for (let k = 2n; ; k += 2n) {
     a = divide(a, k * (k - 1n));
@@ -506,6 +531,12 @@ export const gamma = (a: T): BigNumber => {
     http://my.fit.edu/~gabdo/gammacoeff.txt
   */
 
+  a = normalize(a);
+
+  if (a.comma === 0 && !a.sign) {
+    return factorial(subtract(a, 1n));
+  }
+
   const p1 = '0.9999999999998099322768470047347829718009602570498980962898849358';
   const p = [
     '676.5203681218850985670091904440190381974449058924722569853678707',
@@ -517,7 +548,6 @@ export const gamma = (a: T): BigNumber => {
     '0.000009984369578019570859562668995694018788834042365371027657733820183',
     '0.0000001505632735149311558338355775386439360927036032480858107693939127'
   ];
-  a = normalize(a);
 
   if (a.sign && a.comma === 0 && a.number % 2n === 0n) {
     throw new DomainError(stringify(a), 'not negative multiplications of 2');

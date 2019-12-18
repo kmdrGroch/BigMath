@@ -1,3 +1,5 @@
+import BigMath from './BigMath';
+
 export interface BigNumber {
   /**
    * 10 ^ comma
@@ -14,4 +16,4 @@ export interface BigNumber {
 }
 
 type TypeName<Type> = Type;
-export type T = TypeName<bigint | BigNumber | number | string>;
+export type T = TypeName<bigint | BigNumber | number | string | BigMath>;
