@@ -16,7 +16,7 @@
   "author": "kmdrGroch",
   "license": "MIT",
   "devDependencies": {
-    "@istanbuljs/nyc-config-typescript": "0.1.3",
+    "@istanbuljs/nyc-config-typescript": "1.0.0",
     "@stryker-mutator/core": "2.4.0",
     "@stryker-mutator/html-reporter": "2.4.0",
     "@stryker-mutator/mocha-framework": "2.4.0",
