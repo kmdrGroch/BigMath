@@ -499,6 +499,14 @@ export const doubleFactorial = (a: T): BigNumber => {
 
   let n = a.number;
 
+  if (n < 7n) {
+    return {
+      comma: 0,
+      number: [1n, 1n, 2n, 3n, 8n, 15n, 48n][+`${n}`],
+      sign: false
+    };
+  }
+
   switch ((n + 1n) % 4n) {
     case 0n:
       const p = (n - 1n) / 2n;
@@ -594,6 +602,14 @@ export const superFactorial = (a: T): BigNumber => {
   a = normalize(a);
   if (a.comma !== 0 || a.sign) {
     throw new DomainError(stringify(a), 'positive integers');
+  }
+
+  if (a.number < 2n) {
+    return {
+      comma: 0,
+      number: 1n,
+      sign: false
+    };
   }
 
   if (a.number % 2n === 0n) {
