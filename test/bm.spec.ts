@@ -224,6 +224,30 @@ describe('double factorial', () => {
   });
 });
 
+describe('superFactorial', () => {
+  it('1', () => {
+    expect(BigMath.superFactorial(0).toString()).to.be.equal('1');
+  });
+  it('2', () => {
+    expect(BigMath.superFactorial(1).toString()).to.be.equal('1');
+  });
+  it('3', () => {
+    expect(BigMath.superFactorial(2).toString()).to.be.equal('2');
+  });
+  it('4', () => {
+    expect(BigMath.superFactorial(5).toString()).to.be.equal('34560');
+  });
+  it('5', () => {
+    expect(BigMath.superFactorial(8).toString()).to.be.equal('5056584744960000');
+  });
+  it('6', () => {
+    expect(() => BigMath.superFactorial(1.2).toString()).to.throw(DomainError, 'Number out of domain. Given: 1.2. Expected: positive integers');
+  });
+  it('7', () => {
+    expect(() => BigMath.superFactorial(-12).toString()).to.throw(DomainError, 'Number out of domain. Given: -12. Expected: positive integers');
+  });
+});
+
 describe('power', () => {
   it('1', () => {
     expect(BigMath.pow(2, 3).toString()).to.be.equal('8');
