@@ -491,6 +491,40 @@ export const exp = (a: T): BigNumber => {
  */
 export const expm1 = (a: T): BigNumber => subtract(exp(a), 1n);
 
+export const doubleFactorial = (a: T): BigNumber => {
+  a = normalize(a);
+  if (a.comma !== 0 || a.sign) {
+    throw new DomainError(stringify(a), 'positive integers');
+  }
+
+  let n = a.number;
+
+  if (n < 7n) {
+    return {
+      comma: 0,
+      number: [1n, 1n, 2n, 3n, 8n, 15n, 48n][+`${n}`],
+      sign: false
+    };
+  }
+
+  switch ((n + 1n) % 4n) {
+    case 0n:
+      const p = (n - 1n) / 2n;
+      n += 1n;
+      let prod = 1n;
+
+      for (let k = 1n; k <= p; k += 2n) {
+        prod *= (n - k) * k;
+      }
+
+      return normalize(prod);
+    case 2n:
+      return normalize(n * doubleFactorial(n - 2n).number);
+  }
+
+  return normalize(2n ** (n / 2n) * factorial(n / 2n).number);
+};
+
 /**
  * @domain Integers
  * @returns Product of all integers until given number
@@ -501,27 +535,22 @@ export const factorial = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'positive integers');
   }
 
-  if (a.number === 0n) {
+  let n = a.number;
+
+  if (n < 7n) {
     return {
       comma: 0,
-      number: 1n,
+      number: [1n, 1n, 2n, 6n, 24n, 120n, 720n][+`${n}`],
       sign: false
     };
   }
 
-  let s = a.number % 2n === 0n ? a.number : a.number - 1n;
-  let k = s;
-
-  for (let f = s - 2n; f > 0n; f = f - 2n) {
-    k += f;
-    s *= k;
+  if (n % 2n === 0n) {
+    const k = n / 2n;
+    return normalize(2n ** k * doubleFactorial(n - 1n).number * factorial(k).number);
   }
 
-  return {
-    comma: 0,
-    number: a.number % 2n === 0n ? s : s * a.number,
-    sign: false
-  };
+  return normalize(factorial(n - 1n).number * n);
 };
 
 export const gamma = (a: T): BigNumber => {
@@ -567,4 +596,54 @@ export const gamma = (a: T): BigNumber => {
   }
 
   return finalize(y);
+};
+
+export const superFactorial = (a: T): BigNumber => {
+  a = normalize(a);
+  if (a.comma !== 0 || a.sign) {
+    throw new DomainError(stringify(a), 'positive integers');
+  }
+
+  if (a.number < 2n) {
+    return {
+      comma: 0,
+      number: 1n,
+      sign: false
+    };
+  }
+
+  if (a.number % 2n === 0n) {
+    let prod = 1n;
+    let fact = 1n;
+    let prod2 = 1n;
+
+    for (let i = 2n; i < a.number; i += 2n) {
+      fact *= i * (i + 1n);
+      prod2 *= i;
+      prod *= fact;
+    }
+
+    return {
+      comma: 0,
+      number: prod2 * a.number * prod ** 2n,
+      sign: false
+    };
+  }
+
+  a.number -= 1n;
+  let prod = 1n;
+  let fact = 1n;
+  let prod2 = 1n;
+
+  for (let i = 2n; i < a.number; i += 2n) {
+    fact *= i * (i + 1n);
+    prod2 *= i;
+    prod *= fact;
+  }
+
+  return {
+    comma: 0,
+    number: prod2 * prod ** 2n * fact * a.number * (a.number + 1n) * a.number,
+    sign: false
+  };
 };

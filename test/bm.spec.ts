@@ -200,6 +200,54 @@ describe('factorial', () => {
   });
 });
 
+describe('double factorial', () => {
+  it('1', () => {
+    expect(BigMath.doubleFactorial(0).toString()).to.be.equal('1');
+  });
+  it('2', () => {
+    expect(BigMath.doubleFactorial(1).toString()).to.be.equal('1');
+  });
+  it('3', () => {
+    expect(BigMath.doubleFactorial(2).toString()).to.be.equal('2');
+  });
+  it('4', () => {
+    expect(BigMath.doubleFactorial(33).toString()).to.be.equal('6332659870762850625');
+  });
+  it('5', () => {
+    expect(BigMath.doubleFactorial(56).toString()).to.be.equal('81842841814930553085241614925824000000');
+  });
+  it('6', () => {
+    expect(() => BigMath.doubleFactorial(1.2).toString()).to.throw(DomainError, 'Number out of domain. Given: 1.2. Expected: positive integers');
+  });
+  it('7', () => {
+    expect(() => BigMath.doubleFactorial(-12).toString()).to.throw(DomainError, 'Number out of domain. Given: -12. Expected: positive integers');
+  });
+});
+
+describe('superFactorial', () => {
+  it('1', () => {
+    expect(BigMath.superFactorial(0).toString()).to.be.equal('1');
+  });
+  it('2', () => {
+    expect(BigMath.superFactorial(1).toString()).to.be.equal('1');
+  });
+  it('3', () => {
+    expect(BigMath.superFactorial(2).toString()).to.be.equal('2');
+  });
+  it('4', () => {
+    expect(BigMath.superFactorial(5).toString()).to.be.equal('34560');
+  });
+  it('5', () => {
+    expect(BigMath.superFactorial(8).toString()).to.be.equal('5056584744960000');
+  });
+  it('6', () => {
+    expect(() => BigMath.superFactorial(1.2).toString()).to.throw(DomainError, 'Number out of domain. Given: 1.2. Expected: positive integers');
+  });
+  it('7', () => {
+    expect(() => BigMath.superFactorial(-12).toString()).to.throw(DomainError, 'Number out of domain. Given: -12. Expected: positive integers');
+  });
+});
+
 describe('power', () => {
   it('1', () => {
     expect(BigMath.pow(2, 3).toString()).to.be.equal('8');

@@ -1,4 +1,22 @@
-import { add, cbrt, divide, exp, expm1, factorial, gamma, ln, ln1p, log10, log2, multiply, power, sqrt, subtract } from './basic';
+import {
+  add,
+  cbrt,
+  divide,
+  exp,
+  expm1,
+  factorial,
+  gamma,
+  ln,
+  ln1p,
+  log10,
+  log2,
+  multiply,
+  power,
+  sqrt,
+  subtract,
+  doubleFactorial,
+  superFactorial
+} from './basic';
 import { bitAND, bitLeft, bitNOT, bitOR, bitRight, bitXOR } from './bitOperations';
 import { eq, gt, gte, lt, lte, neq } from './comparison';
 import { E, LOG10, LOG10E, LOG2, LOG2E, PI, PI2, SQRT1_2, SQRT2 } from './constants';
@@ -253,12 +271,28 @@ export default class BigMath {
     return new BigMath(value1).factorial();
   }
 
+  public doubleFactorial() {
+    this.number = doubleFactorial(this.number);
+    return this;
+  }
+  public static doubleFactorial(value1: T) {
+    return new BigMath(value1).doubleFactorial();
+  }
+
   public gamma() {
     this.number = gamma(this.number);
     return this;
   }
   public static gamma(value1: T) {
     return new BigMath(value1).gamma();
+  }
+
+  public superFactorial() {
+    this.number = superFactorial(this.number);
+    return this;
+  }
+  public static superFactorial(value1: T) {
+    return new BigMath(value1).superFactorial();
   }
 
   public bitLeft(value: T) {
