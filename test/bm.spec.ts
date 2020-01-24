@@ -8,7 +8,7 @@ describe('add', () => {
     expect(BigMath.add(12.54354, 6.423525).toString()).to.be.equal('18.967065');
   });
   it('2', () => {
-    expect(BigMath.add(-12.54354, '-6.423525').toString()).to.be.equal('-18.967065');
+    expect(new BigMath(-12.54354).add('-6.423525').toString()).to.be.equal('-18.967065');
   });
   it('3', () => {
     expect(BigMath.add(12.54354, 6.623525).toString()).to.be.equal('19.167065');
@@ -658,33 +658,36 @@ describe('Comparison', () => {
   it('3', () => {
     expect(BigMath.gte(5, 5)).to.be.true;
     expect(new BigMath(5).gte(5)).to.be.true;
+    expect(BigMath.greaterThanOrEqualTo(5, 5)).to.be.true;
   });
   it('4', () => {
     expect(BigMath.lte(5, 5)).to.be.true;
     expect(new BigMath(5).lte(5)).to.be.true;
+    expect(BigMath.lessThanOrEqualTo(5, 5)).to.be.true;
   });
   it('5', () => {
     expect(BigMath.gt(5, 5)).to.be.false;
-    expect(BigMath.gt(12, 5)).to.be.true;
+    expect(BigMath.greaterThan(12, 5)).to.be.true;
     expect(new BigMath(12).gt(5)).to.be.true;
   });
   it('6', () => {
-    expect(BigMath.lt(5, 5)).to.be.false;
+    expect(new BigMath(5).lessThan(5)).to.be.false;
     expect(BigMath.lt(2, 5)).to.be.true;
+    expect(BigMath.lessThan(2, 5)).to.be.true;
     expect(new BigMath(2).lt(5)).to.be.true;
   });
   it('7', () => {
     expect(BigMath.eq(5, 5)).to.be.true;
     expect(BigMath.eq(2, 5)).to.be.false;
     expect(BigMath.eq(-2, 2)).to.be.false;
-    expect(BigMath.eq(0.2, 2)).to.be.false;
+    expect(BigMath.equals(0.2, 2)).to.be.false;
     expect(new BigMath(0.2).eq(2)).to.be.false;
   });
   it('8', () => {
     expect(BigMath.neq(5, 5)).to.be.false;
     expect(BigMath.neq(2, 5)).to.be.true;
     expect(BigMath.neq(0.2, 2)).to.be.true;
-    expect(BigMath.neq(-2, 2)).to.be.true;
+    expect(BigMath.notEquals(-2, 2)).to.be.true;
     expect(new BigMath(0.2).neq(2)).to.be.true;
   });
 });

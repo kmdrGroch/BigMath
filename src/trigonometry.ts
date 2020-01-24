@@ -47,7 +47,7 @@ export const sin = (a: T): BigNumber => {
  * @range [-1, 1]
  * @returns Cosine of parameter
  */
-export const cos = (a: T): BigNumber => sin(subtract(PI2, a));
+export const cos = (a: T): BigNumber => sin(subtract(PI2, normalize(a)));
 
 /**
  * @domain Real numbers & x != PI/2 + k*PI (k - integer)
@@ -119,7 +119,7 @@ export const asin = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
   }
 
-  return atan(divide(a, sqrt(subtract(1n, multiply(a, a)))));
+  return atan(divide(a, sqrt(subtract(normalize(1n), multiply(a, a)))));
 };
 
 /**
@@ -145,13 +145,13 @@ export const atan = (a: T): BigNumber => {
     };
   }
 
-  if (gt(abs(a), 1n)) {
+  if (gt(abs(a), normalize(1n))) {
     return finalize(subtract({ ...PI2, sign: a.sign }, atan(divide(1n, a))));
   }
 
-  a = divide(a, add(1n, sqrt(add(1n, multiply(a, a)))));
+  a = divide(a, add(normalize(1n), sqrt(add(normalize(1n), multiply(a, a)))));
 
-  let k = divide(a, add(1n, multiply(a, a)));
+  let k = divide(a, add(normalize(1n), multiply(a, a)));
   let s = { ...k };
 
   const con = multiply(a, k);
@@ -295,7 +295,7 @@ export const cosh = (a: T): BigNumber => {
 export const tanh = (a: T): BigNumber => {
   a = exp(a);
 
-  return finalize(subtract(1n, divide(2n, add(multiply(a, a), 1n))));
+  return finalize(subtract(normalize(1n), divide(2n, add(multiply(a, a), normalize(1n)))));
 };
 
 /**
@@ -310,7 +310,7 @@ export const coth = (a: T): BigNumber => {
   }
   a = exp(a);
 
-  return finalize(add(1n, divide(2n, subtract(multiply(a, a), 1n))));
+  return finalize(add(normalize(1n), divide(2n, subtract(multiply(a, a), normalize(1n)))));
 };
 
 /**
@@ -347,7 +347,7 @@ export const csch = (a: T): BigNumber => {
 export const asinh = (a: T): BigNumber => {
   a = normalize(a);
 
-  return ln(add(a, sqrt(add(multiply(a, a), 1n))));
+  return ln(add(a, sqrt(add(multiply(a, a), normalize(1n)))));
 };
 
 /**
@@ -368,7 +368,7 @@ export const acosh = (a: T): BigNumber => {
     };
   }
 
-  return ln(add(a, sqrt(subtract(multiply(a, a), 1n))));
+  return ln(add(a, sqrt(subtract(multiply(a, a), normalize(1n)))));
 };
 
 /**
@@ -382,7 +382,7 @@ export const atanh = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range (-1, 1)');
   }
 
-  return finalize(multiply(ln(divide(add(1n, a), subtract(1n, a))), '0.5'));
+  return finalize(multiply(ln(divide(add(normalize(1n), a), subtract(normalize(1n), a))), '0.5'));
 };
 
 /**
@@ -396,7 +396,7 @@ export const acoth = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
   }
 
-  return finalize(multiply(ln(divide(add(a, 1n), subtract(a, 1n))), '0.5'));
+  return finalize(multiply(ln(divide(add(a, normalize(1n)), subtract(a, normalize(1n)))), '0.5'));
 };
 
 /**
@@ -417,7 +417,7 @@ export const asech = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range (0,1]');
   }
 
-  return ln(divide(add(1n, sqrt(subtract(1n, multiply(a, a)))), a));
+  return ln(divide(add(normalize(1n), sqrt(subtract(normalize(1n), multiply(a, a)))), a));
 };
 
 /**
@@ -428,23 +428,23 @@ export const asech = (a: T): BigNumber => {
 export const acsch = (a: T): BigNumber => {
   const b = divide(1n, a);
 
-  return ln(add(b, sqrt(add(divide(b, a), 1n))));
+  return ln(add(b, sqrt(add(divide(b, a), normalize(1n)))));
 };
 
-export const versin = (a: T): BigNumber => finalize(subtract(1n, cos(a)));
+export const versin = (a: T): BigNumber => finalize(subtract(normalize(1n), cos(a)));
 
-export const vercos = (a: T): BigNumber => finalize(add(1n, cos(a)));
+export const vercos = (a: T): BigNumber => finalize(add(normalize(1n), cos(a)));
 
-export const coversin = (a: T): BigNumber => finalize(subtract(1n, sin(a)));
+export const coversin = (a: T): BigNumber => finalize(subtract(normalize(1n), sin(a)));
 
-export const covercos = (a: T): BigNumber => finalize(add(1n, sin(a)));
+export const covercos = (a: T): BigNumber => finalize(add(normalize(1n), sin(a)));
 
-export const haversin = (a: T): BigNumber => finalize(divide(subtract(1n, cos(a)), 2n));
+export const haversin = (a: T): BigNumber => finalize(divide(subtract(normalize(1n), cos(a)), 2n));
 
-export const havercos = (a: T): BigNumber => finalize(divide(add(1n, cos(a)), 2n));
+export const havercos = (a: T): BigNumber => finalize(divide(add(normalize(1n), cos(a)), 2n));
 
-export const hacoversin = (a: T): BigNumber => finalize(divide(subtract(1n, sin(a)), 2n));
+export const hacoversin = (a: T): BigNumber => finalize(divide(subtract(normalize(1n), sin(a)), 2n));
 
-export const hacovercos = (a: T): BigNumber => finalize(divide(add(1n, sin(a)), 2n));
+export const hacovercos = (a: T): BigNumber => finalize(divide(add(normalize(1n), sin(a)), 2n));
 
 export const gd = (a: T): BigNumber => finalize(multiply(2n, atan(tanh(divide(a, 2n)))));

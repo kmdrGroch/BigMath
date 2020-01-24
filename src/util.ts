@@ -106,10 +106,10 @@ export const round = (a: T): BigNumber => {
   if (a.comma < 0) {
     const b = stringify(a).split('.');
     if (a.sign) {
-      return +b[1][0] > 5 ? subtract(BigInt(b[0]), 1n) : normalize(BigInt(b[0]));
+      return +b[1][0] > 5 ? subtract(normalize(BigInt(b[0])), normalize(1n)) : normalize(BigInt(b[0]));
     }
 
-    return +b[1][0] >= 5 ? add(BigInt(b[0]), 1n) : normalize(BigInt(b[0]));
+    return +b[1][0] >= 5 ? add(normalize(BigInt(b[0])), normalize(1n)) : normalize(BigInt(b[0]));
   }
 
   return a;
@@ -120,7 +120,7 @@ export const floor = (a: T): BigNumber => {
   if (a.sign) {
     const b = stringify(a).split('.');
 
-    return b[1] ? subtract(BigInt(b[0]), 1n) : normalize(BigInt(b[0]));
+    return b[1] ? subtract(normalize(BigInt(b[0])), normalize(1n)) : normalize(BigInt(b[0]));
   }
 
   return normalize(BigInt(stringify(a).split('.')[0]));
@@ -131,7 +131,7 @@ export const ceil = (a: T): BigNumber => {
   if (!a.sign) {
     const b = stringify(a).split('.');
 
-    return b[1] ? add(BigInt(b[0]), 1n) : normalize(BigInt(b[0]));
+    return b[1] ? add(normalize(BigInt(b[0])), normalize(1n)) : normalize(BigInt(b[0]));
   }
 
   return normalize(BigInt(stringify(a).split('.')[0]));

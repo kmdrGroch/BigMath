@@ -44,7 +44,7 @@ export const K = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'number from range [-1, 1]');
   }
 
-  return finalize(divide(PI2, AGM(1n, sqrt(subtract(1n, power(a, 2n))))));
+  return finalize(divide(PI2, AGM(1n, sqrt(subtract(normalize(1n), power(a, 2n))))));
 };
 
 /**
@@ -79,7 +79,10 @@ export const W = (a: T): BigNumber => {
     wjewj = multiply(w, ex);
     w1 = subtract(
       w,
-      divide(subtract(wjewj, a), subtract(add(wjewj, ex), divide(multiply(add(w, 2n), subtract(wjewj, a)), multiply(add(w, 1n), 2n))))
+      divide(
+        subtract(wjewj, a),
+        subtract(add(wjewj, ex), divide(multiply(add(w, normalize(2n)), subtract(wjewj, a)), multiply(add(w, normalize(1n)), 2n)))
+      )
     );
     if (lt(abs(subtract(w, w1)), ErrorConst) || safeIterator === 100) {
       return finalize(w1);
@@ -112,7 +115,7 @@ export const XY = (a: T): BigNumber => {
 export const erf = (a: T): BigNumber => {
   a = normalize(a);
 
-  if (gt(abs(a), 9.5)) {
+  if (gt(abs(a), normalize('9.5'))) {
     return {
       comma: 0,
       number: 1n,

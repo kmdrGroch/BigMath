@@ -1,16 +1,16 @@
 import { subtract } from './basic';
-import { T } from './interfaces';
+import { BigNumber } from './interfaces';
 import { normalize } from './util';
 
 /**
  * @returns If first parameter is greater than or equal second parameter
  */
-export const gte = (a: T, b: T): boolean => !subtract(a, b).sign;
+export const gte = (a: BigNumber, b: BigNumber): boolean => !subtract(a, b).sign;
 
 /**
  * @returns If first parameter is smaller than or equal second parameter
  */
-export const lte = (a: T, b: T): boolean => {
+export const lte = (a: BigNumber, b: BigNumber): boolean => {
   const k = subtract(a, b);
 
   return k.sign || k.number === 0n;
@@ -19,7 +19,7 @@ export const lte = (a: T, b: T): boolean => {
 /**
  * @returns If first parameter is greater than second parameter
  */
-export const gt = (a: T, b: T): boolean => {
+export const gt = (a: BigNumber, b: BigNumber): boolean => {
   const x = subtract(a, b);
 
   return !x.sign && x.number !== 0n;
@@ -28,12 +28,12 @@ export const gt = (a: T, b: T): boolean => {
 /**
  * @returns If first parameter is smaller than second parameter
  */
-export const lt = (a: T, b: T): boolean => subtract(a, b).sign;
+export const lt = (a: BigNumber, b: BigNumber): boolean => subtract(a, b).sign;
 
 /**
  * @returns If first parameter is equal second parameter
  */
-export const eq = (a: T, b: T): boolean => {
+export const eq = (a: BigNumber, b: BigNumber): boolean => {
   a = normalize(a);
   b = normalize(b);
 
@@ -43,7 +43,7 @@ export const eq = (a: T, b: T): boolean => {
 /**
  * @returns If first parameter is not equal second parameter
  */
-export const neq = (a: T, b: T): boolean => {
+export const neq = (a: BigNumber, b: BigNumber): boolean => {
   a = normalize(a);
   b = normalize(b);
 

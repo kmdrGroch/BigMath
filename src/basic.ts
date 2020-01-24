@@ -9,9 +9,9 @@ import { config } from './BigMath';
  * @domain Real numbers, Real numbers
  * @returns Sum of parameters
  */
-export const add = (a: T, b: T): BigNumber => {
-  a = normalize(a);
-  b = normalize(b);
+export const add = (a: BigNumber, b: BigNumber): BigNumber => {
+  a = { ...a };
+  b = { ...b };
 
   if (a.sign !== b.sign) {
     if (a.sign) {
@@ -22,6 +22,14 @@ export const add = (a: T, b: T): BigNumber => {
     b.sign = false;
 
     return subtract(a, b);
+  }
+
+  if (a.comma === b.comma) {
+    return trim({
+      comma: a.comma,
+      number: a.number + b.number,
+      sign: a.sign
+    });
   }
 
   if (a.comma > b.comma) {
@@ -43,9 +51,9 @@ export const add = (a: T, b: T): BigNumber => {
  * @domain Real numbers, Real numbers
  * @returns Difference of parameters
  */
-export const subtract = (a: T, b: T): BigNumber => {
-  a = normalize(a);
-  b = normalize(b);
+export const subtract = (a: BigNumber, b: BigNumber): BigNumber => {
+  a = { ...a };
+  b = { ...b };
 
   if (a.sign !== b.sign) {
     if (a.sign) {
@@ -56,6 +64,14 @@ export const subtract = (a: T, b: T): BigNumber => {
     b.sign = false;
 
     return add(a, b);
+  }
+
+  if (a.comma === b.comma) {
+    return trim({
+      comma: a.comma,
+      number: a.number - b.number,
+      sign: a.sign
+    });
   }
 
   if (a.comma > b.comma) {
@@ -200,11 +216,11 @@ export const ln = (a: T) => {
       }
   }
 
-  let sum = divide(subtract(a, 1n), add(a, 1n));
+  let sum = divide(subtract(a, normalize(1n)), add(a, normalize(1n)));
   let p = { ...sum };
   const double = multiply(sum, sum);
-  let start1 = add(3n, double);
-  const coef1 = add(4n, multiply(4n, double));
+  let start1 = add(normalize(3n), double);
+  const coef1 = add(normalize(4n), multiply(4n, double));
   const quad = multiply(double, double);
   let i = 5n;
 
@@ -240,11 +256,11 @@ export const ln = (a: T) => {
 export const ln1p = (a: T): BigNumber => {
   a = normalize(a);
 
-  if (lte(a, -1n)) {
+  if (lte(a, normalize(-1n))) {
     throw new DomainError(stringify(a), 'numbers greater than -1');
   }
 
-  return ln(add(1n, a));
+  return ln(add(normalize(1n), a));
 };
 
 /**
@@ -339,7 +355,7 @@ export const sqrt = (a: T): BigNumber => {
     }
   }
 
-  let aprox = mid || normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
+  let aprox = normalize(mid || 10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
   let aprox1;
 
   const ErrorConst = {
@@ -349,7 +365,7 @@ export const sqrt = (a: T): BigNumber => {
   };
 
   while (true) {
-    aprox1 = multiply(add(divide(a, aprox), aprox), 0.5);
+    aprox1 = multiply(add(divide(a, aprox), aprox), '0.5');
     if (lt(abs(subtract(aprox1, aprox)), ErrorConst)) {
       return finalize(aprox1);
     }
@@ -407,7 +423,7 @@ export const cbrt = (a: T): BigNumber => {
     }
   }
 
-  let aprox = mid || normalize(10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
+  let aprox = normalize(mid || 10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
   let aprox1;
 
   const ErrorConst = {
@@ -472,7 +488,7 @@ export const exp = (a: T): BigNumber => {
 
   for (let k = 2n; ; k += 2n) {
     a = divide(a, k * (k - 1n));
-    sum1 = add(sum, multiply(a, add(multiply(k, inv), 1n)));
+    sum1 = add(sum, multiply(a, add(multiply(k, inv), normalize(1n))));
     if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
       return finalize({
         comma: sum1.comma * +`${i}`,
@@ -489,7 +505,7 @@ export const exp = (a: T): BigNumber => {
  * @domain Real numbers
  * @returns Result of the exponentiation of e ^ parameter - 1
  */
-export const expm1 = (a: T): BigNumber => subtract(exp(a), 1n);
+export const expm1 = (a: T): BigNumber => subtract(exp(a), normalize(1n));
 
 export const doubleFactorial = (a: T): BigNumber => {
   a = normalize(a);
@@ -563,7 +579,7 @@ export const gamma = (a: T): BigNumber => {
   a = normalize(a);
 
   if (a.comma === 0 && !a.sign) {
-    return factorial(subtract(a, 1n));
+    return factorial(subtract(a, normalize(1n)));
   }
 
   const p1 = '0.9999999999998099322768470047347829718009602570498980962898849358';
@@ -583,16 +599,16 @@ export const gamma = (a: T): BigNumber => {
   }
 
   let y;
-  if (lte(a, 0.5)) {
-    y = divide(PI, multiply(sin(multiply(PI, a)), gamma(subtract(1n, a))));
+  if (lte(a, normalize('0.5'))) {
+    y = divide(PI, multiply(sin(multiply(PI, a)), gamma(subtract(normalize(1n), a))));
   } else {
-    a = subtract(a, 1n);
+    a = subtract(a, normalize(1n));
     let x = normalize(p1);
     for (let i = 0; i < p.length; i += 1) {
-      x = add(x, divide(p[i], add(a, i + 1)));
+      x = add(x, divide(p[i], add(a, normalize(i + 1))));
     }
-    const t = add(a, p.length - 0.5);
-    y = multiply(multiply(multiply(sqrt(multiply(PI, 2n)), power(t, add(a, 0.5))), exp(multiply(t, -1n))), x);
+    const t = add(a, normalize(p.length - 0.5));
+    y = multiply(multiply(multiply(sqrt(multiply(PI, 2n)), power(t, add(a, normalize('0.5')))), exp(multiply(t, -1n))), x);
   }
 
   return finalize(y);

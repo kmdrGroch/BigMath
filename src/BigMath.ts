@@ -76,21 +76,21 @@ export default class BigMath {
   }
 
   public sum(value: T) {
-    this.number = add(this.number, value);
+    this.number = add(this.number, normalize(value));
     return this;
   }
   public add(value: T) {
     return this.sum(value);
   }
   public static sum(value1: T, value2: T) {
-    return new BigMath(value1).add(value2);
+    return new BigMath(value1).sum(value2);
   }
   public static add(value1: T, value2: T) {
-    return this.sum(value1, value2);
+    return new BigMath(value1).sum(value2);
   }
 
   public minus(value: T) {
-    this.number = subtract(this.number, value);
+    this.number = subtract(this.number, normalize(value));
     return this;
   }
   public sub(value: T) {
@@ -100,7 +100,7 @@ export default class BigMath {
     return new BigMath(value1).minus(value2);
   }
   public static sub(value1: T, value2: T) {
-    return this.minus(value1, value2);
+    return new BigMath(value1).minus(value2);
   }
 
   public times(value: T) {
@@ -796,81 +796,81 @@ export default class BigMath {
   }
 
   public equals(value: T) {
-    return eq(this.number, value);
+    return eq(this.number, normalize(value));
   }
   public eq(value: T) {
     return this.equals(value);
   }
   public static equals(value1: T, value2: T) {
-    return eq(value1, value2);
+    return new BigMath(value1).eq(value2);
   }
   public static eq(value1: T, value2: T) {
-    return this.equals(value1, value2);
+    return new BigMath(value1).eq(value2);
   }
 
   public greaterThan(value: T) {
-    return gt(this.number, value);
+    return gt(this.number, normalize(value));
   }
   public gt(value: T) {
     return this.greaterThan(value);
   }
   public static greaterThan(value1: T, value2: T) {
-    return gt(value1, value2);
+    return new BigMath(value1).greaterThan(value2);
   }
   public static gt(value1: T, value2: T) {
-    return this.greaterThan(value1, value2);
+    return new BigMath(value1).greaterThan(value2);
   }
 
   public lessThan(value: T) {
-    return lt(this.number, value);
+    return lt(this.number, normalize(value));
   }
   public lt(value: T) {
     return this.lessThan(value);
   }
   public static lessThan(value1: T, value2: T) {
-    return lt(value1, value2);
+    return new BigMath(value1).lessThan(value2);
   }
   public static lt(value1: T, value2: T) {
-    return this.lessThan(value1, value2);
+    return new BigMath(value1).lessThan(value2);
   }
 
   public greaterThanOrEqualTo(value: T) {
-    return gte(this.number, value);
+    return gte(this.number, normalize(value));
   }
   public gte(value: T) {
     return this.greaterThanOrEqualTo(value);
   }
   public static greaterThanOrEqualTo(value1: T, value2: T) {
-    return gte(value1, value2);
+    return new BigMath(value1).greaterThanOrEqualTo(value2);
   }
   public static gte(value1: T, value2: T) {
-    return this.greaterThanOrEqualTo(value1, value2);
+    return new BigMath(value1).greaterThanOrEqualTo(value2);
   }
 
   public lessThanOrEqualTo(value: T) {
-    return lte(this.number, value);
+    return lte(this.number, normalize(value));
   }
   public lte(value: T) {
     return this.lessThanOrEqualTo(value);
   }
   public static lessThanOrEqualTo(value1: T, value2: T) {
-    return lte(value1, value2);
+    return new BigMath(value1).lessThanOrEqualTo(value2);
   }
   public static lte(value1: T, value2: T) {
-    return this.lessThanOrEqualTo(value1, value2);
+    return new BigMath(value1).lessThanOrEqualTo(value2);
   }
 
   public notEquals(value: T) {
-    return neq(this.number, value);
+    return neq(this.number, normalize(value));
   }
   public neq(value: T) {
     return this.notEquals(value);
   }
   public static notEquals(value1: T, value2: T) {
-    return neq(value1, value2);
+    return new BigMath(value1).notEquals(value2);
   }
   public static neq(value1: T, value2: T) {
-    return this.notEquals(value1, value2);
+    return new BigMath(value1).notEquals(value2);
   }
 
   public arithmeticGeometricMean(value: T) {
