@@ -551,7 +551,7 @@ export const factorial = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'positive integers');
   }
 
-  let n = a.number;
+  const n = a.number;
 
   if (n < 7n) {
     return {
@@ -561,12 +561,31 @@ export const factorial = (a: T): BigNumber => {
     };
   }
 
-  if (n % 2n === 0n) {
-    const k = n / 2n;
-    return normalize(2n ** k * doubleFactorial(n - 1n).number * factorial(k).number);
+  let nostart = false;
+  const h = n / 2n;
+  let s = h + 1n;
+  let k = s + h;
+  let f = (n & 1n) === 1n ? k : 1n;
+
+  if ((h & 1n) === 1n) f = -f;
+  k += 4n;
+
+  function HyperFact(l: bigint): bigint {
+    if (l > 1n) {
+      const m = l >> 1n;
+      return HyperFact(m) * HyperFact(l - m);
+    }
+
+    if (nostart) {
+      s -= k -= 4n;
+      return s;
+    }
+    nostart = true;
+
+    return f;
   }
 
-  return normalize(factorial(n - 1n).number * n);
+  return normalize(HyperFact(h + 1n) << h);
 };
 
 export const gamma = (a: T): BigNumber => {
