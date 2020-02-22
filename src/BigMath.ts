@@ -15,11 +15,13 @@ import {
   sqrt,
   subtract,
   doubleFactorial,
-  superFactorial
+  superFactorial,
+  binomial
 } from './basic';
 import { bitAND, bitLeft, bitNOT, bitOR, bitRight, bitXOR } from './bitOperations';
 import { eq, gt, gte, lt, lte, neq } from './comparison';
 import { E, LOG10, LOG10E, LOG2, LOG2E, PI, PI2, SQRT1_2, SQRT2 } from './constants';
+import { BigNumber, T } from './interfaces';
 import { AGM, erf, K, W, XY } from './other';
 import {
   acos,
@@ -58,7 +60,6 @@ import {
   versin
 } from './trigonometry';
 import { ceil, floor, isInteger, normalize, round, stringify, finalize } from './util';
-import { BigNumber, T } from './interfaces';
 
 interface Config {
   precision: number;
@@ -277,6 +278,14 @@ export default class BigMath {
   }
   public static doubleFactorial(value1: T) {
     return new BigMath(value1).doubleFactorial();
+  }
+
+  public binomial(value: T) {
+    this.number = binomial(this.number, value);
+    return this;
+  }
+  public static binomial(value1: T, value2: T) {
+    return new BigMath(value1).binomial(value2);
   }
 
   public gamma() {

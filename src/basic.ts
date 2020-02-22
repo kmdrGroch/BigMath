@@ -1,9 +1,9 @@
-import { lt, lte } from './comparison';
+import { config } from './BigMath';
+import { lt, lte, gt } from './comparison';
 import { LOG10, LOG2, PI, HALF, TWO, ONE, THREE, FOUR, SIX, EIGHT, MINUSONE } from './constants';
 import { BigNumber, T } from './interfaces';
 import { sin } from './trigonometry';
 import { abs, DomainError, finalize, normalize, stringify, trim, gcd } from './util';
-import { config } from './BigMath';
 
 /**
  * @domain Real numbers, Real numbers
@@ -590,6 +590,21 @@ export const factorial = (a: T): BigNumber => {
   }
 
   return normalize(HyperFact(h + 1n) << h);
+};
+
+export const binomial = (a: T, b: T): BigNumber => {
+  a = normalize(a);
+  b = normalize(b);
+
+  if (gt(b, a)) {
+    throw new DomainError(`binomial(${stringify(a)}, ${stringify(b)})`, 'first parameter bigger than second');
+  }
+
+  return {
+    comma: 0,
+    number: factorial(a).number / factorial(b).number,
+    sign: false
+  };
 };
 
 export const gamma = (a: T): BigNumber => {

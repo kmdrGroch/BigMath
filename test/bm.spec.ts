@@ -1,7 +1,7 @@
-import { expect } from 'chai';
-
 import { DomainError } from '../index';
 import BigMath from '../src/BigMath';
+
+import { expect } from 'chai';
 
 describe('add', () => {
   it('1', () => {
@@ -197,6 +197,21 @@ describe('factorial', () => {
   });
   it('5', () => {
     expect(() => BigMath.factorial(-12).toString()).to.throw(DomainError, 'Number out of domain. Given: -12. Expected: positive integers');
+  });
+});
+
+describe('binomial', () => {
+  it('1', () => {
+    expect(new BigMath(15).binomial(6).toString()).to.be.equal('1816214400');
+  });
+  it('2', () => {
+    expect(BigMath.binomial(15, 6).toString()).to.be.equal('1816214400');
+  });
+  it('3', () => {
+    expect(() => BigMath.binomial(5, 20).toString()).to.throw(
+      DomainError,
+      'Number out of domain. Given: binomial(5, 20). Expected: first parameter bigger than second'
+    );
   });
 });
 
