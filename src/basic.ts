@@ -2,7 +2,7 @@ import { lt, lte } from './comparison';
 import { LOG10, LOG2, PI, HALF, TWO, ONE, THREE, FOUR, SIX, EIGHT, MINUSONE } from './constants';
 import { BigNumber, T } from './interfaces';
 import { sin } from './trigonometry';
-import { abs, DomainError, finalize, normalize, stringify, trim } from './util';
+import { abs, DomainError, finalize, normalize, stringify, trim, gcd } from './util';
 import { config } from './BigMath';
 
 /**
@@ -290,8 +290,20 @@ export const power = (a: T, b: T): BigNumber => {
 
     return a;
   }
+
   if (a.sign) {
-    throw new DomainError(`${stringify(a)} ^ ${stringify(b)}`, 'real numbers | not negative ^ non-integer');
+    const tens = 10n ** BigInt(-b.comma);
+    const g = gcd(b.number, tens);
+    if ((tens / g) % 2n === 0n) {
+      throw new DomainError(`${stringify(a)} ^ ${stringify(b)}`, 'real numbers | not negative ^ non-integer');
+    }
+
+    a.sign = false;
+
+    return {
+      ...finalize(exp(multiply(b, ln(a)))),
+      sign: true
+    };
   }
 
   return finalize(exp(multiply(b, ln(a))));

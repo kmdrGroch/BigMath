@@ -185,3 +185,5 @@ export const finalize = (a: BigNumber, length: number = -config.precision): BigN
     sign: a.sign
   });
 };
+
+export const gcd = (a: bigint, b: bigint): bigint => (b === 0n ? a : gcd(b, a % b));

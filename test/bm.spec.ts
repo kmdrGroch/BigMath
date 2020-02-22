@@ -273,6 +273,9 @@ describe('power', () => {
       'Number out of domain. Given: -2 ^ 0.5. Expected: real numbers | not negative ^ non-integer'
     );
   });
+  it('7', () => {
+    expect(BigMath.toPower(-32, 0.2).toString()).to.be.equal('-2');
+  });
 });
 
 describe('sqrt', () => {
