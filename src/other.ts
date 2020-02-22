@@ -1,6 +1,6 @@
 import { add, divide, exp, ln, multiply, power, sqrt, subtract } from './basic';
 import { gt, lt } from './comparison';
-import { LOG2, PI, PI2 } from './constants';
+import { LOG2, PI, PI2, TWO, ONE, HALF, NINEHALF } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify, finalize } from './util';
 import { config } from './BigMath';
@@ -26,7 +26,7 @@ export const AGM = (a: T, b: T): BigNumber => {
 
   while (true) {
     c = { ...a };
-    a1 = multiply(add(c, b), 0.5);
+    a1 = multiply(add(c, b), HALF);
     if (lt(abs(subtract(a1, a)), ErrorConst)) {
       return finalize(a1);
     }
@@ -44,7 +44,7 @@ export const K = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'number from range [-1, 1]');
   }
 
-  return finalize(divide(PI2, AGM(1n, sqrt(subtract(normalize(1n), power(a, 2n))))));
+  return finalize(divide(PI2, AGM(ONE, sqrt(subtract(ONE, power(a, TWO))))));
 };
 
 /**
@@ -59,7 +59,7 @@ export const W = (a: T): BigNumber => {
   if (a.number === 1n && a.comma === 0 && !a.sign) {
     return w;
   }
-  if (lt(a, divide(LOG2, -2n))) {
+  if (lt(a, divide(LOG2, normalize(-2n)))) {
     throw new DomainError(stringify(a), 'number bigger than -log(2) / 2');
   }
 
@@ -79,10 +79,7 @@ export const W = (a: T): BigNumber => {
     wjewj = multiply(w, ex);
     w1 = subtract(
       w,
-      divide(
-        subtract(wjewj, a),
-        subtract(add(wjewj, ex), divide(multiply(add(w, normalize(2n)), subtract(wjewj, a)), multiply(add(w, normalize(1n)), 2n)))
-      )
+      divide(subtract(wjewj, a), subtract(add(wjewj, ex), divide(multiply(add(w, TWO), subtract(wjewj, a)), multiply(add(w, ONE), TWO))))
     );
     if (lt(abs(subtract(w, w1)), ErrorConst) || safeIterator === 100) {
       return finalize(w1);
@@ -97,7 +94,7 @@ export const W = (a: T): BigNumber => {
  */
 export const XY = (a: T): BigNumber => {
   a = normalize(a);
-  if (a.sign || a.number === 0n || gt(a, sqrt(2n))) {
+  if (a.sign || a.number === 0n || gt(a, sqrt(TWO))) {
     throw new DomainError(stringify(a), 'number bigger than 0 and less than sqrt(2)');
   }
   if (!a.sign && a.number === 1n && a.comma === 0) {
@@ -115,7 +112,7 @@ export const XY = (a: T): BigNumber => {
 export const erf = (a: T): BigNumber => {
   a = normalize(a);
 
-  if (gt(abs(a), normalize('9.5'))) {
+  if (gt(abs(a), NINEHALF)) {
     return {
       comma: 0,
       number: 1n,
@@ -136,15 +133,18 @@ export const erf = (a: T): BigNumber => {
     sign: false
   };
 
-  for (let i = 1n; ; i += 1n) {
+  for (let i = 1n; ; i++) {
     fact *= i;
     k += 2n;
     a = multiply(a, a2);
 
-    sum1 = i % 2n === 1n ? subtract(sum, divide(a, multiply(fact, k))) : add(sum, divide(a, multiply(fact, k)));
+    sum1 =
+      i % 2n === 1n
+        ? subtract(sum, divide(a, multiply(normalize(fact), normalize(k))))
+        : add(sum, divide(a, multiply(normalize(fact), normalize(k))));
 
     if (lt(abs(subtract(sum, sum1)), ErrorConst)) {
-      return finalize(multiply(sum1, divide(2n, sqrt(PI))));
+      return finalize(multiply(sum1, divide(TWO, sqrt(PI))));
     }
     sum = sum1;
   }

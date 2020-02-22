@@ -80,3 +80,63 @@ export const SQRT1_2: BigNumber = Object.freeze({
   number: 707106781186547524400844362104849039284835937688474036588n,
   sign: false
 });
+
+export const MINUSONE: BigNumber = Object.freeze({
+  comma: 0,
+  number: 1n,
+  sign: true
+});
+
+export const ONE: BigNumber = Object.freeze({
+  comma: 0,
+  number: 1n,
+  sign: false
+});
+
+export const TWO: BigNumber = Object.freeze({
+  comma: 0,
+  number: 2n,
+  sign: false
+});
+
+export const THREE: BigNumber = Object.freeze({
+  comma: 0,
+  number: 3n,
+  sign: false
+});
+
+export const FOUR: BigNumber = Object.freeze({
+  comma: 0,
+  number: 4n,
+  sign: false
+});
+
+export const FIVE: BigNumber = Object.freeze({
+  comma: 0,
+  number: 5n,
+  sign: false
+});
+
+export const SIX: BigNumber = Object.freeze({
+  comma: 0,
+  number: 6n,
+  sign: false
+});
+
+export const EIGHT: BigNumber = Object.freeze({
+  comma: 0,
+  number: 8n,
+  sign: false
+});
+
+export const NINEHALF: BigNumber = Object.freeze({
+  comma: -1,
+  number: 95n,
+  sign: false
+});
+
+export const HALF: BigNumber = Object.freeze({
+  comma: -1,
+  number: 5n,
+  sign: false
+});

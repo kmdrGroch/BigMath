@@ -1,5 +1,5 @@
 import { lt, lte } from './comparison';
-import { LOG10, LOG2, PI } from './constants';
+import { LOG10, LOG2, PI, HALF, TWO, ONE, THREE, FOUR, SIX, EIGHT, MINUSONE } from './constants';
 import { BigNumber, T } from './interfaces';
 import { sin } from './trigonometry';
 import { abs, DomainError, finalize, normalize, stringify, trim } from './util';
@@ -93,24 +93,20 @@ export const subtract = (a: BigNumber, b: BigNumber): BigNumber => {
  * @domain Real numbers
  * @returns Product of parameters
  */
-export const multiply = (a: T, b: T): BigNumber => {
-  a = normalize(a);
-  b = normalize(b);
-
-  return trim({
+export const multiply = (a: BigNumber, b: BigNumber): BigNumber =>
+  trim({
     comma: a.comma + b.comma,
     number: a.number * b.number,
     sign: a.sign !== b.sign
   });
-};
 
 /**
  * @domain Real numbers, Real numbers other than 0
  * @returns Quotient of parameters
  */
-export const divide = (a: T, b: T, pure = false): BigNumber => {
-  a = normalize(a);
-  b = normalize(b);
+export const divide = (a: BigNumber, b: BigNumber, pure = false): BigNumber => {
+  a = { ...a };
+  b = { ...b };
 
   if (b.number === 0n) {
     throw new DomainError('0', 'numbers other than 0');
@@ -138,7 +134,7 @@ export const divide = (a: T, b: T, pure = false): BigNumber => {
     f = a.number / b.number;
     d += `${f}`;
     a.number = (a.number - f * b.number) * 10n;
-    i += 1;
+    i++;
   }
 
   const c = a.comma - b.comma - i;
@@ -151,18 +147,14 @@ export const divide = (a: T, b: T, pure = false): BigNumber => {
     };
   }
 
-  a = {
-    comma: c,
-    number: BigInt(`${n}${d}`),
-    sign: a.sign !== b.sign
-  };
-
-  if (a.number % 10n === 0n && a.comma < 0) {
-    a.comma += 1;
-    a.number /= 10n;
-  }
-
-  return finalize(a, -config.precision - (pure ? 0 : 10));
+  return finalize(
+    {
+      comma: c,
+      number: BigInt(`${n}${d}`),
+      sign: a.sign !== b.sign
+    },
+    -config.precision - (pure ? 0 : 10)
+  );
 };
 
 /**
@@ -176,7 +168,7 @@ export const ln = (a: T) => {
   }
 
   const tens = `${a.number}`.length + a.comma;
-  let ten = multiply(tens, LOG10);
+  let ten = multiply(normalize(tens), LOG10);
 
   a.comma -= tens;
 
@@ -184,7 +176,7 @@ export const ln = (a: T) => {
     case '5':
     case '4':
       ten = subtract(ten, LOG2);
-      a = multiply(a, 2n);
+      a = multiply(a, TWO);
       break;
     case '3':
       ten = subtract(ten, {
@@ -192,11 +184,11 @@ export const ln = (a: T) => {
         number: 1098612288668109691395245236922525704647490557822749451734n,
         sign: false
       });
-      a = multiply(a, 3n);
+      a = multiply(a, THREE);
       break;
     case '2':
-      ten = subtract(ten, multiply(LOG2, 2n));
-      a = multiply(a, 4n);
+      ten = subtract(ten, multiply(LOG2, TWO));
+      a = multiply(a, FOUR);
       break;
     case '1':
       if (+(`${a.number}`[1] || 0) > 5) {
@@ -205,26 +197,26 @@ export const ln = (a: T) => {
           number: 1791759469228055000812477358380702272722990692183004705855n,
           sign: false
         });
-        a = multiply(a, 6n);
+        a = multiply(a, SIX);
       } else {
         ten = subtract(ten, {
           comma: -57,
           number: 2079441541679835928251696364374529704226500403080765762362n,
           sign: false
         });
-        a = multiply(a, 8n);
+        a = multiply(a, EIGHT);
       }
   }
 
-  let sum = divide(subtract(a, normalize(1n)), add(a, normalize(1n)));
+  let sum = divide(subtract(a, ONE), add(a, ONE));
   let p = { ...sum };
   const double = multiply(sum, sum);
-  let start1 = add(normalize(3n), double);
-  const coef1 = add(normalize(4n), multiply(4n, double));
+  let start1 = add(THREE, double);
+  const coef1 = add(FOUR, multiply(FOUR, double));
   const quad = multiply(double, double);
   let i = 5n;
 
-  let sum1 = multiply(divide(p, 3n), start1);
+  let sum1 = multiply(divide(p, THREE), start1);
 
   let sum2;
 
@@ -238,10 +230,10 @@ export const ln = (a: T) => {
     p = multiply(p, quad);
     start1 = add(start1, coef1);
 
-    sum2 = add(sum1, multiply(divide(p, i * (i + 2n)), start1));
+    sum2 = add(sum1, multiply(divide(p, normalize(i * (i + 2n))), start1));
 
     if (lt(abs(subtract(sum2, sum1)), ErrorConst)) {
-      return finalize(add(ten, multiply(sum2, 2n)));
+      return finalize(add(ten, multiply(sum2, TWO)));
     }
 
     i += 4n;
@@ -256,11 +248,11 @@ export const ln = (a: T) => {
 export const ln1p = (a: T): BigNumber => {
   a = normalize(a);
 
-  if (lte(a, normalize(-1n))) {
+  if (lte(a, MINUSONE)) {
     throw new DomainError(stringify(a), 'numbers greater than -1');
   }
 
-  return ln(add(normalize(1n), a));
+  return ln(add(ONE, a));
 };
 
 /**
@@ -288,7 +280,7 @@ export const power = (a: T, b: T): BigNumber => {
 
   if (b.comma > -1) {
     if (b.sign) {
-      a = divide(1, a);
+      a = divide(ONE, a);
     }
     if (a.sign) {
       a.sign = b.number % 2n === 1n;
@@ -365,7 +357,7 @@ export const sqrt = (a: T): BigNumber => {
   };
 
   while (true) {
-    aprox1 = multiply(add(divide(a, aprox), aprox), '0.5');
+    aprox1 = multiply(add(divide(a, aprox), aprox), HALF);
     if (lt(abs(subtract(aprox1, aprox)), ErrorConst)) {
       return finalize(aprox1);
     }
@@ -433,7 +425,7 @@ export const cbrt = (a: T): BigNumber => {
   };
 
   while (true) {
-    aprox1 = divide(add(divide(a, multiply(aprox, aprox)), multiply(aprox, 2n)), 3n);
+    aprox1 = divide(add(divide(a, multiply(aprox, aprox)), multiply(aprox, TWO)), THREE);
     if (lt(abs(subtract(aprox1, aprox)), ErrorConst)) {
       return finalize(aprox1);
     }
@@ -465,10 +457,10 @@ export const exp = (a: T): BigNumber => {
   }
 
   if (i !== 1n) {
-    a = divide(a, i);
+    a = divide(a, normalize(i));
   }
 
-  const inv = divide(1n, a);
+  const inv = divide(ONE, a);
   a = multiply(a, a);
 
   const b = { ...a };
@@ -487,8 +479,8 @@ export const exp = (a: T): BigNumber => {
   };
 
   for (let k = 2n; ; k += 2n) {
-    a = divide(a, k * (k - 1n));
-    sum1 = add(sum, multiply(a, add(multiply(k, inv), normalize(1n))));
+    a = divide(a, normalize(k * (k - 1n)));
+    sum1 = add(sum, multiply(a, add(multiply(normalize(k), inv), ONE)));
     if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
       return finalize({
         comma: sum1.comma * +`${i}`,
@@ -505,7 +497,7 @@ export const exp = (a: T): BigNumber => {
  * @domain Real numbers
  * @returns Result of the exponentiation of e ^ parameter - 1
  */
-export const expm1 = (a: T): BigNumber => subtract(exp(a), normalize(1n));
+export const expm1 = (a: T): BigNumber => subtract(exp(a), ONE);
 
 export const doubleFactorial = (a: T): BigNumber => {
   a = normalize(a);
@@ -526,7 +518,7 @@ export const doubleFactorial = (a: T): BigNumber => {
   switch ((n + 1n) % 4n) {
     case 0n:
       const p = (n - 1n) / 2n;
-      n += 1n;
+      n++;
       let prod = 1n;
 
       for (let k = 1n; k <= p; k += 2n) {
@@ -598,7 +590,7 @@ export const gamma = (a: T): BigNumber => {
   a = normalize(a);
 
   if (a.comma === 0 && !a.sign) {
-    return factorial(subtract(a, normalize(1n)));
+    return factorial(subtract(a, ONE));
   }
 
   const p1 = '0.9999999999998099322768470047347829718009602570498980962898849358';
@@ -618,16 +610,16 @@ export const gamma = (a: T): BigNumber => {
   }
 
   let y;
-  if (lte(a, normalize('0.5'))) {
-    y = divide(PI, multiply(sin(multiply(PI, a)), gamma(subtract(normalize(1n), a))));
+  if (lte(a, HALF)) {
+    y = divide(PI, multiply(sin(multiply(PI, a)), gamma(subtract(ONE, a))));
   } else {
-    a = subtract(a, normalize(1n));
+    a = subtract(a, ONE);
     let x = normalize(p1);
-    for (let i = 0; i < p.length; i += 1) {
-      x = add(x, divide(p[i], add(a, normalize(i + 1))));
+    for (let i = 0; i < p.length; i++) {
+      x = add(x, divide(normalize(p[i]), add(a, normalize(i + 1))));
     }
     const t = add(a, normalize(p.length - 0.5));
-    y = multiply(multiply(multiply(sqrt(multiply(PI, 2n)), power(t, add(a, normalize('0.5')))), exp(multiply(t, -1n))), x);
+    y = multiply(multiply(multiply(sqrt(multiply(PI, TWO)), power(t, add(a, HALF))), exp(multiply(t, MINUSONE))), x);
   }
 
   return finalize(y);

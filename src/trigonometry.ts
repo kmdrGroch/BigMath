@@ -1,6 +1,6 @@
 import { add, divide, exp, ln, multiply, sqrt, subtract } from './basic';
 import { gt, lt } from './comparison';
-import { PI, PI2 } from './constants';
+import { PI, PI2, HALF, ONE, TWO, THREE, FOUR, FIVE } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify, finalize } from './util';
 import { config } from './BigMath';
@@ -14,7 +14,7 @@ export const sin = (a: T): BigNumber => {
   a = normalize(a);
 
   const r = divide(a, PI2);
-  const reduce = subtract(a, multiply(r.number / 10n ** BigInt(-r.comma), PI2));
+  const reduce = subtract(a, multiply(normalize(r.number / 10n ** BigInt(-r.comma)), PI2));
   let s = { ...reduce };
   let k = { ...reduce };
 
@@ -30,15 +30,20 @@ export const sin = (a: T): BigNumber => {
     sign: false
   };
 
+  let p = 6n;
+  let ad = 14n;
+
   while (true) {
-    f *= i * (i * 4n + 2n);
+    f *= p;
+    p += ad;
+    ad += 8n;
     k = multiply(k, k2);
-    s1 = i % 2n === 0n ? add(s, divide(k, f)) : subtract(s, divide(k, f));
+    s1 = i % 2n === 0n ? add(s, divide(k, normalize(f))) : subtract(s, divide(k, normalize(f)));
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
       return finalize(s1);
     }
     s = s1;
-    i += 1n;
+    i++;
   }
 };
 
@@ -88,7 +93,7 @@ export const sec = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
   }
 
-  return finalize(divide(1n, c));
+  return finalize(divide(ONE, c));
 };
 
 /**
@@ -102,7 +107,7 @@ export const csc = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
   }
 
-  return finalize(divide(1n, s));
+  return finalize(divide(ONE, s));
 };
 
 /**
@@ -119,7 +124,7 @@ export const asin = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range [-1, 1]');
   }
 
-  return atan(divide(a, sqrt(subtract(normalize(1n), multiply(a, a)))));
+  return atan(divide(a, sqrt(subtract(ONE, multiply(a, a)))));
 };
 
 /**
@@ -145,20 +150,19 @@ export const atan = (a: T): BigNumber => {
     };
   }
 
-  if (gt(abs(a), normalize(1n))) {
-    return finalize(subtract({ ...PI2, sign: a.sign }, atan(divide(1n, a))));
+  if (gt(abs(a), ONE)) {
+    return finalize(subtract({ ...PI2, sign: a.sign }, atan(divide(ONE, a))));
   }
 
-  a = divide(a, add(normalize(1n), sqrt(add(normalize(1n), multiply(a, a)))));
+  a = divide(a, add(ONE, sqrt(add(ONE, multiply(a, a)))));
 
-  let k = divide(a, add(normalize(1n), multiply(a, a)));
+  let k = divide(a, add(ONE, multiply(a, a)));
   let s = { ...k };
 
   const con = multiply(a, k);
   const coef = multiply(con, con);
-  const incon = divide(1n, con);
-
-  let i = 0n;
+  const incon = divide(ONE, con);
+  let i = 8n;
   let s1;
 
   const ErrorConst = {
@@ -167,11 +171,25 @@ export const atan = (a: T): BigNumber => {
     sign: false
   };
 
+  k = multiply(multiply(k, coef), divide(TWO, THREE));
+  s = add(s, multiply(k, add(incon, divide(FOUR, FIVE))));
+
+  let p1 = 24n;
+  let p2 = 35n;
+  let ad1 = 24n;
+  let ad2 = 32n;
+
   while (true) {
-    k = multiply(multiply(k, coef), divide((i || 1n) * (i + 2n), (i + 1n) * (i + 3n)));
-    s1 = add(s, multiply(k, add(incon, divide(i + 4n, i + 5n))));
+    k = multiply(multiply(k, coef), divide(normalize(p1), normalize(p2)));
+    s1 = add(s, multiply(k, add(incon, divide(normalize(i), normalize(i + 1n)))));
+
+    ad1 += 32n;
+    ad2 += 32n;
+    p1 += ad1;
+    p2 += ad2;
+
     if (lt(abs(subtract(s1, s)), ErrorConst)) {
-      return finalize(multiply(s1, 2n));
+      return finalize(multiply(s1, TWO));
     }
     s = s1;
     i += 4n;
@@ -228,7 +246,7 @@ export const asec = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
 
-  return finalize(subtract(PI2, asin(divide(1n, a))));
+  return finalize(subtract(PI2, asin(divide(ONE, a))));
 };
 
 /**
@@ -242,7 +260,7 @@ export const acsc = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
 
-  return asin(divide(1n, a));
+  return asin(divide(ONE, a));
 };
 
 /**
@@ -255,7 +273,8 @@ export const sinh = (a: T): BigNumber => {
   const x2 = multiply(a, a);
   let sum = { ...a };
   let fact = 1n;
-  let i = 2n;
+  let i = 6n;
+  let accum = 14n;
   let sum1;
 
   const ErrorConst = {
@@ -265,14 +284,15 @@ export const sinh = (a: T): BigNumber => {
   };
 
   while (true) {
-    fact *= i * (i + 1n);
+    fact *= i;
+    i += accum;
+    accum += 8n;
     a = multiply(a, x2);
-    sum1 = add(sum, divide(a, fact));
+    sum1 = add(sum, divide(a, normalize(fact)));
     if (lt(abs(subtract(sum1, sum)), ErrorConst)) {
       return finalize(sum1);
     }
     sum = sum1;
-    i += 2n;
   }
 };
 
@@ -284,7 +304,7 @@ export const sinh = (a: T): BigNumber => {
 export const cosh = (a: T): BigNumber => {
   a = exp(a);
 
-  return finalize(multiply(add(a, divide(1n, a)), '0.5'));
+  return finalize(multiply(add(a, divide(ONE, a)), HALF));
 };
 
 /**
@@ -295,7 +315,7 @@ export const cosh = (a: T): BigNumber => {
 export const tanh = (a: T): BigNumber => {
   a = exp(a);
 
-  return finalize(subtract(normalize(1n), divide(2n, add(multiply(a, a), normalize(1n)))));
+  return finalize(subtract(ONE, divide(TWO, add(multiply(a, a), ONE))));
 };
 
 /**
@@ -310,7 +330,7 @@ export const coth = (a: T): BigNumber => {
   }
   a = exp(a);
 
-  return finalize(add(normalize(1n), divide(2n, subtract(multiply(a, a), normalize(1n)))));
+  return finalize(add(ONE, divide(TWO, subtract(multiply(a, a), ONE))));
 };
 
 /**
@@ -321,7 +341,7 @@ export const coth = (a: T): BigNumber => {
 export const sech = (a: T): BigNumber => {
   a = exp(a);
 
-  return finalize(divide(2n, add(a, divide(1n, a))));
+  return finalize(divide(TWO, add(a, divide(ONE, a))));
 };
 
 /**
@@ -336,7 +356,7 @@ export const csch = (a: T): BigNumber => {
   }
   a = exp(a);
 
-  return finalize(divide(2n, subtract(a, divide(1n, a))));
+  return finalize(divide(TWO, subtract(a, divide(ONE, a))));
 };
 
 /**
@@ -347,7 +367,7 @@ export const csch = (a: T): BigNumber => {
 export const asinh = (a: T): BigNumber => {
   a = normalize(a);
 
-  return ln(add(a, sqrt(add(multiply(a, a), normalize(1n)))));
+  return ln(add(a, sqrt(add(multiply(a, a), ONE))));
 };
 
 /**
@@ -368,7 +388,7 @@ export const acosh = (a: T): BigNumber => {
     };
   }
 
-  return ln(add(a, sqrt(subtract(multiply(a, a), normalize(1n)))));
+  return ln(add(a, sqrt(subtract(multiply(a, a), ONE))));
 };
 
 /**
@@ -382,7 +402,7 @@ export const atanh = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range (-1, 1)');
   }
 
-  return finalize(multiply(ln(divide(add(normalize(1n), a), subtract(normalize(1n), a))), '0.5'));
+  return finalize(multiply(ln(divide(add(ONE, a), subtract(ONE, a))), HALF));
 };
 
 /**
@@ -396,7 +416,7 @@ export const acoth = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
   }
 
-  return finalize(multiply(ln(divide(add(a, normalize(1n)), subtract(a, normalize(1n)))), '0.5'));
+  return finalize(multiply(ln(divide(add(a, ONE), subtract(a, ONE))), HALF));
 };
 
 /**
@@ -417,7 +437,7 @@ export const asech = (a: T): BigNumber => {
     throw new DomainError(stringify(a), 'numbers from range (0,1]');
   }
 
-  return ln(divide(add(normalize(1n), sqrt(subtract(normalize(1n), multiply(a, a)))), a));
+  return ln(divide(add(ONE, sqrt(subtract(ONE, multiply(a, a)))), a));
 };
 
 /**
@@ -426,25 +446,26 @@ export const asech = (a: T): BigNumber => {
  * @returns Inverse hyperbolic cosecant of parameter
  */
 export const acsch = (a: T): BigNumber => {
-  const b = divide(1n, a);
+  a = normalize(a);
+  const b = divide(ONE, a);
 
-  return ln(add(b, sqrt(add(divide(b, a), normalize(1n)))));
+  return ln(add(b, sqrt(add(divide(b, a), ONE))));
 };
 
-export const versin = (a: T): BigNumber => finalize(subtract(normalize(1n), cos(a)));
+export const versin = (a: T): BigNumber => finalize(subtract(ONE, cos(a)));
 
-export const vercos = (a: T): BigNumber => finalize(add(normalize(1n), cos(a)));
+export const vercos = (a: T): BigNumber => finalize(add(ONE, cos(a)));
 
-export const coversin = (a: T): BigNumber => finalize(subtract(normalize(1n), sin(a)));
+export const coversin = (a: T): BigNumber => finalize(subtract(ONE, sin(a)));
 
-export const covercos = (a: T): BigNumber => finalize(add(normalize(1n), sin(a)));
+export const covercos = (a: T): BigNumber => finalize(add(ONE, sin(a)));
 
-export const haversin = (a: T): BigNumber => finalize(divide(subtract(normalize(1n), cos(a)), 2n));
+export const haversin = (a: T): BigNumber => finalize(divide(subtract(ONE, cos(a)), TWO));
 
-export const havercos = (a: T): BigNumber => finalize(divide(add(normalize(1n), cos(a)), 2n));
+export const havercos = (a: T): BigNumber => finalize(divide(add(ONE, cos(a)), TWO));
 
-export const hacoversin = (a: T): BigNumber => finalize(divide(subtract(normalize(1n), sin(a)), 2n));
+export const hacoversin = (a: T): BigNumber => finalize(divide(subtract(ONE, sin(a)), TWO));
 
-export const hacovercos = (a: T): BigNumber => finalize(divide(add(normalize(1n), sin(a)), 2n));
+export const hacovercos = (a: T): BigNumber => finalize(divide(add(ONE, sin(a)), TWO));
 
-export const gd = (a: T): BigNumber => finalize(multiply(2n, atan(tanh(divide(a, 2n)))));
+export const gd = (a: T): BigNumber => finalize(multiply(TWO, atan(tanh(divide(normalize(a), TWO)))));

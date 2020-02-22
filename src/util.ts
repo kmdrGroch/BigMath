@@ -1,4 +1,3 @@
-import { add, subtract } from './basic';
 import { BigNumber, T } from './interfaces';
 import BigMath, { config } from './BigMath';
 
@@ -59,7 +58,7 @@ export const normalize = (a: T): BigNumber => {
 
       while (true) {
         if (x % 10n === 0n && comma < 0) {
-          comma += 1;
+          comma++;
           x /= 10n;
         } else {
           break;
@@ -106,10 +105,10 @@ export const round = (a: T): BigNumber => {
   if (a.comma < 0) {
     const b = stringify(a).split('.');
     if (a.sign) {
-      return +b[1][0] > 5 ? subtract(normalize(BigInt(b[0])), normalize(1n)) : normalize(BigInt(b[0]));
+      return +b[1][0] > 5 ? normalize(BigInt(b[0]) - 1n) : normalize(BigInt(b[0]));
     }
 
-    return +b[1][0] >= 5 ? add(normalize(BigInt(b[0])), normalize(1n)) : normalize(BigInt(b[0]));
+    return +b[1][0] >= 5 ? normalize(BigInt(b[0]) + 1n) : normalize(BigInt(b[0]));
   }
 
   return a;
@@ -120,7 +119,7 @@ export const floor = (a: T): BigNumber => {
   if (a.sign) {
     const b = stringify(a).split('.');
 
-    return b[1] ? subtract(normalize(BigInt(b[0])), normalize(1n)) : normalize(BigInt(b[0]));
+    return b[1] ? normalize(BigInt(b[0]) - 1n) : normalize(BigInt(b[0]));
   }
 
   return normalize(BigInt(stringify(a).split('.')[0]));
@@ -131,7 +130,7 @@ export const ceil = (a: T): BigNumber => {
   if (!a.sign) {
     const b = stringify(a).split('.');
 
-    return b[1] ? add(normalize(BigInt(b[0])), normalize(1n)) : normalize(BigInt(b[0]));
+    return b[1] ? normalize(BigInt(b[0]) + 1n) : normalize(BigInt(b[0]));
   }
 
   return normalize(BigInt(stringify(a).split('.')[0]));
@@ -140,12 +139,11 @@ export const ceil = (a: T): BigNumber => {
 /**
  * @returns Absolute value
  */
-export const abs = (a: T): BigNumber => {
-  a = normalize(a);
-  a.sign = false;
-
-  return a;
-};
+export const abs = (a: BigNumber): BigNumber => ({
+  comma: a.comma,
+  number: a.number,
+  sign: false
+});
 
 /**
  * Checks if number is an integer
@@ -158,7 +156,7 @@ export const isInteger = (a: T): boolean => normalize(a).comma >= 0;
 export const trim = (a: BigNumber): BigNumber => {
   while (true) {
     if (a.number % 10n === 0n && a.comma < 0) {
-      a.comma += 1;
+      a.comma++;
       a.number /= 10n;
     } else {
       break;
@@ -171,10 +169,7 @@ export const trim = (a: BigNumber): BigNumber => {
 /**
  * Round number to specific place and trims zeros
  */
-export const finalize = (a: BigNumber, length?: number): BigNumber => {
-  if (length === undefined) {
-    length = -config.precision;
-  }
+export const finalize = (a: BigNumber, length: number = -config.precision): BigNumber => {
   if (a.comma >= length) {
     return trim({ ...a });
   }

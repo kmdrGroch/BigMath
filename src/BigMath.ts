@@ -104,7 +104,7 @@ export default class BigMath {
   }
 
   public times(value: T) {
-    this.number = multiply(this.number, value);
+    this.number = multiply(this.number, normalize(value));
     return this;
   }
   public mul(value: T) {
@@ -118,14 +118,14 @@ export default class BigMath {
   }
 
   public dividedBy(value: T) {
-    this.number = divide(this.number, value, true);
+    this.number = divide(this.number, normalize(value), true);
     return this;
   }
   public div(value: T) {
     return this.dividedBy(value);
   }
   public static dividedBy(value1: T, value2: T) {
-    return new BigMath(divide(value1, value2, true));
+    return new BigMath(value1).dividedBy(value2);
   }
   public static div(value1: T, value2: T) {
     return this.dividedBy(value1, value2);

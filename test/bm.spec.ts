@@ -675,6 +675,7 @@ describe('Comparison', () => {
     expect(BigMath.lt(2, 5)).to.be.true;
     expect(BigMath.lessThan(2, 5)).to.be.true;
     expect(new BigMath(2).lt(5)).to.be.true;
+    expect(new BigMath(-2).lt(-5)).to.be.false;
   });
   it('7', () => {
     expect(BigMath.eq(5, 5)).to.be.true;
