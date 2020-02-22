@@ -1,9 +1,9 @@
 import { add, divide, exp, ln, multiply, sqrt, subtract } from './basic';
+import { config } from './BigMath';
 import { gt, lt } from './comparison';
 import { PI, PI2, HALF, ONE, TWO, THREE, FOUR, FIVE } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify, finalize } from './util';
-import { config } from './BigMath';
 
 /**
  * @domain Real numbers

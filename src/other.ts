@@ -1,9 +1,9 @@
 import { add, divide, exp, ln, multiply, power, sqrt, subtract } from './basic';
+import { config } from './BigMath';
 import { gt, lt } from './comparison';
 import { LOG2, PI, PI2, TWO, ONE, HALF, NINEHALF } from './constants';
 import { BigNumber, T } from './interfaces';
 import { abs, DomainError, normalize, stringify, finalize } from './util';
-import { config } from './BigMath';
 
 /**
  * @returns Arithmetic–geometric mean of parameters

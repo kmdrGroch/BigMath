@@ -8,10 +8,21 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   extends: ['prettier', 'eslint:recommended'],
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier', 'import'],
   rules: {
+    'import/newline-after-import': 1,
+    'import/order': [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          order: 'asc', /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */
+          caseInsensitive: true /* ignore case. Options: [true, false] */
+        }
+      }
+    ],
     'prettier/prettier': ['error'],
-    'sort-imports': 'off', // No auto-fix!
+    'sort-imports': 'off',
     'no-case-declarations': 'off',
     'no-constant-condition': 'off',
     '@typescript-eslint/adjacent-overload-signatures': 'error',

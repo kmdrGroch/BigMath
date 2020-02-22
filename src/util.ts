@@ -1,5 +1,5 @@
-import { BigNumber, T } from './interfaces';
 import BigMath, { config } from './BigMath';
+import { BigNumber, T } from './interfaces';
 
 /**
  * Custom error to handle invalid domain
