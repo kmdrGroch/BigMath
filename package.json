@@ -10,8 +10,8 @@
     "build": "tsc -p .",
     "mutate": "stryker run",
     "docs": "typedoc --out docs --exclude test/**/*.*",
-    "test": "npm run build && nyc mocha && npm run clean && npm run mutate",
-    "start": "npm run test && npm run docs && tsc -p ."
+    "test": "npm run build && nyc mocha",
+    "start": "npm run test && npm run docs"
   },
   "author": "kmdrGroch",
   "license": "MIT",
