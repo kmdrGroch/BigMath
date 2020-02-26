@@ -31,11 +31,11 @@ export const normalize = (a: T): BigNumber => {
       const i = a.indexOf('.');
 
       if (i > -1) {
-        return {
+        return trim({
           comma: i + 1 - a.length,
           number: a.startsWith('-') ? -BigInt(a.split('.').join('')) : BigInt(a.split('.').join('')),
           sign: a.startsWith('-')
-        };
+        });
       }
 
       return {
