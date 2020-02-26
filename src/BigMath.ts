@@ -139,11 +139,11 @@ export default class BigMath {
   public ln() {
     return this.naturalLogarithm();
   }
-  public static naturalLogarithm(value1: T) {
-    return new BigMath(value1).naturalLogarithm();
+  public static naturalLogarithm(value: T) {
+    return new BigMath(value).naturalLogarithm();
   }
-  public static ln(value1: T) {
-    return this.naturalLogarithm(value1);
+  public static ln(value: T) {
+    return this.naturalLogarithm(value);
   }
 
   public naturalLogarithmPlusOne() {
@@ -153,11 +153,11 @@ export default class BigMath {
   public ln1p() {
     return this.naturalLogarithmPlusOne();
   }
-  public static naturalLogarithmPlusOne(value1: T) {
-    return new BigMath(value1).naturalLogarithmPlusOne();
+  public static naturalLogarithmPlusOne(value: T) {
+    return new BigMath(value).naturalLogarithmPlusOne();
   }
-  public static ln1p(value1: T) {
-    return this.naturalLogarithmPlusOne(value1);
+  public static ln1p(value: T) {
+    return this.naturalLogarithmPlusOne(value);
   }
 
   public logarithm() {
@@ -170,14 +170,14 @@ export default class BigMath {
   public log() {
     return this.logarithm();
   }
-  public static logarithm(value1: T) {
-    return new BigMath(log10(value1));
+  public static logarithm(value: T) {
+    return new BigMath(value).logarithm();
   }
-  public static log10(value1: T) {
-    return this.logarithm(value1);
+  public static log10(value: T) {
+    return this.logarithm(value);
   }
-  public static log(value1: T) {
-    return this.logarithm(value1);
+  public static log(value: T) {
+    return this.logarithm(value);
   }
 
   public logarithmBase2() {
@@ -187,22 +187,22 @@ export default class BigMath {
   public log2() {
     return this.logarithmBase2();
   }
-  public static logarithmBase2(value1: T) {
-    return new BigMath(log2(value1));
+  public static logarithmBase2(value: T) {
+    return new BigMath(value).logarithmBase2();
   }
-  public static log2(value1: T) {
-    return this.logarithmBase2(value1);
+  public static log2(value: T) {
+    return this.logarithmBase2(value);
   }
 
   public toPower(value: T) {
-    this.number = power(this.number, value);
+    this.number = power(this.number, normalize(value));
     return this;
   }
   public pow(value: T) {
     return this.toPower(value);
   }
   public static toPower(value1: T, value2: T) {
-    return new BigMath(power(value1, value2));
+    return new BigMath(value1).toPower(value2);
   }
   public static pow(value1: T, value2: T) {
     return this.toPower(value1, value2);
@@ -215,11 +215,11 @@ export default class BigMath {
   public sqrt() {
     return this.squareRoot();
   }
-  public static squareRoot(value1: T) {
-    return new BigMath(sqrt(value1));
+  public static squareRoot(value: T) {
+    return new BigMath(value).sqrt();
   }
-  public static sqrt(value1: T) {
-    return this.squareRoot(value1);
+  public static sqrt(value: T) {
+    return this.squareRoot(value);
   }
 
   public cubeRoot() {
@@ -229,11 +229,11 @@ export default class BigMath {
   public cbrt() {
     return this.cubeRoot();
   }
-  public static cubeRoot(value1: T) {
-    return new BigMath(cbrt(value1));
+  public static cubeRoot(value: T) {
+    return new BigMath(value).cbrt();
   }
-  public static cbrt(value1: T) {
-    return this.cubeRoot(value1);
+  public static cbrt(value: T) {
+    return this.cubeRoot(value);
   }
 
   public naturalExponential() {
@@ -243,11 +243,11 @@ export default class BigMath {
   public exp() {
     return this.naturalExponential();
   }
-  public static naturalExponential(value1: T) {
-    return new BigMath(exp(value1));
+  public static naturalExponential(value: T) {
+    return new BigMath(value).exp();
   }
-  public static exp(value1: T) {
-    return this.naturalExponential(value1);
+  public static exp(value: T) {
+    return this.naturalExponential(value);
   }
 
   public naturalExponentialMinusOne() {
@@ -257,27 +257,27 @@ export default class BigMath {
   public expm1() {
     return this.naturalExponentialMinusOne();
   }
-  public static naturalExponentialMinusOne(value1: T) {
-    return new BigMath(value1).naturalExponentialMinusOne();
+  public static naturalExponentialMinusOne(value: T) {
+    return new BigMath(value).naturalExponentialMinusOne();
   }
-  public static expm1(value1: T) {
-    return this.naturalExponentialMinusOne(value1);
+  public static expm1(value: T) {
+    return this.naturalExponentialMinusOne(value);
   }
 
   public factorial() {
     this.number = factorial(this.number);
     return this;
   }
-  public static factorial(value1: T) {
-    return new BigMath(value1).factorial();
+  public static factorial(value: T) {
+    return new BigMath(value).factorial();
   }
 
   public doubleFactorial() {
     this.number = doubleFactorial(this.number);
     return this;
   }
-  public static doubleFactorial(value1: T) {
-    return new BigMath(value1).doubleFactorial();
+  public static doubleFactorial(value: T) {
+    return new BigMath(value).doubleFactorial();
   }
 
   public binomial(value: T) {
@@ -292,16 +292,16 @@ export default class BigMath {
     this.number = gamma(this.number);
     return this;
   }
-  public static gamma(value1: T) {
-    return new BigMath(value1).gamma();
+  public static gamma(value: T) {
+    return new BigMath(value).gamma();
   }
 
   public superFactorial() {
     this.number = superFactorial(this.number);
     return this;
   }
-  public static superFactorial(value1: T) {
-    return new BigMath(value1).superFactorial();
+  public static superFactorial(value: T) {
+    return new BigMath(value).superFactorial();
   }
 
   public bitLeft(value: T) {
@@ -348,8 +348,8 @@ export default class BigMath {
     this.number = bitNOT(this.number);
     return this;
   }
-  public static bitNOT(value1: T) {
-    return new BigMath(value1).bitNOT();
+  public static bitNOT(value: T) {
+    return new BigMath(value).bitNOT();
   }
 
   public sine() {
@@ -359,11 +359,11 @@ export default class BigMath {
   public sin() {
     return this.sine();
   }
-  public static sine(value1: T) {
-    return new BigMath(value1).sine();
+  public static sine(value: T) {
+    return new BigMath(value).sine();
   }
-  public static sin(value1: T) {
-    return this.sine(value1);
+  public static sin(value: T) {
+    return this.sine(value);
   }
 
   public cosine() {
@@ -373,11 +373,11 @@ export default class BigMath {
   public cos() {
     return this.cosine();
   }
-  public static cosine(value1: T) {
-    return new BigMath(value1).cosine();
+  public static cosine(value: T) {
+    return new BigMath(value).cosine();
   }
-  public static cos(value1: T) {
-    return this.cosine(value1);
+  public static cos(value: T) {
+    return this.cosine(value);
   }
 
   public tangent() {
@@ -387,11 +387,11 @@ export default class BigMath {
   public tan() {
     return this.tangent();
   }
-  public static tangent(value1: T) {
-    return new BigMath(value1).tangent();
+  public static tangent(value: T) {
+    return new BigMath(value).tangent();
   }
-  public static tan(value1: T) {
-    return this.tangent(value1);
+  public static tan(value: T) {
+    return this.tangent(value);
   }
 
   public cotangent() {
@@ -401,11 +401,11 @@ export default class BigMath {
   public cot() {
     return this.cotangent();
   }
-  public static cotangent(value1: T) {
-    return new BigMath(value1).cotangent();
+  public static cotangent(value: T) {
+    return new BigMath(value).cotangent();
   }
-  public static cot(value1: T) {
-    return this.cotangent(value1);
+  public static cot(value: T) {
+    return this.cotangent(value);
   }
 
   public secant() {
@@ -415,11 +415,11 @@ export default class BigMath {
   public sec() {
     return this.secant();
   }
-  public static secant(value1: T) {
-    return new BigMath(value1).secant();
+  public static secant(value: T) {
+    return new BigMath(value).secant();
   }
-  public static sec(value1: T) {
-    return this.secant(value1);
+  public static sec(value: T) {
+    return this.secant(value);
   }
 
   public cosecant() {
@@ -429,11 +429,11 @@ export default class BigMath {
   public csc() {
     return this.cosecant();
   }
-  public static cosecant(value1: T) {
-    return new BigMath(value1).cosecant();
+  public static cosecant(value: T) {
+    return new BigMath(value).cosecant();
   }
-  public static csc(value1: T) {
-    return this.cosecant(value1);
+  public static csc(value: T) {
+    return this.cosecant(value);
   }
 
   public inverseSine() {
@@ -443,11 +443,11 @@ export default class BigMath {
   public asin() {
     return this.inverseSine();
   }
-  public static inverseSine(value1: T) {
-    return new BigMath(value1).inverseSine();
+  public static inverseSine(value: T) {
+    return new BigMath(value).inverseSine();
   }
-  public static asin(value1: T) {
-    return this.inverseSine(value1);
+  public static asin(value: T) {
+    return this.inverseSine(value);
   }
 
   public inverseCosine() {
@@ -457,11 +457,11 @@ export default class BigMath {
   public acos() {
     return this.inverseCosine();
   }
-  public static inverseCosine(value1: T) {
-    return new BigMath(value1).inverseCosine();
+  public static inverseCosine(value: T) {
+    return new BigMath(value).inverseCosine();
   }
-  public static acos(value1: T) {
-    return this.inverseCosine(value1);
+  public static acos(value: T) {
+    return this.inverseCosine(value);
   }
 
   public inverseTangent() {
@@ -471,11 +471,11 @@ export default class BigMath {
   public atan() {
     return this.inverseTangent();
   }
-  public static inverseTangent(value1: T) {
-    return new BigMath(value1).inverseTangent();
+  public static inverseTangent(value: T) {
+    return new BigMath(value).inverseTangent();
   }
-  public static atan(value1: T) {
-    return this.inverseTangent(value1);
+  public static atan(value: T) {
+    return this.inverseTangent(value);
   }
 
   public twoArgumentInverseTangent(value: T) {
@@ -499,11 +499,11 @@ export default class BigMath {
   public acot() {
     return this.inverseCotangent();
   }
-  public static inverseCotangent(value1: T) {
-    return new BigMath(value1).inverseCotangent();
+  public static inverseCotangent(value: T) {
+    return new BigMath(value).inverseCotangent();
   }
-  public static acot(value1: T) {
-    return this.inverseCotangent(value1);
+  public static acot(value: T) {
+    return this.inverseCotangent(value);
   }
 
   public inverseSecant() {
@@ -513,11 +513,11 @@ export default class BigMath {
   public asec() {
     return this.inverseSecant();
   }
-  public static inverseSecant(value1: T) {
-    return new BigMath(value1).inverseSecant();
+  public static inverseSecant(value: T) {
+    return new BigMath(value).inverseSecant();
   }
-  public static asec(value1: T) {
-    return this.inverseSecant(value1);
+  public static asec(value: T) {
+    return this.inverseSecant(value);
   }
 
   public inverseCosecant() {
@@ -527,11 +527,11 @@ export default class BigMath {
   public acsc() {
     return this.inverseCosecant();
   }
-  public static inverseCosecant(value1: T) {
-    return new BigMath(value1).inverseCosecant();
+  public static inverseCosecant(value: T) {
+    return new BigMath(value).inverseCosecant();
   }
-  public static acsc(value1: T) {
-    return this.inverseCosecant(value1);
+  public static acsc(value: T) {
+    return this.inverseCosecant(value);
   }
 
   public hyperbolicSine() {
@@ -541,11 +541,11 @@ export default class BigMath {
   public sinh() {
     return this.hyperbolicSine();
   }
-  public static hyperbolicSine(value1: T) {
-    return new BigMath(value1).hyperbolicSine();
+  public static hyperbolicSine(value: T) {
+    return new BigMath(value).hyperbolicSine();
   }
-  public static sinh(value1: T) {
-    return this.hyperbolicSine(value1);
+  public static sinh(value: T) {
+    return this.hyperbolicSine(value);
   }
 
   public hyperbolicCosine() {
@@ -555,11 +555,11 @@ export default class BigMath {
   public cosh() {
     return this.hyperbolicCosine();
   }
-  public static hyperbolicCosine(value1: T) {
-    return new BigMath(value1).hyperbolicCosine();
+  public static hyperbolicCosine(value: T) {
+    return new BigMath(value).hyperbolicCosine();
   }
-  public static cosh(value1: T) {
-    return this.hyperbolicCosine(value1);
+  public static cosh(value: T) {
+    return this.hyperbolicCosine(value);
   }
 
   public hyperbolicTangent() {
@@ -569,11 +569,11 @@ export default class BigMath {
   public tanh() {
     return this.hyperbolicTangent();
   }
-  public static hyperbolicTangent(value1: T) {
-    return new BigMath(value1).hyperbolicTangent();
+  public static hyperbolicTangent(value: T) {
+    return new BigMath(value).hyperbolicTangent();
   }
-  public static tanh(value1: T) {
-    return this.hyperbolicTangent(value1);
+  public static tanh(value: T) {
+    return this.hyperbolicTangent(value);
   }
 
   public hyperbolicCotangent() {
@@ -583,11 +583,11 @@ export default class BigMath {
   public coth() {
     return this.hyperbolicCotangent();
   }
-  public static hyperbolicCotangent(value1: T) {
-    return new BigMath(value1).hyperbolicCotangent();
+  public static hyperbolicCotangent(value: T) {
+    return new BigMath(value).hyperbolicCotangent();
   }
-  public static coth(value1: T) {
-    return this.hyperbolicCotangent(value1);
+  public static coth(value: T) {
+    return this.hyperbolicCotangent(value);
   }
 
   public hyperbolicSecant() {
@@ -597,11 +597,11 @@ export default class BigMath {
   public sech() {
     return this.hyperbolicSecant();
   }
-  public static hyperbolicSecant(value1: T) {
-    return new BigMath(value1).hyperbolicSecant();
+  public static hyperbolicSecant(value: T) {
+    return new BigMath(value).hyperbolicSecant();
   }
-  public static sech(value1: T) {
-    return this.hyperbolicSecant(value1);
+  public static sech(value: T) {
+    return this.hyperbolicSecant(value);
   }
 
   public hyperbolicCosecant() {
@@ -611,11 +611,11 @@ export default class BigMath {
   public csch() {
     return this.hyperbolicCosecant();
   }
-  public static hyperbolicCosecant(value1: T) {
-    return new BigMath(value1).hyperbolicCosecant();
+  public static hyperbolicCosecant(value: T) {
+    return new BigMath(value).hyperbolicCosecant();
   }
-  public static csch(value1: T) {
-    return this.hyperbolicCosecant(value1);
+  public static csch(value: T) {
+    return this.hyperbolicCosecant(value);
   }
 
   public inverseHyperbolicSine() {
@@ -625,11 +625,11 @@ export default class BigMath {
   public asinh() {
     return this.inverseHyperbolicSine();
   }
-  public static inverseHyperbolicSine(value1: T) {
-    return new BigMath(value1).inverseHyperbolicSine();
+  public static inverseHyperbolicSine(value: T) {
+    return new BigMath(value).inverseHyperbolicSine();
   }
-  public static asinh(value1: T) {
-    return this.inverseHyperbolicSine(value1);
+  public static asinh(value: T) {
+    return this.inverseHyperbolicSine(value);
   }
 
   public inverseHyperbolicCosine() {
@@ -639,11 +639,11 @@ export default class BigMath {
   public acosh() {
     return this.inverseHyperbolicCosine();
   }
-  public static inverseHyperbolicCosine(value1: T) {
-    return new BigMath(value1).inverseHyperbolicCosine();
+  public static inverseHyperbolicCosine(value: T) {
+    return new BigMath(value).inverseHyperbolicCosine();
   }
-  public static acosh(value1: T) {
-    return this.inverseHyperbolicCosine(value1);
+  public static acosh(value: T) {
+    return this.inverseHyperbolicCosine(value);
   }
 
   public inverseHyperbolicTangent() {
@@ -653,11 +653,11 @@ export default class BigMath {
   public atanh() {
     return this.inverseHyperbolicTangent();
   }
-  public static inverseHyperbolicTangent(value1: T) {
-    return new BigMath(value1).inverseHyperbolicTangent();
+  public static inverseHyperbolicTangent(value: T) {
+    return new BigMath(value).inverseHyperbolicTangent();
   }
-  public static atanh(value1: T) {
-    return this.inverseHyperbolicTangent(value1);
+  public static atanh(value: T) {
+    return this.inverseHyperbolicTangent(value);
   }
 
   public inverseHyperbolicCotangent() {
@@ -667,11 +667,11 @@ export default class BigMath {
   public acoth() {
     return this.inverseHyperbolicCotangent();
   }
-  public static inverseHyperbolicCotangent(value1: T) {
-    return new BigMath(value1).inverseHyperbolicCotangent();
+  public static inverseHyperbolicCotangent(value: T) {
+    return new BigMath(value).inverseHyperbolicCotangent();
   }
-  public static acoth(value1: T) {
-    return this.inverseHyperbolicCotangent(value1);
+  public static acoth(value: T) {
+    return this.inverseHyperbolicCotangent(value);
   }
 
   public inverseHyperbolicSecant() {
@@ -681,11 +681,11 @@ export default class BigMath {
   public asech() {
     return this.inverseHyperbolicSecant();
   }
-  public static inverseHyperbolicSecant(value1: T) {
-    return new BigMath(value1).inverseHyperbolicSecant();
+  public static inverseHyperbolicSecant(value: T) {
+    return new BigMath(value).inverseHyperbolicSecant();
   }
-  public static asech(value1: T) {
-    return this.inverseHyperbolicSecant(value1);
+  public static asech(value: T) {
+    return this.inverseHyperbolicSecant(value);
   }
 
   public inverseHyperbolicCosecant() {
@@ -695,11 +695,11 @@ export default class BigMath {
   public acsch() {
     return this.inverseHyperbolicCosecant();
   }
-  public static inverseHyperbolicCosecant(value1: T) {
-    return new BigMath(value1).inverseHyperbolicCosecant();
+  public static inverseHyperbolicCosecant(value: T) {
+    return new BigMath(value).inverseHyperbolicCosecant();
   }
-  public static acsch(value1: T) {
-    return this.inverseHyperbolicCosecant(value1);
+  public static acsch(value: T) {
+    return this.inverseHyperbolicCosecant(value);
   }
 
   public versedSine() {
@@ -709,11 +709,11 @@ export default class BigMath {
   public versin() {
     return this.versedSine();
   }
-  public static versedSine(value1: T) {
-    return new BigMath(value1).versedSine();
+  public static versedSine(value: T) {
+    return new BigMath(value).versedSine();
   }
-  public static versin(value1: T) {
-    return this.versedSine(value1);
+  public static versin(value: T) {
+    return this.versedSine(value);
   }
 
   public versedCosine() {
@@ -723,11 +723,11 @@ export default class BigMath {
   public vercos() {
     return this.versedCosine();
   }
-  public static versedCosine(value1: T) {
-    return new BigMath(value1).versedCosine();
+  public static versedCosine(value: T) {
+    return new BigMath(value).versedCosine();
   }
-  public static vercos(value1: T) {
-    return this.versedCosine(value1);
+  public static vercos(value: T) {
+    return this.versedCosine(value);
   }
 
   public coversedSine() {
@@ -737,11 +737,11 @@ export default class BigMath {
   public coversin() {
     return this.coversedSine();
   }
-  public static coversedSine(value1: T) {
-    return new BigMath(value1).coversedSine();
+  public static coversedSine(value: T) {
+    return new BigMath(value).coversedSine();
   }
-  public static coversin(value1: T) {
-    return this.coversedSine(value1);
+  public static coversin(value: T) {
+    return this.coversedSine(value);
   }
 
   public coversedCosine() {
@@ -751,43 +751,43 @@ export default class BigMath {
   public covercos() {
     return this.coversedCosine();
   }
-  public static coversedCosine(value1: T) {
-    return new BigMath(value1).coversedCosine();
+  public static coversedCosine(value: T) {
+    return new BigMath(value).coversedCosine();
   }
-  public static covercos(value1: T) {
-    return this.coversedCosine(value1);
+  public static covercos(value: T) {
+    return this.coversedCosine(value);
   }
 
   public haversin() {
     this.number = haversin(this.number);
     return this;
   }
-  public static haversin(value1: T) {
-    return new BigMath(value1).haversin();
+  public static haversin(value: T) {
+    return new BigMath(value).haversin();
   }
 
   public havercos() {
     this.number = havercos(this.number);
     return this;
   }
-  public static havercos(value1: T) {
-    return new BigMath(value1).havercos();
+  public static havercos(value: T) {
+    return new BigMath(value).havercos();
   }
 
   public hacoversin() {
     this.number = hacoversin(this.number);
     return this;
   }
-  public static hacoversin(value1: T) {
-    return new BigMath(value1).hacoversin();
+  public static hacoversin(value: T) {
+    return new BigMath(value).hacoversin();
   }
 
   public hacovercos() {
     this.number = hacovercos(this.number);
     return this;
   }
-  public static hacovercos(value1: T) {
-    return new BigMath(value1).hacovercos();
+  public static hacovercos(value: T) {
+    return new BigMath(value).hacovercos();
   }
 
   public gudermannian() {
@@ -797,11 +797,11 @@ export default class BigMath {
   public gd() {
     return this.gudermannian();
   }
-  public static gudermannian(value1: T) {
-    return new BigMath(value1).gudermannian();
+  public static gudermannian(value: T) {
+    return new BigMath(value).gudermannian();
   }
-  public static gd(value1: T) {
-    return this.gudermannian(value1);
+  public static gd(value: T) {
+    return this.gudermannian(value);
   }
 
   public equals(value: T) {
@@ -903,11 +903,11 @@ export default class BigMath {
   public erf() {
     return this.errorFunction();
   }
-  public static errorFunction(value1: T) {
-    return new BigMath(value1).errorFunction();
+  public static errorFunction(value: T) {
+    return new BigMath(value).errorFunction();
   }
-  public static erf(value1: T) {
-    return new BigMath(value1).errorFunction();
+  public static erf(value: T) {
+    return new BigMath(value).errorFunction();
   }
 
   public KFunction() {
@@ -917,11 +917,11 @@ export default class BigMath {
   public K() {
     return this.KFunction();
   }
-  public static KFunction(value1: T) {
-    return new BigMath(value1).KFunction();
+  public static KFunction(value: T) {
+    return new BigMath(value).KFunction();
   }
-  public static K(value1: T) {
-    return new BigMath(value1).KFunction();
+  public static K(value: T) {
+    return new BigMath(value).KFunction();
   }
 
   public omegaFunction() {
@@ -931,11 +931,11 @@ export default class BigMath {
   public W() {
     return this.omegaFunction();
   }
-  public static omegaFunction(value1: T) {
-    return new BigMath(value1).omegaFunction();
+  public static omegaFunction(value: T) {
+    return new BigMath(value).omegaFunction();
   }
-  public static W(value1: T) {
-    return new BigMath(value1).omegaFunction();
+  public static W(value: T) {
+    return new BigMath(value).omegaFunction();
   }
 
   public tetrationXY() {
@@ -945,11 +945,11 @@ export default class BigMath {
   public XY() {
     return this.tetrationXY();
   }
-  public static tetrationXY(value1: T) {
-    return new BigMath(value1).tetrationXY();
+  public static tetrationXY(value: T) {
+    return new BigMath(value).tetrationXY();
   }
-  public static XY(value1: T) {
-    return new BigMath(value1).tetrationXY();
+  public static XY(value: T) {
+    return new BigMath(value).tetrationXY();
   }
 
   public absoluteValue() {
@@ -959,11 +959,11 @@ export default class BigMath {
   public abs() {
     return this.absoluteValue();
   }
-  public static absoluteValue(value1: T) {
-    return new BigMath(value1).absoluteValue();
+  public static absoluteValue(value: T) {
+    return new BigMath(value).absoluteValue();
   }
-  public static abs(value1: T) {
-    return new BigMath(value1).absoluteValue();
+  public static abs(value: T) {
+    return new BigMath(value).absoluteValue();
   }
 
   public negate() {
@@ -973,42 +973,42 @@ export default class BigMath {
   public neg() {
     return this.negate();
   }
-  public static negate(value1: T) {
-    return new BigMath(value1).negate();
+  public static negate(value: T) {
+    return new BigMath(value).negate();
   }
-  public static neg(value1: T) {
-    return new BigMath(value1).negate();
+  public static neg(value: T) {
+    return new BigMath(value).negate();
   }
 
   public ceil() {
     this.number = ceil(this.number);
     return this;
   }
-  public static ceil(value1: T) {
-    return new BigMath(value1).ceil();
+  public static ceil(value: T) {
+    return new BigMath(value).ceil();
   }
 
   public floor() {
     this.number = floor(this.number);
     return this;
   }
-  public static floor(value1: T) {
-    return new BigMath(value1).floor();
+  public static floor(value: T) {
+    return new BigMath(value).floor();
   }
 
   public round() {
     this.number = round(this.number);
     return this;
   }
-  public static round(value1: T) {
-    return new BigMath(value1).round();
+  public static round(value: T) {
+    return new BigMath(value).round();
   }
 
   public isInteger() {
     return isInteger(this.number);
   }
-  public static isInteger(value1: T) {
-    return new BigMath(value1).isInteger();
+  public static isInteger(value: T) {
+    return new BigMath(value).isInteger();
   }
 
   public isNegative() {
@@ -1017,11 +1017,11 @@ export default class BigMath {
   public isNeg() {
     return this.number.sign;
   }
-  public static isNegative(value1: T) {
-    return new BigMath(value1).number.sign;
+  public static isNegative(value: T) {
+    return new BigMath(value).number.sign;
   }
-  public static isNeg(value1: T) {
-    return new BigMath(value1).number.sign;
+  public static isNeg(value: T) {
+    return new BigMath(value).number.sign;
   }
 
   public isPositive() {
@@ -1030,18 +1030,18 @@ export default class BigMath {
   public isPos() {
     return !this.number.sign;
   }
-  public static isPositive(value1: T) {
-    return !new BigMath(value1).number.sign;
+  public static isPositive(value: T) {
+    return !new BigMath(value).number.sign;
   }
-  public static isPos(value1: T) {
-    return !new BigMath(value1).number.sign;
+  public static isPos(value: T) {
+    return !new BigMath(value).number.sign;
   }
 
   public isZero() {
     return this.number.number === 0n;
   }
-  public static isZero(value1: T) {
-    return new BigMath(value1).number.number === 0n;
+  public static isZero(value: T) {
+    return new BigMath(value).number.number === 0n;
   }
 
   public toPrecision(value: number) {
@@ -1055,22 +1055,22 @@ export default class BigMath {
   public toNumber() {
     return +stringify(this.number);
   }
-  public static toNumber(value1: T) {
-    return new BigMath(value1).toNumber();
+  public static toNumber(value: T) {
+    return new BigMath(value).toNumber();
   }
 
   public toBigNumber() {
     return { ...this.number };
   }
-  public static toBigNumber(value1: T) {
-    return new BigMath(value1).toBigNumber();
+  public static toBigNumber(value: T) {
+    return new BigMath(value).toBigNumber();
   }
 
   public toString() {
     return stringify(this.number);
   }
-  public static toString(value1: T) {
-    return new BigMath(value1).toString();
+  public static toString(value: T) {
+    return new BigMath(value).toString();
   }
 
   public clone() {

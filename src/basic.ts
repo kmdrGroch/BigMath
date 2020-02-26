@@ -161,8 +161,9 @@ export const divide = (a: BigNumber, b: BigNumber, pure = false): BigNumber => {
  * @domain Numbers greater than 0
  * @returns Natural logarithm (base e) of a number
  */
-export const ln = (a: T) => {
-  a = normalize(a);
+export const ln = (a: BigNumber) => {
+  a = { ...a };
+
   if (a.sign || a.number === 0n) {
     throw new DomainError(stringify(a), 'numbers greater than 0');
   }
@@ -259,21 +260,22 @@ export const ln1p = (a: T): BigNumber => {
  * @domain Numbers greater than 0
  * @returns Logarithm base 10 of a number
  */
-export const log10 = (a: T): BigNumber => finalize(divide(ln(a), LOG10));
+export const log10 = (a: T): BigNumber => finalize(divide(ln(normalize(a)), LOG10));
 
 /**
  * @domain Numbers greater than 0
  * @returns Logarithm base 2 of a number
  */
-export const log2 = (a: T): BigNumber => finalize(divide(ln(a), LOG2));
+export const log2 = (a: T): BigNumber => finalize(divide(ln(normalize(a)), LOG2));
 
 /**
  * @domain Real numbers, Real numbers | both can't be 0 at the same time | not negative ^ non-integer
  * @returns Result of the exponentiation of parameters
  */
-export const power = (a: T, b: T): BigNumber => {
-  a = normalize(a);
-  b = normalize(b);
+export const power = (a: BigNumber, b: BigNumber): BigNumber => {
+  a = { ...a };
+  b = { ...b };
+
   if (a.number === 0n && b.number === 0n) {
     throw new DomainError('0 ^ 0', "real numbers | both can't be 0 at the same time");
   }
@@ -301,12 +303,12 @@ export const power = (a: T, b: T): BigNumber => {
     a.sign = false;
 
     return {
-      ...finalize(exp(multiply(b, ln(a)))),
+      ...exp(multiply(b, ln(a))),
       sign: true
     };
   }
 
-  return finalize(exp(multiply(b, ln(a))));
+  return exp(multiply(b, ln(a)));
 };
 
 /**
@@ -537,12 +539,24 @@ export const doubleFactorial = (a: T): BigNumber => {
         prod *= (n - k) * k;
       }
 
-      return normalize(prod);
+      return {
+        comma: 0,
+        number: prod,
+        sign: false
+      };
     case 2n:
-      return normalize(n * doubleFactorial(n - 2n).number);
+      return {
+        comma: 0,
+        number: n * doubleFactorial(n - 2n).number,
+        sign: false
+      };
   }
 
-  return normalize(2n ** (n / 2n) * factorial(n / 2n).number);
+  return {
+    comma: 0,
+    number: 2n ** (n / 2n) * factorial(n / 2n).number,
+    sign: false
+  };
 };
 
 /**
@@ -589,7 +603,11 @@ export const factorial = (a: T): BigNumber => {
     return f;
   }
 
-  return normalize(HyperFact(h + 1n) << h);
+  return {
+    comma: 0,
+    number: HyperFact(h + 1n) << h,
+    sign: false
+  };
 };
 
 export const binomial = (a: T, b: T): BigNumber => {
