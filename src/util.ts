@@ -31,18 +31,18 @@ export const normalize = (a: T): BigNumber => {
       const i = a.indexOf('.');
 
       if (i > -1) {
-        return normalize({
+        return {
           comma: i + 1 - a.length,
-          number: BigInt(a.split('.').join('')),
-          sign: false
-        });
+          number: a.startsWith('-') ? -BigInt(a.split('.').join('')) : BigInt(a.split('.').join('')),
+          sign: a.startsWith('-')
+        };
       }
 
-      return normalize({
+      return {
         comma: 0,
-        number: BigInt(a),
-        sign: false
-      });
+        number: a.startsWith('-') ? -BigInt(a) : BigInt(a),
+        sign: a.startsWith('-')
+      };
     case 'object':
       if (a.number < 0n) {
         a.sign = !a.sign;
