@@ -127,7 +127,7 @@ export const divide = (a: BigNumber, b: BigNumber, pure = false): BigNumber => {
 
   let i = 0;
   let f;
-  while (i !== config.precision + (pure ? 1 : 11)) {
+  while (i !== config.precision + (pure ? 1 : 6)) {
     if (a.number === 0n) {
       break;
     }
@@ -153,7 +153,7 @@ export const divide = (a: BigNumber, b: BigNumber, pure = false): BigNumber => {
       number: BigInt(`${n}${d}`),
       sign: a.sign !== b.sign
     },
-    -config.precision - (pure ? 0 : 10)
+    -config.precision - (pure ? 0 : 5)
   );
 };
 
