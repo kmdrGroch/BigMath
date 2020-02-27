@@ -1,6 +1,7 @@
 import { DomainError } from '../index';
 import { BigMath } from '../src/BigMath';
 import './pluginTest';
+import './pluginTest2';
 
 import { expect } from 'chai';
 
@@ -1174,9 +1175,15 @@ describe('shrink', () => {
 
 describe('plugins', () => {
   it('1', () => {
-    expect(BigMath.map('-12.32').toString()).to.be.equal('12.32');
+    expect(BigMath.plugin1('-12.32').toString()).to.be.equal('12.32');
   });
   it('2', () => {
-    expect(BigMath.map('12.32').toString()).to.be.equal('12.32');
+    expect(BigMath.plugin1('12.32').toString()).to.be.equal('12.32');
+  });
+  it('3', () => {
+    expect(BigMath.plugin2('-12.32').toString()).to.be.equal('12.32');
+  });
+  it('4', () => {
+    expect(BigMath.plugin2('12.32').toString()).to.be.equal('12.32');
   });
 });
