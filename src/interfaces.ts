@@ -1,4 +1,4 @@
-import BigMath from './BigMath';
+import { BigMath } from './BigMath';
 
 export interface BigNumber {
   /**

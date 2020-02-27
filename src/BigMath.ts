@@ -69,7 +69,7 @@ export const config: Config = {
   precision: 40
 };
 
-export default class BigMath {
+export class BigMath {
   private number: BigNumber = normalize(0n);
 
   constructor(value: T) {

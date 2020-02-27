@@ -1,4 +1,4 @@
-import BigMath, { config } from './BigMath';
+import { BigMath, config } from './BigMath';
 import { BigNumber, T } from './interfaces';
 
 /**
