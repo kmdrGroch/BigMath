@@ -16,6 +16,7 @@ mocha.opts
 .travis.yml
 stryker.conf.js
 **/*.ts
+!**/*.d.ts
 **/*.js.map
 
 package-lock.json
