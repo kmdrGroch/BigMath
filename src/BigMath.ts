@@ -70,10 +70,16 @@ export const config: Config = {
 };
 
 export class BigMath {
-  private number: BigNumber = normalize(0n);
+  protected number: BigNumber = {
+    comma: 0,
+    number: 0n,
+    sign: false
+  };
 
-  constructor(value: T) {
-    this.number = normalize(value);
+  constructor(value?: T) {
+    if (value !== undefined) {
+      this.number = normalize(value);
+    }
   }
 
   public sum(value: T) {
