@@ -90,7 +90,6 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_bigmath_.bigmath.html#number" class="tsd-kind-icon">number</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_src_bigmath_.bigmath.html#e" class="tsd-kind-icon">E</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_src_bigmath_.bigmath.html#log10" class="tsd-kind-icon">LOG10</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_src_bigmath_.bigmath.html#log10e" class="tsd-kind-icon">LOG10E</a></li>
@@ -391,6 +390,12 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_src_bigmath_.bigmath.html#versin-1" class="tsd-kind-icon">versin</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section tsd-is-private-protected">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected"><a href="_src_bigmath_.bigmath.html#number" class="tsd-kind-icon">number</a></li>
+							</ul>
+						</section>
 					</div>
 				</section>
 			</section>
@@ -400,19 +405,19 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Big<wbr>Math<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../modules/_src_interfaces_.html#t" class="tsd-signature-type">T</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_bigmath_.bigmath.html" class="tsd-signature-type">BigMath</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Big<wbr>Math<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><a href="../modules/_src_interfaces_.html#t" class="tsd-signature-type">T</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_bigmath_.bigmath.html" class="tsd-signature-type">BigMath</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L73">src/BigMath.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L77">src/BigMath.ts:77</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="../modules/_src_interfaces_.html#t" class="tsd-signature-type">T</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <a href="../modules/_src_interfaces_.html#t" class="tsd-signature-type">T</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_bigmath_.bigmath.html" class="tsd-signature-type">BigMath</a></h4>
@@ -422,23 +427,13 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="number" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> number</h3>
-					<div class="tsd-signature tsd-kind-icon">number<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = normalize(0n)</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L73">src/BigMath.ts:73</a></li>
-						</ul>
-					</aside>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="e" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> E</h3>
 					<div class="tsd-signature tsd-kind-icon">E<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = E</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1086">src/BigMath.ts:1086</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1092">src/BigMath.ts:1092</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -448,7 +443,7 @@
 					<div class="tsd-signature tsd-kind-icon">LOG10<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = LOG10</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1087">src/BigMath.ts:1087</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1093">src/BigMath.ts:1093</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -458,7 +453,7 @@
 					<div class="tsd-signature tsd-kind-icon">LOG10E<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = LOG10E</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1088">src/BigMath.ts:1088</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1094">src/BigMath.ts:1094</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -468,7 +463,7 @@
 					<div class="tsd-signature tsd-kind-icon">LOG2<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = LOG2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1089">src/BigMath.ts:1089</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1095">src/BigMath.ts:1095</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -478,7 +473,7 @@
 					<div class="tsd-signature tsd-kind-icon">LOG2E<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = LOG2E</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1090">src/BigMath.ts:1090</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1096">src/BigMath.ts:1096</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -488,7 +483,7 @@
 					<div class="tsd-signature tsd-kind-icon">PI<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = PI</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1091">src/BigMath.ts:1091</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1097">src/BigMath.ts:1097</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -498,7 +493,7 @@
 					<div class="tsd-signature tsd-kind-icon">PI2<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = PI2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1092">src/BigMath.ts:1092</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1098">src/BigMath.ts:1098</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -508,7 +503,7 @@
 					<div class="tsd-signature tsd-kind-icon">SQRT1_<wbr>2<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = SQRT1_2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1093">src/BigMath.ts:1093</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1099">src/BigMath.ts:1099</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -518,7 +513,7 @@
 					<div class="tsd-signature tsd-kind-icon">SQRT2<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_interfaces_.bignumber.html" class="tsd-signature-type">BigNumber</a><span class="tsd-signature-symbol"> = SQRT2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1094">src/BigMath.ts:1094</a></li>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1100">src/BigMath.ts:1100</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -535,7 +530,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L889">src/BigMath.ts:889</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L895">src/BigMath.ts:895</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -558,7 +553,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L917">src/BigMath.ts:917</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L923">src/BigMath.ts:923</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -575,7 +570,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L913">src/BigMath.ts:913</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L919">src/BigMath.ts:919</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -592,7 +587,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L931">src/BigMath.ts:931</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L937">src/BigMath.ts:937</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -609,7 +604,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L945">src/BigMath.ts:945</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L951">src/BigMath.ts:951</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -626,7 +621,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L959">src/BigMath.ts:959</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L965">src/BigMath.ts:965</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -643,7 +638,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L955">src/BigMath.ts:955</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L961">src/BigMath.ts:961</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -660,7 +655,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L457">src/BigMath.ts:457</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L463">src/BigMath.ts:463</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -677,7 +672,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L639">src/BigMath.ts:639</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L645">src/BigMath.ts:645</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -694,7 +689,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L499">src/BigMath.ts:499</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L505">src/BigMath.ts:505</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -711,7 +706,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L667">src/BigMath.ts:667</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L673">src/BigMath.ts:673</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -728,7 +723,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L527">src/BigMath.ts:527</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L533">src/BigMath.ts:533</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -745,7 +740,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L695">src/BigMath.ts:695</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L701">src/BigMath.ts:701</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -762,7 +757,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L83">src/BigMath.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L89">src/BigMath.ts:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -785,7 +780,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L885">src/BigMath.ts:885</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L891">src/BigMath.ts:891</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -808,7 +803,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L513">src/BigMath.ts:513</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L519">src/BigMath.ts:519</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -825,7 +820,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L681">src/BigMath.ts:681</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L687">src/BigMath.ts:687</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -842,7 +837,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L443">src/BigMath.ts:443</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L449">src/BigMath.ts:449</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -859,7 +854,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L625">src/BigMath.ts:625</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L631">src/BigMath.ts:631</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -876,7 +871,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L471">src/BigMath.ts:471</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L477">src/BigMath.ts:477</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -893,7 +888,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L485">src/BigMath.ts:485</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L491">src/BigMath.ts:491</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -916,7 +911,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L653">src/BigMath.ts:653</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L659">src/BigMath.ts:659</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -933,7 +928,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L283">src/BigMath.ts:283</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L289">src/BigMath.ts:289</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -956,7 +951,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L323">src/BigMath.ts:323</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L329">src/BigMath.ts:329</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -979,7 +974,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L307">src/BigMath.ts:307</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L313">src/BigMath.ts:313</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1002,7 +997,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L347">src/BigMath.ts:347</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L353">src/BigMath.ts:353</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1019,7 +1014,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L331">src/BigMath.ts:331</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L337">src/BigMath.ts:337</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1042,7 +1037,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L315">src/BigMath.ts:315</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L321">src/BigMath.ts:321</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1065,7 +1060,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L339">src/BigMath.ts:339</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L345">src/BigMath.ts:345</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1088,7 +1083,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L229">src/BigMath.ts:229</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L235">src/BigMath.ts:235</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1105,7 +1100,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L983">src/BigMath.ts:983</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L989">src/BigMath.ts:989</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1122,7 +1117,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1076">src/BigMath.ts:1076</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1082">src/BigMath.ts:1082</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_bigmath_.bigmath.html" class="tsd-signature-type">BigMath</a></h4>
@@ -1139,7 +1134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L373">src/BigMath.ts:373</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L379">src/BigMath.ts:379</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1156,7 +1151,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L425">src/BigMath.ts:425</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L431">src/BigMath.ts:431</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1173,7 +1168,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L555">src/BigMath.ts:555</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L561">src/BigMath.ts:561</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1190,7 +1185,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L369">src/BigMath.ts:369</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L375">src/BigMath.ts:375</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1207,7 +1202,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L401">src/BigMath.ts:401</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L407">src/BigMath.ts:407</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1224,7 +1219,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L397">src/BigMath.ts:397</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L403">src/BigMath.ts:403</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1241,7 +1236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L583">src/BigMath.ts:583</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L589">src/BigMath.ts:589</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1258,7 +1253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L751">src/BigMath.ts:751</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L757">src/BigMath.ts:757</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1275,7 +1270,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L747">src/BigMath.ts:747</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L753">src/BigMath.ts:753</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1292,7 +1287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L733">src/BigMath.ts:733</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L739">src/BigMath.ts:739</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1309,7 +1304,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L737">src/BigMath.ts:737</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L743">src/BigMath.ts:743</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1326,7 +1321,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L429">src/BigMath.ts:429</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L435">src/BigMath.ts:435</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1343,7 +1338,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L611">src/BigMath.ts:611</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L617">src/BigMath.ts:617</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1360,7 +1355,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L225">src/BigMath.ts:225</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L231">src/BigMath.ts:231</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1377,7 +1372,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L125">src/BigMath.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L131">src/BigMath.ts:131</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1400,7 +1395,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L121">src/BigMath.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L127">src/BigMath.ts:127</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1423,7 +1418,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L275">src/BigMath.ts:275</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L281">src/BigMath.ts:281</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1440,7 +1435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L810">src/BigMath.ts:810</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L816">src/BigMath.ts:816</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1463,7 +1458,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L807">src/BigMath.ts:807</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L813">src/BigMath.ts:813</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1486,7 +1481,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L903">src/BigMath.ts:903</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L909">src/BigMath.ts:909</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1503,7 +1498,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L899">src/BigMath.ts:899</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L905">src/BigMath.ts:905</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1520,7 +1515,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L243">src/BigMath.ts:243</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L249">src/BigMath.ts:249</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1537,7 +1532,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L257">src/BigMath.ts:257</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L263">src/BigMath.ts:263</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1554,7 +1549,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L267">src/BigMath.ts:267</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L273">src/BigMath.ts:273</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1571,7 +1566,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L991">src/BigMath.ts:991</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L997">src/BigMath.ts:997</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1588,7 +1583,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L291">src/BigMath.ts:291</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L297">src/BigMath.ts:297</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1605,7 +1600,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L797">src/BigMath.ts:797</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L803">src/BigMath.ts:803</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1622,7 +1617,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L820">src/BigMath.ts:820</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L826">src/BigMath.ts:826</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1645,7 +1640,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L846">src/BigMath.ts:846</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L852">src/BigMath.ts:852</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1668,7 +1663,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L823">src/BigMath.ts:823</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L829">src/BigMath.ts:829</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1691,7 +1686,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L849">src/BigMath.ts:849</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L855">src/BigMath.ts:855</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1714,7 +1709,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L793">src/BigMath.ts:793</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L799">src/BigMath.ts:799</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1731,7 +1726,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L785">src/BigMath.ts:785</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L791">src/BigMath.ts:791</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1748,7 +1743,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L777">src/BigMath.ts:777</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L783">src/BigMath.ts:783</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1765,7 +1760,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L769">src/BigMath.ts:769</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L775">src/BigMath.ts:775</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1782,7 +1777,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L761">src/BigMath.ts:761</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L767">src/BigMath.ts:767</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1799,7 +1794,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L607">src/BigMath.ts:607</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L613">src/BigMath.ts:613</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1816,7 +1811,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L551">src/BigMath.ts:551</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L557">src/BigMath.ts:557</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1833,7 +1828,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L579">src/BigMath.ts:579</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L585">src/BigMath.ts:585</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1850,7 +1845,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L593">src/BigMath.ts:593</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L599">src/BigMath.ts:599</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1867,7 +1862,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L537">src/BigMath.ts:537</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L543">src/BigMath.ts:543</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1884,7 +1879,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L565">src/BigMath.ts:565</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L571">src/BigMath.ts:571</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1901,7 +1896,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L523">src/BigMath.ts:523</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L529">src/BigMath.ts:529</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1918,7 +1913,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L453">src/BigMath.ts:453</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L459">src/BigMath.ts:459</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1935,7 +1930,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L495">src/BigMath.ts:495</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L501">src/BigMath.ts:501</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1952,7 +1947,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L691">src/BigMath.ts:691</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L697">src/BigMath.ts:697</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1969,7 +1964,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L635">src/BigMath.ts:635</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L641">src/BigMath.ts:641</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1986,7 +1981,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L663">src/BigMath.ts:663</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L669">src/BigMath.ts:669</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2003,7 +1998,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L677">src/BigMath.ts:677</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L683">src/BigMath.ts:683</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2020,7 +2015,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L621">src/BigMath.ts:621</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L627">src/BigMath.ts:627</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2037,7 +2032,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L649">src/BigMath.ts:649</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L655">src/BigMath.ts:655</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2054,7 +2049,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L509">src/BigMath.ts:509</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L515">src/BigMath.ts:515</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2071,7 +2066,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L439">src/BigMath.ts:439</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L445">src/BigMath.ts:445</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2088,7 +2083,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L467">src/BigMath.ts:467</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L473">src/BigMath.ts:473</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2105,7 +2100,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1007">src/BigMath.ts:1007</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1013">src/BigMath.ts:1013</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -2122,7 +2117,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1017">src/BigMath.ts:1017</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1023">src/BigMath.ts:1023</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -2139,7 +2134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1014">src/BigMath.ts:1014</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1020">src/BigMath.ts:1020</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -2156,7 +2151,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1030">src/BigMath.ts:1030</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1036">src/BigMath.ts:1036</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -2173,7 +2168,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1027">src/BigMath.ts:1027</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1033">src/BigMath.ts:1033</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -2190,7 +2185,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1040">src/BigMath.ts:1040</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1046">src/BigMath.ts:1046</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -2207,7 +2202,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L833">src/BigMath.ts:833</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L839">src/BigMath.ts:839</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2230,7 +2225,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L859">src/BigMath.ts:859</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L865">src/BigMath.ts:865</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2253,7 +2248,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L139">src/BigMath.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L145">src/BigMath.ts:145</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2270,7 +2265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L153">src/BigMath.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L159">src/BigMath.ts:159</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2287,7 +2282,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L170">src/BigMath.ts:170</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L176">src/BigMath.ts:176</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2304,7 +2299,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L167">src/BigMath.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L173">src/BigMath.ts:173</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2321,7 +2316,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L187">src/BigMath.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L193">src/BigMath.ts:193</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2338,7 +2333,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L163">src/BigMath.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L169">src/BigMath.ts:169</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2355,7 +2350,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L183">src/BigMath.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L189">src/BigMath.ts:189</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2372,7 +2367,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L836">src/BigMath.ts:836</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L842">src/BigMath.ts:842</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2395,7 +2390,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L862">src/BigMath.ts:862</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L868">src/BigMath.ts:868</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2418,7 +2413,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L93">src/BigMath.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L99">src/BigMath.ts:99</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2441,7 +2436,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L111">src/BigMath.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L117">src/BigMath.ts:117</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2464,7 +2459,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L239">src/BigMath.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L245">src/BigMath.ts:245</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2481,7 +2476,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L253">src/BigMath.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L259">src/BigMath.ts:259</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2498,7 +2493,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L135">src/BigMath.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L141">src/BigMath.ts:141</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2515,7 +2510,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L149">src/BigMath.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L155">src/BigMath.ts:155</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2532,7 +2527,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L973">src/BigMath.ts:973</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L979">src/BigMath.ts:979</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2549,7 +2544,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L969">src/BigMath.ts:969</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L975">src/BigMath.ts:975</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2566,7 +2561,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L875">src/BigMath.ts:875</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L881">src/BigMath.ts:881</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2589,7 +2584,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L872">src/BigMath.ts:872</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L878">src/BigMath.ts:878</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2612,7 +2607,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L927">src/BigMath.ts:927</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L933">src/BigMath.ts:933</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2629,7 +2624,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L201">src/BigMath.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L207">src/BigMath.ts:207</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2652,7 +2647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L999">src/BigMath.ts:999</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1005">src/BigMath.ts:1005</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2669,7 +2664,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L415">src/BigMath.ts:415</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L421">src/BigMath.ts:421</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2686,7 +2681,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L411">src/BigMath.ts:411</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L417">src/BigMath.ts:417</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2703,7 +2698,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L597">src/BigMath.ts:597</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L603">src/BigMath.ts:603</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2720,7 +2715,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L359">src/BigMath.ts:359</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L365">src/BigMath.ts:365</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2737,7 +2732,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L355">src/BigMath.ts:355</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L361">src/BigMath.ts:361</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2754,7 +2749,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L541">src/BigMath.ts:541</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L547">src/BigMath.ts:547</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2771,7 +2766,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L215">src/BigMath.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L221">src/BigMath.ts:221</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2788,7 +2783,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L211">src/BigMath.ts:211</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L217">src/BigMath.ts:217</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2805,7 +2800,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L97">src/BigMath.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L103">src/BigMath.ts:103</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2828,7 +2823,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L79">src/BigMath.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L85">src/BigMath.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2851,7 +2846,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L299">src/BigMath.ts:299</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L305">src/BigMath.ts:305</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2868,7 +2863,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L387">src/BigMath.ts:387</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L393">src/BigMath.ts:393</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2885,7 +2880,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L383">src/BigMath.ts:383</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L389">src/BigMath.ts:389</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2902,7 +2897,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L569">src/BigMath.ts:569</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L575">src/BigMath.ts:575</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2919,7 +2914,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L941">src/BigMath.ts:941</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L947">src/BigMath.ts:947</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2936,7 +2931,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L107">src/BigMath.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L113">src/BigMath.ts:113</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2959,7 +2954,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1062">src/BigMath.ts:1062</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1068">src/BigMath.ts:1068</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{}</span></h4>
@@ -2978,7 +2973,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1055">src/BigMath.ts:1055</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1061">src/BigMath.ts:1061</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -2995,7 +2990,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L197">src/BigMath.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L203">src/BigMath.ts:203</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3018,7 +3013,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1047">src/BigMath.ts:1047</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1053">src/BigMath.ts:1053</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3041,7 +3036,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1069">src/BigMath.ts:1069</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1075">src/BigMath.ts:1075</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -3058,7 +3053,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L481">src/BigMath.ts:481</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L487">src/BigMath.ts:487</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3081,7 +3076,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L723">src/BigMath.ts:723</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L729">src/BigMath.ts:729</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -3098,7 +3093,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L719">src/BigMath.ts:719</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L725">src/BigMath.ts:725</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -3115,7 +3110,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L705">src/BigMath.ts:705</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L711">src/BigMath.ts:711</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -3132,7 +3127,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L709">src/BigMath.ts:709</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L715">src/BigMath.ts:715</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -3149,7 +3144,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L895">src/BigMath.ts:895</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L901">src/BigMath.ts:901</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3175,7 +3170,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L923">src/BigMath.ts:923</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L929">src/BigMath.ts:929</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3198,7 +3193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L920">src/BigMath.ts:920</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L926">src/BigMath.ts:926</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3221,7 +3216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L937">src/BigMath.ts:937</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L943">src/BigMath.ts:943</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3244,7 +3239,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L951">src/BigMath.ts:951</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L957">src/BigMath.ts:957</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3267,7 +3262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L965">src/BigMath.ts:965</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L971">src/BigMath.ts:971</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3290,7 +3285,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L962">src/BigMath.ts:962</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L968">src/BigMath.ts:968</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3313,7 +3308,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L463">src/BigMath.ts:463</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L469">src/BigMath.ts:469</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3336,7 +3331,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L645">src/BigMath.ts:645</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L651">src/BigMath.ts:651</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3359,7 +3354,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L505">src/BigMath.ts:505</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L511">src/BigMath.ts:511</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3382,7 +3377,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L673">src/BigMath.ts:673</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L679">src/BigMath.ts:679</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3405,7 +3400,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L533">src/BigMath.ts:533</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L539">src/BigMath.ts:539</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3428,7 +3423,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L701">src/BigMath.ts:701</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L707">src/BigMath.ts:707</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3451,7 +3446,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L89">src/BigMath.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L95">src/BigMath.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3477,7 +3472,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L892">src/BigMath.ts:892</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L898">src/BigMath.ts:898</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3503,7 +3498,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L519">src/BigMath.ts:519</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L525">src/BigMath.ts:525</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3526,7 +3521,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L687">src/BigMath.ts:687</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L693">src/BigMath.ts:693</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3549,7 +3544,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L449">src/BigMath.ts:449</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L455">src/BigMath.ts:455</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3572,7 +3567,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L631">src/BigMath.ts:631</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L637">src/BigMath.ts:637</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3595,7 +3590,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L477">src/BigMath.ts:477</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L483">src/BigMath.ts:483</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3618,7 +3613,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L491">src/BigMath.ts:491</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L497">src/BigMath.ts:497</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3644,7 +3639,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L659">src/BigMath.ts:659</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L665">src/BigMath.ts:665</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3667,7 +3662,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L287">src/BigMath.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L293">src/BigMath.ts:293</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3693,7 +3688,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L327">src/BigMath.ts:327</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L333">src/BigMath.ts:333</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3719,7 +3714,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L311">src/BigMath.ts:311</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L317">src/BigMath.ts:317</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3745,7 +3740,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L351">src/BigMath.ts:351</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L357">src/BigMath.ts:357</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3768,7 +3763,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L335">src/BigMath.ts:335</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L341">src/BigMath.ts:341</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3794,7 +3789,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L319">src/BigMath.ts:319</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L325">src/BigMath.ts:325</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3820,7 +3815,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L343">src/BigMath.ts:343</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L349">src/BigMath.ts:349</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3846,7 +3841,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L235">src/BigMath.ts:235</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L241">src/BigMath.ts:241</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3869,7 +3864,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L987">src/BigMath.ts:987</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L993">src/BigMath.ts:993</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3892,7 +3887,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1080">src/BigMath.ts:1080</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1086">src/BigMath.ts:1086</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3915,7 +3910,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L379">src/BigMath.ts:379</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L385">src/BigMath.ts:385</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3938,7 +3933,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L432">src/BigMath.ts:432</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L438">src/BigMath.ts:438</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3961,7 +3956,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L561">src/BigMath.ts:561</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L567">src/BigMath.ts:567</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3984,7 +3979,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L376">src/BigMath.ts:376</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L382">src/BigMath.ts:382</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4007,7 +4002,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L407">src/BigMath.ts:407</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L413">src/BigMath.ts:413</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4030,7 +4025,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L404">src/BigMath.ts:404</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L410">src/BigMath.ts:410</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4053,7 +4048,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L589">src/BigMath.ts:589</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L595">src/BigMath.ts:595</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4076,7 +4071,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L757">src/BigMath.ts:757</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L763">src/BigMath.ts:763</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4099,7 +4094,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L754">src/BigMath.ts:754</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L760">src/BigMath.ts:760</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4122,7 +4117,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L740">src/BigMath.ts:740</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L746">src/BigMath.ts:746</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4145,7 +4140,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L743">src/BigMath.ts:743</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L749">src/BigMath.ts:749</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4168,7 +4163,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L435">src/BigMath.ts:435</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L441">src/BigMath.ts:441</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4191,7 +4186,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L617">src/BigMath.ts:617</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L623">src/BigMath.ts:623</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4214,7 +4209,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L232">src/BigMath.ts:232</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L238">src/BigMath.ts:238</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4237,7 +4232,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L131">src/BigMath.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L137">src/BigMath.ts:137</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4263,7 +4258,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L128">src/BigMath.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L134">src/BigMath.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4289,7 +4284,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L279">src/BigMath.ts:279</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L285">src/BigMath.ts:285</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4312,7 +4307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L816">src/BigMath.ts:816</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L822">src/BigMath.ts:822</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4338,7 +4333,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L813">src/BigMath.ts:813</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L819">src/BigMath.ts:819</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4364,7 +4359,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L909">src/BigMath.ts:909</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L915">src/BigMath.ts:915</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4387,7 +4382,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L906">src/BigMath.ts:906</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L912">src/BigMath.ts:912</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4410,7 +4405,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L249">src/BigMath.ts:249</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L255">src/BigMath.ts:255</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4433,7 +4428,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L263">src/BigMath.ts:263</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L269">src/BigMath.ts:269</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4456,7 +4451,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L271">src/BigMath.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L277">src/BigMath.ts:277</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4479,7 +4474,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L995">src/BigMath.ts:995</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1001">src/BigMath.ts:1001</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4502,7 +4497,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L295">src/BigMath.ts:295</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L301">src/BigMath.ts:301</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4525,7 +4520,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L803">src/BigMath.ts:803</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L809">src/BigMath.ts:809</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4548,7 +4543,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L826">src/BigMath.ts:826</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L832">src/BigMath.ts:832</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4574,7 +4569,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L852">src/BigMath.ts:852</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L858">src/BigMath.ts:858</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4600,7 +4595,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L829">src/BigMath.ts:829</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L835">src/BigMath.ts:835</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4626,7 +4621,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L855">src/BigMath.ts:855</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L861">src/BigMath.ts:861</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4652,7 +4647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L800">src/BigMath.ts:800</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L806">src/BigMath.ts:806</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4675,7 +4670,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L789">src/BigMath.ts:789</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L795">src/BigMath.ts:795</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4698,7 +4693,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L781">src/BigMath.ts:781</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L787">src/BigMath.ts:787</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4721,7 +4716,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L773">src/BigMath.ts:773</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L779">src/BigMath.ts:779</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4744,7 +4739,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L765">src/BigMath.ts:765</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L771">src/BigMath.ts:771</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4767,7 +4762,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L614">src/BigMath.ts:614</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L620">src/BigMath.ts:620</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4790,7 +4785,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L558">src/BigMath.ts:558</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L564">src/BigMath.ts:564</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4813,7 +4808,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L586">src/BigMath.ts:586</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L592">src/BigMath.ts:592</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4836,7 +4831,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L600">src/BigMath.ts:600</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L606">src/BigMath.ts:606</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4859,7 +4854,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L544">src/BigMath.ts:544</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L550">src/BigMath.ts:550</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4882,7 +4877,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L572">src/BigMath.ts:572</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L578">src/BigMath.ts:578</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4905,7 +4900,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L530">src/BigMath.ts:530</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L536">src/BigMath.ts:536</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4928,7 +4923,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L460">src/BigMath.ts:460</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L466">src/BigMath.ts:466</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4951,7 +4946,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L502">src/BigMath.ts:502</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L508">src/BigMath.ts:508</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4974,7 +4969,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L698">src/BigMath.ts:698</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L704">src/BigMath.ts:704</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4997,7 +4992,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L642">src/BigMath.ts:642</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L648">src/BigMath.ts:648</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5020,7 +5015,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L670">src/BigMath.ts:670</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L676">src/BigMath.ts:676</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5043,7 +5038,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L684">src/BigMath.ts:684</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L690">src/BigMath.ts:690</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5066,7 +5061,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L628">src/BigMath.ts:628</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L634">src/BigMath.ts:634</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5089,7 +5084,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L656">src/BigMath.ts:656</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L662">src/BigMath.ts:662</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5112,7 +5107,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L516">src/BigMath.ts:516</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L522">src/BigMath.ts:522</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5135,7 +5130,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L446">src/BigMath.ts:446</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L452">src/BigMath.ts:452</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5158,7 +5153,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L474">src/BigMath.ts:474</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L480">src/BigMath.ts:480</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5181,7 +5176,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1010">src/BigMath.ts:1010</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1016">src/BigMath.ts:1016</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5204,7 +5199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1023">src/BigMath.ts:1023</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1029">src/BigMath.ts:1029</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5227,7 +5222,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1020">src/BigMath.ts:1020</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1026">src/BigMath.ts:1026</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5250,7 +5245,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1036">src/BigMath.ts:1036</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1042">src/BigMath.ts:1042</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5273,7 +5268,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1033">src/BigMath.ts:1033</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1039">src/BigMath.ts:1039</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5296,7 +5291,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1043">src/BigMath.ts:1043</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1049">src/BigMath.ts:1049</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5319,7 +5314,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L839">src/BigMath.ts:839</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L845">src/BigMath.ts:845</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5345,7 +5340,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L865">src/BigMath.ts:865</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L871">src/BigMath.ts:871</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5371,7 +5366,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L145">src/BigMath.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L151">src/BigMath.ts:151</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5394,7 +5389,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L159">src/BigMath.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L165">src/BigMath.ts:165</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5417,7 +5412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L179">src/BigMath.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L185">src/BigMath.ts:185</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5440,7 +5435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L176">src/BigMath.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L182">src/BigMath.ts:182</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5463,7 +5458,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L193">src/BigMath.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L199">src/BigMath.ts:199</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5486,7 +5481,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L173">src/BigMath.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L179">src/BigMath.ts:179</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5509,7 +5504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L190">src/BigMath.ts:190</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L196">src/BigMath.ts:196</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5532,7 +5527,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L842">src/BigMath.ts:842</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L848">src/BigMath.ts:848</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5558,7 +5553,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L868">src/BigMath.ts:868</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L874">src/BigMath.ts:874</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5584,7 +5579,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L100">src/BigMath.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L106">src/BigMath.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5610,7 +5605,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L117">src/BigMath.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L123">src/BigMath.ts:123</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5636,7 +5631,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L246">src/BigMath.ts:246</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L252">src/BigMath.ts:252</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5659,7 +5654,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L260">src/BigMath.ts:260</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L266">src/BigMath.ts:266</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5682,7 +5677,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L142">src/BigMath.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L148">src/BigMath.ts:148</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5705,7 +5700,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L156">src/BigMath.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L162">src/BigMath.ts:162</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5728,7 +5723,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L979">src/BigMath.ts:979</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L985">src/BigMath.ts:985</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5751,7 +5746,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L976">src/BigMath.ts:976</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L982">src/BigMath.ts:982</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5774,7 +5769,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L881">src/BigMath.ts:881</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L887">src/BigMath.ts:887</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5800,7 +5795,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L878">src/BigMath.ts:878</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L884">src/BigMath.ts:884</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5826,7 +5821,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L934">src/BigMath.ts:934</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L940">src/BigMath.ts:940</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5849,7 +5844,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L207">src/BigMath.ts:207</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L213">src/BigMath.ts:213</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5875,7 +5870,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1003">src/BigMath.ts:1003</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1009">src/BigMath.ts:1009</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5898,7 +5893,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L421">src/BigMath.ts:421</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L427">src/BigMath.ts:427</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5921,7 +5916,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L418">src/BigMath.ts:418</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L424">src/BigMath.ts:424</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5944,7 +5939,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L603">src/BigMath.ts:603</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L609">src/BigMath.ts:609</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5967,7 +5962,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L365">src/BigMath.ts:365</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L371">src/BigMath.ts:371</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5990,7 +5985,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L362">src/BigMath.ts:362</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L368">src/BigMath.ts:368</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6013,7 +6008,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L547">src/BigMath.ts:547</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L553">src/BigMath.ts:553</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6036,7 +6031,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L221">src/BigMath.ts:221</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L227">src/BigMath.ts:227</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6059,7 +6054,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L218">src/BigMath.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L224">src/BigMath.ts:224</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6082,7 +6077,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L103">src/BigMath.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L109">src/BigMath.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6108,7 +6103,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L86">src/BigMath.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L92">src/BigMath.ts:92</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6134,7 +6129,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L303">src/BigMath.ts:303</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L309">src/BigMath.ts:309</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6157,7 +6152,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L393">src/BigMath.ts:393</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L399">src/BigMath.ts:399</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6180,7 +6175,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L390">src/BigMath.ts:390</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L396">src/BigMath.ts:396</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6203,7 +6198,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L575">src/BigMath.ts:575</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L581">src/BigMath.ts:581</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6226,7 +6221,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L948">src/BigMath.ts:948</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L954">src/BigMath.ts:954</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6249,7 +6244,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L114">src/BigMath.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L120">src/BigMath.ts:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6275,7 +6270,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1065">src/BigMath.ts:1065</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1071">src/BigMath.ts:1071</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6300,7 +6295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1058">src/BigMath.ts:1058</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1064">src/BigMath.ts:1064</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6323,7 +6318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L204">src/BigMath.ts:204</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L210">src/BigMath.ts:210</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6349,7 +6344,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1051">src/BigMath.ts:1051</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1057">src/BigMath.ts:1057</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6375,7 +6370,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L1072">src/BigMath.ts:1072</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L1078">src/BigMath.ts:1078</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6398,7 +6393,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L488">src/BigMath.ts:488</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L494">src/BigMath.ts:494</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6424,7 +6419,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L729">src/BigMath.ts:729</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L735">src/BigMath.ts:735</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6447,7 +6442,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L726">src/BigMath.ts:726</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L732">src/BigMath.ts:732</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6470,7 +6465,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L712">src/BigMath.ts:712</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L718">src/BigMath.ts:718</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6493,7 +6488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/f817740/src/BigMath.ts#L715">src/BigMath.ts:715</a></li>
+									<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L721">src/BigMath.ts:721</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -6505,6 +6500,49 @@
 							<h4 class="tsd-returns-title">Returns <a href="_src_bigmath_.bigmath.html" class="tsd-signature-type">BigMath</a></h4>
 						</li>
 					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected">
+					<a name="number" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> number</h3>
+					<div class="tsd-signature tsd-kind-icon">number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L73">src/BigMath.ts:73</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="number.comma" class="tsd-anchor"></a>
+						<h3>comma</h3>
+						<div class="tsd-signature tsd-kind-icon">comma<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L74">src/BigMath.ts:74</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="number.number-1" class="tsd-anchor"></a>
+						<h3>number</h3>
+						<div class="tsd-signature tsd-kind-icon">number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> = 0n</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L75">src/BigMath.ts:75</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="number.sign" class="tsd-anchor"></a>
+						<h3>sign</h3>
+						<div class="tsd-signature tsd-kind-icon">sign<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> = false</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/kmdrGroch/BigMath/blob/046a544/src/BigMath.ts#L76">src/BigMath.ts:76</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -6555,9 +6593,6 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_src_bigmath_.bigmath.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_src_bigmath_.bigmath.html#number" class="tsd-kind-icon">number</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
 								<a href="_src_bigmath_.bigmath.html#e" class="tsd-kind-icon">E</a>
@@ -7437,6 +7472,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_src_bigmath_.bigmath.html#versin-1" class="tsd-kind-icon">versin</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected">
+								<a href="_src_bigmath_.bigmath.html#number" class="tsd-kind-icon">number</a>
 							</li>
 						</ul>
 					</li>
