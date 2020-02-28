@@ -5,6 +5,12 @@ import './pluginTest2';
 
 import { expect } from 'chai';
 
+describe('constructor', () => {
+  it('empty constructor should return BigMath(0)', () => {
+    expect(new BigMath().toString()).to.be.equal('0');
+  });
+});
+
 describe('add', () => {
   it('1', () => {
     expect(BigMath.add(12.54354, 6.423525).toString()).to.be.equal('18.967065');
