@@ -122,8 +122,16 @@ export const erf = (a: T): BigNumber => {
 
   const a2 = multiply(a, a);
   let sum = { ...a };
-  let fact = 1n;
-  let k = 1n;
+  const fact = {
+    comma: 0,
+    number: 1n,
+    sign: false
+  };
+  const k = {
+    comma: 0,
+    number: 1n,
+    sign: false
+  };
 
   let sum1;
 
@@ -134,14 +142,11 @@ export const erf = (a: T): BigNumber => {
   };
 
   for (let i = 1n; ; i++) {
-    fact *= i;
-    k += 2n;
+    fact.number *= i;
+    k.number += 2n;
     a = multiply(a, a2);
 
-    sum1 =
-      i % 2n === 1n
-        ? subtract(sum, divide(a, multiply(normalize(fact), normalize(k))))
-        : add(sum, divide(a, multiply(normalize(fact), normalize(k))));
+    sum1 = i % 2n === 1n ? subtract(sum, divide(a, multiply(fact, k))) : add(sum, divide(a, multiply(fact, k)));
 
     if (lt(abs(subtract(sum, sum1)), ErrorConst)) {
       return finalize(multiply(sum1, divide(TWO, sqrt(PI))));
