@@ -22,10 +22,10 @@
     "@stryker-mutator/mocha-framework": "2.5.0",
     "@stryker-mutator/mocha-runner": "2.5.0",
     "@stryker-mutator/typescript": "2.5.0",
-    "@types/chai": "4.2.9",
+    "@types/chai": "4.2.10",
     "@types/mocha": "7.0.1",
-    "@typescript-eslint/eslint-plugin": "2.21.0",
-    "@typescript-eslint/parser": "2.21.0",
+    "@typescript-eslint/eslint-plugin": "2.22.0",
+    "@typescript-eslint/parser": "2.22.0",
     "chai": "4.2.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
@@ -36,7 +36,7 @@
     "rimraf": "3.0.2",
     "source-map-support": "0.5.16",
     "ts-node": "8.6.2",
-    "typedoc": "0.16.10",
-    "typescript": "3.8.2"
+    "typedoc": "0.16.11",
+    "typescript": "3.8.3"
   }
 }
