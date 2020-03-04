@@ -77,10 +77,9 @@ export const W = (a: T): BigNumber => {
   while (true) {
     ex = exp(w);
     wjewj = multiply(w, ex);
-    w1 = subtract(
-      w,
-      divide(subtract(wjewj, a), subtract(add(wjewj, ex), divide(multiply(add(w, TWO), subtract(wjewj, a)), multiply(add(w, ONE), TWO))))
-    );
+    const pp = subtract(wjewj, a);
+    const halfK = multiply(pp, HALF);
+    w1 = subtract(w, divide(pp, subtract(add(wjewj, ex), add(divide(halfK, add(w, ONE)), halfK))));
     if (lt(abs(subtract(w, w1)), ErrorConst) || safeIterator === 100) {
       return finalize(w1);
     }
@@ -122,14 +121,12 @@ export const erf = (a: T): BigNumber => {
 
   const a2 = multiply(a, a);
   let sum = { ...a };
-  const fact = {
+  let fact = 1n;
+  let k = 1n;
+
+  const p = {
     comma: 0,
-    number: 1n,
-    sign: false
-  };
-  const k = {
-    comma: 0,
-    number: 1n,
+    number: 0n,
     sign: false
   };
 
@@ -142,11 +139,13 @@ export const erf = (a: T): BigNumber => {
   };
 
   for (let i = 1n; ; i++) {
-    fact.number *= i;
-    k.number += 2n;
+    fact *= i;
+    k += 2n;
     a = multiply(a, a2);
 
-    sum1 = i % 2n === 1n ? subtract(sum, divide(a, multiply(fact, k))) : add(sum, divide(a, multiply(fact, k)));
+    p.number = fact * k;
+
+    sum1 = i % 2n === 1n ? subtract(sum, divide(a, p)) : add(sum, divide(a, p));
 
     if (lt(abs(subtract(sum, sum1)), ErrorConst)) {
       return finalize(multiply(sum1, divide(TWO, sqrt(PI))));
