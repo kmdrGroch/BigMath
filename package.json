@@ -21,7 +21,7 @@
     "@stryker-mutator/html-reporter": "2.5.0",
     "@stryker-mutator/mocha-framework": "2.5.0",
     "@stryker-mutator/mocha-runner": "2.5.0",
-    "@stryker-mutator/typescript": "2.5.0",
+    "@stryker-mutator/typescript": "3.0.0",
     "@types/chai": "4.2.10",
     "@types/mocha": "7.0.2",
     "@typescript-eslint/eslint-plugin": "2.22.0",
