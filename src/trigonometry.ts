@@ -2,7 +2,7 @@ import { add, divide, exp, ln, multiply, sqrt, subtract } from './basic';
 import { config } from './BigMath';
 import { gt, lt } from './comparison';
 import { PI, PI2, HALF, ONE, TWO, THREE, FOUR, FIVE } from './constants';
-import { BigNumber, T } from './interfaces';
+import { BigNumber } from './interfaces';
 import { abs, DomainError, normalize, stringify, finalize } from './util';
 
 /**
@@ -10,9 +10,7 @@ import { abs, DomainError, normalize, stringify, finalize } from './util';
  * @range [-1, 1]
  * @returns Sine of parameter
  */
-export const sin = (a: T): BigNumber => {
-  a = normalize(a);
-
+export const sin = (a: BigNumber): BigNumber => {
   const r = divide(a, PI2);
   const reduce = subtract(a, multiply(normalize(r.number / 10n ** BigInt(-r.comma)), PI2));
   let s = { ...reduce };
@@ -52,14 +50,14 @@ export const sin = (a: T): BigNumber => {
  * @range [-1, 1]
  * @returns Cosine of parameter
  */
-export const cos = (a: T): BigNumber => sin(subtract(PI2, normalize(a)));
+export const cos = (a: BigNumber): BigNumber => sin(subtract(PI2, normalize(a)));
 
 /**
  * @domain Real numbers & x != PI/2 + k*PI (k - integer)
  * @range Real numbers
  * @returns Tangent of parameter
  */
-export const tan = (a: T): BigNumber => {
+export const tan = (a: BigNumber): BigNumber => {
   const c = cos(a);
   if (c.number === 0n) {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
@@ -73,7 +71,7 @@ export const tan = (a: T): BigNumber => {
  * @range Real numbers
  * @returns Cotangent of parameter
  */
-export const cot = (a: T): BigNumber => {
+export const cot = (a: BigNumber): BigNumber => {
   const s = sin(a);
   if (s.number === 0n) {
     throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
@@ -87,7 +85,7 @@ export const cot = (a: T): BigNumber => {
  * @range Real numbers
  * @returns Secant of parameter
  */
-export const sec = (a: T): BigNumber => {
+export const sec = (a: BigNumber): BigNumber => {
   const c = cos(a);
   if (c.number === 0n) {
     throw new DomainError(stringify(a), 'real numbers & x != PI/2 + k*PI (k - integer)');
@@ -101,7 +99,7 @@ export const sec = (a: T): BigNumber => {
  * @range Real numbers
  * @returns Cosecant of parameter
  */
-export const csc = (a: T): BigNumber => {
+export const csc = (a: BigNumber): BigNumber => {
   const s = sin(a);
   if (s.number === 0n) {
     throw new DomainError(stringify(a), 'real numbers & x != k*PI (k - integer)');
@@ -115,8 +113,7 @@ export const csc = (a: T): BigNumber => {
  * @range [-PI/2, PI/2]
  * @returns Inverse sine of parameter
  */
-export const asin = (a: T): BigNumber => {
-  a = normalize(a);
+export const asin = (a: BigNumber): BigNumber => {
   if (`${a.number}`.length > Math.abs(a.comma)) {
     if (a.number === 1n) {
       return { ...PI2 };
@@ -132,16 +129,14 @@ export const asin = (a: T): BigNumber => {
  * @range [0, PI]
  * @returns Inverse cosine of parameter
  */
-export const acos = (a: T): BigNumber => subtract(PI2, asin(a));
+export const acos = (a: BigNumber): BigNumber => subtract(PI2, asin(a));
 
 /**
  * @domain Real numbers
  * @range [-PI/2, PI/2]
  * @returns Inverse tangent of parameter
  */
-export const atan = (a: T): BigNumber => {
-  a = normalize(a);
-
+export const atan = (a: BigNumber): BigNumber => {
   if (a.number === 0n) {
     return {
       comma: 0,
@@ -201,10 +196,7 @@ export const atan = (a: T): BigNumber => {
  * @range [-PI/2, PI/2]
  * @returns 2-argument inverse tangent
  */
-export const atan2 = (a: T, b: T): BigNumber => {
-  a = normalize(a);
-  b = normalize(b);
-
+export const atan2 = (a: BigNumber, b: BigNumber): BigNumber => {
   if (a.number === 0n) {
     if (b.number === 0n) {
       throw new DomainError('atan(0, 0)', "Real numbers | Both can't be 0");
@@ -233,15 +225,14 @@ export const atan2 = (a: T, b: T): BigNumber => {
  * @range [0, PI]
  * @returns Inverse cotangent of parameter
  */
-export const acot = (a: T): BigNumber => finalize(subtract(PI2, atan(a)));
+export const acot = (a: BigNumber): BigNumber => finalize(subtract(PI2, atan(a)));
 
 /**
  * @domain Real numbers without (-1, 1)
  * @range [0, PI] \ {PI/2}
  * @returns Inverse secant of parameter
  */
-export const asec = (a: T): BigNumber => {
-  a = normalize(a);
+export const asec = (a: BigNumber): BigNumber => {
   if (`${a.number}`.length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
@@ -254,8 +245,7 @@ export const asec = (a: T): BigNumber => {
  * @range [-PI/2, PI/2] \ {0}
  * @returns Inverse cosecant of parameter
  */
-export const acsc = (a: T): BigNumber => {
-  a = normalize(a);
+export const acsc = (a: BigNumber): BigNumber => {
   if (`${a.number}`.length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers not from range (-1, 1)');
   }
@@ -268,8 +258,7 @@ export const acsc = (a: T): BigNumber => {
  * @range Real numbers
  * @returns Hyperbolic sine of parameter
  */
-export const sinh = (a: T): BigNumber => {
-  a = normalize(a);
+export const sinh = (a: BigNumber): BigNumber => {
   const x2 = multiply(a, a);
   let sum = { ...a };
   let fact = 1n;
@@ -301,7 +290,7 @@ export const sinh = (a: T): BigNumber => {
  * @range Numbers greater or equal 1
  * @returns Hyperbolic cosine of parameter
  */
-export const cosh = (a: T): BigNumber => {
+export const cosh = (a: BigNumber): BigNumber => {
   a = exp(a);
 
   return finalize(multiply(add(a, divide(ONE, a)), HALF));
@@ -312,7 +301,7 @@ export const cosh = (a: T): BigNumber => {
  * @range (-1, 1)
  * @returns Hyperbolic tangent of parameter
  */
-export const tanh = (a: T): BigNumber => {
+export const tanh = (a: BigNumber): BigNumber => {
   a = exp(a);
 
   return finalize(subtract(ONE, divide(TWO, add(multiply(a, a), ONE))));
@@ -323,8 +312,7 @@ export const tanh = (a: T): BigNumber => {
  * @range Real numbers without [-1, 1]
  * @returns Hyperbolic cotangent of parameter
  */
-export const coth = (a: T): BigNumber => {
-  a = normalize(a);
+export const coth = (a: BigNumber): BigNumber => {
   if (a.number === 0n) {
     throw new DomainError('0', 'real numbers without 0');
   }
@@ -338,7 +326,7 @@ export const coth = (a: T): BigNumber => {
  * @range (0, 1)
  * @returns Hyperbolic secant of parameter
  */
-export const sech = (a: T): BigNumber => {
+export const sech = (a: BigNumber): BigNumber => {
   a = exp(a);
 
   return finalize(divide(TWO, add(a, divide(ONE, a))));
@@ -349,8 +337,7 @@ export const sech = (a: T): BigNumber => {
  * @range Real numbers without 0
  * @returns Hyperbolic cosecant of parameter
  */
-export const csch = (a: T): BigNumber => {
-  a = normalize(a);
+export const csch = (a: BigNumber): BigNumber => {
   if (a.number === 0n) {
     throw new DomainError('0', 'real numbers without 0');
   }
@@ -364,19 +351,14 @@ export const csch = (a: T): BigNumber => {
  * @range Real numbers
  * @returns Inverse hyperbolic sine of parameter
  */
-export const asinh = (a: T): BigNumber => {
-  a = normalize(a);
-
-  return ln(add(a, sqrt(add(multiply(a, a), ONE))));
-};
+export const asinh = (a: BigNumber): BigNumber => ln(add(a, sqrt(add(multiply(a, a), ONE))));
 
 /**
  * @domain Real numbers greater or equal 1
  * @range Real numbers greater or equal 0
  * @returns Inverse hyperbolic cosine of parameter
  */
-export const acosh = (a: T): BigNumber => {
-  a = normalize(a);
+export const acosh = (a: BigNumber): BigNumber => {
   if (a.sign || `${a.number}`.length <= Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers greater or equal 1');
   }
@@ -396,8 +378,7 @@ export const acosh = (a: T): BigNumber => {
  * @range Real numbers
  * @returns Inverse hyperbolic tangent of parameter
  */
-export const atanh = (a: T): BigNumber => {
-  a = normalize(a);
+export const atanh = (a: BigNumber): BigNumber => {
   if (`${a.number}`.length > Math.abs(a.comma)) {
     throw new DomainError(stringify(a), 'numbers from range (-1, 1)');
   }
@@ -410,8 +391,7 @@ export const atanh = (a: T): BigNumber => {
  * @range Real numbers
  * @returns Inverse hyperbolic cotangent of parameter
  */
-export const acoth = (a: T): BigNumber => {
-  a = normalize(a);
+export const acoth = (a: BigNumber): BigNumber => {
   if (`${a.number}`.length <= Math.abs(a.comma) || a.number === 1n || a.number === 0n) {
     throw new DomainError(stringify(a), 'numbers not from range [-1, 1]');
   }
@@ -424,8 +404,7 @@ export const acoth = (a: T): BigNumber => {
  * @range Real numbers greater of equal 0
  * @returns Inverse hyperbolic secant of parameter
  */
-export const asech = (a: T): BigNumber => {
-  a = normalize(a);
+export const asech = (a: BigNumber): BigNumber => {
   if (a.sign || `${a.number}`.length > Math.abs(a.comma)) {
     if (a.comma === 0 && !a.sign && a.number === 1n) {
       return {
@@ -445,27 +424,26 @@ export const asech = (a: T): BigNumber => {
  * @range Real numbers
  * @returns Inverse hyperbolic cosecant of parameter
  */
-export const acsch = (a: T): BigNumber => {
-  a = normalize(a);
+export const acsch = (a: BigNumber): BigNumber => {
   const b = divide(ONE, a);
 
   return ln(add(b, sqrt(add(divide(b, a), ONE))));
 };
 
-export const versin = (a: T): BigNumber => finalize(subtract(ONE, cos(a)));
+export const versin = (a: BigNumber): BigNumber => finalize(subtract(ONE, cos(a)));
 
-export const vercos = (a: T): BigNumber => finalize(add(ONE, cos(a)));
+export const vercos = (a: BigNumber): BigNumber => finalize(add(ONE, cos(a)));
 
-export const coversin = (a: T): BigNumber => finalize(subtract(ONE, sin(a)));
+export const coversin = (a: BigNumber): BigNumber => finalize(subtract(ONE, sin(a)));
 
-export const covercos = (a: T): BigNumber => finalize(add(ONE, sin(a)));
+export const covercos = (a: BigNumber): BigNumber => finalize(add(ONE, sin(a)));
 
-export const haversin = (a: T): BigNumber => finalize(divide(subtract(ONE, cos(a)), TWO));
+export const haversin = (a: BigNumber): BigNumber => finalize(divide(subtract(ONE, cos(a)), TWO));
 
-export const havercos = (a: T): BigNumber => finalize(divide(add(ONE, cos(a)), TWO));
+export const havercos = (a: BigNumber): BigNumber => finalize(divide(add(ONE, cos(a)), TWO));
 
-export const hacoversin = (a: T): BigNumber => finalize(divide(subtract(ONE, sin(a)), TWO));
+export const hacoversin = (a: BigNumber): BigNumber => finalize(divide(subtract(ONE, sin(a)), TWO));
 
-export const hacovercos = (a: T): BigNumber => finalize(divide(add(ONE, sin(a)), TWO));
+export const hacovercos = (a: BigNumber): BigNumber => finalize(divide(add(ONE, sin(a)), TWO));
 
-export const gd = (a: T): BigNumber => finalize(multiply(TWO, atan(tanh(divide(normalize(a), TWO)))));
+export const gd = (a: BigNumber): BigNumber => finalize(multiply(TWO, atan(tanh(divide(normalize(a), TWO)))));

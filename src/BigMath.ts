@@ -287,7 +287,7 @@ export class BigMath {
   }
 
   public binomial(value: T) {
-    this.number = binomial(this.number, value);
+    this.number = binomial(this.number, normalize(value));
     return this;
   }
   public static binomial(value1: T, value2: T) {
@@ -485,7 +485,7 @@ export class BigMath {
   }
 
   public twoArgumentInverseTangent(value: T) {
-    this.number = atan2(this.number, value);
+    this.number = atan2(this.number, normalize(value));
     return this;
   }
   public atan2(value: T) {
@@ -889,7 +889,7 @@ export class BigMath {
   }
 
   public arithmeticGeometricMean(value: T) {
-    this.number = AGM(this.number, value);
+    this.number = AGM(this.number, normalize(value));
     return this;
   }
   public AGM(value: T) {

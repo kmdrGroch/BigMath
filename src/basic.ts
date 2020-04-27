@@ -1,7 +1,7 @@
 import { config } from './BigMath';
 import { lt, lte, gt } from './comparison';
 import { LOG10, LOG2, PI, HALF, TWO, ONE, THREE, FOUR, SIX, EIGHT, MINUSONE } from './constants';
-import { BigNumber, T } from './interfaces';
+import { BigNumber } from './interfaces';
 import { sin } from './trigonometry';
 import { abs, DomainError, finalize, normalize, stringify, trim, gcd } from './util';
 
@@ -246,9 +246,7 @@ export const ln = (a: BigNumber) => {
  * @domain Numbers greater than -1
  * @returns Natural logarithm (base e) of a number + 1
  */
-export const ln1p = (a: T): BigNumber => {
-  a = normalize(a);
-
+export const ln1p = (a: BigNumber): BigNumber => {
   if (lte(a, MINUSONE)) {
     throw new DomainError(stringify(a), 'numbers greater than -1');
   }
@@ -260,13 +258,13 @@ export const ln1p = (a: T): BigNumber => {
  * @domain Numbers greater than 0
  * @returns Logarithm base 10 of a number
  */
-export const log10 = (a: T): BigNumber => finalize(divide(ln(normalize(a)), LOG10));
+export const log10 = (a: BigNumber): BigNumber => finalize(divide(ln(a), LOG10));
 
 /**
  * @domain Numbers greater than 0
  * @returns Logarithm base 2 of a number
  */
-export const log2 = (a: T): BigNumber => finalize(divide(ln(normalize(a)), LOG2));
+export const log2 = (a: BigNumber): BigNumber => finalize(divide(ln(a), LOG2));
 
 /**
  * @domain Real numbers, Real numbers | both can't be 0 at the same time | not negative ^ non-integer
@@ -315,8 +313,7 @@ export const power = (a: BigNumber, b: BigNumber): BigNumber => {
  * @domain Numbers greater or equal 0
  * @returns Square root of number
  */
-export const sqrt = (a: T): BigNumber => {
-  a = normalize(a);
+export const sqrt = (a: BigNumber): BigNumber => {
   if (a.sign) {
     throw new DomainError(stringify(a), 'numbers greater or equal 0');
   }
@@ -383,9 +380,7 @@ export const sqrt = (a: T): BigNumber => {
  * @domain Numbers greater or equal 0
  * @returns Cubic root of number
  */
-export const cbrt = (a: T): BigNumber => {
-  a = normalize(a);
-
+export const cbrt = (a: BigNumber): BigNumber => {
   if (a.number === 0n) {
     return {
       comma: 0,
@@ -451,9 +446,7 @@ export const cbrt = (a: T): BigNumber => {
  * @domain Real numbers
  * @returns Result of the exponentiation of e ^ parameter
  */
-export const exp = (a: T): BigNumber => {
-  a = normalize(a);
-
+export const exp = (a: BigNumber): BigNumber => {
   if (a.number === 0n) {
     return {
       comma: 0,
@@ -511,9 +504,9 @@ export const exp = (a: T): BigNumber => {
  * @domain Real numbers
  * @returns Result of the exponentiation of e ^ parameter - 1
  */
-export const expm1 = (a: T): BigNumber => subtract(exp(a), ONE);
+export const expm1 = (a: BigNumber): BigNumber => subtract(exp(a), ONE);
 
-export const doubleFactorial = (a: T): BigNumber => {
+export const doubleFactorial = (a: BigNumber): BigNumber => {
   a = normalize(a);
   if (a.comma !== 0 || a.sign) {
     throw new DomainError(stringify(a), 'positive integers');
@@ -547,14 +540,26 @@ export const doubleFactorial = (a: T): BigNumber => {
     case 2n:
       return {
         comma: 0,
-        number: n * doubleFactorial(n - 2n).number,
+        number:
+          n *
+          doubleFactorial({
+            comma: 0,
+            number: n - 2n,
+            sign: false
+          }).number,
         sign: false
       };
   }
 
   return {
     comma: 0,
-    number: 2n ** (n / 2n) * factorial(n / 2n).number,
+    number:
+      2n ** (n / 2n) *
+      factorial({
+        comma: 0,
+        number: n / 2n,
+        sign: false
+      }).number,
     sign: false
   };
 };
@@ -563,8 +568,7 @@ export const doubleFactorial = (a: T): BigNumber => {
  * @domain Integers
  * @returns Product of all integers until given number
  */
-export const factorial = (a: T): BigNumber => {
-  a = normalize(a);
+export const factorial = (a: BigNumber): BigNumber => {
   if (a.comma !== 0 || a.sign) {
     throw new DomainError(stringify(a), 'positive integers');
   }
@@ -610,10 +614,7 @@ export const factorial = (a: T): BigNumber => {
   };
 };
 
-export const binomial = (a: T, b: T): BigNumber => {
-  a = normalize(a);
-  b = normalize(b);
-
+export const binomial = (a: BigNumber, b: BigNumber): BigNumber => {
   if (gt(b, a)) {
     throw new DomainError(`binomial(${stringify(a)}, ${stringify(b)})`, 'first parameter bigger than second');
   }
@@ -625,14 +626,12 @@ export const binomial = (a: T, b: T): BigNumber => {
   };
 };
 
-export const gamma = (a: T): BigNumber => {
+export const gamma = (a: BigNumber): BigNumber => {
   /*
     g = 7
     data taken from:
     http://my.fit.edu/~gabdo/gammacoeff.txt
   */
-
-  a = normalize(a);
 
   if (a.comma === 0 && !a.sign) {
     return factorial(subtract(a, ONE));
@@ -670,8 +669,7 @@ export const gamma = (a: T): BigNumber => {
   return finalize(y);
 };
 
-export const superFactorial = (a: T): BigNumber => {
-  a = normalize(a);
+export const superFactorial = (a: BigNumber): BigNumber => {
   if (a.comma !== 0 || a.sign) {
     throw new DomainError(stringify(a), 'positive integers');
   }
