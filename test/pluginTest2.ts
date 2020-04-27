@@ -9,10 +9,10 @@ declare module '../src/BigMath' {
   }
 }
 
-BigMath.plugin2 = function(f) {
+BigMath.plugin2 = function (f) {
   return this.abs(f);
 };
 
-BigMath.prototype.plugin2 = function(f) {
+BigMath.prototype.plugin2 = function (f) {
   return new BigMath(f).abs();
 };

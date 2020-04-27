@@ -10,7 +10,15 @@ module.exports = {
   extends: ['prettier', 'eslint:recommended'],
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': ['error'],
+    'prettier/prettier': [
+      'error',
+      {
+        'printWidth': 150,
+        'singleQuote': true,
+        'endOfLine': 'crlf',
+        'trailingComma': 'none'
+      }
+    ],
     'sort-imports': 'off',
     'no-case-declarations': 'off',
     'no-constant-condition': 'off',
