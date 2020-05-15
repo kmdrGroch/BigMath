@@ -17,7 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "1.0.1",
-    "@stryker-mutator/core": "3.1.0",
+    "@stryker-mutator/core": "3.2.1",
     "@stryker-mutator/mocha-framework": "3.1.0",
     "@stryker-mutator/mocha-runner": "3.1.0",
     "@stryker-mutator/typescript": "3.1.0",
