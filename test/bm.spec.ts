@@ -1,5 +1,5 @@
 import { DomainError } from '../index';
-import { BigMath } from '../src/BigMath';
+import { BigMath } from '../index';
 import './pluginTest';
 import './pluginTest2';
 
