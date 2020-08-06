@@ -10,10 +10,10 @@ import { abs, DomainError, finalize, normalize, stringify, trim, gcd } from './u
  * @returns Sum of parameters
  */
 export const add = (a: BigNumber, b: BigNumber): BigNumber => {
-  a = { ...a };
-  b = { ...b };
-
   if (a.sign !== b.sign) {
+    a = { ...a };
+    b = { ...b };
+
     if (a.sign) {
       a.sign = false;
 
@@ -52,10 +52,10 @@ export const add = (a: BigNumber, b: BigNumber): BigNumber => {
  * @returns Difference of parameters
  */
 export const subtract = (a: BigNumber, b: BigNumber): BigNumber => {
-  a = { ...a };
-  b = { ...b };
-
   if (a.sign !== b.sign) {
+    a = { ...a };
+    b = { ...b };
+
     if (a.sign) {
       b.sign = true;
 
@@ -105,15 +105,16 @@ export const multiply = (a: BigNumber, b: BigNumber): BigNumber =>
  * @returns Quotient of parameters
  */
 export const divide = (a: BigNumber, b: BigNumber, pure = false): BigNumber => {
-  a = { ...a };
-  b = { ...b };
-
   if (b.number === 0n) {
     throw new DomainError('0', 'numbers other than 0');
   }
 
+  a = { ...a };
+
   const len = `${a.number}`.length - `${b.number}`.length;
+
   if (len > 0) {
+    b = { ...b };
     b.number *= 10n ** BigInt(len);
     b.comma -= len;
   } else {
@@ -162,11 +163,11 @@ export const divide = (a: BigNumber, b: BigNumber, pure = false): BigNumber => {
  * @returns Natural logarithm (base e) of a number
  */
 export const ln = (a: BigNumber) => {
-  a = { ...a };
-
   if (a.sign || a.number === 0n) {
     throw new DomainError(stringify(a), 'numbers greater than 0');
   }
+
+  a = { ...a };
 
   const tens = `${a.number}`.length + a.comma;
   let ten = multiply(normalize(tens), LOG10);
@@ -271,12 +272,11 @@ export const log2 = (a: BigNumber): BigNumber => finalize(divide(ln(a), LOG2));
  * @returns Result of the exponentiation of parameters
  */
 export const power = (a: BigNumber, b: BigNumber): BigNumber => {
-  a = { ...a };
-  b = { ...b };
-
   if (a.number === 0n && b.number === 0n) {
     throw new DomainError('0 ^ 0', "real numbers | both can't be 0 at the same time");
   }
+
+  a = { ...a };
 
   if (b.comma > -1) {
     if (b.sign) {
@@ -343,14 +343,14 @@ export const sqrt = (a: BigNumber): BigNumber => {
 
     while (k <= end) {
       mid = (k + end) / 2n;
-      if (mid ** 2n === a.number) {
+      if (mid * mid === a.number) {
         return trim({
           comma: a.comma / 2,
           number: mid,
           sign: false
         });
       }
-      if (mid ** 2n < a.number) {
+      if (mid * mid < a.number) {
         k = mid + 1n;
       } else {
         end = mid - 1n;
@@ -358,7 +358,11 @@ export const sqrt = (a: BigNumber): BigNumber => {
     }
   }
 
-  let aprox = normalize(mid || 10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)));
+  let aprox = {
+    comma: 0,
+    number: mid || 10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 2)),
+    sign: false
+  };
   let aprox1;
 
   const ErrorConst = {
@@ -409,14 +413,14 @@ export const cbrt = (a: BigNumber): BigNumber => {
 
     while (k <= end) {
       mid = (k + end) / 2n;
-      if (mid ** 3n === a.number) {
+      if (mid * mid * mid === a.number) {
         return trim({
           comma: a.comma / 3,
           number: mid,
           sign: false
         });
       }
-      if (mid ** 3n < a.number) {
+      if (mid * mid * mid < a.number) {
         k = mid + 1n;
       } else {
         end = mid - 1n;
@@ -424,7 +428,11 @@ export const cbrt = (a: BigNumber): BigNumber => {
     }
   }
 
-  let aprox = normalize(mid || 10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)));
+  let aprox = {
+    comma: 0,
+    number: mid || 10n ** BigInt(Math.floor((`${a.number}`.length + a.comma) / 3)),
+    sign: false
+  };
   let aprox1;
 
   const ErrorConst = {
@@ -464,7 +472,11 @@ export const exp = (a: BigNumber): BigNumber => {
   }
 
   if (i !== 1n) {
-    a = divide(a, normalize(i));
+    a = divide(a, {
+      comma: 0,
+      number: i,
+      sign: false
+    });
   }
 
   const inv = divide(ONE, a);
@@ -507,7 +519,6 @@ export const exp = (a: BigNumber): BigNumber => {
 export const expm1 = (a: BigNumber): BigNumber => subtract(exp(a), ONE);
 
 export const doubleFactorial = (a: BigNumber): BigNumber => {
-  a = normalize(a);
   if (a.comma !== 0 || a.sign) {
     throw new DomainError(stringify(a), 'positive integers');
   }
@@ -674,7 +685,9 @@ export const superFactorial = (a: BigNumber): BigNumber => {
     throw new DomainError(stringify(a), 'positive integers');
   }
 
-  if (a.number < 2n) {
+  let num = a.number;
+
+  if (num < 2n) {
     return {
       comma: 0,
       number: 1n,
@@ -682,12 +695,12 @@ export const superFactorial = (a: BigNumber): BigNumber => {
     };
   }
 
-  if (a.number % 2n === 0n) {
+  if (num % 2n === 0n) {
     let prod = 1n;
     let fact = 1n;
     let prod2 = 1n;
 
-    for (let i = 2n; i < a.number; i += 2n) {
+    for (let i = 2n; i < num; i += 2n) {
       fact *= i * (i + 1n);
       prod2 *= i;
       prod *= fact;
@@ -695,17 +708,17 @@ export const superFactorial = (a: BigNumber): BigNumber => {
 
     return {
       comma: 0,
-      number: prod2 * a.number * prod ** 2n,
+      number: prod2 * num * prod * prod,
       sign: false
     };
   }
 
-  a.number -= 1n;
+  num -= 1n;
   let prod = 1n;
   let fact = 1n;
   let prod2 = 1n;
 
-  for (let i = 2n; i < a.number; i += 2n) {
+  for (let i = 2n; i < num; i += 2n) {
     fact *= i * (i + 1n);
     prod2 *= i;
     prod *= fact;
@@ -713,7 +726,7 @@ export const superFactorial = (a: BigNumber): BigNumber => {
 
   return {
     comma: 0,
-    number: prod2 * prod ** 2n * fact * a.number * (a.number + 1n) * a.number,
+    number: prod2 * prod * prod * fact * num * (num + 1n) * num,
     sign: false
   };
 };

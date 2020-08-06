@@ -163,7 +163,12 @@ export const trim = (a: BigNumber): BigNumber => {
     }
   }
 
-  return a.number < 0n ? { comma: a.comma, number: -a.number, sign: !a.sign } : a;
+  if (a.number < 0n) {
+    a.number = -a.number;
+    a.sign = !a.sign;
+  }
+
+  return a;
 };
 
 /**
