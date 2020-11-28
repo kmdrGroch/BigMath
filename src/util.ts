@@ -100,8 +100,7 @@ export const stringify = (a: T): string => {
   }
 };
 
-export const round = (a: T): BigNumber => {
-  a = normalize(a);
+export const round = (a: BigNumber): BigNumber => {
   if (a.comma < 0) {
     const b = stringify(a).split('.');
     if (a.sign) {
@@ -114,8 +113,7 @@ export const round = (a: T): BigNumber => {
   return a;
 };
 
-export const floor = (a: T): BigNumber => {
-  a = normalize(a);
+export const floor = (a: BigNumber): BigNumber => {
   if (a.sign) {
     const b = stringify(a).split('.');
 
@@ -125,8 +123,7 @@ export const floor = (a: T): BigNumber => {
   return normalize(BigInt(stringify(a).split('.')[0]));
 };
 
-export const ceil = (a: T): BigNumber => {
-  a = normalize(a);
+export const ceil = (a: BigNumber): BigNumber => {
   if (!a.sign) {
     const b = stringify(a).split('.');
 
@@ -148,7 +145,7 @@ export const abs = (a: BigNumber): BigNumber => ({
 /**
  * Checks if number is an integer
  */
-export const isInteger = (a: T): boolean => normalize(a).comma >= 0;
+export const isInteger = (a: BigNumber): boolean => a.comma >= 0;
 
 /**
  * Remove following zeros
